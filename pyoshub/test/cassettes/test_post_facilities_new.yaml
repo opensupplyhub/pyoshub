@@ -1,0 +1,55 @@
+interactions:
+- request:
+    body: name=Place+B&address=Nowhere%2C+12346+Somewhere&country=DE&sector=Unspecified
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '89'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDETOKEN
+    method: POST
+    uri: https://openapparel.org/api/facilities/??create=false&public=true&textonlyfallback=false
+  response:
+    body:
+      string: "{\"matches\":[],\"item_id\":790469,\"geocoded_geometry\":{\"type\":\"Point\",\"coordinates\":[10.913153,48.3868035]},\"geocoded_address\":\"Linke
+        Brandstra\xDFe 21, 86167 Augsburg, Germany\",\"status\":\"NEW_FACILITY\",\"os_id\":\"DE2022276R5W9NN\"}"
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '223'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 03 Oct 2022 10:31:22 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 5076c8187f430eebe5e26fc594d6125a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - C5CzzLTaNumQL_WRkssDSZFDxQ54Dho8x1-kCIoWKTBMPRRRqdjx1w==
+      X-Amz-Cf-Pop:
+      - FRA2-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 201
+      message: Created
+version: 1

@@ -1,0 +1,96 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDETOKEN
+    method: GET
+    uri: https://openapparel.org/api/countries/active_count
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Sun, 02 Oct 2022 17:02:15 GMT
+      Location:
+      - /api/countries/active_count/
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Via:
+      - 1.1 0e7eb16f335fe24acf3f13c5dee19c88.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - UCaAhPdiSVnNCfYYnXNBkNsZZXYAMj7G8uKsBGTZXiWzJwl1RD-lHw==
+      X-Amz-Cf-Pop:
+      - FRA2-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 301
+      message: Moved Permanently
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDETOKEN
+    method: GET
+    uri: https://openapparel.org/api/countries/active_count/
+  response:
+    body:
+      string: '{"count":151}'
+    headers:
+      Allow:
+      - OPTIONS, GET
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '13'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 02 Oct 2022 17:02:16 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 0e7eb16f335fe24acf3f13c5dee19c88.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - SGGxsN-4lZSFWPoNDvPqqkISwvdCUkMIfkEFKtYSltzPpd7AzbzaeQ==
+      X-Amz-Cf-Pop:
+      - FRA2-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

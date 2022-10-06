@@ -1,0 +1,71 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDETOKEN
+    method: GET
+    uri: https://openapparel.org/api/sectors/
+  response:
+    body:
+      string: '["Accessories","Accommodation","Aerospace","Agriculture","Air Transportation","Allied
+        Products","Ambulatory Care Facility","Animal Production","Apparel","Apparel
+        Accessories","Appliances","Aquaculture","Archives","Arts","Audio Recording","Automotive","Automotive
+        Parts","Banking","Beverages","Books","Building Construction","Building Material","Chemical
+        Industry","Chemical Substances","Civics","Civil Engineering Construction","Coal","Commodity
+        Contracts","Components","Computer","Computing Infrastructure","Construction","Consumer
+        Products","Crop Production","Durable Goods","Educational Services","Electrical
+        Devices","Electricity","Electronic Product Manufacturing","Electronics","Energy","Entertainment","Environmental,
+        Social and Corporate Governance","Equipment","Farming","Finance","Financial
+        Services","Fishing","Food","Food Industry","Food Manufacturing","Footwear","Forestry","Furniture","Garden
+        Tools","Gas","General Merchandise","Ground Passenger Transportation","Health","Healthcare","Hobby","Home
+        Furnishings","Hospitals","Hunting","Information","International Affairs","Jewelry","Leather","Logging","Machinery
+        Manufacturing","Maintenance","Manufacture of fabricated metal products","Manufacturing","Merchant
+        Wholesalers","Metal Manufacturing","Mining","Multi-Category","Musical Instruments","Nondurable
+        Goods","Nonmetallic Mineral Product Manufacturing","Nursing","Oil","Paper","Parts
+        Dealers","Personal Care Products","Pharmaceutical Product","Pipeline Transportation","Plastics","Printing","Professional","Professional,
+        scientific and technical activities","Quarrying","Rail Transportation","Recreation","Renewable
+        Energy","Renting","Repair","Rubber Products","Scientific","Solar Energy","Space
+        Research","Specialty Trade Contractors","Sports Equipment","Storage","Supplies
+        Dealers","Technical Services","Technology","Telecommunications","Textile Mills","Tobacco
+        Products","Transportation Equipment","Trucking","Utilities","Warehousing","Wholesale
+        Trade","Wood Products"]'
+    headers:
+      Allow:
+      - GET, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1989'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 02 Oct 2022 17:02:19 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 d7e55181ad8192e74c103c6003cd4d9c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - VMik3fA8S76TS1e_wglApumuUsPzcVFpVX77eFTvln69uqSvK4FdkA==
+      X-Amz-Cf-Pop:
+      - FRA2-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

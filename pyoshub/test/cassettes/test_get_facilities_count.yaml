@@ -1,0 +1,96 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDETOKEN
+    method: GET
+    uri: https://openapparel.org/api/facilities/count
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Sun, 02 Oct 2022 17:02:17 GMT
+      Location:
+      - /api/facilities/count/
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Via:
+      - 1.1 34f50889bc574f1edeb41dd758962a5a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - wX8qVk6ozTQacYY_DTqmE5IzAO9NilwnDyPcK7KmCEIrAlWZk90MxQ==
+      X-Amz-Cf-Pop:
+      - FRA2-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 301
+      message: Moved Permanently
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDETOKEN
+    method: GET
+    uri: https://openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":103698}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 02 Oct 2022 17:02:17 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 34f50889bc574f1edeb41dd758962a5a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - IRo4okNYT9VEuRyY1BbaUssyMCqqQZl3VcqVIBS-kUpwphCbHBvASw==
+      X-Amz-Cf-Pop:
+      - FRA2-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

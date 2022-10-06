@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDETOKEN
+    method: GET
+    uri: https://openapparel.org/api/contributor-embed-configs/25/
+  response:
+    body:
+      string: '{"id":8,"width":"1200","height":"800","color":"#47b60c","font":"Arial,Helvetica,sans-serif","contributor":25,"embed_fields":[{"column_name":"number_of_workers","display_name":"Number
+        of Workers","visible":true,"order":0,"searchable":false},{"column_name":"percent_female_workers","display_name":"percent_female_workers","visible":true,"order":1,"searchable":false},{"column_name":"type_of_facility","display_name":"Type
+        of Facility","visible":true,"order":2,"searchable":false},{"column_name":"type_of_product","display_name":"Type
+        of Product","visible":true,"order":3,"searchable":false},{"column_name":"percent_migrant_workers","display_name":"percent_migrant_workers","visible":true,"order":4,"searchable":false},{"column_name":"parent_company","display_name":"Parent
+        Company","visible":true,"order":5,"searchable":false},{"column_name":"tier","display_name":"tier","visible":true,"order":6,"searchable":false},{"column_name":"","display_name":"","visible":false,"order":7,"searchable":false},{"column_name":"product_type","display_name":"Product
+        Type","visible":false,"order":8,"searchable":false},{"column_name":"facility_type","display_name":"Facility
+        Type","visible":false,"order":9,"searchable":false},{"column_name":"processing_type","display_name":"Processing
+        Type","visible":false,"order":10,"searchable":false}],"prefer_contributor_name":true,"contributor_name":"Levi
+        Strauss & Co.","text_search_label":"Search a Facility Name or OAR ID","map_style":"default","extended_fields":["number_of_workers","parent_company"]}'
+    headers:
+      Allow:
+      - GET, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1529'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 02 Oct 2022 17:02:13 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 2ec3090d74e200e4acdb2780da3c3c44.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - VBkKcPIpxFTvmLuKiGuRQVM-LSmMXp3Uk6fdgcTMuYHVm9Ng_YggCg==
+      X-Amz-Cf-Pop:
+      - FRA2-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

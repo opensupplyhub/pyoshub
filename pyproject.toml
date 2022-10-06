@@ -1,0 +1,24 @@
+[build-system]
+requires = ["flit_core","pyyaml","pandas","requests"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "pyoshub"
+authors = [{name = "Klaus G. Paul", email = "20340525+KlausGPaul@users.noreply.github.com"}]
+dynamic = ["version", "description"]
+requires-python = ">=3.5"
+readme = "README.rst"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://opensupplyhub.org"
+# "OpenAPI" = "https://opensupplyhub.org/api/docs"
+"Github" = "https://github.com/opensupplyhub/pyoshub"
+"Bug Tracker" = "https://github.com/opensupplyhub/pyoshub/issues"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}

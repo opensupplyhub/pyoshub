@@ -1,0 +1,50 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDETOKEN
+    method: GET
+    uri: https://openapparel.org/api/contributor-lists/?contributors=2185
+  response:
+    body:
+      string: '[[1258,"Fendi 2021 facility list"]]'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '35'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 02 Oct 2022 17:02:14 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 0e75d8f2d484ce463fc04f5c422aa178.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - uXf3X2Jh6xtkCOrrenL4FL9RS8JQ-TPDxxIsNtJwsWzjWuTAEDdOZw==
+      X-Amz-Cf-Pop:
+      - FRA2-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

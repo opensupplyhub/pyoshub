@@ -1,0 +1,3 @@
+2022-09-27 First Release
+
+* set up setuptools and readthedocs flow
