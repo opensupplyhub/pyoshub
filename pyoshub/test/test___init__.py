@@ -1,7 +1,7 @@
 import pytest
-import pyosh 
+import pyoshub.pyoshub as pyoshub 
 
-osh_api = pyosh.OSH_API()
+osh_api = pyoshub.OSH_API()
 
 _ = """
 @pytest.mark.vcr()

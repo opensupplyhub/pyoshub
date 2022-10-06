@@ -1,5 +1,5 @@
 import pytest
-import pyosh 
+import pyoshub.pyoshub as pyoshub 
 
 @pytest.fixture(scope='module')
 def vcr_config():
@@ -7,7 +7,7 @@ def vcr_config():
         "filter_headers": [('authorization', 'HIDETOKEN')],
     }
     
-osh_api = pyosh.OSH_API()
+osh_api = pyoshub.OSH_API()
 
 @pytest.mark.vcr()
 def test_get_contributors():

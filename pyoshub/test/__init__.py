@@ -1,5 +1,5 @@
 import pytest
-import pyosh
+import pyoshub.pyoshub as pyoshub
 
 @pytest.fixture(scope='module')
 def vcr_config():
@@ -14,4 +14,4 @@ def vcr_config():
 #    #eturn os.path.join('vhs', request.module.__name__)
 #    return("/tmp")
 
-osh_api = pyosh.OSH_API()
+osh_api = pyoshub.OSH_API()
