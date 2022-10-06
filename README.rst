@@ -2,6 +2,10 @@
    :scale: 25%
    :alt: Open Supply Hub logo
 
+.. image:: https://readthedocs.org/projects/pyoshub/badge/?version=latest
+    :target: https://pyoshub.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+    
 
 pyoshub, A Python libarary for the OSH API
 ===========================================
