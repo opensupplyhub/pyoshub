@@ -15,6 +15,22 @@ import io
 class OSH_API():
     """This is a class that wraps API access to https://opensupplyhub.org.
        
+        Attributes
+        ----------
+        url: string
+           The URL used to connect to the API
+        token: string
+           The autentication token used to connect to the API
+        header: dict
+           The header used to connect, and authenticate to the API
+        api_call_count: int
+           The accumulated number of API calls made during the lifetime of the object. This value is not
+           persisted and gets initialised to 0 each time an object is instantiated.
+        result: dict
+           A distionary containing the result of the last call made. Key ``code`` is an int with an error
+           code (0 being no errors, nonzero indicating an error), and ``message`` a str containing an error message.
+           
+       
         Example
         -------
         This is an example of a yaml configuration file which supplies a valid API endpoint URL, and an API token.
@@ -661,7 +677,10 @@ class OSH_API():
                                 else:
                                     lines = []
                                     for vvv in vv:
-                                        lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk,vvvv in vvv.items()]))
+                                        if isinstance(vvv,dict):
+                                            lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk,vvvv in vvv.items()]))
+                                        elif isinstance(vvv,str):
+                                            lines.append(vvv)
                                     new_data[f"match_{kk}"] = "\n".join(lines).replace("lng:","lon:")
                             elif isinstance(vv,dict):
                                 for kkk,vvv in vv.items():
@@ -670,7 +689,7 @@ class OSH_API():
                                         if isinstance(entry,dict):
                                             lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk,vvvv in entry.items()]))
                                         elif isinstance(entry,str):
-                                            lines = [vvv]
+                                            lines.append(entry)
                                         else:
                                             raise NotImplementedError("Internal _flatten_facilities_json. Facilities data structure must have changed. "
                                                                       "Instance 2/2. "
@@ -880,9 +899,7 @@ class OSH_API():
         | os_id                          | The OS ID                                | str   |
         +--------------------------------+------------------------------------------+-------+
         
-
         For status == ``POTENTIAL_MATCH``
-
           In addition to the fields in ``MATCHED``
           
         +-------------------------+------------------------------------------+-------+
@@ -1152,6 +1169,207 @@ class OSH_API():
             self.result = {"code":-1,"message":f"{r.status_code}"}
         
         return data
+    
+    
+    def post_disassociate_facility(self, osh_id: str) -> list:
+        """Deactivate any matches to the facility submitted by the authenticated contributor making this call.
+        
+        This call removes/disassociates a facility from the content provided by the contributor
+        associated with the authentication token. 
+        
+        Parameters
+        ----------
+        osh_id: str
+           sixteen character OS ID
+           
+        Returns
+        -------
+        list(dict)
+            An array of dictionaries (key,value pairs). See table below for 
+            return data structures.
+
+            +-------------------------------+-----------------------------------------------+-------+
+            |column                         | description                                   | type  |
+            +===============================+===============================================+=======+
+            |os_id                          | The OS ID                                     | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            |lon                            | Geographics longitude in degrees              | float |
+            +-------------------------------+-----------------------------------------------+-------+
+            |lat                            | Geographics latitude in degrees               | float |
+            +-------------------------------+-----------------------------------------------+-------+
+            |name                           | Facility name                                 | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            |address                        | Facility address                              | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            |country_code                   |`ISO 3166-2 Alpha country code                 | str   |
+            |                               |<https://iso.org/obp/ui/#search/code/>`_       |       |
+            +-------------------------------+-----------------------------------------------+-------+
+            |country_name                   |`ISO 3166 country name                         | str   |
+            |                               |<https://iso.org/obp/ui/#search/code/>`_       |       |
+            +-------------------------------+-----------------------------------------------+-------+
+            |address                        | Facility address                              | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            |has_approved_claim             | Flag indicating if facility has been claimed  | bool  |
+            |                               |                                               |       |
+            |                               | by owner, manager, or other authorised person |       |
+            +-------------------------------+-----------------------------------------------+-------+
+            |is_closed                      | Flag indicating if facility has been closed   | bool  |
+            |                               |                                               |       |
+            |                               | (*True*), or is currently open (*False*)      |       |
+            +-------------------------------+-----------------------------------------------+-------+
+            | Additional fields returned when *return_extended_fields=True*                         |
+            +-------------------------------+-----------------------------------------------+-------+
+            | other_names                   | Other names provided, joined with ``|``       | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | other_addresses               | Other facility addresses, joined with ``|``   | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | contributors                  | ``|`` joined contributors who provided data   | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | claim_info                    | Who claimed the facility                      | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | other_locations               | The unique set of geographic coordinates      | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | is_closed                     | Flag indicating facility no longer active     | bool  |
+            +-------------------------------+-----------------------------------------------+-------+
+            | activity_reports              | An audit trail record of changes made         | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | contributor_fields            |                                               | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | has_inexact_coordinates       | Misnomer: Geocoordinates manually entered     | bool  |
+            +-------------------------------+-----------------------------------------------+-------+
+            | name_extended                 | The timestamped record of names provided      | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | address_extended              | The timestamped record of                     | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | number_of_workers_extended    | Text indicating size of facility              | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | native_language_name_extended | Name of native facility language              | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | facility_type_extended        | Type of facility, e.g. *"Office / HQ*         | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | processing_type_extended      | Type of processing, e.g. *Packaging*          | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | product_type_extended         | Product type, e.g. *Radios*                   | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | parent_company_extended       | Name of Parent Company                        | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | created_from                  | Information about first recored creating entry| str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | sector                        | Business sector                               | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+        """
+
+        return
+    
+    
+    def get_facility_history(self, osh_id: str) -> list:
+        """Returns the history of changes, or audit trail, for a facility as a list of dictionaries describing the changes.
+        
+        Parameters
+        ----------
+        osh_id: str
+           sixteen character OS ID
+           
+        Returns
+        -------
+        list(dict)
+            An array of dictionaries (key,value pairs). See table below for 
+            return data structures.
+
+            +-------------------------------+-----------------------------------------------+-------+
+            |column                         | description                                   | type  |
+            +===============================+===============================================+=======+
+            | updated_at                    | Timestamp of change record                    | str   |
+            |                               | ``YYYY-MM-DD HH:MM:SS.ffffff +zz:zz``         |       |        
+            +-------------------------------+-----------------------------------------------+-------+
+            | action                        | One of ``ASSOCIATE``, ``DISASSOCIATE``, or    | str   |
+            |                               | ``CREATE``                                    |       |        
+            +-------------------------------+-----------------------------------------------+-------+
+            | detail                        | Change detail string                          | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+        """
+        
+        #https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/DE2020080D37VCK/history/
+
+        return
+    
+    
+    def post_facility_open_or_closed(self, osh_id: str, closure_state: str, reason_for_report: str) -> list:
+        """Report that a facility has been closed or opened.
+        
+        Parameters
+        ----------
+        osh_id: str
+           sixteen character OS ID
+        closure_state: str
+           desired state, must be one of ``OPEN`` or ``CLOSED``
+        reason_for_report: str
+           Justification or explanation of state change for audit trail
+           
+        Returns
+        -------
+        list(dict)
+            An array of dictionaries (key,value pairs). See table below for 
+            return data structures.
+
+            +-------------------------------+-----------------------------------------------+-------+
+            |column                         | description                                   | type  |
+            +===============================+===============================================+=======+
+            | facility                      | The OS ID                                     | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | reported_by_user              | klaus@openapparel.org',
+            +-------------------------------+-----------------------------------------------+-------+
+            | reported_by_contributor       | Klaus (Openapparel)',
+            +-------------------------------+-----------------------------------------------+-------+
+            | closure_state                 | CLOSED',
+            +-------------------------------+-----------------------------------------------+-------+
+            | approved_at                   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | status_change_reason          | None,
+            +-------------------------------+-----------------------------------------------+-------+
+            | status                        | PENDING',
+            +-------------------------------+-----------------------------------------------+-------+
+            | status_change_by              | None,
+            +-------------------------------+-----------------------------------------------+-------+
+            | status_change_date            | None,
+            +-------------------------------+-----------------------------------------------+-------+
+            | created_at                    | Timestamp of change record                    | str   |
+            |                               | ``YYYY-MM-DD HH:MM:SS.ffffff +zz:zz``         |       |
+            +-------------------------------+-----------------------------------------------+-------+
+            | updated_at                    | Timestamp of change record                    | str   |
+            |                               | ``YYYY-MM-DD HH:MM:SS.ffffff +zz:zz``         |       |
+            +-------------------------------+-----------------------------------------------+-------+
+            | id                            | 398,
+            +-------------------------------+-----------------------------------------------+-------+
+            | reason_for_report             | API Test.',
+            +-------------------------------+-----------------------------------------------+-------+
+            | facility_name                 | Wengert GmbH'
+            +-------------------------------+-----------------------------------------------+-------+
+        """
+        
+        return 
+    
+    
+    def post_facility_open(self, osh_id: str, reason_for_report: str) -> list:
+        """Report that a facility has been opened. 
+        
+        This is a short form of calling ``post_facility_open_or_closed`` with the named parameter
+        ``closure_state="OPEN"``, helping to avoid possible errors due to typos.
+        """
+        
+        return self.post_facility_open_or_closed(osh_id, "OPEN", reason_for_report)
+    
+    
+    def post_facility_closed(self, osh_id: str, reason_for_report: str) -> list:
+        """Report that a facility has been opened. 
+        
+        This is a short form of calling ``post_facility_open_or_closed`` with the named parameter
+        ``closure_state="CLOSED"``, helping to avoid possible errors due to typos.
+        """
+        
+        return self.post_facility_open_or_closed(osh_id, "CLOSED", reason_for_report)
+    
+    
     
     
     def get_facility_processing_types(self) -> list:

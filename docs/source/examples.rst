@@ -21,9 +21,13 @@ As a general paradigm, two types of return values are provided:
   a future API expansion we are considering.
 
 Most Common Use Cases
----------------------
+=====================
 
-This is text
+The most common use cases include matching of user supplied records
+for suppliers to OSH records, either to associate with OSH ID's,
+or to support own deduplication efforts.
+
+
 
 .. uml::
 
@@ -31,7 +35,7 @@ This is text
   skinparam actorStyle awesome
   left to right direction
   actor "User" as user
-  package pyoshub {
+  package "facility records" {
     usecase "Search" as FS
     usecase "Match" as FM
     usecase "Upload" as FU
@@ -39,6 +43,7 @@ This is text
   user --> FS
   user --> FM
   user --> FU
+  FU --> FM
   @enduml
 
 Facility Search
@@ -129,4 +134,20 @@ Depending on the Open Supply Hub database content,
 Uploading new facilities, or facility changes
 ---------------------------------------------
 
+Managing Racility Record changes
+================================
+
+.. uml::
+
+  @startuml
+  skinparam actorStyle awesome
+  left to right direction
+  actor "User" as user
+  package "facility status" {
+    usecase "Open or Closed" as FOC
+    usecase "Asccoiate" as FA
+  }
+  user --> FOC
+  user --> FA
+  @enduml
 
