@@ -55,7 +55,7 @@ napoleon_numpy_docstring = True
 
 autodoc_default_options = {
     'members': True,
-    #'member-order': 'bysource',
+    'member-order': 'bysource',
     'special-members': '__init__',
     'undoc-members': True,
     'exclude-members': '_flatten_facilities_json'
