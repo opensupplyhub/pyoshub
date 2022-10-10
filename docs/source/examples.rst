@@ -9,9 +9,10 @@ The ``pyoshub`` API library provides python interface to the REST API,
 As a general paradigm, two types of return values are provided:
 
 - numbers of type ``int`` for queries which only return this value, e.g.
+
   .. code-block:: python
 
-   number_of_active_countries = osh_api.get_countries_active_count()
+    number_of_active_countries = osh_api.get_countries_active_count()
 
 - lists containing dictionaries (``dict``). These are formatted such that
   is is easily possible to convert them into a ``pandas.DataFrame``. This
@@ -20,8 +21,68 @@ As a general paradigm, two types of return values are provided:
   sql queries. Also, the format is similar to that returned by ``graphql``,
   a future API expansion we are considering.
 
-Most Common Use Cases
-=====================
+.. table::
+   
+    +-----------------------------------------------+-------+------------+
+    | endpoint                                      | verb  | level      |
+    +===============================================+=======+============+
+    | ``/facilities/``                              | GET   | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/``                              | POST  | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-matches/{id}/``                   | GET   | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-matches/{id}/confirm/``           | POST  | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-matches/{id}/reject/``            | POST  | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributor-types/``                       | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/countries/``                               | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/countries/active_count/``                  | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-processing-types/``               | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/product-types/``                           | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/sectors/``                                 | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/workers-ranges/``                          | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/{id}/dissociate/``              | POST  | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/{id}/history/``                 | GET   | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/{id}/report/``                  | POST  | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-activity-reports/``               | GET   | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-activity-reports/{id}/approve/``  | POST  | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-activity-reports/{id}/reject/``   | POST  | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributor-lists/``                       | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributors/``                            | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributors/active_count/``               | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/{id}/``                         | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/count/``                        | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/parent-companies/``                        | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities-downloads/``                    | GET   | internal   |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributor-embed-configs/{id}/``          | GET   | internal   |
+    +-----------------------------------------------+-------+------------+
+
+
+
+Most Common (Core) Use Cases
+----------------------------
 
 The most common use cases include matching of user supplied records
 for suppliers to OSH records, either to associate with OSH ID's,
@@ -47,7 +108,7 @@ or to support own deduplication efforts.
   @enduml
 
 Facility Search
----------------
+~~~~~~~~~~~~~~~
 
 As an initial simple example, 
 search for a facility with a known OS ID, this is just the intruductory example.
@@ -88,7 +149,7 @@ This results in the following list to be returned.
 
   
 Facility matching
------------------
+~~~~~~~~~~~~~~~~~
 
 This is one of the most commonly used use cases. A locally available supplier list
 needs to be checked for existing vs. new entries, may need local deduplication, or
@@ -132,10 +193,10 @@ Depending on the Open Supply Hub database content,
   the contributor review_matches functionality is not currently part of this package.
 
 Uploading new facilities, or facility changes
----------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Managing Racility Record changes
-================================
+Managing Facility Record changes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. uml::
 
@@ -150,4 +211,17 @@ Managing Racility Record changes
   user --> FOC
   user --> FA
   @enduml
+
+
+
+Reference Data Use Cases
+------------------------
+
+
+Advanced and Extended Use Cases
+-------------------------------
+
+
+Additional Information Use Cases
+--------------------------------
 

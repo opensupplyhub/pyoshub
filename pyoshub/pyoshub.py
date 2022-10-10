@@ -113,6 +113,7 @@ class OSH_API():
             "POTENTIAL_MATCH":0,
             "ERROR_MATCHING":-1
         }
+        self.raw_data = {}
            
         # Check valid URL
         try:
@@ -150,275 +151,144 @@ class OSH_API():
         
         return 
     
-    
-    
-    def get_contributors(self) -> list:
-        """Get a list of contributors and their ID.
+    def get_facility(self,osh_id : str, return_extended_fields : bool = False ) -> dict:
+        """Return detail on one facility
         
+        Parameters
+        ----------
+        osh_id: str
+           sixteen character OS ID
+           
         Returns
         -------
         list(dict)
             An array of dictionaries (key,value pairs). See table below for 
             return data structures.
-        
-            +-----------------+-----------------------------------+------+
-            |column           | description                       | type |
-            +=================+===================================+======+
-            |contributor_id   | The numeric ID of the contributor | int  |
-            +-----------------+-----------------------------------+------+
-            |contributor_name | The name of the contributor       | str  |
-            +-----------------+-----------------------------------+------+
+
+            +-------------------------------+-----------------------------------------------+-------+
+            |column                         | description                                   | type  |
+            +===============================+===============================================+=======+
+            |os_id                          | The OS ID                                     | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            |lon                            | Geographics longitude in degrees              | float |
+            +-------------------------------+-----------------------------------------------+-------+
+            |lat                            | Geographics latitude in degrees               | float |
+            +-------------------------------+-----------------------------------------------+-------+
+            |name                           | Facility name                                 | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            |address                        | Facility address                              | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            |country_code                   |`ISO 3166-2 Alpha country code                 | str   |
+            |                               |<https://iso.org/obp/ui/#search/code/>`_       |       |
+            +-------------------------------+-----------------------------------------------+-------+
+            |country_name                   |`ISO 3166 country name                         | str   |
+            |                               |<https://iso.org/obp/ui/#search/code/>`_       |       |
+            +-------------------------------+-----------------------------------------------+-------+
+            |address                        | Facility address                              | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            |has_approved_claim             | Flag indicating if facility has been claimed  | bool  |
+            |                               |                                               |       |
+            |                               | by owner, manager, or other authorised person |       |
+            +-------------------------------+-----------------------------------------------+-------+
+            |is_closed                      | Flag indicating if facility has been closed   | bool  |
+            |                               |                                               |       |
+            |                               | (*True*), or is currently open (*False*)      |       |
+            +-------------------------------+-----------------------------------------------+-------+
+            | Additional fields returned when *return_extended_fields=True*                         |
+            +-------------------------------+-----------------------------------------------+-------+
+            | other_names                   | Other names provided, joined with ``|``       | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | other_addresses               | Other facility addresses, joined with ``|``   | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | contributors                  | ``|`` joined contributors who provided data   | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | claim_info                    | Who claimed the facility                      | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | other_locations               |                                               | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | is_closed                     | Flag indicating facility no longer active     | bool  |
+            +-------------------------------+-----------------------------------------------+-------+
+            | activity_reports              |                                               | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | contributor_fields            |                                               | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | has_inexact_coordinates       | Misnomer: Geocoordinates manually entered     | bool  |
+            +-------------------------------+-----------------------------------------------+-------+
+            | name_extended                 |                                               | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | address_extended              |                                               | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | number_of_workers_extended    | Text indicating size of facility              | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | native_language_name_extended | Name of native facility language              | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | facility_type_extended        | Type of facility, e.g. *"Office / HQ*         | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | processing_type_extended      | Type of processing, e.g. *Packaging*          | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | product_type_extended         | Product type, e.g. *Radios*                   | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | parent_company_extended       | Name of Parent Company                        | str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | created_from                  | Information about first recored creating entry| str   |
+            +-------------------------------+-----------------------------------------------+-------+
+            | sector                        | Business sector                               | str   |
+            +-------------------------------+-----------------------------------------------+-------+
         """
         
         self.last_api_call_epoch = time.time()
-        r = requests.get(f"{self.url}/api/contributors",headers=self.header)
+        
+        r = requests.get(f"{self.url}/api/facilities/{osh_id}/",headers=self.header)
         self.last_api_call_duration = time.time()-self.last_api_call_epoch
-        self.api_call_count += 1
-
-        if r.ok:
-            raw_data = json.loads(r.text)
-            data = [{"contributor_id":cid,"contributor_name":con} for cid,con in raw_data]
-            self.result = {"code":0,"message":f"{r.status_code}"}
-        else:
-            data = []
-            self.result = {"code":-1,"message":f"{r.status_code}"}
-        self.contributors = data
-        
-        return data
-        #return pd.DataFrame(self.contributors,columns=["contributor_id","contributor_name"])
-    
-    
-    def get_contributor_lists(self,contributor_id : Union[int,str]) -> list:
-        """Get lists for specific contributor.
-        
-        For interactive uploads, data are organised along the notion of lists. Suppliers often publish
-        their supplier's lists on their websites, together with a name or identification relating to
-        the point in time the list relates to.
-        
-        As an example, a list may be called '*brand* Public Supplier List 2021' .
-        
-        Parameters
-        ----------
-        contributor_id: str
-           numeric contributor id
-           
-        Returns
-        -------
-        list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
-           return data structures.
-            
-           +-----------+---------------------------------+------+
-           |column     | description                     | type |
-           +===========+=================================+======+
-           |list_id    | The numeric ID of the list      | int  |
-           +-----------+---------------------------------+------+
-           |list_name  | The name of the list            | str  |
-           +-----------+---------------------------------+------+
-        """
-        
-
-        self.last_api_call_epoch = time.time()
-        r = requests.get(f"{self.url}/api/contributor-lists/?contributors={contributor_id}",headers=self.header)
-        self.api_call_count += 1
-
-        if r.ok:
-            raw_data = json.loads(r.text)
-            data = [{"list_id":cid,"list_name":con} for cid,con in raw_data]
-            self.result = {"code":0,"message":f"{r.status_code}"}
-        else:
-            data = []
-            self.result = {"code":-1,"message":f"{r.status_code}"}
-        self.contributors = data
-        
-        return data
-        #return pd.DataFrame(self.contributors,columns=["list_id","list_name"])
-            
-    
-    def get_contributor_embed_configs(self,contributor_id : Union[int,str]) -> list:
-        """Get embedded maps configuration for specific contributor.
-        
-        Embedded maps are a premium feature of Open Supply Hub which can be used to display a vendor/brand specific
-        map on any website via ``iframes``. This call returns a wealth of data, this documentation focuses on the key
-        aspects of the parameters.
-        
-        Parameters
-        ----------
-        contributor_id: str or int
-           numeric contributor id
-           
-        Returns
-        -------
-        list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
-           return data structures.
-            
-           +-------------------------+---------------------------------------+--------+
-           |column                   | description                           | type   |
-           +=========================+=======================================+========+
-           |embedded_map_id          | The numeric ID of the embedded map    | int    |
-           +-------------------------+---------------------------------------+--------+
-           | width                   | The width of the map's iframe         | int    |
-           +-------------------------+---------------------------------------+--------+
-           | height                  | The height of the map's iframe        | int    |
-           +-------------------------+---------------------------------------+--------+
-           | color                   | The hex #RRGGBB color of the theme    | str    |
-           +-------------------------+---------------------------------------+--------+
-           | font                    | The font name used by the map         | int    |
-           +-------------------------+---------------------------------------+--------+
-           | contributor_name        | The contributor name                  | str    |
-           +-------------------------+---------------------------------------+--------+
-           | text_search_label       | The search label to be displayed      | str    |
-           +-------------------------+---------------------------------------+--------+
-           | map_style               | The map style                         | str    |
-           +-------------------------+---------------------------------------+--------+
-           | There will be a series of options specifying field visibility            |
-           | of extended fields                                                       |
-           +-------------------------+---------------------------------------+--------+
-           | *field* display_name    | The text to be displayed for *param*  | str    |
-           +-------------------------+---------------------------------------+--------+
-           | *field* tier_visible    | Flag indicating visibility            | bool   |
-           +-------------------------+---------------------------------------+--------+
-           | *field* tier_order      | Sequence number for *field*           | int    |
-           +-------------------------+---------------------------------------+--------+
-           | *field* tier_searchable | Flag indicating *field* is searchable | bool   |
-           +-------------------------+---------------------------------------+--------+
-        """
-        
-        self.last_api_call_epoch = time.time()
-        r = requests.get(f"{self.url}/api/contributor-embed-configs/{contributor_id}/",headers=self.header)
-        self.last_api_call_duration = time.time()-self.last_api_call_epoch
-        
         if r.ok:
             data = json.loads(r.text)
-            alldata = {}
-            num_undefined = 1
-            have_undefined = False
-            for k,v in data.items():
-                if k == 'embed_fields':
-                    for embedded_field in v:
-                        for column in ['display_name','visible','order','searchable']:
-                            if len(embedded_field["column_name"]) ==  0: # ref  https://github.com/open-apparel-registry/open-apparel-registry/issues/2200
-                                have_undefined = True
-                                alldata[f'undefined_{num_undefined}_{column}'] = embedded_field[column]
-                            else:
-                                have_undefined = False
-                                alldata[f'{embedded_field["column_name"]}_{column}'] = embedded_field[column]
-                        if have_undefined:
-                            num_undefined += 1
-                            have_undefined = False
-                elif k == 'extended_fields':
-                    for i in range(len(v)):
-                        alldata[f'{k}_{i}'] = v[i]
-                else:
-                    if k == "id":
-                        alldata["embedded_map_id"] = v
-                    elif k == "contributor":
-                        alldata["contributor_id"] = v
+            self.raw_result = data.copy()
+            self.result = {"code":0,"message":f"{r.status_code}"}
+            
+            entry = {
+                "id": data["id"],
+                "lon": data["geometry"]["coordinates"][0],
+                "lat": data["geometry"]["coordinates"][1]
+            }
+            for k,v in data["properties"].items():
+                if k.startswith("ppe_") or k == "new_os_id":
+                    continue
+                elif isinstance(v,list):
+                    if len(v) > 0 and isinstance(v[0],dict):
+                        lines = []
+                        for vv in v:
+                            lines.append("|".join([f"{kkk}:{vvv}" for kkk,vvv in vv.items()]))
+                        entry[k] = "\n".join(lines).replace("lng:","lon:")
                     else:
-                        alldata[k] = v
-            data = alldata
-            self.result = {"code":0,"message":f"{r.status_code}"}
-        else:
-            data = []
-            self.result = {"code":-1,"message":f"{r.status_code}"}
-        
-        return data
-        #return pd.DataFrame(data)
-        
-
-    
-    def get_contributor_types(self) -> list:
-        """Get a list of contributor type choices. The original REST API returns a list of pairs of values and display names.
-        As all display names and values are identical, we only return the values used in the database.
-        
-        Returns
-        -------
-        list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
-           return data structures.
-               
-           +-----------------+---------------------------------+------+
-           |column           | description                     | type |
-           +=================++================================+======+
-           |contributor_type | The values of contributor types | str  |
-           +-----------------+---------------------------------+------+
-        """
-        
-        self.last_api_call_epoch = time.time()
-        r = requests.get(f"{self.url}/api/contributor-types",headers=self.header)
-        self.last_api_call_duration = time.time()-self.last_api_call_epoch
-        
-        if r.ok:
-            data = [{"contributor_type":value} for value,display in json.loads(r.text)]
-            self.result = {"code":0,"message":f"{r.status_code}"}
-        else:
-            data = []
-            self.result = {"code":-1,"message":f"{r.status_code}"}
-        self.contributors = data
-        
-        return data
-        #return pd.DataFrame(self.contributors,columns=["contributor_type"])
-    
-    
-    def get_countries(self) -> list:
-        """Get a list of `ISO 3166-2 Alpha 2 country codes and English short names <https://www.iso.org/obp/ui/#search>` used. 
-        
-        Returns
-        -------
-        list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
-           return data structures.
+                        entry[k] = "\n".join(v)
+                elif k == "extended_fields" and return_extended_fields:
+                    for kk in v.keys():
+                        lines = []
+                        for vv in v[kk]:
+                            lines.append("|".join([f"{kkk}:{vvv}" for kkk,vvv in vv.items()]))
+                        entry[f"{kk}_extended"] = "\n".join(lines).replace("lng:","lon:")
+                    #self.v = v.copy()
+                elif k == "created_from":
+                    self.v = v.copy()
+                    entry[k] = "|".join([f"{kkk}:{vvv}" for kkk,vvv in v.items()]) 
+                elif k == "extended_fields" and not return_extended_fields:
+                    pass
+                else:
+                    if v is not None:
+                        entry[k] = v
+                    else:
+                        entry[k] = ""
+            #data = pd.DataFrame(entry,index=[0])
+            data = entry.copy()
             
-           +-----------+---------------------------------+------+
-           |column     | description                     | type |
-           +===========+=================================+======+
-           |iso_3166_2 | ISO 3166-2 Alpha-2 Country Code | str  |
-           +-----------+---------------------------------+------+
-           |country    | ISO 3166 Country Name           | str  |
-           +-----------+---------------------------------+------+
-        """
-        
-        self.last_api_call_epoch = time.time()
-        r = requests.get(f"{self.url}/api/countries",headers=self.header)
-        self.last_api_call_duration = time.time()-self.last_api_call_epoch
-        if r.ok:
-            raw_data = json.loads(r.text)
-            data = [{"iso_3166_2":cid,"country":con} for cid,con in raw_data]
-            self.result = {"code":0,"message":f"{r.status_code}"}
         else:
-            data = []
+            #data = pd.DataFrame()
+            data = {}
             self.result = {"code":-1,"message":f"{r.status_code}"}
-        self.countries = data
-
-        return data
-        #return pd.DataFrame(self.countries,columns=["iso_3166_2","country"])
-            
-        
-    def get_countries_active_count(self) -> int:
-        """Get a count of disctinct country codes used by active facilities.
-        
-        Returns
-        -------
-        int
-           disctinct country codes used by active facilities
-        """
-        
-        self.last_api_call_epoch = time.time()
-        r = requests.get(f"{self.url}/api/countries/active_count",headers=self.header)
-        self.last_api_call_duration = time.time()-self.last_api_call_epoch
-        if r.ok:
-            data = int(json.loads(r.text)["count"])
-            self.result = {"code":0,"message":f"{r.status_code}"}
-        else:
-            data = -1
-            self.result = {"code":-1,"message":f"{r.status_code}"}
-        self.countries_active_count = data
         
         return data
 
-    
-    
+
     def get_facilities(self, q : str = "", contributors : int = -1,
                        lists : int = -1, contributor_types : str = "", countries : str = "",
                        boundary : dict = {}, parent_company : str = "", facility_type : str = "",
@@ -602,6 +472,7 @@ class OSH_API():
             self.last_api_call_epoch = time.time()
             r = requests.get(request_url,headers=self.header)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
+            self.api_call_count += 1
             if r.ok:
                 data = json.loads(r.text)
                 
@@ -628,97 +499,7 @@ class OSH_API():
         
         return alldata
         #return pd.DataFrame(alldata)
-    
-    
-    def _flatten_facilities_json(self,json_data):
-        """Convert deep facility data to a flat key,value dict.
-        
-        Internal use only.
-        """
-        base_entry = {}
-        for k,v in json_data.items():
-            if k == "matches":
-                continue
-            elif k == "geocoded_geometry":
-                try:
-                    base_entry["lon"] = v["coordinates"][0]
-                    base_entry["lat"] = v["coordinates"][1]
-                except:
-                    base_entry["lon"] = -1
-                    base_entry["lat"] = -1
-            else:
-                if v is not None:
-                    base_entry[k] = v
-                else:
-                    base_entry[k] = ""
-
-        alldata = []
-        if len(json_data["matches"])>0:
-            match_no = 1
-            for match in json_data["matches"]:
-                new_data = {"match_no":match_no}
-                new_data.update(base_entry)#.copy()
-                for k,v in match.items():
-                    if isinstance(v,list):
-                        raise NotImplementedError("Internal _flatten_facilities_json. Facilities data structure must have changed. "
-                                                  "Instance 1/2. "
-                                                  "Please report on github and/or check for an updated library.")
-                        pass
-                    elif k in ["Feature","type"]:
-                        pass
-                    elif k == "geometry":
-                        new_data["match_lon"] = v["coordinates"][0]
-                        new_data["match_lat"] = v["coordinates"][1]
-                    elif isinstance(v,dict):
-                        for kk,vv in v.items():
-                            if isinstance(vv,list):
-                                if len(vv) == 0:
-                                    new_data[f"match_{kk}"] = ""
-                                else:
-                                    lines = []
-                                    for vvv in vv:
-                                        if isinstance(vvv,dict):
-                                            lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk,vvvv in vvv.items()]))
-                                        elif isinstance(vvv,str):
-                                            lines.append(vvv)
-                                    new_data[f"match_{kk}"] = "\n".join(lines).replace("lng:","lon:")
-                            elif isinstance(vv,dict):
-                                for kkk,vvv in vv.items():
-                                    lines = []
-                                    for entry in vvv:
-                                        if isinstance(entry,dict):
-                                            lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk,vvvv in entry.items()]))
-                                        elif isinstance(entry,str):
-                                            lines.append(entry)
-                                        else:
-                                            raise NotImplementedError("Internal _flatten_facilities_json. Facilities data structure must have changed. "
-                                                                      "Instance 2/2. "
-                                                                      "Please report on github and/or check for an updated library.")
-                                    new_data[f"match_{kk}_{kkk}"] = "\n".join(lines).replace("lng:","lon:")
-                                pass
-                            elif kk.startswith("ppe_"):
-                                continue
-                            else:
-                                new_data[f"match_{kk}"] = "" if vv is None else vv
-                        pass
-                    else:
-                        new_data[f"match_{k}"] = "" if v is None else v
-
-                # shorten names of dictionary keys
-                new_data_keys_shortened = {}
-                for k,v in new_data.items():
-                    if "match_extended_fields_" in k:
-                        new_data_keys_shortened[k.replace("match_extended_fields_","match_ef_")] = v
-                    else:
-                        new_data_keys_shortened[k] = v
-                        
-                alldata.append(new_data_keys_shortened)
-                match_no += 1
-        else:
-            alldata.append(base_entry)
-            
-        return alldata
-    
+  
     
     def post_facilities(self, name : str = "", address : str = "", country : str = "", sector : str ="",
                         data : dict = {}, 
@@ -985,8 +766,8 @@ class OSH_API():
         r = requests.post(f"{self.url}/api/facilities/?{parameters}",headers=self.header,data=payload)
         self.last_api_call_duration = time.time()-self.last_api_call_epoch
         if r.ok:
-            raw_data = json.loads(r.text)
-            data = self._flatten_facilities_json(raw_data)
+            self.raw_data = json.loads(r.text)
+            data = self._flatten_facilities_json(self.raw_data)
             self.result = {"code":0,"message":f"{r.status_code}"}
         else:
             data = {"status":"HTTP_ERROR"}
@@ -1005,6 +786,591 @@ class OSH_API():
         
         """
         return
+    
+
+    def get_facilities_match_record(self, match_id: int = -1, match_url: str = "") -> list:
+        """This call is a utility call for retrieving a more detailed the match status result after a factory
+        was uploaded.
+
+        Parameters
+        ----------
+        match_id : int, optional
+            numeric match id, this is the ``id`` part of the voting URL ``/facility-matches/{id}/confirm/``
+            or reject, as returned from the post_facility call.
+        match_url : str, optional
+            This is the voting URL ``/facility-matches/{id}/confirm/`` or ``/facility-matches/{id}/reject/``
+            or reject, as returned from the post_facility call, which will be used to retrieve the numeric 
+            ``match_id``
+
+
+        Returns
+        -------
+        list(dict)
+            An array of dictionaries (key,value pairs). See table below for 
+            return data structures.
+
+            +------------------------------+---------------------------------------------------------+-------+
+            | column                       | description                                             | type  |
+            +==============================+=========================================================+=======+
+            | id                           | match_id                                                | int   |
+            +------------------------------+---------------------------------------------------------+-------+
+            | status                       | one of ``PENDING``, ``REJECTED``, ``CONFIRMED``         | str   |
+            +------------------------------+---------------------------------------------------------+-------+
+            | confidence                   | return value of the matching algorithm, formatted float | str   |
+            +------------------------------+---------------------------------------------------------+-------+
+            | results_code_version         | matching code revision, if set                          | str   |
+            +------------------------------+---------------------------------------------------------+-------+
+            | results_recall_weight        | matching algorithm metric                               | int   |
+            +------------------------------+---------------------------------------------------------+-------+
+            | results_no_geocoded_items    | geocoding result flag                                   | bool  |
+            +------------------------------+---------------------------------------------------------+-------+
+            | results_automatic_threshold  | matching algorithm setting                              | float |
+            +------------------------------+---------------------------------------------------------+-------+
+            | results_gazetteer_threshold  | matching algorithm setting                              | float |
+            +------------------------------+---------------------------------------------------------+-------+
+            | results_no_gazetteer_matches | matching algorithm setting                              | bool  |
+            +------------------------------+---------------------------------------------------------+-------+
+            | os_id                        | OS ID match record pertains to                          | str   |
+            +------------------------------+---------------------------------------------------------+-------+
+            | name                         | facility name                                           | str   |
+            +------------------------------+---------------------------------------------------------+-------+
+            | address                      | facility address                                        | str   |
+            +------------------------------+---------------------------------------------------------+-------+
+            | location_lat                 | geographic latitude                                     | float |
+            +------------------------------+---------------------------------------------------------+-------+
+            | location_lng                 | geographic longitude                                    | float |
+            +------------------------------+---------------------------------------------------------+-------+
+            | is_active                    | flag indicating matched record is active                | bool  |
+            +------------------------------+---------------------------------------------------------+-------+
+
+        """
+
+        #alldata = []
+        #for k,v in api_facility_matches.items():
+        #    if isinstance(v,dict):
+        #        for kk,vv in v.items():
+        #            alldata.append({
+        #                "column":f"{k}_{kk}",
+        #                "description": "",
+        #                "type":str(type(vv)).split("'")[1]
+        #            })
+        #    else:
+        #        alldata.append({
+        #            "column":f"{k}",
+        #            "description": "",
+        #            "type":str(type(v)).split("'")[1]
+        #        })
+
+        return []
+
+
+    def post_facility_match_confirm(self, match_id: int = -1, match_url: str = "") -> list:
+        """_summary_
+
+        Parameters
+        ----------
+        match_id : int, optional
+            numeric match id, this is the ``id`` part of the voting URL ``/facility-matches/{id}/confirm/``
+            or reject, as returned from the post_facility call.
+        match_url : str, optional
+            This is the voting URL ``/facility-matches/{id}/confirm/`` or ``/facility-matches/{id}/reject/``
+            or reject, as returned from the post_facility call, which will be used to retrieve the numeric 
+            ``match_id``
+
+        Returns
+        -------
+        list
+            An array of dictionaries (key,value pairs). See table below for 
+            return data structures.
+        
+            +-----------------+-----------------------------------+------+
+            |column           | description                       | type |
+            +=================+===================================+======+
+            |                 |                                   |      |
+            +-----------------+-----------------------------------+------+
+        """
+
+        return []
+
+
+    def post_facility_match_reject(self, match_id: int = -1, match_url: str = "") -> list:
+        """_summary_
+
+        Parameters
+        ----------
+        match_id : int, optional
+            numeric match id, this is the ``id`` part of the voting URL ``/facility-matches/{id}/confirm/``
+            or reject, as returned from the post_facility call.
+        match_url : str, optional
+            This is the voting URL ``/facility-matches/{id}/confirm/`` or ``/facility-matches/{id}/reject/``
+            or reject, as returned from the post_facility call, which will be used to retrieve the numeric 
+            ``match_id``
+
+        Returns
+        -------
+        list
+            An array of dictionaries (key,value pairs). See table below for 
+            return data structures.
+        
+            +-----------------+-----------------------------------+------+
+            |column           | description                       | type |
+            +=================+===================================+======+
+            |                 |                                   |      |
+            +-----------------+-----------------------------------+------+
+        """
+
+        return []
+
+
+
+    def get_contributors(self) -> list:
+        """Get a list of contributors and their ID.
+        
+        Returns
+        -------
+        list(dict)
+            An array of dictionaries (key,value pairs). See table below for 
+            return data structures.
+        
+            +-----------------+-----------------------------------+------+
+            |column           | description                       | type |
+            +=================+===================================+======+
+            |contributor_id   | The numeric ID of the contributor | int  |
+            +-----------------+-----------------------------------+------+
+            |contributor_name | The name of the contributor       | str  |
+            +-----------------+-----------------------------------+------+
+        """
+        
+        self.last_api_call_epoch = time.time()
+        r = requests.get(f"{self.url}/api/contributors",headers=self.header)
+        self.last_api_call_duration = time.time()-self.last_api_call_epoch
+        self.api_call_count += 1
+
+        if r.ok:
+            self.raw_data = json.loads(r.text)
+            data = [{"contributor_id":cid,"contributor_name":con} for cid,con in self.raw_data]
+            self.result = {"code":0,"message":f"{r.status_code}"}
+        else:
+            data = []
+            self.result = {"code":-1,"message":f"{r.status_code}"}
+        self.contributors = data
+        
+        return data
+        #return pd.DataFrame(self.contributors,columns=["contributor_id","contributor_name"])
+    
+    
+    def get_contributor_lists(self,contributor_id : Union[int,str]) -> list:
+        """Get lists for specific contributor.
+        
+        For interactive uploads, data are organised along the notion of lists. Suppliers often publish
+        their supplier's lists on their websites, together with a name or identification relating to
+        the point in time the list relates to.
+        
+        As an example, a list may be called '*brand* Public Supplier List 2021' .
+        
+        Parameters
+        ----------
+        contributor_id: str
+           numeric contributor id
+           
+        Returns
+        -------
+        list(dict)
+           An array of dictionaries (key,value pairs). See table below for 
+           return data structures.
+            
+           +-----------+---------------------------------+------+
+           |column     | description                     | type |
+           +===========+=================================+======+
+           |list_id    | The numeric ID of the list      | int  |
+           +-----------+---------------------------------+------+
+           |list_name  | The name of the list            | str  |
+           +-----------+---------------------------------+------+
+        """
+        
+
+        self.last_api_call_epoch = time.time()
+        r = requests.get(f"{self.url}/api/contributor-lists/?contributors={contributor_id}",headers=self.header)
+        self.api_call_count += 1
+
+        if r.ok:
+            self.raw_data = json.loads(r.text)
+            data = [{"list_id":cid,"list_name":con} for cid,con in self.raw_data]
+            self.result = {"code":0,"message":f"{r.status_code}"}
+        else:
+            data = []
+            self.result = {"code":-1,"message":f"{r.status_code}"}
+        self.contributors = data
+        
+        return data
+        #return pd.DataFrame(self.contributors,columns=["list_id","list_name"])
+            
+    
+    def get_contributor_embed_configs(self,contributor_id : Union[int,str]) -> list:
+        """Get embedded maps configuration for specific contributor.
+        
+        Embedded maps are a premium feature of Open Supply Hub which can be used to display a vendor/brand specific
+        map on any website via ``iframes``. This call returns a wealth of data, this documentation focuses on the key
+        aspects of the parameters.
+        
+        Parameters
+        ----------
+        contributor_id: str or int
+           numeric contributor id
+           
+        Returns
+        -------
+        list(dict)
+           An array of dictionaries (key,value pairs). See table below for 
+           return data structures.
+            
+           +-------------------------+---------------------------------------+--------+
+           |column                   | description                           | type   |
+           +=========================+=======================================+========+
+           |embedded_map_id          | The numeric ID of the embedded map    | int    |
+           +-------------------------+---------------------------------------+--------+
+           | width                   | The width of the map's iframe         | int    |
+           +-------------------------+---------------------------------------+--------+
+           | height                  | The height of the map's iframe        | int    |
+           +-------------------------+---------------------------------------+--------+
+           | color                   | The hex #RRGGBB color of the theme    | str    |
+           +-------------------------+---------------------------------------+--------+
+           | font                    | The font name used by the map         | int    |
+           +-------------------------+---------------------------------------+--------+
+           | contributor_name        | The contributor name                  | str    |
+           +-------------------------+---------------------------------------+--------+
+           | text_search_label       | The search label to be displayed      | str    |
+           +-------------------------+---------------------------------------+--------+
+           | map_style               | The map style                         | str    |
+           +-------------------------+---------------------------------------+--------+
+           | There will be a series of options specifying field visibility            |
+           | of extended fields                                                       |
+           +-------------------------+---------------------------------------+--------+
+           | *field* display_name    | The text to be displayed for *param*  | str    |
+           +-------------------------+---------------------------------------+--------+
+           | *field* tier_visible    | Flag indicating visibility            | bool   |
+           +-------------------------+---------------------------------------+--------+
+           | *field* tier_order      | Sequence number for *field*           | int    |
+           +-------------------------+---------------------------------------+--------+
+           | *field* tier_searchable | Flag indicating *field* is searchable | bool   |
+           +-------------------------+---------------------------------------+--------+
+        """
+        
+        self.last_api_call_epoch = time.time()
+        r = requests.get(f"{self.url}/api/contributor-embed-configs/{contributor_id}/",headers=self.header)
+        self.last_api_call_duration = time.time()-self.last_api_call_epoch
+        
+        if r.ok:
+            data = json.loads(r.text)
+            alldata = {}
+            num_undefined = 1
+            have_undefined = False
+            for k,v in data.items():
+                if k == 'embed_fields':
+                    for embedded_field in v:
+                        for column in ['display_name','visible','order','searchable']:
+                            if len(embedded_field["column_name"]) ==  0: # ref  https://github.com/open-apparel-registry/open-apparel-registry/issues/2200
+                                have_undefined = True
+                                alldata[f'undefined_{num_undefined}_{column}'] = embedded_field[column]
+                            else:
+                                have_undefined = False
+                                alldata[f'{embedded_field["column_name"]}_{column}'] = embedded_field[column]
+                        if have_undefined:
+                            num_undefined += 1
+                            have_undefined = False
+                elif k == 'extended_fields':
+                    for i in range(len(v)):
+                        alldata[f'{k}_{i}'] = v[i]
+                else:
+                    if k == "id":
+                        alldata["embedded_map_id"] = v
+                    elif k == "contributor":
+                        alldata["contributor_id"] = v
+                    else:
+                        alldata[k] = v
+            data = alldata
+            self.result = {"code":0,"message":f"{r.status_code}"}
+        else:
+            data = []
+            self.result = {"code":-1,"message":f"{r.status_code}"}
+        
+        return data
+        #return pd.DataFrame(data)
+        
+
+    
+    def get_contributor_types(self) -> list:
+        """Get a list of contributor type choices. The original REST API returns a list of pairs of values and display names.
+        As all display names and values are identical, we only return the values used in the database.
+        
+        Returns
+        -------
+        list(dict)
+           An array of dictionaries (key,value pairs). See table below for 
+           return data structures.
+               
+           +-----------------+---------------------------------+------+
+           |column           | description                     | type |
+           +=================++================================+======+
+           |contributor_type | The values of contributor types | str  |
+           +-----------------+---------------------------------+------+
+        """
+        
+        self.last_api_call_epoch = time.time()
+        r = requests.get(f"{self.url}/api/contributor-types",headers=self.header)
+        self.last_api_call_duration = time.time()-self.last_api_call_epoch
+        
+        if r.ok:
+            data = [{"contributor_type":value} for value,display in json.loads(r.text)]
+            self.result = {"code":0,"message":f"{r.status_code}"}
+        else:
+            data = []
+            self.result = {"code":-1,"message":f"{r.status_code}"}
+        self.contributors = data
+        
+        return data
+        #return pd.DataFrame(self.contributors,columns=["contributor_type"])
+    
+    
+    def get_countries(self) -> list:
+        """Get a list of `ISO 3166-2 Alpha 2 country codes and English short names <https://www.iso.org/obp/ui/#search>` used. 
+        
+        Returns
+        -------
+        list(dict)
+           An array of dictionaries (key,value pairs). See table below for 
+           return data structures.
+            
+           +-----------+---------------------------------+------+
+           |column     | description                     | type |
+           +===========+=================================+======+
+           |iso_3166_2 | ISO 3166-2 Alpha-2 Country Code | str  |
+           +-----------+---------------------------------+------+
+           |country    | ISO 3166 Country Name           | str  |
+           +-----------+---------------------------------+------+
+        """
+        
+        self.last_api_call_epoch = time.time()
+        r = requests.get(f"{self.url}/api/countries",headers=self.header)
+        self.last_api_call_duration = time.time()-self.last_api_call_epoch
+        if r.ok:
+            self.raw_data = json.loads(r.text)
+            data = [{"iso_3166_2":cid,"country":con} for cid,con in self.raw_data]
+            self.result = {"code":0,"message":f"{r.status_code}"}
+        else:
+            data = []
+            self.result = {"code":-1,"message":f"{r.status_code}"}
+        self.countries = data
+
+        return data
+        #return pd.DataFrame(self.countries,columns=["iso_3166_2","country"])
+            
+        
+    def get_countries_active_count(self) -> int:
+        """Get a count of disctinct country codes used by active facilities.
+        
+        Returns
+        -------
+        int
+           disctinct country codes used by active facilities
+        """
+        
+        self.last_api_call_epoch = time.time()
+        r = requests.get(f"{self.url}/api/countries/active_count",headers=self.header)
+        self.last_api_call_duration = time.time()-self.last_api_call_epoch
+        if r.ok:
+            data = int(json.loads(r.text)["count"])
+            self.result = {"code":0,"message":f"{r.status_code}"}
+        else:
+            data = -1
+            self.result = {"code":-1,"message":f"{r.status_code}"}
+        self.countries_active_count = data
+        
+        return data
+
+    
+    def get_facilities_downloads(self) -> list:
+        """Returns a list of facilities. 
+                   
+        Returns
+        -------
+        list(dict)
+            An array of dictionaries (key,value pairs). See table below for 
+            return data structures.
+            
+
+            +-----------------------------------+-----------------------------------------------+-------+
+            | column                            | description                                   | type  |
+            +===================================+===============================================+=======+
+            | os_id                             | The OS ID                                     | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | contribution_date                 |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | name                              |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | address                           |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | country_code                      |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | country_name                      |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | lat                               |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | lng                               |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | sector                            |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | contributor (list)                |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | number_of_workers                 |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | parent_company                    |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | processing_type_facility_type_raw |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | facility_type                     |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | processing_type                   |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | product_type                      |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+            | is_closed                         |                                               | str   |
+            +-----------------------------------+-----------------------------------------------+-------+
+        """        
+        have_next = True
+        request_url = f"{self.url}/api/facilities-downloads/"
+        alldata = []
+        
+        while have_next:
+            self.last_api_call_epoch = time.time()
+            r = requests.get(request_url,headers=self.header)
+            self.last_api_call_duration = time.time()-self.last_api_call_epoch
+            self.api_call_count += 1
+            #return json.loads(r.text) #@@@@@@@@@@@@@@
+            if r.ok:
+                self.raw_data = json.loads(r.text)
+                
+                for row in self.raw_data["results"]["rows"]:
+                    alldata.append(dict(zip(self.raw_data["results"]["headers"],row)))
+                
+                _ = """
+                for entry in data["features"]:
+                    new_entry = {
+                        "os_id":entry["id"],
+                        "lon":entry["geometry"]["coordinates"][0],
+                        "lat":entry["geometry"]["coordinates"][1],
+                    }
+                    for k,v in entry["properties"].items():
+                        if not k.startswith("ppe_") and not k == "new_os_id":
+                            new_entry[k] = v
+                    alldata.append(new_entry)
+                    """
+                self.result = {"code":0,"message":f"{r.status_code}"}
+                if 'next' in self.raw_data.keys() and self.raw_data["next"] is not None:
+                    request_url = self.raw_data["next"]
+                else:
+                    have_next = False
+                #have_next = False
+            else:
+                #alldata = []
+                self.result = {"code":-1,"message":f"{r.status_code}"}
+                have_next = False
+                return alldata
+        
+        return alldata
+        #return pd.DataFrame(alldata)
+        
+    
+    
+    def _flatten_facilities_json(self,json_data):
+        """Convert deep facility data to a flat key,value dict.
+        
+        Internal use only.
+        """
+        base_entry = {}
+        for k,v in json_data.items():
+            if k == "matches":
+                continue
+            elif k == "geocoded_geometry":
+                try:
+                    base_entry["lon"] = v["coordinates"][0]
+                    base_entry["lat"] = v["coordinates"][1]
+                except:
+                    base_entry["lon"] = -1
+                    base_entry["lat"] = -1
+            else:
+                if v is not None:
+                    base_entry[k] = v
+                else:
+                    base_entry[k] = ""
+
+        alldata = []
+        if len(json_data["matches"])>0:
+            match_no = 1
+            for match in json_data["matches"]:
+                new_data = {"match_no":match_no}
+                new_data.update(base_entry)#.copy()
+                for k,v in match.items():
+                    if isinstance(v,list):
+                        raise NotImplementedError("Internal _flatten_facilities_json. Facilities data structure must have changed. "
+                                                  "Instance 1/2. "
+                                                  "Please report on github and/or check for an updated library.")
+                        pass
+                    elif k in ["Feature","type"]:
+                        pass
+                    elif k == "geometry":
+                        new_data["match_lon"] = v["coordinates"][0]
+                        new_data["match_lat"] = v["coordinates"][1]
+                    elif isinstance(v,dict):
+                        for kk,vv in v.items():
+                            if isinstance(vv,list):
+                                if len(vv) == 0:
+                                    new_data[f"match_{kk}"] = ""
+                                else:
+                                    lines = []
+                                    for vvv in vv:
+                                        if isinstance(vvv,dict):
+                                            lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk,vvvv in vvv.items()]))
+                                        elif isinstance(vvv,str):
+                                            lines.append(vvv)
+                                    new_data[f"match_{kk}"] = "\n".join(lines).replace("lng:","lon:")
+                            elif isinstance(vv,dict):
+                                for kkk,vvv in vv.items():
+                                    lines = []
+                                    for entry in vvv:
+                                        if isinstance(entry,dict):
+                                            lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk,vvvv in entry.items()]))
+                                        elif isinstance(entry,str):
+                                            lines.append(entry)
+                                        else:
+                                            raise NotImplementedError("Internal _flatten_facilities_json. Facilities data structure must have changed. "
+                                                                      "Instance 2/2. "
+                                                                      "Please report on github and/or check for an updated library.")
+                                    new_data[f"match_{kk}_{kkk}"] = "\n".join(lines).replace("lng:","lon:")
+                                pass
+                            elif kk.startswith("ppe_"):
+                                continue
+                            else:
+                                new_data[f"match_{kk}"] = "" if vv is None else vv
+                        pass
+                    else:
+                        new_data[f"match_{k}"] = "" if v is None else v
+
+                # shorten names of dictionary keys
+                new_data_keys_shortened = {}
+                for k,v in new_data.items():
+                    if "match_extended_fields_" in k:
+                        new_data_keys_shortened[k.replace("match_extended_fields_","match_ef_")] = v
+                    else:
+                        new_data_keys_shortened[k] = v
+                        
+                alldata.append(new_data_keys_shortened)
+                match_no += 1
+        else:
+            alldata.append(base_entry)
+            
+        return alldata
+    
     
     
     def get_facilities_count(self) -> int:
@@ -1033,142 +1399,6 @@ class OSH_API():
         return data
     
     
-    def get_facility(self,osh_id : str, return_extended_fields : bool = False ) -> dict:
-        """Return detail on one facility
-        
-        Parameters
-        ----------
-        osh_id: str
-           sixteen character OS ID
-           
-        Returns
-        -------
-        list(dict)
-            An array of dictionaries (key,value pairs). See table below for 
-            return data structures.
-
-            +-------------------------------+-----------------------------------------------+-------+
-            |column                         | description                                   | type  |
-            +===============================+===============================================+=======+
-            |os_id                          | The OS ID                                     | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            |lon                            | Geographics longitude in degrees              | float |
-            +-------------------------------+-----------------------------------------------+-------+
-            |lat                            | Geographics latitude in degrees               | float |
-            +-------------------------------+-----------------------------------------------+-------+
-            |name                           | Facility name                                 | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            |address                        | Facility address                              | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            |country_code                   |`ISO 3166-2 Alpha country code                 | str   |
-            |                               |<https://iso.org/obp/ui/#search/code/>`_       |       |
-            +-------------------------------+-----------------------------------------------+-------+
-            |country_name                   |`ISO 3166 country name                         | str   |
-            |                               |<https://iso.org/obp/ui/#search/code/>`_       |       |
-            +-------------------------------+-----------------------------------------------+-------+
-            |address                        | Facility address                              | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            |has_approved_claim             | Flag indicating if facility has been claimed  | bool  |
-            |                               |                                               |       |
-            |                               | by owner, manager, or other authorised person |       |
-            +-------------------------------+-----------------------------------------------+-------+
-            |is_closed                      | Flag indicating if facility has been closed   | bool  |
-            |                               |                                               |       |
-            |                               | (*True*), or is currently open (*False*)      |       |
-            +-------------------------------+-----------------------------------------------+-------+
-            | Additional fields returned when *return_extended_fields=True*                         |
-            +-------------------------------+-----------------------------------------------+-------+
-            | other_names                   | Other names provided, joined with ``|``       | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | other_addresses               | Other facility addresses, joined with ``|``   | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | contributors                  | ``|`` joined contributors who provided data   | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | claim_info                    | Who claimed the facility                      | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | other_locations               |                                               | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | is_closed                     | Flag indicating facility no longer active     | bool  |
-            +-------------------------------+-----------------------------------------------+-------+
-            | activity_reports              |                                               | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | contributor_fields            |                                               | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | has_inexact_coordinates       | Misnomer: Geocoordinates manually entered     | bool  |
-            +-------------------------------+-----------------------------------------------+-------+
-            | name_extended                 |                                               | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | address_extended              |                                               | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | number_of_workers_extended    | Text indicating size of facility              | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | native_language_name_extended | Name of native facility language              | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | facility_type_extended        | Type of facility, e.g. *"Office / HQ*         | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | processing_type_extended      | Type of processing, e.g. *Packaging*          | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | product_type_extended         | Product type, e.g. *Radios*                   | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | parent_company_extended       | Name of Parent Company                        | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | created_from                  | Information about first recored creating entry| str   |
-            +-------------------------------+-----------------------------------------------+-------+
-            | sector                        | Business sector                               | str   |
-            +-------------------------------+-----------------------------------------------+-------+
-        """
-        
-        self.last_api_call_epoch = time.time()
-        
-        r = requests.get(f"{self.url}/api/facilities/{osh_id}/",headers=self.header)
-        self.last_api_call_duration = time.time()-self.last_api_call_epoch
-        if r.ok:
-            data = json.loads(r.text)
-            self.raw_result = data.copy()
-            self.result = {"code":0,"message":f"{r.status_code}"}
-            
-            entry = {
-                "id": data["id"],
-                "lon": data["geometry"]["coordinates"][0],
-                "lat": data["geometry"]["coordinates"][1]
-            }
-            for k,v in data["properties"].items():
-                if k.startswith("ppe_") or k == "new_os_id":
-                    continue
-                elif isinstance(v,list):
-                    if len(v) > 0 and isinstance(v[0],dict):
-                        lines = []
-                        for vv in v:
-                            lines.append("|".join([f"{kkk}:{vvv}" for kkk,vvv in vv.items()]))
-                        entry[k] = "\n".join(lines).replace("lng:","lon:")
-                    else:
-                        entry[k] = "\n".join(v)
-                elif k == "extended_fields" and return_extended_fields:
-                    for kk in v.keys():
-                        lines = []
-                        for vv in v[kk]:
-                            lines.append("|".join([f"{kkk}:{vvv}" for kkk,vvv in vv.items()]))
-                        entry[f"{kk}_extended"] = "\n".join(lines).replace("lng:","lon:")
-                    #self.v = v.copy()
-                elif k == "created_from":
-                    self.v = v.copy()
-                    entry[k] = "|".join([f"{kkk}:{vvv}" for kkk,vvv in v.items()]) 
-                elif k == "extended_fields" and not return_extended_fields:
-                    pass
-                else:
-                    if v is not None:
-                        entry[k] = v
-                    else:
-                        entry[k] = ""
-            #data = pd.DataFrame(entry,index=[0])
-            data = entry.copy()
-            
-        else:
-            #data = pd.DataFrame()
-            data = {}
-            self.result = {"code":-1,"message":f"{r.status_code}"}
-        
-        return data
     
     
     def post_disassociate_facility(self, osh_id: str) -> list:
@@ -1317,21 +1547,22 @@ class OSH_API():
             +===============================+===============================================+=======+
             | facility                      | The OS ID                                     | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | reported_by_user              | klaus@openapparel.org',
+            | reported_by_user              | Userid  reporting open or closed              | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | reported_by_contributor       | Klaus (Openapparel)',
+            | reported_by_contributor       | Name of contributor reporting open or closed  | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | closure_state                 | CLOSED',
+            | closure_state                 | one of ``CLOSED`` or ``OPEN``                 | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | approved_at                   |
+            | approved_at                   |                                               |       |
             +-------------------------------+-----------------------------------------------+-------+
-            | status_change_reason          | None,
+            | status_change_reason          | text giving rationale for status change       | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | status                        | PENDING',
+            | status                        | one of ``PENDING``                            | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | status_change_by              | None,
+            | status_change_by              | user name changing the status                 | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | status_change_date            | None,
+            | status_change_date            | Timestamp of status change record             | str   |
+            |                               | ``YYYY-MM-DD HH:MM:SS.ffffff +zz:zz``         |       |
             +-------------------------------+-----------------------------------------------+-------+
             | created_at                    | Timestamp of change record                    | str   |
             |                               | ``YYYY-MM-DD HH:MM:SS.ffffff +zz:zz``         |       |
@@ -1339,11 +1570,11 @@ class OSH_API():
             | updated_at                    | Timestamp of change record                    | str   |
             |                               | ``YYYY-MM-DD HH:MM:SS.ffffff +zz:zz``         |       |
             +-------------------------------+-----------------------------------------------+-------+
-            | id                            | 398,
+            | id                            | status numeric id                             | int   |
             +-------------------------------+-----------------------------------------------+-------+
-            | reason_for_report             | API Test.',
+            | reason_for_report             | rationale for adding this record              | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | facility_name                 | Wengert GmbH'
+            | facility_name                 | facility name                                 | str   |
             +-------------------------------+-----------------------------------------------+-------+
         """
         
@@ -1438,8 +1669,8 @@ class OSH_API():
         r = requests.get(f"{self.url}/api/parent-companies/",headers=self.header)
         self.last_api_call_duration = time.time()-self.last_api_call_epoch
         if r.ok:
-            raw_data = json.loads(r.text)
-            data = [{"key_or_contributor":k,"parent_company":p} for k,p in raw_data]
+            self.raw_data = json.loads(r.text)
+            data = [{"key_or_contributor":k,"parent_company":p} for k,p in self.raw_data]
             self.result = {"code":0,"message":f"{r.status_code}"}
         else:
             data = []
@@ -1470,8 +1701,8 @@ class OSH_API():
         r = requests.get(f"{self.url}/api/product-types/",headers=self.header)
         self.last_api_call_duration = time.time()-self.last_api_call_epoch
         if r.ok:
-            raw_data = json.loads(r.text)
-            data = [{"product_type":sector} for sector in raw_data]
+            self.raw_data = json.loads(r.text)
+            data = [{"product_type":sector} for sector in self.raw_data]
             self.result = {"code":0,"message":f"{r.status_code}"}
         else:
             data = []
@@ -1508,8 +1739,8 @@ class OSH_API():
         r = requests.get(f"{self.url}/api/sectors/",headers=self.header)
         self.last_api_call_duration = time.time()-self.last_api_call_epoch
         if r.ok:
-            raw_data = json.loads(r.text)
-            data = [{"sector":sector} for sector in raw_data]
+            self.raw_data = json.loads(r.text)
+            data = [{"sector":sector} for sector in self.raw_data]
             self.result = {"code":0,"message":f"{r.status_code}"}
         else:
             data = []
