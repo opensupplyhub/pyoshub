@@ -6,7 +6,6 @@ import os
 import yaml
 import requests
 import json
-import pandas as pd
 import urllib
 import time
 from typing import Union
