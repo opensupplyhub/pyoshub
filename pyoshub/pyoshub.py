@@ -13,7 +13,7 @@ import io
 
 class OSH_API():
     """This is a class that wraps API access to https://opensupplyhub.org.
-       
+     
         Attributes
         ----------
         url: string
@@ -67,18 +67,28 @@ class OSH_API():
         if len(path_to_env_yml) > 0:
             with open(path_to_env_yml,"rt") as f:
                 credentials = yaml.load(f,yaml.Loader)
+                self.url = credentials["OSH_URL"]
+                self.token = credentials["OSH_TOKEN"]
         elif len(url_to_env_yml) > 0:
             try:
                 r = requests.get(url_to_env_yml)
                 credentials = yaml.load(io.StringIO(r.text),yaml.Loader)
+                self.url = credentials["OSH_URL"]
+                self.token = credentials["OSH_TOKEN"]
             except:
                 pass
-        elif os.path.exists("./env.yml"):
+        elif os.path.exists("./.env.yml"):
             try:
-                with open("./env.yml","rt") as f:
+                with open("./.env.yml","rt") as f:
                     credentials = yaml.load(f,yaml.Loader)
+                self.url = credentials["OSH_URL"]
+                self.token = credentials["OSH_TOKEN"]
             except:
                 pass
+        else:
+            self.url = url
+            if len(loken)>0:
+                self.token = token
         
         if "OSH_URL" in os.environ.keys():
             self.url = os.environ["OSH_URL"]
@@ -579,19 +589,19 @@ class OSH_API():
                 payload["name"] = name.strip()
             else:
                 self.result = {"code":-100,"message":"Error: Empty facility name given, we need a name."}
-                return pd.DataFrame([])
+                return []
             
             if len(address)>0:
                 payload["address"] = address.strip()
             else:
                 self.result = {"code":-101,"message":"Error: Empty address given, we need an address."}
-                return pd.DataFrame([])
+                return []
             
             if len(country)>0:
                 payload["country"] = country.strip()
             else:
                 self.result = {"code":-102,"message":"Error: Empty country name given, we need a country."}
-                return pd.DataFrame([])
+                return []
             
             if len(sector)>0:
                 payload["sector"] = sector.strip()
@@ -1975,5 +1985,3 @@ class OSH_API():
             alldata.append(base_entry)
             
         return alldata
-    
-    

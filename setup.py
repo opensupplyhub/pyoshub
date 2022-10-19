@@ -13,7 +13,6 @@ setup(
    long_description=open('README.rst').read(),
    install_requires=[
        "requests",
-       "pandas",
        "pytest",
        "pyyaml",
    ],

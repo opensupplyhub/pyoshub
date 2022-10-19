@@ -105,9 +105,11 @@ Order of precedence
 These settings will be evaluate in the following sequence:
 
 - Environment variables will always be considered, if present, else,
+
 - an explicit path to an ``.env.yml`` file, else
 - a URL providing an ``.env.yml`` file
 - a local file ``.env.yml`` 
+- parameters passed down on the initialisation call ``osh_api = OSH_API(token=...)``
 
 .. hint::
 
