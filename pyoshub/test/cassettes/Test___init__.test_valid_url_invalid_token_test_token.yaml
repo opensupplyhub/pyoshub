@@ -2,49 +2,48 @@ interactions:
 - request:
     body: null
     headers:
+      Accept:
+      - '*/*'
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.28.1
-      accept:
-      - application/json
-      authorization:
-      - HIDETOKEN
     method: GET
-    uri: https://openapparel.org/api/facilities/count
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
   response:
     body:
-      string: ''
+      string: '{"caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}],
+        "databases": [{"default": {"ok": true}}], "gazetteercache": {"ok": true}}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '0'
+      - '147'
       Content-Type:
-      - text/html; charset=utf-8
+      - application/json
       Date:
-      - Sun, 02 Oct 2022 17:02:17 GMT
-      Location:
-      - /api/facilities/count/
+      - Thu, 20 Oct 2022 12:45:29 GMT
       Referrer-Policy:
       - same-origin
       Server:
       - gunicorn
+      Vary:
+      - Cookie
       Via:
-      - 1.1 34f50889bc574f1edeb41dd758962a5a.cloudfront.net (CloudFront)
+      - 1.1 79272ab9b399ee696b329d4f677dca48.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - wX8qVk6ozTQacYY_DTqmE5IzAO9NilwnDyPcK7KmCEIrAlWZk90MxQ==
+      - owYXQtxSNX-GGVR6JHQsCag9d_Br7kdwVE1xg9yKOpUykBU2sO833A==
       X-Amz-Cf-Pop:
-      - FRA2-C1
+      - FRA60-P3
       X-Cache:
       - Miss from cloudfront
       X-Content-Type-Options:
       - nosniff
     status:
-      code: 301
-      message: Moved Permanently
+      code: 200
+      message: OK
 - request:
     body: null
     headers:
@@ -57,23 +56,23 @@ interactions:
       accept:
       - application/json
       authorization:
-      - HIDETOKEN
+      - HIDDEN
     method: GET
-    uri: https://openapparel.org/api/facilities/count/
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
   response:
     body:
-      string: '{"count":103698}'
+      string: '{"detail":"Invalid token."}'
     headers:
       Allow:
       - GET, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '16'
+      - '27'
       Content-Type:
       - application/json
       Date:
-      - Sun, 02 Oct 2022 17:02:17 GMT
+      - Thu, 20 Oct 2022 12:45:29 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -81,16 +80,18 @@ interactions:
       Vary:
       - Accept
       Via:
-      - 1.1 34f50889bc574f1edeb41dd758962a5a.cloudfront.net (CloudFront)
+      - 1.1 79272ab9b399ee696b329d4f677dca48.cloudfront.net (CloudFront)
+      WWW-Authenticate:
+      - Token
       X-Amz-Cf-Id:
-      - IRo4okNYT9VEuRyY1BbaUssyMCqqQZl3VcqVIBS-kUpwphCbHBvASw==
+      - exr-uCLBbo5E1c2CAYsSWiGseg0ktUSVWRFuVP5y-wwfJDqtJ6xHng==
       X-Amz-Cf-Pop:
-      - FRA2-C1
+      - FRA60-P3
       X-Cache:
-      - Miss from cloudfront
+      - Error from cloudfront
       X-Content-Type-Options:
       - nosniff
     status:
-      code: 200
-      message: OK
+      code: 401
+      message: Unauthorized
 version: 1

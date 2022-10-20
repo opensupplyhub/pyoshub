@@ -1,0 +1,924 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}],
+        "caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:52:00 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 b4904c5988fd0eaae341a12cc47f3766.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - SDmQhv9y2_ak4QHhChaIjS4_JB8gp4aeivK3vlsebGL4GAxsS7q6gQ==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109371}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:52:00 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 6ae82cc0c8a39c993134c2be90b4d120.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - NjKal3IIn9EKZPnXZVyr27YJCprBASAXSbD42mq77_XsoS_tyf6vHg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?q=light&detail=false
+  response:
+    body:
+      string: "{\"type\":\"FeatureCollection\",\"count\":264,\"next\":\"https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=2&q=light\",\"previous\":null,\"features\":[{\"id\":\"MY2020212ATFQ5Y\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[101.6777001,3.1204246]},\"properties\":{\"name\":\"Ace
+        Delight (M) Sdn Bhd\",\"address\":\"A-3-1, Block A, North Point Mid Valley,
+        1, Medan Syed Putra Utara, 59200 Kuala Lumpur\",\"country_code\":\"MY\",\"os_id\":\"MY2020212ATFQ5Y\",\"country_name\":\"Malaysia\",\"has_approved_claim\":false,\"ppe_product_types\":[\"Nitrile
+        Medical Gloves\"],\"ppe_contact_phone\":\"\",\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238MZ70MJ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.9655784,22.9310011]},\"properties\":{\"name\":\"AEL
+        Lighting Co., Ltd.\",\"address\":\"No.268-5,ZhongXinJin Road,ShuiKou District
+        \  Dalang 523785 Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238MZ70MJ\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2020349Z0TBDD\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-118.3654612,34.2187225]},\"properties\":{\"name\":\"Alight
+        Promos\",\"address\":\"10810 Cantara St Sun Valley CA 91352\",\"country_code\":\"US\",\"os_id\":\"US2020349Z0TBDD\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20221433BA0RF\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[117.1733558,31.5257052]},\"properties\":{\"name\":\"Anhui
+        Hi Charm Lighting Co Ltd\",\"address\":\"YuLan Rd HangBu Industry Zone  Shucheng
+        County Anhui, Lu'an, Anhui\",\"country_code\":\"CN\",\"os_id\":\"CN20221433BA0RF\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20210605F3KNV\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[117.0051307,31.4647831]},\"properties\":{\"name\":\"Anhui
+        Hi-Charm Lighting Co ( Sinostar )\",\"address\":\"Hangbu Industrial Zone Shucheng
+        County Liuan City Anhui\",\"country_code\":\"CN\",\"os_id\":\"CN20210605F3KNV\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022007DYYHH9\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[116.294259,29.849434]},\"properties\":{\"name\":\"Anhui
+        Huaheng Light Industry CO.Ltd\",\"address\":\"Luoducun, Susongxian Zhoutouxiang\",\"country_code\":\"CN\",\"os_id\":\"CN2022007DYYHH9\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20200906EF5QX\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[116.328879,29.86548]},\"properties\":{\"name\":\"Anhui
+        Huaheng Light Industry Cotdtd\",\"address\":\"Luodu County, Zhoutou Town,
+        Susong, Anqing, Anhui\",\"country_code\":\"CN\",\"os_id\":\"CN20200906EF5QX\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US20222241BJ7MF\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-90.5229025,35.6899781]},\"properties\":{\"name\":\"Ashley
+        Lighting Inc\",\"address\":\"405 Industrial Dr, Trumann, AR, USA\",\"country_code\":\"US\",\"os_id\":\"US20222241BJ7MF\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"IN2021159YJ1TMA\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[77.40013,28.5401294]},\"properties\":{\"name\":\"Associated
+        Lighting Company\",\"address\":\"C/O ASSOCIATED LIGHTING COMPANY\\nPLOT NO
+        101-102\\nNSEZ PHASE II, NOIDA\",\"country_code\":\"IN\",\"os_id\":\"IN2021159YJ1TMA\",\"country_name\":\"India\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20221437DNB6S\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.30634,23.01345]},\"properties\":{\"name\":\"Aureate
+        Lighting Limited\",\"address\":\"No. 37 Nanhua Road, Chenjiang Street Zhongkai
+        High-Tech Zone, Huizhou City , Guangdong province , China, Huizhou, Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN20221437DNB6S\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021288JA0BZE\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[117.992442,24.522264]},\"properties\":{\"name\":\"BENTIAN
+        LIGHT INDUSTRY (XIAMEN) CO.,LTD\",\"address\":\"No.99 Huizuo Road , Haicang
+        Zone \uFF0CXiamen  Fujian Prc, Xia Men, Fujian, China\",\"country_code\":\"CN\",\"os_id\":\"CN2021288JA0BZE\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"TR2019083T4X5TQ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[27.4868765,40.9585877]},\"properties\":{\"name\":\"Blue
+        Light Tekstil Insaat Sanayi Ticaret Limited Sirketi\",\"address\":\"Nusratli
+        Mh Ismet Inonu Bulgari No 80 Suleymanpasa Tekirdag\",\"country_code\":\"TR\",\"os_id\":\"TR2019083T4X5TQ\",\"country_name\":\"Turkey\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"TR2020034N6R7S4\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[27.4868765,40.9585877]},\"properties\":{\"name\":\"BLUE
+        LIGHT TEKST\u0130L \u0130N\u015EAAT TA\u015EIMACILIK SAN. VE T\u0130C. LTD.
+        \u015ET\u0130.\",\"address\":\"NUSRATLI MAH. \u0130SMET INONU BULV. 80 SULEYMANPASA
+        / TEK\u0130RDAG,59000,TEKIRDAG\",\"country_code\":\"TR\",\"os_id\":\"TR2020034N6R7S4\",\"country_name\":\"Turkey\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20200094813Q5\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.148739,22.961616]},\"properties\":{\"name\":\"BP
+        Lighting Co Ltd \",\"address\":\"Yankou Industrial Area Xiegang Town Dongguan
+        City Guangdong Province China \",\"country_code\":\"CN\",\"os_id\":\"CN20200094813Q5\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238SMZ91T\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.44142,22.35798]},\"properties\":{\"name\":\"BRIGHT
+        LIGHT HANDCRAFT FACTORY\",\"address\":\"1/F & 2/F, No. 57 Xinrong Road Dabu,
+        Sanxiang Town  Zhongshan  Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238SMZ91T\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"KH20222382E2ZQE\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[106.1165239,11.0581075]},\"properties\":{\"name\":\"BRILLIANT
+        LIGHTING CO., LTD\",\"address\":\"Manhattan Special Economic Zone, Sangkat
+        Bavet, Nation Road #1  Bavet 20251 Svay Rieng\",\"country_code\":\"KH\",\"os_id\":\"KH20222382E2ZQE\",\"country_name\":\"Cambodia\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202033533RYQK\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.6068099,24.8214708]},\"properties\":{\"name\":\"Buzu
+        Light Industry Co. Ltd.\",\"address\":\"1-2#CENTER RD.PENGTOU INDUSTRY ZONE
+        CHENDAI JINJIANG,Jinjiang\",\"country_code\":\"CN\",\"os_id\":\"CN202033533RYQK\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"GB20190850BZ17M\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-2.7390543,51.1274711]},\"properties\":{\"name\":\"C
+        and J Clark Overseas (Morelight)\",\"address\":\"40 High Street Street Somerset
+        England  BA16 0EQ\",\"country_code\":\"GB\",\"os_id\":\"GB20190850BZ17M\",\"country_name\":\"United
+        Kingdom\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"GB20190837K0SD0\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-1.3320444,53.4496312]},\"properties\":{\"name\":\"Candlelight
+        Products Ltd\",\"address\":\"Ustun House Waddington Way Aldwarke Lane Rotherham
+        S65 3SH\",\"country_code\":\"GB\",\"os_id\":\"GB20190837K0SD0\",\"country_name\":\"United
+        Kingdom\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019083C2T28T\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.248288,22.5319005]},\"properties\":{\"name\":\"Cascade
+        Zhongshan (Jc Lighting) Xingyu Street\",\"address\":\"No 3 No 2 Alley Xingyu
+        Street Henglan Town Zhongshan Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2019083C2T28T\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202206702X8Q2\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[119.95667,31.75354]},\"properties\":{\"name\":\"Changzhou
+        Hilighton Textiles Co.Ltd\",\"address\":\"Chashan Street, Tiannin District
+        Changzhou Jiangsu China\",\"country_code\":\"CN\",\"os_id\":\"CN202206702X8Q2\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020191VMS3HW\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[119.9755474,31.742356]},\"properties\":{\"name\":\"Changzhou
+        Hilighton Textiles Co.Ltd.\",\"address\":\"NO.288-5?Chenxiang,Qinfeng,Chashan,
+        Tianning District, Changzhou\",\"country_code\":\"CN\",\"os_id\":\"CN2020191VMS3HW\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20222454SV082\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[119.880383,31.803512]},\"properties\":{\"name\":\"ChangZhou
+        Light Industrial Tools Co., Ltd.\",\"address\":\"No. 62 Hehuan Road, Zhong
+        Lou Economic Development Zone, Changzhou City, Jiangsu Province, China Changzhou\",\"country_code\":\"CN\",\"os_id\":\"CN20222454SV082\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021194M464QX\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[116.613455,23.634237]},\"properties\":{\"name\":\"Chaozhou
+        Weida Lighting Co \",\"address\":\"No. 4 Building, Gubantou School South Road,
+        Fengxi District, Chaozhou, Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2021194M464QX\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US20203494J5YWH\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-87.950788,42.2372642]},\"properties\":{\"name\":\"Chemical
+        Light Inc.\",\"address\":\"595 Lakeview Pkwy Vernon Hills IL 60061\",\"country_code\":\"US\",\"os_id\":\"US20203494J5YWH\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2022224SG9RJJ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-87.9474188,42.2313494]},\"properties\":{\"name\":\"Chemical
+        Lights\",\"address\":\"300 N Lakeview Pkwy, Vernon Hills, IL, USA\",\"country_code\":\"US\",\"os_id\":\"US2022224SG9RJJ\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2020254D268PA\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-105.0566493,40.0458868]},\"properties\":{\"name\":\"Chimera
+        Lighting\",\"address\":\"1067 Telleen Ave Erie Colorado 80516 Erie Colorado
+        80516\",\"country_code\":\"US\",\"os_id\":\"US2020254D268PA\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":[\"Medical face
+        masks\",\"Scrub Suits\",\"Consumer Face Masks\",\"Surgical Gowns\"],\"ppe_contact_phone\":\"3034448000\",\"ppe_contact_email\":null,\"ppe_website\":\"https://chimeralighting.com/\",\"is_closed\":null}},{\"id\":\"CN2022224GWG6CD\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.12995,22.69197]},\"properties\":{\"name\":\"Choi's
+        Early Light Technology (Shenzhen)Company Ltd\",\"address\":\"Early Light Industrial
+        Zone, No. 21 Xin XiaRoad, Shan Xia Village, Ping Hu Town, Long GangDistrict,
+        Shenzhen City, Guangdong, China\",\"country_code\":\"CN\",\"os_id\":\"CN2022224GWG6CD\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20222382H1PHZ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.15799,22.69035]},\"properties\":{\"name\":\"CJING
+        LIGHTING CO., LTD\",\"address\":\"Room 101, Building 1, No.2, Yiheng Road,
+        Tutang Industry, Changping Town,  Dongguan City 523752 Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN20222382H1PHZ\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"VN202133746TE5D\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[106.5849256,20.904281]},\"properties\":{\"name\":\"CREATIVE
+        LIGHTS VIETNAM CO., LTD.\",\"address\":\"KM 14, HIGHWAY 5, AN HUNG COMMUNE,
+        AN DUONG DISTRICT,, HAIPHONG 35000   VN\",\"country_code\":\"VN\",\"os_id\":\"VN202133746TE5D\",\"country_name\":\"Vietnam\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"VN2021337CHD3HM\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[106.4472128,20.969209]},\"properties\":{\"name\":\"CREATIVE
+        LIGHTS VIETNAM HD CO., LTD.\",\"address\":\"XUAN MANG VILLAGE, TUAN HUNG COMMUNE,
+        KIM THANH DISTRICT, HAI DUONG 70000   VN\",\"country_code\":\"VN\",\"os_id\":\"VN2021337CHD3HM\",\"country_name\":\"Vietnam\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US20222245YXNHW\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-80.2231124,36.9178673]},\"properties\":{\"name\":\"Crenshaw
+        Lighting Corporation\",\"address\":\"592 Paradise Lane, Floyd, VA, USA\",\"country_code\":\"US\",\"os_id\":\"US20222245YXNHW\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020009V3R6B5\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.3451931,23.6457544]},\"properties\":{\"name\":\"Da
+        Hui Lighting Co Ltd \",\"address\":\"No 29 No 48 Pingnan Industry Area Chejiang
+        huizhou City Guangdong Province China \",\"country_code\":\"CN\",\"os_id\":\"CN2020009V3R6B5\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"GB20190833RE3V7\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-2.1516107,52.9955454]},\"properties\":{\"name\":\"Daniels
+        Delights\",\"address\":\"Montrose House Montrose Street Fenton Stoke On Trent
+        ST4 3PB\",\"country_code\":\"GB\",\"os_id\":\"GB20190833RE3V7\",\"country_name\":\"United
+        Kingdom\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"TR2020220DBXFBX\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[28.871324,41.067354]},\"properties\":{\"name\":\"Daylight\",\"address\":\"GIYIMKENT
+        SITESI VADI CAD. NO:62/A ESENLER, 34230, Istanbul, \",\"country_code\":\"TR\",\"os_id\":\"TR2020220DBXFBX\",\"country_name\":\"Turkey\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BD2020100B5SQ6H\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[90.4325517,23.8058154]},\"properties\":{\"name\":\"Daylight
+        Fashions Ltd.\",\"address\":\"587, Solmaeid, Gulshan Vatara, Dhaka \",\"country_code\":\"BD\",\"os_id\":\"BD2020100B5SQ6H\",\"country_name\":\"Bangladesh\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020308TY954A\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.552365,24.781681]},\"properties\":{\"name\":\"Deli
+        (Fujian) Light Industry Co. Limited\",\"address\":\"Liupu Industry Area, Yangdai,
+        ChendaiTown, Quanzhou, Jinjiang, China\",\"country_code\":\"CN\",\"os_id\":\"CN2020308TY954A\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019245RNJVNQ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.601596,24.822034]},\"properties\":{\"name\":\"Deli
+        (Fujian) Light Industry Co Ltd\",\"address\":\"Liupu Ind Area Yangdai Chendai
+        Town Jinjiang Fujian \",\"country_code\":\"CN\",\"os_id\":\"CN2019245RNJVNQ\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021347GS8A65\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.755058,25.013367]},\"properties\":{\"name\":\"Deli(Fujian)Light
+        Industry Co. Ltd.\",\"address\":\"Liudun Industry, Yanddailin, Chendai,Quanzhou,Fujian\",\"country_code\":\"CN\",\"os_id\":\"CN2021347GS8A65\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2022206G8V8VC\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-86.870804,36.4987967]},\"properties\":{\"name\":\"Delight
+        Products\",\"address\":\"1200 Industrial Drive, Springfield, TN  37172\",\"country_code\":\"US\",\"os_id\":\"US2022206G8V8VC\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021193HH56H1\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.2865975,30.6252688]},\"properties\":{\"name\":\"DEQING
+        HI-CHARM LIGHTING CO LTD\",\"address\":\"NO.518 XINGYUAN ROAD QIANYUAN TOWN
+        DEVELOPE ZONE DEQING CITY, ZHEJIANG\",\"country_code\":\"CN\",\"os_id\":\"CN2021193HH56H1\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020148AXRFDX\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.0840568,30.5353768]},\"properties\":{\"name\":\"Deqing
+        HongChang Lighting Factory\",\"address\":\"No 518 Xingyuan Street Qianyuan
+        Development Area, Qianyuan Town Deqing County Huzhou City Zhejiang Province\",\"country_code\":\"CN\",\"os_id\":\"CN2020148AXRFDX\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"KH2022238Z053AQ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[105.9615061,11.0418334]},\"properties\":{\"name\":\"DL
+        Decoration Lighting Co.,Ltd\",\"address\":\"Svay Rieng GIGA Resource SEZ,
+        National Road #1, Deum Por Village, Kandieng Reay Commune, Svay Teap District
+        Svay Rieng City  Svay Rieng 20153 Svay Rieng\",\"country_code\":\"KH\",\"os_id\":\"KH2022238Z053AQ\",\"country_name\":\"Cambodia\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022143SN9XXG\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.68369,22.79326]},\"properties\":{\"name\":\"Dongguan
+        Century Lighting Co., Ltd.\",\"address\":\"Second Building, No.52 Dongfeng
+        Nanshe Road, Humen Town, Dongguan City, Guangdong Province, China, Dongguan,
+        Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022143SN9XXG\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020009G84NK2\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.9395323,23.003824]},\"properties\":{\"name\":\"DongGuan
+        Chinalight Electrical Co Ltd \",\"address\":\"No3 Third Industrial Area Dongkeng
+        Village Dongkeng Town Dongguan Guangdong China \",\"country_code\":\"CN\",\"os_id\":\"CN2020009G84NK2\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021060WA4Y37\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.148739,22.961616]},\"properties\":{\"name\":\"Dong
+        Guan City San Xuan Lighting Co Ltd\",\"address\":\"No 8 Yan Kou Road Xiegang
+        Town Dongguan City Guangdong Province\",\"country_code\":\"CN\",\"os_id\":\"CN2021060WA4Y37\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238VBJN9T\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.93997,23.08922]},\"properties\":{\"name\":\"Dongguan
+        Light Star Lighting & Gifts Co.Ltd\",\"address\":\"No.124, Xiangxi Longtou
+        west 3rd road, Xiangxi Village, Shipai Town   Dongguan  Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238VBJN9T\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022224AM0535\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.9340886,23.0911362]},\"properties\":{\"name\":\"Dongguan
+        Morning Light Printing Co, Ltd\",\"address\":\"Qiantan St, Puxin, Dongguan,
+        Guangdong, China\",\"country_code\":\"CN\",\"os_id\":\"CN2022224AM0535\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021314K6T7RG\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.929989,23.081021]},\"properties\":{\"name\":\"Dongguan
+        Morning Light Printing Co., Ltd\",\"address\":\"Pu Xin,Shi Pai Town, Dongguan,
+        Shi Pai Town, Dongguan, DONGGUAN\",\"country_code\":\"CN\",\"os_id\":\"CN2021314K6T7RG\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238ZYE96Y\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.93997,23.08922]},\"properties\":{\"name\":\"Dongguan
+        Morning Light Printing Co., Ltd.\",\"address\":\"Third Road Industrial District,
+        Pu Xin,Shipai Town   Dongguan 523330 Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238ZYE96Y\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}}],\"extent\":[-149.8753983,-28.0279867,134.8951167,62.46894449999999]}"
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '23136'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:52:01 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 79272ab9b399ee696b329d4f677dca48.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - R96oLa7b3kUf1K4Io6ov5_xpW4UvepQ7vB6yHDH4HnW5BT-TZ4ZtYA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=2&q=light
+  response:
+    body:
+      string: "{\"type\":\"FeatureCollection\",\"count\":264,\"next\":\"https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=3&q=light\",\"previous\":\"https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&q=light\",\"features\":[{\"id\":\"CN20222384GQ64S\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.97503,23.09101]},\"properties\":{\"name\":\"Dongguan
+        Rongjia Lighting Co., Ltd\",\"address\":\"No.244, Shichong Road   ShiPai 523341
+        Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN20222384GQ64S\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20211060SEJ6W\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.8997938,22.984216]},\"properties\":{\"name\":\"Dongguan
+        Top-Flight Apparel & Accessories CO.,Ltd \",\"address\":\"The 5th Floor Chippacking
+        building, Shixin, Industrial Park, Industrial Avenue, Shipai Town, Dongguan,
+        Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN20211060SEJ6W\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020085NV5V1K\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.036996,23.0520844]},\"properties\":{\"name\":\"DONGGUAN
+        YINGFU LIGHTING DECORATION CO LTD \",\"address\":\"YONGFA INDUSTRIAL ZONE,
+        DONGSHAN DISTRICT,QISHI TOWN DOUNGGUAN CITY GUANGDONG CHINA 523511 \",\"country_code\":\"CN\",\"os_id\":\"CN2020085NV5V1K\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021270WK87EB\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.981317,23.064485]},\"properties\":{\"name\":\"Donguan
+        Top-Flight Enterprises Ltd\",\"address\":\"The 5Th Floor Chippacking Building
+        No 9, Industrial Avenue Fulong Village, Shipai Town Dongguan Guangdong 523349\",\"country_code\":\"CN\",\"os_id\":\"CN2021270WK87EB\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"IN20222815MJCKJ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[87.0724164,23.5573286]},\"properties\":{\"name\":\"Dream
+        Light Merchant Private Limited\",\"address\":\"Goswamigram, Mejia, Bankura-
+        722143\",\"country_code\":\"IN\",\"os_id\":\"IN20222815MJCKJ\",\"country_name\":\"India\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BD202130236RJY1\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[90.3882612,23.9289918]},\"properties\":{\"name\":\"Ehsan
+        Garments Ltd & Moonlight Garments Ltd\",\"address\":\"Kunia Pachar (Targach),
+        K.B.Bazar, Tongi, Gazipur Tongi, Gazipur Dhaka 1704\",\"country_code\":\"BD\",\"os_id\":\"BD202130236RJY1\",\"country_name\":\"Bangladesh\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"IN202228150ZD70\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[88.4302839,22.6411275]},\"properties\":{\"name\":\"EIH
+        Limited Oberoi Flight Services\",\"address\":\"43/146,Jessore Road,Airport
+        gate no.8,Kolkata-700051\",\"country_code\":\"IN\",\"os_id\":\"IN202228150ZD70\",\"country_name\":\"India\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2022221WN3XGM\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-149.8738205,61.1768826]},\"properties\":{\"name\":\"Enlighten
+        Extracts\",\"address\":\"524 E 48th Ave, 1A, Anchorage, Alaska, United States\",\"country_code\":\"US\",\"os_id\":\"US2022221WN3XGM\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2022221WKY279\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-149.8738205,61.1768826]},\"properties\":{\"name\":\"Enlighten
+        Gardens\",\"address\":\"524 E 48th Ave, 1B, Anchorage, Alaska, United States\",\"country_code\":\"US\",\"os_id\":\"US2022221WKY279\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US20222245RFA6J\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-117.9129085,34.0059312]},\"properties\":{\"name\":\"Environmental
+        Lighting For Architecture, Inc.\",\"address\":\"17891 Arenth Ave., City of
+        Industry, CA, USA\",\"country_code\":\"US\",\"os_id\":\"US20222245RFA6J\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"TW2022245BWDWCR\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.960515,23.69781]},\"properties\":{\"name\":\"Everlight
+        Electronics Co., Ltd. (Yutian)\",\"address\":\"No. 35, Lane Guoguang, 6th
+        Neighborhood,R.O.C\",\"country_code\":\"TW\",\"os_id\":\"TW2022245BWDWCR\",\"country_name\":\"Taiwan\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022022PCG8B0\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.27408,28.92718]},\"properties\":{\"name\":\"EXSUSS
+        LIGHT & DECORATION CO.LTD\",\"address\":\"NO 1. CHUANJIN ROAD, DONGCHENG TOWN,
+        LINHAI, ZHEJIANG, CHINA\",\"country_code\":\"CN\",\"os_id\":\"CN2022022PCG8B0\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020230AMHS13\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.408691,29.622062]},\"properties\":{\"name\":\"Fenghua
+        Tonghui Lighting Co Ltd (N-Concept)\",\"address\":\"Jindisi Shangtian Village
+        Geao Town Fenghua Ningbo Zhejiang \",\"country_code\":\"CN\",\"os_id\":\"CN2020230AMHS13\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2022224AMDMYK\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-118.3654617,34.2187245]},\"properties\":{\"name\":\"Flashingblinkylights.com,
+        Inc.\",\"address\":\"10810 Cantara Street, Sun Valley, CA, USA\",\"country_code\":\"US\",\"os_id\":\"US2022224AMDMYK\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202223897YJZ3\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.943978,22.940016]},\"properties\":{\"name\":\"Focus
+        Lighting Technology Co., Ltd.\",\"address\":\"Room 201, No 21, Xianjiang Road,
+        Dalang Town,  Dongguan 523792 Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN202223897YJZ3\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202224558WA6V\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.12249,23.0094399]},\"properties\":{\"name\":\"Foshan
+        Electrical and Lighting Technology Co., Ltd.\",\"address\":\"Block 2, 64 North
+        Fenjiang Road North, Chancheng District\",\"country_code\":\"CN\",\"os_id\":\"CN202224558WA6V\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022245FSZQ00\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[112.89262,22.9002599]},\"properties\":{\"name\":\"Foshan
+        Field Smart Lighting Co., Ltd.\",\"address\":\"12# Sanyang Road, Sanzhou Town,
+        Hecheng, Cangjiang Industrial District, Gaoming\",\"country_code\":\"CN\",\"os_id\":\"CN2022245FSZQ00\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238Y4SDKZ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.29008,22.74639]},\"properties\":{\"name\":\"FOSHAN
+        SHUNDE BRIGHT LIGHTING (CHINA) CO., LTD\",\"address\":\"39 FACHANG ROAD, NANQU
+        INDUSTRIAL ZONE Ronggui Town, Shunde, Foshan  Shunde 528306 Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238Y4SDKZ\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20201914N0JCQ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.6532791,24.8650575]},\"properties\":{\"name\":\"FUJIAN
+        FENGDA LIGHT INDUSTRY AND TEXTILE CO.,LTD\",\"address\":\"East Coast Industrial
+        Zone,Dongbin Road,Fengze District, QUANZHOU\",\"country_code\":\"CN\",\"os_id\":\"CN20201914N0JCQ\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021168KFHGGR\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.5177228,24.9223588]},\"properties\":{\"name\":\"FUJIAN
+        FENGYI LIGHT INDUSTRY AND TEXTILE CO.,LTD\",\"address\":\"AILITE INDUSTRIAL
+        PARK, CHANGTAI RD HIGH-TECH PARK, LICHENG DISTRICT QUANZHOU, FUJIAN\",\"country_code\":\"CN\",\"os_id\":\"CN2021168KFHGGR\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20202307X4KYK\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[119.281972,25.628561]},\"properties\":{\"name\":\"Fuzhou
+        Glitter Paper Products Co Ltd (Fuzhou Light)\",\"address\":\"Hongkuan Industrial
+        Area Yangxia St Fuqing City Fuzhou Fujian Province\",\"country_code\":\"CN\",\"os_id\":\"CN20202307X4KYK\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021120WV0ZCV\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[119.497917,25.923372]},\"properties\":{\"name\":\"Fuzhou
+        New Lionstar Light Industrial Products Co., Ltd.\",\"address\":\"Xiazhou Village,
+        Hangcheng Street, Changle District\",\"country_code\":\"CN\",\"os_id\":\"CN2021120WV0ZCV\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238Y1KX8V\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[116.32985,26.3113]},\"properties\":{\"name\":\"Ganzhou
+        Yulong Light Textile Co., Ltd.\",\"address\":\"Floor 3. No.2 Factory. Guzhang
+        Industrial Park&#65292;Sicheng,  Ganzhou 342700 Jiangxi\",\"country_code\":\"CN\",\"os_id\":\"CN2022238Y1KX8V\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"KR2022065TC7B4A\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[128.9805666,35.2122157]},\"properties\":{\"name\":\"GB
+        LIGHT CO LTD\",\"address\":\"22 Beombang 3ro 30beon gil , Gangseo Gu, Busan
+        Gwangyeogsi, 46727\",\"country_code\":\"KR\",\"os_id\":\"KR2022065TC7B4A\",\"country_name\":\"Korea,
+        Republic of\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"VN2022065P8FDJ1\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[106.7118339,10.9006966]},\"properties\":{\"name\":\"GB
+        LIGHT CO LTD (VIETNAM)\",\"address\":\"LOT B2 7, Thu Dau Mot, B\xECnh Duong,
+        75000\",\"country_code\":\"VN\",\"os_id\":\"VN2022065P8FDJ1\",\"country_name\":\"Vietnam\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"KR2019093DT70KP\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[128.8555626,35.0882764]},\"properties\":{\"name\":\"GB
+        LIGHT (KOREA)\",\"address\":\"#1733-4 SONGJEONG-DONG,KANGSEO-GU, BUSAN, KOREA
+        BUSAN BUSAN 618-820\",\"country_code\":\"KR\",\"os_id\":\"KR2019093DT70KP\",\"country_name\":\"Korea,
+        Republic of\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"VN2019085RB9K51\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[106.6845554,11.097763]},\"properties\":{\"name\":\"GB
+        LIGHT (VIETNAM)\",\"address\":\"B2.7, ROAD NO. D1, DONG AN 2 IP, HOA PHU WARD
+        THU DAU MOT BINH DUONG 0\",\"country_code\":\"VN\",\"os_id\":\"VN2019085RB9K51\",\"country_name\":\"Vietnam\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20222457ZNH7N\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.51789,22.76917]},\"properties\":{\"name\":\"Gesilight
+        Electrical Industry Co., Ltd.\",\"address\":\"No. 1, Dafu, Dafuji, Shunde
+        District\",\"country_code\":\"CN\",\"os_id\":\"CN20222457ZNH7N\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20202307Z1G4N\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[112.8769121,22.5883028]},\"properties\":{\"name\":\"Gmy
+        Lighting Technology Co Ltd\",\"address\":\"No328 Xinxing Road Gonghe Town
+        Heshan City Guangdong \",\"country_code\":\"CN\",\"os_id\":\"CN20202307Z1G4N\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"HK2021146XG3CCB\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.1343671,22.3629368]},\"properties\":{\"name\":\"GOLDEN
+        LIGHT KNITTING LIMITED\",\"address\":\"2-6 WAH SING STREET, ON DAK INDUSTRIAL
+        BLDG, 5B & 24A, KWAI CHUNG, New Territories\",\"country_code\":\"HK\",\"os_id\":\"HK2021146XG3CCB\",\"country_name\":\"Hong
+        Kong\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"HK2020090P1YXF1\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.1343671,22.3629368]},\"properties\":{\"name\":\"Golden
+        Light Knitting Ltd\",\"address\":\"Flat B, 5/F and Flat A, 24/F, On Dak Industrial
+        Building, 2-6 Wah Sing Street, Kwai Chung, Hong Kong\",\"country_code\":\"HK\",\"os_id\":\"HK2020090P1YXF1\",\"country_name\":\"Hong
+        Kong\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20222387WS8QZ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.02204,23.0729]},\"properties\":{\"name\":\"GOLDEN
+        MILLET CRAFT & LIGHTING LTD\",\"address\":\"Yangwu Second Industrial area,
+        \  Qishi 523503 Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN20222387WS8QZ\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238N92KRF\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[116.703891,23.357435]},\"properties\":{\"name\":\"Gold
+        Light Toys Factory\",\"address\":\"1st-4th Floor,7th Block, Chousha Corp Garth
+        Old Shanfen Road, Chenghai District  Shantou  Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238N92KRF\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019087HMNCJ4\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.957704,23.044685]},\"properties\":{\"name\":\"Great
+        Light Leather Goods Factory\",\"address\":\"No. 51 San Jiang Industrial Zone
+        Hengli District, Dongguan, Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2019087HMNCJ4\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020106Y4YAFN\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.3102984,23.2660965]},\"properties\":{\"name\":\"GUANGDONG
+        LIGHT LUGGAGE  & BAGS\",\"address\":\"SHUANGHE INDUSTRIAL ZONE 4TH RD, GUANGZHOU
+        510000\",\"country_code\":\"CN\",\"os_id\":\"CN2020106Y4YAFN\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20201063THY8G\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.412116,22.804644]},\"properties\":{\"name\":\"GUANGDONG
+        LIGHT LUGGAGE  & BAGS\",\"address\":\"19 XINGYE ROAD SOUTH SHILING GUANGZHOU
+        510000\",\"country_code\":\"CN\",\"os_id\":\"CN20201063THY8G\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020301J9TMPR\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.2745334,23.1290676]},\"properties\":{\"name\":\"GUANGDONG
+        LIGHT LUGGAGE & BAGS\",\"address\":\"LG 11/F DEZHENG ROAD SOUGH 52 GUANGZHOU\",\"country_code\":\"CN\",\"os_id\":\"CN2020301J9TMPR\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022075C46TZJ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.24461,22.83896]},\"properties\":{\"name\":\"Guangdong
+        Light Luggage & Bags Co., Ltd.\",\"address\":\"Dezheng Road South, 52, 510115,
+        Guangzhou, Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022075C46TZJ\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20213377Y98F8\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.699361,27.993828]},\"properties\":{\"name\":\"Haiyang
+        Skylight Textile CO.,Ltd \",\"address\":\"19 Wenzhou Road, Industrial District
+        Haiyang city \",\"country_code\":\"CN\",\"os_id\":\"CN20213377Y98F8\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20190833Z1RHM\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.178479,36.738711]},\"properties\":{\"name\":\"Hai
+        Yang Skylight Textile Co Ltd\",\"address\":\"Haiyang Industrial Area 19 Wenzhou
+        Street Yantai Shandong Province\",\"country_code\":\"CN\",\"os_id\":\"CN20190833Z1RHM\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20191714F5QJ7\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.0661963,30.3154647]},\"properties\":{\"name\":\"Hangzhou
+        Light Indus\",\"address\":\"No.6 1St Xiyuan Road Hangzhou 310030 Zhejiang\",\"country_code\":\"CN\",\"os_id\":\"CN20191714F5QJ7\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022245Z4MW8X\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.305907,30.458175]},\"properties\":{\"name\":\"Hangzhou
+        Sky-Lighting Co., Ltd.\",\"address\":\"No. 161 North Star-Bridge Road, Xingqiao,
+        Yuhang District,\",\"country_code\":\"CN\",\"os_id\":\"CN2022245Z4MW8X\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238TFN0WY\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.78086,24.21019]},\"properties\":{\"name\":\"HEYUAN
+        HONGSHU LIGHTING CO LTD\",\"address\":\"Eco-industrial Park,  San Jiao Town,
+        \  Heyuan  Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238TFN0WY\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BR2021260MR2HNN\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-48.6391687,-28.0279867]},\"properties\":{\"name\":\"HIDROLIGHT
+        DO BRASIL S.A\",\"address\":\"ROD DOS ACORES, 1150, sem\\n- Garopaba, SC\",\"country_code\":\"BR\",\"os_id\":\"BR2021260MR2HNN\",\"country_name\":\"Brazil\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BR2021250KRAYH4\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-48.7079672,-26.9408633]},\"properties\":{\"name\":\"HIGHLIGHT
+        COM. TECIDOS IMP. EXP. EIRELI\",\"address\":\"ROD ANTONIO HEIL-1001,ITAIPAVA
+        ITAJAI-SC\",\"country_code\":\"BR\",\"os_id\":\"BR2021250KRAYH4\",\"country_name\":\"Brazil\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"IN2022281GNR0Z4\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[88.3424327,22.6049527]},\"properties\":{\"name\":\"HI
+        LIGHT INDUSTRIES\",\"address\":\"66/10, DHARMATALA ROAD, GHUSURI, HOWRAH-
+        711107.\",\"country_code\":\"IN\",\"os_id\":\"IN2022281GNR0Z4\",\"country_name\":\"India\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019085SJP0AN\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.5299127,24.9003157]},\"properties\":{\"name\":\"Huayi
+        Light Industry Products Co.  Ltd\",\"address\":\"No.22  Zishan Road Jiangnan
+        High Technical Electronic Zone Licheng District\",\"country_code\":\"CN\",\"os_id\":\"CN2019085SJP0AN\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020009MGS9TY\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.503074,22.9434103]},\"properties\":{\"name\":\"Huizhou
+        Litecheng Lighting Co Ltd \",\"address\":\"Xinle Precinct Plant Ma An Town
+        Hucheng Area Huizhou City Guangdong Province China \",\"country_code\":\"CN\",\"os_id\":\"CN2020009MGS9TY\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021060H7ZCPN\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.397317,23.201368]},\"properties\":{\"name\":\"Huizhou
+        Zhongxin Lighting Co Ltd\",\"address\":\"No 9 Da'Er Village Xiaojinkou Town
+        Huicheng Area Huizhou City Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2021060H7ZCPN\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020230RCESBG\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.4786215,23.0754612]},\"properties\":{\"name\":\"Id
+        Lighting\",\"address\":\"Xin Le Industrial District Ma\u2019An Town Hui Cheng
+        Area Hui Zhou City Guangdong Province \",\"country_code\":\"CN\",\"os_id\":\"CN2020230RCESBG\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}}],\"extent\":[-149.8753983,-28.0279867,134.8951167,62.46894449999999]}"
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '22879'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:52:02 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 cb605905cea2427f1d9f13acc778e822.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - BWa2-U-3NvokgdL_p7C8NdnWvzn039XmzkHfA_csZE3UOv6EZX5twQ==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=3&q=light
+  response:
+    body:
+      string: "{\"type\":\"FeatureCollection\",\"count\":264,\"next\":\"https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=4&q=light\",\"previous\":\"https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=2&q=light\",\"features\":[{\"id\":\"CN202214332KK0A\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.221181,22.867668]},\"properties\":{\"name\":\"IGREEN
+        ELECTRICAL LIGHTING CO., LTD\",\"address\":\"No. 15, Yangguan road, Yange
+        village,  Lunjiao Town, Shunde District Foshan City, Guangdong, Foshan, Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN202214332KK0A\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2022224TJQW0N\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-84.1861948,33.9344589]},\"properties\":{\"name\":\"In
+        Flight Printing\",\"address\":\"2200 Norcross Pkwy, Ste 240, Norcross, GA,
+        USA\",\"country_code\":\"US\",\"os_id\":\"US2022224TJQW0N\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238QJ8J3A\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[119.1575,26.15319]},\"properties\":{\"name\":\"Jetsonic
+        Light Ind. Co., Ltd.\",\"address\":\"No. 1, Xiahe Road, Ganzhe, Minhou  Fuzhou
+        350100 Fujian\",\"country_code\":\"CN\",\"os_id\":\"CN2022238QJ8J3A\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20200091HZA70\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.3064315,23.0133906]},\"properties\":{\"name\":\"J
+        Ho Lighting \",\"address\":\"83 Nanhua Road Shengli Village Chenjiang Street
+        Zhongkai District Huizhou City Guangdong Province China \",\"country_code\":\"CN\",\"os_id\":\"CN20200091HZA70\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021314QYQ9YH\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[119.3028634,35.3877792]},\"properties\":{\"name\":\"JIANGSU
+        RUNSHI LIGHT&TEXTILE\",\"address\":\"HOUCUN TOWN NEW INDUSTRIAL PARDONG, RIZHAO\",\"country_code\":\"CN\",\"os_id\":\"CN2021314QYQ9YH\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN201924302VZAC\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.806677,32.319886]},\"properties\":{\"name\":\"JIANGSU
+        SUMEC TEXTILE & LIGHT INDUSTRY CO., LTD.\",\"address\":\"Luhe Economic Development
+        Zone, Nanjing, Jiangsu Province, China\",\"country_code\":\"CN\",\"os_id\":\"CN201924302VZAC\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202224523675S\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[104.195397,35.86166]},\"properties\":{\"name\":\"JIANGXI
+        AOPU LIGHTING CO., LTD.\",\"address\":\"Wanfu Economic & Technological Development
+        Zone, Wuning\",\"country_code\":\"CN\",\"os_id\":\"CN202224523675S\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20222249QZQD2\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.93476,25.8310899]},\"properties\":{\"name\":\"Jiangxi
+        Chongfar Light Textiles Co Ltd\",\"address\":\"Workshop 7, No. 32, Hongling
+        1st Road,Guanyao, Ganzhou, Jiangxi, China\",\"country_code\":\"CN\",\"os_id\":\"CN20222249QZQD2\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238535JDG\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[116.009898,26.428708]},\"properties\":{\"name\":\"JIANGXI
+        CHONGFAR LIGHT TEXTILES CO,LTD\",\"address\":\"CHONGFAR BUILDING ,SHUIDONG
+        INDUSTRIAL ZONE NINGDU COUNTY  GANZHOU 342800 Jiangxi\",\"country_code\":\"CN\",\"os_id\":\"CN2022238535JDG\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021288JSY9SK\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.8483957,25.1264204]},\"properties\":{\"name\":\"JINGCHENG
+        LIGHT IND CO.,LTD\",\"address\":\"No.900, Yifeng West Road (Huida Industry
+        Park), Quangang District, Quan Zhou, Fuijian, China\",\"country_code\":\"CN\",\"os_id\":\"CN2021288JSY9SK\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238BSGVD0\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.874871,22.997358]},\"properties\":{\"name\":\"Jing
+        Wei Lighting\",\"address\":\"Yaole Management Region Liaobu Town  Liaobu 523711
+        Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238BSGVD0\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021337P099W7\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.0543752,22.9986806]},\"properties\":{\"name\":\"JIN
+        YA JINDIAN LIGHTING (DONGGUAN) CO LTD\",\"address\":\"NO.28 SHI SHUIKOU SECTION,
+        HESHI ROAD, SHISHUIKOU VILLAGE QIAOTOU TOWN, DONGGUAN, CHINA 523528   CN\",\"country_code\":\"CN\",\"os_id\":\"CN2021337P099W7\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20203497V5CF7\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.952886,31.225395]},\"properties\":{\"name\":\"Kanglai
+        Light Industrial ProductsCo\",\"address\":\"Nol. 18 Daji Road, Dashi, Zhangpu
+        Town Kunshan City\",\"country_code\":\"CN\",\"os_id\":\"CN20203497V5CF7\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021026YSN1P1\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.980736,31.385597]},\"properties\":{\"name\":\"KUN
+        SHAN LIGHT 7\",\"address\":\"No. 57, Peng Qing Rd, Hua Qiao Town, Kunshan
+        China\",\"country_code\":\"CN\",\"os_id\":\"CN2021026YSN1P1\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"KH2022238X0CXYA\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[104.8243034,11.5560094]},\"properties\":{\"name\":\"LAMUES
+        LIGHT ENTERPRISE CO., LTD\",\"address\":\"No. 3, Street 86K, Phum Trapeang
+        Chrey Sangkat Kakab, Khan Por Sen Chey  PHNOM PENH 12406 Phnom Penh\",\"country_code\":\"KH\",\"os_id\":\"KH2022238X0CXYA\",\"country_name\":\"Cambodia\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022245M60747\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[117.7960725,24.6124218]},\"properties\":{\"name\":\"Leedarson
+        Lighting Co., Ltd. Factory No.1\",\"address\":\"Xingtai Industrial Zone, Economic
+        Development Zone, Changtai County\",\"country_code\":\"CN\",\"os_id\":\"CN2022245M60747\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"GB202224580MS0F\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-4.0557827,55.7899438]},\"properties\":{\"name\":\"Lightbody
+        of Hamilton\",\"address\":\"73 Bothwell Road,Hamilton,Glasgow\",\"country_code\":\"GB\",\"os_id\":\"GB202224580MS0F\",\"country_name\":\"United
+        Kingdom\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US20222216MK47B\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-149.8643478,61.1353737]},\"properties\":{\"name\":\"LIGHTENING
+        STRIKE ORGANICS\",\"address\":\"9400 Old Seward Highway, Anchorage, Alaska,
+        United States\",\"country_code\":\"US\",\"os_id\":\"US20222216MK47B\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PT2022234XSARQ2\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-8.5098139,39.4367262]},\"properties\":{\"name\":\"Light
+        Fish,\_Unipessoal\_Lda\_\",\"address\":\"Rua\_do Ribeiro, No 4\_\\t Riachos\_\\t\",\"country_code\":\"PT\",\"os_id\":\"PT2022234XSARQ2\",\"country_name\":\"Portugal\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2022222DNZRK0\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-122.1524935,47.64355279999999]},\"properties\":{\"name\":\"LIGHTHOUSE
+        CELLARS                           \",\"address\":\"3712 140TH AVE NE, BELLEVUE,
+        Washington, United States\",\"country_code\":\"US\",\"os_id\":\"US2022222DNZRK0\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2022224AXT0E5\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-81.3803678,28.5139527]},\"properties\":{\"name\":\"Lighthouse
+        Works Inc\",\"address\":\"2500 Kunze Ave, Orlando, FL, USA\",\"country_code\":\"US\",\"os_id\":\"US2022224AXT0E5\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"MD2021246N6HG53\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[28.8638102,47.0104529]},\"properties\":{\"name\":\"Light
+        Industry Association from Moldova\",\"address\":\"Chi\u0219in\u0103u, Moldova\",\"country_code\":\"MD\",\"os_id\":\"MD2021246N6HG53\",\"country_name\":\"Moldova,
+        Republic of\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"IN2021357TM9CGY\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[78.721198,28.91711]},\"properties\":{\"name\":\"LIGHTS
+        DECOR AND ACCENTS\",\"address\":\"AGHWANPUR BY PASS ROAD NEAR SUMMER VALLEY
+        SCHOOL MORADABAD 244001\",\"country_code\":\"IN\",\"os_id\":\"IN2021357TM9CGY\",\"country_name\":\"India\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BR2021260F3ZG02\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-46.6971537,-23.6312038]},\"properties\":{\"name\":\"LIGHT
+        TOYS - INDUSTRIA E COMERCIO LTDA.\",\"address\":\"R THOMAS DELONEY, 93,\\nTERREO
+        - Sao Paulo, SP\",\"country_code\":\"BR\",\"os_id\":\"BR2021260F3ZG02\",\"country_name\":\"Brazil\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BR20190861VQF4M\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-46.695545,-23.6293454]},\"properties\":{\"name\":\"Light
+        Toys  Industria E Comercioltda  Epp\",\"address\":\"R.Thomas Deloney, 4710040,
+        S?o Paulo, Brazil\",\"country_code\":\"BR\",\"os_id\":\"BR20190861VQF4M\",\"country_name\":\"Brazil\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"TH2022238C6KKX4\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[100.77353,13.5856412]},\"properties\":{\"name\":\"Lightup
+        Creation Co.,Ltd.\",\"address\":\"999/84-87 Bangsaothong Bangsaothong  Samut
+        Prakan 10570 Samut Prakan\",\"country_code\":\"TH\",\"os_id\":\"TH2022238C6KKX4\",\"country_name\":\"Thailand\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"GB2021147EX2VNQ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-1.1209783,52.6265631]},\"properties\":{\"name\":\"Light
+        Up Fashion Ltd\",\"address\":\"Unit 1A Faraday Works, Temple Road, Leicester,
+        LE5 4JE\",\"country_code\":\"GB\",\"os_id\":\"GB2021147EX2VNQ\",\"country_name\":\"United
+        Kingdom\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US202034968X3S3\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-88.0119534,41.7394311]},\"properties\":{\"name\":\"Light
+        Waves DBA Strike Promo\",\"address\":\"8191 Lemont Rd Darien IL 60561\",\"country_code\":\"US\",\"os_id\":\"US202034968X3S3\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2020349Y6S8DE\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-117.538736,33.8531991]},\"properties\":{\"name\":\"Limelight\",\"address\":\"PO
+        Box 78656 Corona CA 92877\",\"country_code\":\"US\",\"os_id\":\"US2020349Y6S8DE\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2021154PF6PSH\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-117.5412666,33.8611528]},\"properties\":{\"name\":\"Limelight
+        Enterprises\",\"address\":\"1160 CALIFORNIA AVE CORONA CA 92881\",\"country_code\":\"US\",\"os_id\":\"US2021154PF6PSH\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021193B24XXE\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.267072,28.925511]},\"properties\":{\"name\":\"LINHAI
+        BOLI - FAR LIGHTING- PRODUCING CO LTD\",\"address\":\"ZHONGJIE DONGCHENG TOWN
+        LINHAI CITY\\nZHEJIANG\",\"country_code\":\"CN\",\"os_id\":\"CN2021193B24XXE\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20211930B2YM2\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.385604,28.372506]},\"properties\":{\"name\":\"LINHAI
+        CHANGSHUO LIGHTING CO LTD\",\"address\":\"SHUANGZHAI VILLAGE\\nDONGCHENG TOWN,
+        LINHAI TAIZHOU ZHEJIANG\",\"country_code\":\"CN\",\"os_id\":\"CN20211930B2YM2\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022262D2XRZ4\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.20305,28.90415]},\"properties\":{\"name\":\"LINHAI
+        PINGFENG LIGHTING CO., LTD.\",\"address\":\"Shangjie Village, Dongcheng Town,
+        Linhai, Zhejiang, 317005\",\"country_code\":\"CN\",\"os_id\":\"CN2022262D2XRZ4\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021193PM9V5P\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.385604,28.372506]},\"properties\":{\"name\":\"LINHAI
+        SILVER XIN DECORATIVE LIGHTING CO LTD\",\"address\":\"SHUANGZHAI VILLAGE DONGCHENG
+        TOWN, LINHAI TAIZHOU, ZHEJIANG\",\"country_code\":\"CN\",\"os_id\":\"CN2021193PM9V5P\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021194XZ7ADY\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.2724482,28.9265674]},\"properties\":{\"name\":\"Linhai
+        Yicheng Lighting Co Ltd\",\"address\":\"No.506-7, Chuanjin Roda, Dongcheng
+        Town, Linhai, Zhejiang\",\"country_code\":\"CN\",\"os_id\":\"CN2021194XZ7ADY\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021288E6X7PP\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[119.317705,29.871007]},\"properties\":{\"name\":\"LINHAI
+        YULE LIGHTING CO., LTD.\",\"address\":\"Dong Da Road Shuoda Electrical Park,
+        Da Tian Subdistrict Offices, Lin Hai, Zhe Jiang, China\",\"country_code\":\"CN\",\"os_id\":\"CN2021288E6X7PP\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238GX2WFY\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.86919,23.07617]},\"properties\":{\"name\":\"Litesun
+        lighting factory\",\"address\":\"No.2, YuNan Road, Subian,ChaShan Town   DongGuan
+        City  Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238GX2WFY\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021305PNZQZY\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.61818,22.919615]},\"properties\":{\"name\":\"MODERN
+        HOME LIGHTING INC\",\"address\":\"YISHA DISTRIC SHATIAN , DONGGUAN 523000
+        \  CN\",\"country_code\":\"CN\",\"os_id\":\"CN2021305PNZQZY\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2020211KGJR74\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-80.1917902,25.7616798]},\"properties\":{\"name\":\"Moonlighter
+        FabLab\",\"address\":\"Miami FL 33127 USA\",\"country_code\":\"US\",\"os_id\":\"US2020211KGJR74\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":[\"Plastic ear
+        saver\",\"Face shield\"],\"ppe_contact_phone\":\"\",\"ppe_contact_email\":null,\"ppe_website\":\"\",\"is_closed\":null}},{\"id\":\"BD2020281GMW2D4\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[90.3779667,23.953676]},\"properties\":{\"name\":\"Moonlight
+        Garments Ltd.\",\"address\":\"Kunia Pachar, Targach, K.B. Bazar, Gazipur,
+        Dhaka\",\"country_code\":\"BD\",\"os_id\":\"BD2020281GMW2D4\",\"country_name\":\"Bangladesh\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2020349XSMF9Y\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-71.059341,42.0515094]},\"properties\":{\"name\":\"Moonlight
+        Ltd\",\"address\":\"244 Liberty St Brockton MA 02301\",\"country_code\":\"US\",\"os_id\":\"US2020349XSMF9Y\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US20222220N8ZDX\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-119.1846714,46.1978668]},\"properties\":{\"name\":\"MOONLIGHT
+        SPARKLING WINE CELLAR, LLC         \",\"address\":\"4704 W 12TH AVE, KENNEWICK,
+        Washington, United States\",\"country_code\":\"US\",\"os_id\":\"US20222220N8ZDX\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BD20202178YXBDF\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[90.3795438,23.8758547]},\"properties\":{\"name\":\"Moon
+        Light Washing\\n\",\"address\":\"62, Mollartack, Dhaka, Uttara, \",\"country_code\":\"BD\",\"os_id\":\"BD20202178YXBDF\",\"country_name\":\"Bangladesh\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BD2019259K8R2H8\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[90.3935672,23.8955914]},\"properties\":{\"name\":\"MOONLIGHT
+        WASHING & DYEING U-2\",\"address\":\"C/149, BSCIC Tongi Industrial Area, Nishat
+        Nagar, Tongi, Gazipur - Gazipur - 1704 - Dhaka\",\"country_code\":\"BD\",\"os_id\":\"BD2019259K8R2H8\",\"country_name\":\"Bangladesh\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022292SMWFWR\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.93997,23.08922]},\"properties\":{\"name\":\"MORNING
+        LIGHT INTELLIGENT PRINTING GROUP LTD.\",\"address\":\"Pu Xin 3rd Road Industrial
+        Zone, Shi Pai Town, Dongguan, Guangdong, China\",\"country_code\":\"CN\",\"os_id\":\"CN2022292SMWFWR\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202222440VXYS\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.56853,24.79639]},\"properties\":{\"name\":\"Morning
+        Light Toys Co Ltd\",\"address\":\"No. 3 Xiongshan Road, Dongzhai Village,
+        NeikengTown, Jinjiang City, Fujian, China\",\"country_code\":\"CN\",\"os_id\":\"CN202222440VXYS\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020009NWB2KF\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.361433,23.038222]},\"properties\":{\"name\":\"New
+        Chengtai Lighting Co Ltd \",\"address\":\"No 3 Songyang Road Songshan Industrial
+        Park Zhongkai Hi Tech Industrial Area Huizhou City Guangdong Province China
+        \",\"country_code\":\"CN\",\"os_id\":\"CN2020009NWB2KF\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BD2019248RJ0HGB\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[90.3814017,23.9901217]},\"properties\":{\"name\":\"New
+        Light Sweaters Industries Ltd.\",\"address\":\"New Light Sweater Building,
+        Chandona Joydebpur Road, Chandna Purbopara, Bashan, Gazipur-1702\",\"country_code\":\"BD\",\"os_id\":\"BD2019248RJ0HGB\",\"country_name\":\"Bangladesh\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BD20201003BSKCH\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[90.4020578,23.9926583]},\"properties\":{\"name\":\"New
+        Light Sweaters Ltd\",\"address\":\"Chandana, Joydelpur Road Gazipur\",\"country_code\":\"BD\",\"os_id\":\"BD20201003BSKCH\",\"country_name\":\"Bangladesh\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238KJD3WN\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.814295,23.067775]},\"properties\":{\"name\":\"New
+        Pourskey Lighting Technology Co., Ltd\",\"address\":\"#1, Shihuan Road, Dongcheng
+        Street Office  DongGuan 523119 Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238KJD3WN\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}}],\"extent\":[-149.8753983,-28.0279867,134.8951167,62.46894449999999]}"
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '22585'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:52:03 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 89f400f550feb1d74a18ecb2070103ac.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - RUSWaz9m5DLgztlSp4lTvjq2P70ncJVjrhqquY97RWDYGvWfrVqUNw==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=4&q=light
+  response:
+    body:
+      string: "{\"type\":\"FeatureCollection\",\"count\":264,\"next\":\"https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=5&q=light\",\"previous\":\"https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=3&q=light\",\"features\":[{\"id\":\"CN20222245QW06X\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[117.97934,24.52305]},\"properties\":{\"name\":\"New
+        Wish (Xiamen) Light Industrial Co, Ltd\",\"address\":\"Fl 2\u20104, No. 15,
+        Houxiang S Road, Haicang District, Xiamen, Fujian, China\",\"country_code\":\"CN\",\"os_id\":\"CN20222245QW06X\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20222452SQGKQ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.43636,29.48025]},\"properties\":{\"name\":\"Ningbo
+        Changrong Lighting & Electronics Technology Co., Ltd.\",\"address\":\"NO.72
+        Wushi Road, Xidian Town, Ninghai\",\"country_code\":\"CN\",\"os_id\":\"CN20222452SQGKQ\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019108PSYXM4\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.4896701,29.8634272]},\"properties\":{\"name\":\"Ningbo
+        Light Handbag Co Ltd\",\"address\":\"No. 207 Xinzhuang Road, Gaoqiao, Haishu
+        District Ningbo Zhejiang China\",\"country_code\":\"CN\",\"os_id\":\"CN2019108PSYXM4\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019241VWGD5X\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.8687494,29.446658]},\"properties\":{\"name\":\"Ningbo
+        Newlight Garment Co Ltd\",\"address\":\"No143 Baihe Road Industry Zone Danchen
+        Xiangshan Ningbo Zheijiang Province \",\"country_code\":\"CN\",\"os_id\":\"CN2019241VWGD5X\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021288GZ7R6W\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.4861088,29.9476461]},\"properties\":{\"name\":\"NINGBO
+        OU YIMEI HOME LIGHTING CO., LTD\",\"address\":\"No. 899, Tonghui Road, Jiangbei
+        District,, Ningbo City, Zhejiang, China\",\"country_code\":\"CN\",\"os_id\":\"CN2021288GZ7R6W\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022224FVRGTB\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.435704,29.83524]},\"properties\":{\"name\":\"Ningbo
+        Starlight Printing Co Ltd\",\"address\":\"Fengshuigang, Gulin Town, Haishu
+        District, Ningbo, Zhejiang, China\",\"country_code\":\"CN\",\"os_id\":\"CN2022224FVRGTB\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238EFH5J9\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.44744,29.37558]},\"properties\":{\"name\":\"Ningbo
+        Xiesheng Lighting Industrial CO.,LTD\",\"address\":\"NO.16-18 Huanyuan Road
+        Binhai Park   Ningbo  Zhejiang\",\"country_code\":\"CN\",\"os_id\":\"CN2022238EFH5J9\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020009J4J9BT\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.408691,29.622062]},\"properties\":{\"name\":\"Ningbo
+        Zhuoyue Tonghui Lighting \",\"address\":\"Jindisi Village Shangtian Town Fenghua
+        City Zhejiang Province China \",\"country_code\":\"CN\",\"os_id\":\"CN2020009J4J9BT\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US202222162CZHQ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-131.7146454,55.3669076]},\"properties\":{\"name\":\"Northern
+        Lights Cultivation\",\"address\":\"4705 N Tongass Hwy, Apt 1, Ketchikan, Alaska,
+        United States\",\"country_code\":\"US\",\"os_id\":\"US202222162CZHQ\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2022221Y40380\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-135.3050979,57.0480862]},\"properties\":{\"name\":\"NORTHERN
+        LIGHTS INDOOR GARDENS, LLC\",\"address\":\"1321 Sawmill Creek Road, Suites
+        M, N, O, and P, sitka, Alaska, United States\",\"country_code\":\"US\",\"os_id\":\"US2022221Y40380\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"JP2022224S1FA50\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[134.8951167,35.6035122]},\"properties\":{\"name\":\"Panasonic
+        Photo & Lighting Kumihama Co.,Ltd.\",\"address\":\"94 Shimogawara, Nagadome,
+        Kumihama\u2010cho, Kyotango\u2010shi, Kyoto, Japan\",\"country_code\":\"JP\",\"os_id\":\"JP2022224S1FA50\",\"country_name\":\"Japan\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CA2020211NHQCAZ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-79.3831843,43.653226]},\"properties\":{\"name\":\"Project
+        Northern Lights\",\"address\":\"Toronto ON  Canada\",\"country_code\":\"CA\",\"os_id\":\"CA2020211NHQCAZ\",\"country_name\":\"Canada\",\"has_approved_claim\":false,\"ppe_product_types\":[],\"ppe_contact_phone\":\"\",\"ppe_contact_email\":null,\"ppe_website\":\"https://www.facebook.com/groups/643061006475805/\",\"is_closed\":null}},{\"id\":\"ID20190835BFS40\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[110.4213217,-7.204997]},\"properties\":{\"name\":\"PT.
+        Starlight Garment Semarang\",\"address\":\"JI. Tegal Panas- Jimbaran RT.01
+        RW.01 Secang Samban ,Bawen, Semarang, Central Java, Indonesia\",\"country_code\":\"ID\",\"os_id\":\"ID20190835BFS40\",\"country_name\":\"Indonesia\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019083XBRD2Q\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.5389179,24.9480325]},\"properties\":{\"name\":\"Quanzhou
+        Haichao Light Industry Co Ltd\",\"address\":\"Wurong Industry Fengzhou Town
+        Nanan City Fujian\",\"country_code\":\"CN\",\"os_id\":\"CN2019083XBRD2Q\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019172DBJDXV\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.5866143,24.9086993]},\"properties\":{\"name\":\"Quanzhou
+        Hengcheng Apparel Light Industry Co., Ltd \",\"address\":\"No. 3 Zisheng Road,
+        Ziyang Industry Park, Jiangnan Hi-Tech Zone Quanzhou 362000 Fujian\",\"country_code\":\"CN\",\"os_id\":\"CN2019172DBJDXV\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019172STQFMM\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.523403,24.9033097]},\"properties\":{\"name\":\"Quanzhou
+        Hengcheng Apparel Light Industry Co., Ltd.\",\"address\":\"No.7, Zixin Rd,
+        Jiangnan High-Tech Area Quanzhou 362200 Fujian\",\"country_code\":\"CN\",\"os_id\":\"CN2019172STQFMM\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20222388569BB\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.52637,24.90277]},\"properties\":{\"name\":\"QUANZHOU
+        HUAYI LIGHT INDUSTRY PRODUCTS CO.,LTD\",\"address\":\"10 Zihua Road Licheng
+        District  Quanzhou  Fujian\",\"country_code\":\"CN\",\"os_id\":\"CN20222388569BB\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021340W0DDBY\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.8489,25.12635]},\"properties\":{\"name\":\"Quanzhou
+        Jingcheng Light Industry\",\"address\":\"No.900 Yifeng West Road Quangang
+        District Quanzhou, Quanzhou\",\"country_code\":\"CN\",\"os_id\":\"CN2021340W0DDBY\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021082801XRY\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.554706,24.9162344]},\"properties\":{\"name\":\"Quanzhou
+        Kingstar Light Industrial Products Co., Ltd.\",\"address\":\"Building 6, Xianjing
+        Industrial District, Fuqiao, Quanzhou, China\",\"country_code\":\"CN\",\"os_id\":\"CN2021082801XRY\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022224Q6NA50\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.56152,24.86112]},\"properties\":{\"name\":\"Quanzhou
+        Kyme Light Industry Products Co Ltd\",\"address\":\"No. 84 Chongyi St, Qingmeng
+        DevelopmentZone, Quanzou, Fujian, China\",\"country_code\":\"CN\",\"os_id\":\"CN2022224Q6NA50\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20211534GHBH0\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.6680976,24.6054633]},\"properties\":{\"name\":\"(Quanzhou)
+        Light Industry Co.,Ltd\",\"address\":\"Donghai\u2019an Development Zone,Shenhu
+        Town, Jinjiang\",\"country_code\":\"CN\",\"os_id\":\"CN20211534GHBH0\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020085BYPR5Y\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.6535737,24.9211865]},\"properties\":{\"name\":\"Quanzhou
+        New Century Light Industry Co. Ltd.\",\"address\":\"Tongyuan Street, Fengze
+        District, Quanzhou, 362018\",\"country_code\":\"CN\",\"os_id\":\"CN2020085BYPR5Y\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022224ZKG0TV\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[117.37015,25.33475]},\"properties\":{\"name\":\"Quanzhou
+        New Hunter Bags & Luggages (LightIndustry) Co, Ltd\",\"address\":\"No. 1 E
+        Yingbin Road, Chengnan IndustrialDistrict, Huian County, Quanzhou, Fujian,
+        China\",\"country_code\":\"CN\",\"os_id\":\"CN2022224ZKG0TV\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20200765PEGNG\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.7521261,24.912795]},\"properties\":{\"name\":\"Quanzhou
+        Shengda Light Industry Co., Ltd.\",\"address\":\"No. 150 Dongqian Road, Dongyuan
+        Street, Dongyuan Town, Quanzhou Taiwanese Investment Zone, Fujian Province\",\"country_code\":\"CN\",\"os_id\":\"CN20200765PEGNG\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020351YJK85E\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.6794208,24.6157717]},\"properties\":{\"name\":\"QUANZHOU
+        TONGYI LIGHT INDUSTRY CO LTD\",\"address\":\"9 AREA, DONGHIAN DEVELOPMENT
+        ZONE SHENHU TOWN JINJIANG CITY 362246 \",\"country_code\":\"CN\",\"os_id\":\"CN2020351YJK85E\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019083WXAZ4E\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[126.918087,41.811979]},\"properties\":{\"name\":\"Quanzhou
+        Unison Light Industrial Manu Co Ltd\",\"address\":\"Linjiang Industrial Park
+        Nanhuan Road Quanzhou City Fujian\",\"country_code\":\"CN\",\"os_id\":\"CN2019083WXAZ4E\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020115GCNM78\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.551866,24.9032302]},\"properties\":{\"name\":\"QUANZHOU
+        UNISON LIGHT INDUSTRIAL MANUFACTURING CO. LTD.\",\"address\":\"ROOM28, YANGSHI
+        STREET, JINLONG YUXIA PARK, LICHENG DISTRICT, QUANZHOU, FUJIAN, 362000, CHINA\",\"country_code\":\"CN\",\"os_id\":\"CN2020115GCNM78\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"LK2020148R2AW5D\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[80.4517758,6.6147867]},\"properties\":{\"name\":\"Rich
+        Light Apparels Pvt Ltd\",\"address\":\"Kiribathgala Estate Nivithigala Road
+        Dela Ratnapura\",\"country_code\":\"LK\",\"os_id\":\"LK2020148R2AW5D\",\"country_name\":\"Sri
+        Lanka\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"LK2019083STCZET\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[80.6021614,8.0234222]},\"properties\":{\"name\":\"Rich
+        Light Exports Private Limited\",\"address\":\"Anuradhapura Road  Thibbatuwewa
+        Kekirawa\",\"country_code\":\"LK\",\"os_id\":\"LK2019083STCZET\",\"country_name\":\"Sri
+        Lanka\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2022224J3Y2BP\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-118.3660096,34.2187466]},\"properties\":{\"name\":\"Scenic
+        Highlights Inc\",\"address\":\"10830 Cantara St, Sun Valley, CA, USA\",\"country_code\":\"US\",\"os_id\":\"US2022224J3Y2BP\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"KH2022238SG4Y7R\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[105.800951,11.0877866]},\"properties\":{\"name\":\"Season
+        Bright (Cambodia) Electronic Lighting Co.,\",\"address\":\"Giga (Svay Rieng)
+        Special Economic Zone, National Road No.1,Kandeing Ray Commune  Svay Rieng
+        200802 Svay Rieng\",\"country_code\":\"KH\",\"os_id\":\"KH2022238SG4Y7R\",\"country_name\":\"Cambodia\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019100AB7P3K\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.104406,36.848971]},\"properties\":{\"name\":\"Shandong
+        Excel Light Industrial pro.Co.,Ltd.\",\"address\":\"168 Min Xiang Road and
+        77 Min Xing Road, Zibo High-Tech Industrial Park, Zibo, Shandong\",\"country_code\":\"CN\",\"os_id\":\"CN2019100AB7P3K\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238X8V1V0\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.34991,31.42526]},\"properties\":{\"name\":\"Shanghai
+        Autumn Light Import & Export Co., Ltd.\",\"address\":\"NO.800 EAST LUO XIN
+        ROAD, LUO DIAN TOWN, BAOSHAN DISTRICT,SHANGHAI,CHINA  shanghai 201908 Shanghai\",\"country_code\":\"CN\",\"os_id\":\"CN2022238X8V1V0\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020009Z9SQK9\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.551138,25.785172]},\"properties\":{\"name\":\"Shanghai
+        Jiayi Lighting Product Co Ltd \",\"address\":\"No 2 Building South Shangyou
+        Industry Park Huangbu Town Shangyou County Ganzhou China \",\"country_code\":\"CN\",\"os_id\":\"CN2020009Z9SQK9\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020191M9197E\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.473701,31.230416]},\"properties\":{\"name\":\"SHANGHAI
+        LANSHENG LIGHT INDUSTRIAL PRODUCTS IMP. & EXP. CORP., LTD\",\"address\":\"RM1109,
+        NO. 1230 ZHONG SHAN (NORTH 1) ROAD, SHANGHAI\",\"country_code\":\"CN\",\"os_id\":\"CN2020191M9197E\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020328RAW78F\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.446349,31.257042]},\"properties\":{\"name\":\"SHANGHAI
+        LANSHENG LIGHT INDUST R.PRODUCTS IMP.&EXP CORP.,LTD\",\"address\":\"1230 ZHONGSHAN
+        ROAD N.1, SAHNGHAI 200437\",\"country_code\":\"CN\",\"os_id\":\"CN2020328RAW78F\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021194JBSMM2\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.581737,25.77593]},\"properties\":{\"name\":\"Shangyou
+        Jiayi Lighting Product Co., Ltd\",\"address\":\"South Shangyou Industry Park,
+        Huangbu Town, Shangyou County Ganzhou,  Jiangxi\",\"country_code\":\"CN\",\"os_id\":\"CN2021194JBSMM2\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022224ABZYAV\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[116.68346,23.4162]},\"properties\":{\"name\":\"Shantou
+        John\u2019S Starlight Technology Co, Ltd\",\"address\":\"No. 2 Crossing Of
+        Longzhou Road, Yuepu Village, JinpingDistrict, Shantou, Guangdong, China\",\"country_code\":\"CN\",\"os_id\":\"CN2022224ABZYAV\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202133717QTGC\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.59723,24.8103899]},\"properties\":{\"name\":\"SHAO
+        GUAN EARLY LIGHT INT'L CO., LTD.\",\"address\":\"XURI TOY INDUSTRY ZONE, 6KM
+        THE WESTERN SUBURBS OF SHAOGUAN CITY,, GUANGDONG 512330   CN\",\"country_code\":\"CN\",\"os_id\":\"CN202133717QTGC\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021154A9GGBY\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.8988668,22.5219566]},\"properties\":{\"name\":\"Shenzhen
+        Dream Light Technology Co.,Ltd\",\"address\":\"A Bldg No. 1, Qianwan 1st Road
+        Shenzhen City 518054\",\"country_code\":\"CN\",\"os_id\":\"CN2021154A9GGBY\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"KH2022238YGM6CT\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[105.9615061,11.0418334]},\"properties\":{\"name\":\"SO
+        YANG DECORATIVE LIGHTING (CAMBODIA) CO., LTD\",\"address\":\"GIGA Resources
+        SEZ, National Road#1, Daeum Pou Village, Kandieng Reay Commune,Svay Teab District,
+        \ Svay Rieng 20153 Svay Rieng\",\"country_code\":\"KH\",\"os_id\":\"KH2022238YGM6CT\",\"country_name\":\"Cambodia\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"IN2021183EH04Y9\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[77.322904,11.136746]},\"properties\":{\"name\":\"Star
+        Light\",\"address\":\"NO.14/12A-1, Ring Road, Bharathi Nagar,\\nSirupooluvatti
+        (POST), Tirupur, Tamil Nadu , 641652\",\"country_code\":\"IN\",\"os_id\":\"IN2021183EH04Y9\",\"country_name\":\"India\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"KH2019083QSPAA4\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[105.0555125,11.6695602]},\"properties\":{\"name\":\"Starlight
+        Apparel Manufacturing Co., Ltd.\",\"address\":\"No. 18 Street Betong Thmey
+        \ Phum Seda Khum Viheasour Srok Khsach Kandal Kandal\",\"country_code\":\"KH\",\"os_id\":\"KH2019083QSPAA4\",\"country_name\":\"Cambodia\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BD2019248EA7SA2\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[90.405278,23.7620557]},\"properties\":{\"name\":\"Starlight
+        Knitwear Ltd. Unit-2\",\"address\":\"123/1, Nassa Mainland (5th Floor), North
+        Begunbari, Tejgoan Industrial Area, Dhaka - 1208\",\"country_code\":\"BD\",\"os_id\":\"BD2019248EA7SA2\",\"country_name\":\"Bangladesh\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BD2021341J1XA6K\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[90.4054498,23.7657287]},\"properties\":{\"name\":\"Starlight
+        Knitwear Ltd (Unit II)\",\"address\":\"123/01 North Begun Bart Tejgaon Industrial
+        Area, Dhaka Dhaka Dhaka 1208\",\"country_code\":\"BD\",\"os_id\":\"BD2021341J1XA6K\",\"country_name\":\"Bangladesh\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"TN2020294KY8FFC\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[9.9366493,37.2211784]},\"properties\":{\"name\":\"Starlight
+        S.A.R.L\",\"address\":\"Zone Industrielle, 7080 Menzel-Jemil / Bizerte\",\"country_code\":\"TN\",\"os_id\":\"TN2020294KY8FFC\",\"country_name\":\"Tunisia\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BD20213023BWK0D\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[90.38059469999999,23.9772783]},\"properties\":{\"name\":\"Starlight
+        Sweaters Limited\",\"address\":\"Vogra bypass, Bada Kalmasher, KB Bazar,,
+        Gazipur\",\"country_code\":\"BD\",\"os_id\":\"BD20213023BWK0D\",\"country_name\":\"Bangladesh\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BD20190855NSWM2\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[90.380132,23.9504063]},\"properties\":{\"name\":\"STARLIGHT
+        SWEATERS LTD.\",\"address\":\"Vogra, Post National University, , Gazipur,
+        1704\",\"country_code\":\"BD\",\"os_id\":\"BD20190855NSWM2\",\"country_name\":\"Bangladesh\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020037QWVGFC\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.853444,23.047266]},\"properties\":{\"name\":\"Starlight
+        Swimwear (Xingtai Swimwear)\",\"address\":\"Industrial Park Luwu, Chashan
+        Town,Dongguan Guangdong,China\",\"country_code\":\"CN\",\"os_id\":\"CN2020037QWVGFC\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021253E496RS\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.777981,32.0468259]},\"properties\":{\"name\":\"SUMEC
+        TEXTILE AND LIGHT INDUSTRY CO\",\"address\":\"12/F,DADI BUILDING,56 HUAQIAO
+        R, NANJING\",\"country_code\":\"CN\",\"os_id\":\"CN2021253E496RS\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}}],\"extent\":[-149.8753983,-28.0279867,134.8951167,62.46894449999999]}"
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '23384'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:52:04 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 ab21b6436bc1d51d57b228ad39b1fa54.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - cYah5-PFi03gMsDXCSHW6Xr6YVcTYeEunA2At5i61UA4hSTCxuDjhw==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=5&q=light
+  response:
+    body:
+      string: "{\"type\":\"FeatureCollection\",\"count\":264,\"next\":\"https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=6&q=light\",\"previous\":\"https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=4&q=light\",\"features\":[{\"id\":\"CN20212537JHY19\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.796877,32.060255]},\"properties\":{\"name\":\"SUMEC
+        TEXTILE AND LIGHT INDUSTRY CO\",\"address\":\"68 22F SUMEC UNIVERSAL PLAZA,
+        NANJING\",\"country_code\":\"CN\",\"os_id\":\"CN20212537JHY19\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20201065J82NJ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.821401,32.322247]},\"properties\":{\"name\":\"SUMEC
+        TEXTILE& LIGHT INDUSTRY\",\"address\":\"NO.689 RENMIN ROAD, MA'AN STREET LUHE
+        DISTRICT, NANJING CITY 0\",\"country_code\":\"CN\",\"os_id\":\"CN20201065J82NJ\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202032442J7XT\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.791364,32.0442089]},\"properties\":{\"name\":\"Sumec
+        Textile & Light  Industry Co., Ltd\",\"address\":\"13 F, No.198 Changjiang
+        Road  Nanjing Jiangsu 210018\",\"country_code\":\"CN\",\"os_id\":\"CN202032442J7XT\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022075PZKZ0A\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[104.195397,35.86166]},\"properties\":{\"name\":\"SUMEC
+        TEXTILE & LIGHT INDUSTRY CO., LTD.\",\"address\":\"19F, SUMEC UNIVERSAL PLAZA,
+        NO. 68 YUNLONGSHAN ROAD\",\"country_code\":\"CN\",\"os_id\":\"CN2022075PZKZ0A\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021077MX8JK2\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.202928,23.03892]},\"properties\":{\"name\":\"Sundelight\",\"address\":\"Sundelight
+        Industrial Ltd.\\nPingbei Nangang Road, Pingzhou, Nanhai District, 528251,
+        Foshan, Guangdong Province\",\"country_code\":\"CN\",\"os_id\":\"CN2021077MX8JK2\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022245RE5HRP\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.231955,23.065375]},\"properties\":{\"name\":\"Sundelight
+        Infant Products Ltd.\",\"address\":\"No.15, 3rd Industrial Park, Dongxi Road,
+        Xilang, Liwan District,\",\"country_code\":\"CN\",\"os_id\":\"CN2022245RE5HRP\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238PGX8GZ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.39035,22.3556999]},\"properties\":{\"name\":\"SUNLIGHT
+        METAL ARTS&GIFTS CO.,LTD\",\"address\":\"No. 2-3 Building, NO.8 Wenhua East
+        Road,Baishi Village,Sanxiang Guangdong  Zhongshan 528463 Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238PGX8GZ\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019100JC6X32\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.9333632,23.0897062]},\"properties\":{\"name\":\"Sunlight
+        Swimwear Factory\",\"address\":\"No. 11 Shatang Road, Puxin Industrial Zone,
+        Dongguan, Shipai, Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2019100JC6X32\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"KH20222381KRT8M\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[104.9282099,11.5563738]},\"properties\":{\"name\":\"SUNRISE
+        LIGHT ENTERPRISE CO.,LTD\",\"address\":\"National Road No.1 , 142 km from
+        Phnom Penh, Deum pou Village, Kandeing Ray Commune,Svay Teb District,  Svay
+        Rieng 20360 Svay Rieng\",\"country_code\":\"KH\",\"os_id\":\"KH20222381KRT8M\",\"country_name\":\"Cambodia\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"BD2020100SY0MG6\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[90.4036781,23.7495843]},\"properties\":{\"name\":\"Swan
+        Jeans Ltd ( Lightwear subcontract)\",\"address\":\"258, Mollartek Dhaka\",\"country_code\":\"BD\",\"os_id\":\"BD2020100SY0MG6\",\"country_name\":\"Bangladesh\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202119422PBBM\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.4646297,28.6676562]},\"properties\":{\"name\":\"Taizhou
+        City Boson Crafts & Lighting Co., Ltd\",\"address\":\"No. 487 Tengyun Road,
+        Jiaojiang Area, Taizhou City, Zhejiang Province \",\"country_code\":\"CN\",\"os_id\":\"CN202119422PBBM\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20222387NFH55\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.32703,28.67564]},\"properties\":{\"name\":\"TAIZHOU
+        HAIRUI DECORATION LIGHTS CO., LTD\",\"address\":\"Jiangkou Industrial Zone,
+        \  Taizhou 318020 Zhejiang\",\"country_code\":\"CN\",\"os_id\":\"CN20222387NFH55\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202119415WZHP\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.365123,28.582654]},\"properties\":{\"name\":\"Taizhou
+        Zhengda Decorations Lights Co Ltd\",\"address\":\"No.258, Airport Shusan Road,
+        Hengjie, Luqiao, Taizhou, Zhejiang\",\"country_code\":\"CN\",\"os_id\":\"CN202119415WZHP\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"IN20222817HH0F0\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[88.2301359,22.600117]},\"properties\":{\"name\":\"TECHMAX
+        LIGHTING CO LLP\",\"address\":\"SRIJAN INDUSTRIAL LOGISTIC PARK, NH-6, BOMBAY
+        ROAD, NEAR SARASWATI BRIDGE\",\"country_code\":\"IN\",\"os_id\":\"IN20222817HH0F0\",\"country_name\":\"India\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020230CQW2JD\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[114.3157574,23.0102764]},\"properties\":{\"name\":\"The
+        Lighting Design (J Ho) \",\"address\":\"No83 Jiazi Industrial District Chenjiang
+        Street Zhongkai District Huizhou City Guangdong Province \",\"country_code\":\"CN\",\"os_id\":\"CN2020230CQW2JD\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US2022221BR2VRB\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-149.8753983,61.1956801]},\"properties\":{\"name\":\"The
+        Red Light District\",\"address\":\"407 E Northern Lights Blvd., 2A, Anchorage,
+        Alaska, United States\",\"country_code\":\"US\",\"os_id\":\"US2022221BR2VRB\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021335CTF5ZT\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[117.9249002,30.6006773]},\"properties\":{\"name\":\"Tianchang
+        Everlight Travelling Articles\",\"address\":\"Sanyuan Village, Yongfeng, ,
+        Anhui \",\"country_code\":\"CN\",\"os_id\":\"CN2021335CTF5ZT\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021182GPEY4Q\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.669492,24.613051]},\"properties\":{\"name\":\"Tongyi
+        light industry\",\"address\":\"SHIFENG,SHENHU TOWN,JINJIANG,FUJIAN, JINJIANG,
+        Fujian, 362246\",\"country_code\":\"CN\",\"os_id\":\"CN2021182GPEY4Q\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019259Y9Y6SH\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.6680976,24.6054633]},\"properties\":{\"name\":\"TONGYI
+        (QUANZHOU) LIGHT INDUSTRY CO., LTD.\",\"address\":\"DONGHAIAN DEVELOPMENT
+        ZONE, SHENHU, JINJIANG, FUJIAN, CHINA\",\"country_code\":\"CN\",\"os_id\":\"CN2019259Y9Y6SH\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021189M4W703\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.6680976,24.6054633]},\"properties\":{\"name\":\"TONGYI(QUANZHOU)LIGHT
+        INDUSTRY CO.,TLD\",\"address\":\"\u4E2D\u56FD\u798F\u5EFA\u7701\u664B\u6C5F\u5E02\u6DF1\u6CAA\u4E1C\u6D77\u5B89\u5F00\u53D1\u533A\u7B2C\u4E5D\u5C0F\u533A.\\n9
+        Area,Donghai'an Development Zone,Shenhu Town,Jinjiang City,Fujian,China.\",\"country_code\":\"CN\",\"os_id\":\"CN2021189M4W703\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20211821A64F5\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.9403,23.090292]},\"properties\":{\"name\":\"Top-Flight
+        Apparel & Accessories Co.,Ltd.\",\"address\":\"The 5th Floor Chippacking building,No.9,Industrial
+        Avenue,Shipai Town,Dongguan City, 523349, Dongguan city, Guangdong, 523349\",\"country_code\":\"CN\",\"os_id\":\"CN20211821A64F5\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"IN202228192TJHG\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[88.3416462,22.6272543]},\"properties\":{\"name\":\"TRAIN
+        LIGHTING REPAIR SHOP\",\"address\":\"C & W WORKSHOP, EASTERN RAILWAY, LILUAH,
+        HOWRAH-711204\",\"country_code\":\"IN\",\"os_id\":\"IN202228192TJHG\",\"country_name\":\"India\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US20222227MSZNW\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-117.271576,47.82219629999999]},\"properties\":{\"name\":\"TWILIGHT
+        CIDER WORKS                         \",\"address\":\"18102 N DAY MT SPOKANE
+        RD, MEAD, Washington, United States\",\"country_code\":\"US\",\"os_id\":\"US20222227MSZNW\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"MM20190837T3PQ2\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[96.064447,16.9187958]},\"properties\":{\"name\":\"Twinkle
+        Light Fashion Co Ltd\",\"address\":\"No 182 5 Block 25 Shwe Lin Ban Industrial
+        Zone  Hlaing Thar Yar Township Yangon\",\"country_code\":\"MM\",\"os_id\":\"MM20190837T3PQ2\",\"country_name\":\"Myanmar\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"US20202110KQJ6J\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-76.6224,39.2645]},\"properties\":{\"name\":\"Under
+        Armour Lighthouse\",\"address\":\"Baltimore MD 21230 USA\",\"country_code\":\"US\",\"os_id\":\"US20202110KQJ6J\",\"country_name\":\"United
+        States\",\"has_approved_claim\":false,\"ppe_product_types\":[],\"ppe_contact_phone\":\"\",\"ppe_contact_email\":null,\"ppe_website\":\"https://www.underarmour.com/en-us/lighthouse\",\"is_closed\":null}},{\"id\":\"CN2020043AVM5YR\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.56413,24.8653349]},\"properties\":{\"name\":\"Unique
+        (Quanzhou) Light Industry Co., ltd.\",\"address\":\"No. 126 Zhitai Road, Qingmeng
+        Economic & Technical Development Zone, 362005, Quanzhou, Fujian, China\",\"country_code\":\"CN\",\"os_id\":\"CN2020043AVM5YR\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"IN2022281SX9W58\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[88.31331510000001,22.4896514]},\"properties\":{\"name\":\"VICTORIA
+        LIGHTING PVT. LTD.\",\"address\":\"620, DIAMOND HARBOUR ROAD, PLOT NO. K-20,
+        BEHALA INDUSTRIAL ESTATE, POST OFFICE & POLICE STATION- BEHALA, DISTRICT-
+        KOLKATA, PIN- 700034\",\"country_code\":\"IN\",\"os_id\":\"IN2022281SX9W58\",\"country_name\":\"India\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"NO20222340CMYNZ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[6.3574103,62.4689445]},\"properties\":{\"name\":\"Viking
+        Delights AS\",\"address\":\"H\xF8gvollvegen 18 \xC5lesund\",\"country_code\":\"NO\",\"os_id\":\"NO20222340CMYNZ\",\"country_name\":\"Norway\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN201908324X56P\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.370227,24.815637]},\"properties\":{\"name\":\"Wanjiaxin
+        Light-Industrial Development Co.  Ltd\",\"address\":\"Puan Developing Zone,
+        Quangang District, Quanzhou,Fujian\",\"country_code\":\"CN\",\"os_id\":\"CN201908324X56P\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20202300ZF81H\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.9262999,22.9431016]},\"properties\":{\"name\":\"Wells
+        Good Lighting\",\"address\":\"No133 Niuguo Road Qiufu Road Dalang Dongguan
+        Guangdong \",\"country_code\":\"CN\",\"os_id\":\"CN20202300ZF81H\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020148HA1HP5\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.2711999,30.5081548]},\"properties\":{\"name\":\"Win
+        light Fashions Co Ltd\",\"address\":\"No 398 Hanghai Rd, Industrial Zone Yuyue
+        Town Deqing County Huzhou City Zhejiang Province\",\"country_code\":\"CN\",\"os_id\":\"CN2020148HA1HP5\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019086NXK0S9\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.1831557,30.6510815]},\"properties\":{\"name\":\"Win-Light
+        Fashions Co. Ltd\",\"address\":\"Xujiazhuang Deqing, 313216, Huzhou, China\",\"country_code\":\"CN\",\"os_id\":\"CN2019086NXK0S9\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020191S4N860\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.15507,30.274084]},\"properties\":{\"name\":\"Win-light.textile.LTD\",\"address\":\"25-1;kaises
+        commercial center,11Qinghuan road, Hangzhou\",\"country_code\":\"CN\",\"os_id\":\"CN2020191S4N860\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"DE2022224Y39MQC\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[7.3929935,53.0933583]},\"properties\":{\"name\":\"WP
+        Highlights GmbH & Co KG\",\"address\":\"Bahnhofstr. 29, Papenburg, Germany\",\"country_code\":\"DE\",\"os_id\":\"DE2022224Y39MQC\",\"country_name\":\"Germany\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20200532Q6174\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.192289,24.474489]},\"properties\":{\"name\":\"Xiamen
+        C&D Light Industry Co., Ltd.\",\"address\":\"17/F, C&D International Building,
+        No.1699 HuanDao East Road,Siming Area, Xiamen China Xiamen Fujian \",\"country_code\":\"CN\",\"os_id\":\"CN20200532Q6174\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238Z241V5\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.0344964,24.5823937]},\"properties\":{\"name\":\"Xiamen
+        Hi-Light Lighting Ltd\",\"address\":\"No 398 Jinyuan East Road Jimei District
+        \ Xiamen 362200 Fujian\",\"country_code\":\"CN\",\"os_id\":\"CN2022238Z241V5\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022245P7NT5K\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.25353,24.64781]},\"properties\":{\"name\":\"Xiamen
+        Longstar Lighting Co., Ltd\",\"address\":\"No.5 Houbin Road, XiangAn\",\"country_code\":\"CN\",\"os_id\":\"CN2022245P7NT5K\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021172KWZG1Z\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.552365,24.781681]},\"properties\":{\"name\":\"XINQILE(FUJIAN)
+        LIGHT INDUSTRIAL AND DEVELOPMENT CO.,LTD\",\"address\":\"YANGDAI VILLAGE\uFF0C
+        CHENDAI TOWN, JINGJIANG CITY, FUJIAN PROVINCE, CHINAFUJIAN,FUJIAN\",\"country_code\":\"CN\",\"os_id\":\"CN2021172KWZG1Z\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20201486TSBKS\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.8565311,28.0244768]},\"properties\":{\"name\":\"Yueqing
+        Xinmingli Lighting Co Ltd\",\"address\":\"No 16 Xinggang Rd Nanyue Town Yueqing
+        City Zhejiang Province\",\"country_code\":\"CN\",\"os_id\":\"CN20201486TSBKS\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020191B3AC59\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.549309,31.839259]},\"properties\":{\"name\":\"Zhangjiagang
+        Delight Yarn co.,ltd\",\"address\":\"Room 605,Building, 1 Oriental Plaza,No.1
+        South second ring road, Zhangjiagang\",\"country_code\":\"CN\",\"os_id\":\"CN2020191B3AC59\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020191PG2DYK\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.17564,30.26985]},\"properties\":{\"name\":\"Zhejiang
+        Cathaya Light Products and Textiles Imp. & Exp. Co., Ltd.\",\"address\":\"16F,
+        Cathaya Building,105 Ti Yu Chang Road, Hangzhou\",\"country_code\":\"CN\",\"os_id\":\"CN2020191PG2DYK\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022245H9KB82\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.51179,30.14156]},\"properties\":{\"name\":\"Zhejiang
+        Dot Lighting Co., Ltd\",\"address\":\"No.768 Anchang Road, Keqiao District,\",\"country_code\":\"CN\",\"os_id\":\"CN2022245H9KB82\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021193K19QC3\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.131229,28.845441]},\"properties\":{\"name\":\"ZHEJIANG
+        FEITIAN LIGHTING SCIENCE AND TECHNOLOGY CO LTD\",\"address\":\"SHUANGZHAI
+        INDUSTRIAL PARK, DONGCHENG TOWN TAIZHOU LINHAI ZHEJIANG PROVINCE\",\"country_code\":\"CN\",\"os_id\":\"CN2021193K19QC3\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238TKA0E9\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.3380099,30.1914699]},\"properties\":{\"name\":\"Zhejiang
+        General Light Curtain Co Ltd\",\"address\":\"XinTangTou Industrial Zone Xiaoshan
+        Xinjiezhen  Hangzhou 311217 Zhejiang\",\"country_code\":\"CN\",\"os_id\":\"CN2022238TKA0E9\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022075DHWANW\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.52671,30.60031]},\"properties\":{\"name\":\"ZHEJIANG
+        HAOTING LIGHTING CO.,LTD.\",\"address\":\"115 JINGYE ROAD, FENGMING INDUSTRIAL
+        ZONE, TONGXIANG CITY, 314505, TONGXIANG CITY\",\"country_code\":\"CN\",\"os_id\":\"CN2022075DHWANW\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020306VABS29\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.08105,30.819696]},\"properties\":{\"name\":\"Zhejiang
+        Jaslight Luggages And Bags Manufacturing Co. Ltd.\",\"address\":\"Cross Of
+        Pingxin Road & Sixin Xindai Town, Pinghu, Jiaxing, 314200\",\"country_code\":\"CN\",\"os_id\":\"CN2020306VABS29\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022245X4PSTC\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.81094,30.32083]},\"properties\":{\"name\":\"Zhejiang
+        Klite Lighting Holdings Co., Ltd.\",\"address\":\"No.11, Zhenjiang Road, Jianshan
+        New Area, Haining County\",\"country_code\":\"CN\",\"os_id\":\"CN2022245X4PSTC\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202000922BTDM\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[121.267072,28.925511]},\"properties\":{\"name\":\"Zhejiang
+        Longwei Christmas Lighting Co Ltd \",\"address\":\"3 49 Xuanzhu Village Dongcheng
+        Town Linhai City Zhejiang Province China \",\"country_code\":\"CN\",\"os_id\":\"CN202000922BTDM\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020301FEXNHS\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.177295,30.216289]},\"properties\":{\"name\":\"ZHEJIANG
+        PROVINCIAL LIGHT AND TEXTI\",\"address\":\"15/F BLDG8,QIAN JIANG ROAD 58 HANGZHGOU\",\"country_code\":\"CN\",\"os_id\":\"CN2020301FEXNHS\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019181E10SFY\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.2711999,30.5081548]},\"properties\":{\"name\":\"ZHEJIANG
+        WIN-LIGHT APPAREL CO. LTD\",\"address\":\"398 HANGHAI HIGHWAY, YUYUE TOWN,
+        DEQING - 313213 HUZHOU (ZHEJIANG)\",\"country_code\":\"CN\",\"os_id\":\"CN2019181E10SFY\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}}],\"extent\":[-149.8753983,-28.0279867,134.8951167,62.46894449999999]}"
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '23114'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:52:05 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 7fd88bab22735486702d23ba4e028d86.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - Y-MDPKeHkAYVmzeCGkkKfNJVDaor8ySc9AznmFW8KnSmCJ1gD-dong==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=6&q=light
+  response:
+    body:
+      string: "{\"type\":\"FeatureCollection\",\"count\":264,\"next\":null,\"previous\":\"https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?detail=false&page=5&q=light\",\"features\":[{\"id\":\"CN201926232HGGX\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[119.9774,30.54251]},\"properties\":{\"name\":\"ZHEJIANG
+        WIN-LIGHT APPAREL CO.,LTD\",\"address\":\"INDUSTRY AREA,DEQING ,HUZHOU,ZHEJIANG
+        HUZHOU\",\"country_code\":\"CN\",\"os_id\":\"CN201926232HGGX\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019297QEVWN0\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.908788,29.980814]},\"properties\":{\"name\":\"ZHEJIANG
+        WIN-LIGHT FASHION CO.,LTD\",\"address\":\"XU JIA ZHUANG INDUSTRY ZONE, YUYUE
+        TOWN, YUYUE TOWN,\",\"country_code\":\"CN\",\"os_id\":\"CN2019297QEVWN0\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020009B5ABSW\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.2481901,22.5328784]},\"properties\":{\"name\":\"Zhongshan
+        City Eson Lighting Co Ltd \",\"address\":\"No16 Xingheng Street Henglan Town
+        Zhongshan City Guangdong Province China \",\"country_code\":\"CN\",\"os_id\":\"CN2020009B5ABSW\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202023081EY5M\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[112.132488,34.728584]},\"properties\":{\"name\":\"Zhongshan
+        Deluxe Lighting\",\"address\":\"Opposite To Xinan Gas Station Xinmao Industrial
+        Zone Henglan Town Zhongshang City Guangdong \",\"country_code\":\"CN\",\"os_id\":\"CN202023081EY5M\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2020009X6YC7J\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.2294383,22.5729663]},\"properties\":{\"name\":\"Zhongshan
+        Deluxe Lighting \",\"address\":\"Third floor building 1 No46 Changan North
+        Road Henglan Zhongshan Guangdong China \",\"country_code\":\"CN\",\"os_id\":\"CN2020009X6YC7J\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021300CHVRQ0\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.153887,22.5582221]},\"properties\":{\"name\":\"Zhongshan
+        Homeway Lighting Factory\",\"address\":\"No 19,Caihong Rd, Jianghai District,
+        Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2021300CHVRQ0\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238WTRCJG\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.190869,22.613406]},\"properties\":{\"name\":\"Zhongshan
+        Huaxing Lighting Co.,Ltd\",\"address\":\"NO. 1 Dong Fang Dong Road Guzhenzhen
+        \ Zhongshan 528421 Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238WTRCJG\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238NTRED6\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.34057,22.5553]},\"properties\":{\"name\":\"ZHONGSHAN
+        QUANXIN LIGHTING & ELECTRICAL CORP. LTD.\",\"address\":\"HONG JI STREET, SHALANG,
+        ZHONGSHAN CITY,GUANGDONG PROVINCE  Zhongshan 528411 Guangdong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238NTRED6\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN20192214VMW5P\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[117.861851,36.494701]},\"properties\":{\"name\":\"Zibo
+        FortuneLightIndustrial ProductsCo. Ltd.\",\"address\":\"Zhujiazhuangbei Village,
+        BoshanTown, BoshanDistrict, Zibo City, Shandong Province\",\"country_code\":\"CN\",\"os_id\":\"CN20192214VMW5P\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022224H0WFGB\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.0548,36.8130999]},\"properties\":{\"name\":\"Zibo
+        Intrue Light Industrial Products Co, Ltd\",\"address\":\"4\u201010\u201026,
+        Tatsumihigashi, Zibo City, Shandong, China\",\"country_code\":\"CN\",\"os_id\":\"CN2022224H0WFGB\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019181YMFDXJ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.1087649,36.8488399]},\"properties\":{\"name\":\"Zibo
+        Intrue Light Industrial Products Co. Ltd\",\"address\":\"No. 137 Minxiang
+        Road, Minying Industrial Park New & Hi Tech\",\"country_code\":\"CN\",\"os_id\":\"CN2019181YMFDXJ\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2022238S52AN3\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[117.914,36.45796]},\"properties\":{\"name\":\"Zibo
+        Jinxin Light Industrial Products Co., Ltd\",\"address\":\"Badou Town, Boshan
+        District Dongdingcun  Boshan Badouzhen  Zibo 255203 Shandong\",\"country_code\":\"CN\",\"os_id\":\"CN2022238S52AN3\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2021288QQ6PM6\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[117.861851,36.494701]},\"properties\":{\"name\":\"Zibo
+        JinXuan Light Industrial Products Co., Ltd\",\"address\":\"Hongshankou Village,
+        Boshan Town, Boshan District, Zibocity, Shandong Province, China\",\"country_code\":\"CN\",\"os_id\":\"CN2021288QQ6PM6\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN202222465Q9ER\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[118.00549,36.71739]},\"properties\":{\"name\":\"Zibo
+        Lijiang Light Industrial Products Co Ltd\",\"address\":\"No. 39, Mintai Road,
+        Technology IndustryPark, Developing Zone, Zibo, Shandong, China\",\"country_code\":\"CN\",\"os_id\":\"CN202222465Q9ER\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}}],\"extent\":[-149.8753983,-28.0279867,134.8951167,62.46894449999999]}"
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '6687'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:52:05 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 7395d1816622756cd6753f5e1281200c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - Ns23yAscHwD8s5QIijrCMYyZJtqd4bXaQhBVUSDd1-NGj8_QwpbkWg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

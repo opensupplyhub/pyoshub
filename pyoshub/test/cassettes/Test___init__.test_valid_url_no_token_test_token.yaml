@@ -2,44 +2,41 @@ interactions:
 - request:
     body: null
     headers:
+      Accept:
+      - '*/*'
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.28.1
-      accept:
-      - application/json
-      authorization:
-      - HIDETOKEN
     method: GET
-    uri: https://openapparel.org/api/workers-ranges/
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
   response:
     body:
-      string: '["Less than 1000","1001-5000","5001-10000","More than 10000"]'
+      string: '{"gazetteercache": {"ok": true}, "caches": [{"api_throttling": {"ok":
+        true}}, {"default": {"ok": true}}], "databases": [{"default": {"ok": true}}]}'
     headers:
-      Allow:
-      - GET, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '61'
+      - '147'
       Content-Type:
       - application/json
       Date:
-      - Sun, 02 Oct 2022 17:02:19 GMT
+      - Thu, 20 Oct 2022 12:42:07 GMT
       Referrer-Policy:
       - same-origin
       Server:
       - gunicorn
       Vary:
-      - Accept
+      - Cookie
       Via:
-      - 1.1 0e75d8f2d484ce463fc04f5c422aa178.cloudfront.net (CloudFront)
+      - 1.1 79272ab9b399ee696b329d4f677dca48.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - xNaUtpxMiRcBk8Q2d8-HtpYfv4-BquUG-JyDWQUp__wg6RcpTGb3dg==
+      - mJ-f7inQGpZLISxhPsQKz3VnjPPv_p6URPZRVfzc92ueA0USzYLbvQ==
       X-Amz-Cf-Pop:
-      - FRA2-C1
+      - FRA60-P3
       X-Cache:
       - Miss from cloudfront
       X-Content-Type-Options:

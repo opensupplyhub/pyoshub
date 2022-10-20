@@ -2,6 +2,51 @@ interactions:
 - request:
     body: null
     headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"databases": [{"default": {"ok": true}}], "caches": [{"api_throttling":
+        {"ok": true}}, {"default": {"ok": true}}], "gazetteercache": {"ok": true}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:51:59 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 5b6e22c950501920595c86fc25834582.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - FDMjxSU8sXlDZZklEGFDcmmvrDyVr5ScDv0TMrNB8DvVk3GaAyTyOw==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
       Accept-Encoding:
       - gzip, deflate
       Connection:
@@ -11,24 +56,77 @@ interactions:
       accept:
       - application/json
       authorization:
-      - HIDETOKEN
+      - HIDDEN
     method: GET
-    uri: https://openapparel.org/api/facilities/?countries=CH&detail=false
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
   response:
     body:
-      string: "{\"type\":\"FeatureCollection\",\"count\":77,\"next\":\"https://openapparel.org/api/facilities/?countries=CH&detail=false&page=2\",\"previous\":null,\"features\":[{\"id\":\"CH2022234TE4H2S\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[9.1461813,46.2477371]},\"properties\":{\"name\":\"AGEMEAT
+      string: '{"count":109371}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:51:59 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 fa8c9f29fb8ef5c537a2a53f4de05240.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - taeBYJYznsIN5esZ4VXYWMi87JB9idksLv2m1z2f-D7d5Vqotj3evA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?countries=CH&detail=false
+  response:
+    body:
+      string: "{\"type\":\"FeatureCollection\",\"count\":82,\"next\":\"https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?countries=CH&detail=false&page=2\",\"previous\":null,\"features\":[{\"id\":\"CH2022234TE4H2S\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[9.1461813,46.2477371]},\"properties\":{\"name\":\"AGEMEAT
         AND TRADING AG\",\"address\":\"Via Pascolet, 41 Grono\",\"country_code\":\"CH\",\"os_id\":\"CH2022234TE4H2S\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH202021293Y402\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[9.0300683,45.8330553]},\"properties\":{\"name\":\"Akzenta
         International Sa\",\"address\":\"Via Giuseppe Motta, 24,CH-6830 Chiasso\",\"country_code\":\"CH\",\"os_id\":\"CH202021293Y402\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":[\"Face
         Mask\",\"Nitrile Gloves\",\"Latex Gloves\",\"Vinlyl Gloves\",\"Swiss Edition
         Gloves\",\"Fog Stop Face Mask\",\"Paradise Edition Mask\"],\"ppe_contact_phone\":\"41919211492\",\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH20201911CZ0EM\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[9.40764,47.3340957]},\"properties\":{\"name\":\"Alumo
         AG\",\"address\":\"Zielstrasse 38,, Appenzell\",\"country_code\":\"CH\",\"os_id\":\"CH20201911CZ0EM\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH20212006103WR\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.6223578,47.335898]},\"properties\":{\"name\":\"Ascolite
-        AG\",\"address\":\"Schw\xF6ntenmos 15,8126,Zumikon\",\"country_code\":\"CH\",\"os_id\":\"CH20212006103WR\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2022077CAWCFC\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.4295253,47.3989591]},\"properties\":{\"name\":\"BB
+        AG\",\"address\":\"Schw\xF6ntenmos 15,8126,Zumikon\",\"country_code\":\"CH\",\"os_id\":\"CH20212006103WR\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH20222792W3JG6\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[7.0151429,47.50015459999999]},\"properties\":{\"name\":\"BAT
+        Switzerland - Boncourt\",\"address\":\"Route de France 17, Boncourt, 2926\",\"country_code\":\"CH\",\"os_id\":\"CH20222792W3JG6\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2022077CAWCFC\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.4295253,47.3989591]},\"properties\":{\"name\":\"BB
         Trading Werbeartikel AG\",\"address\":\"Bernstra\xDFe 90, N/A, N/A\",\"country_code\":\"CH\",\"os_id\":\"CH2022077CAWCFC\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH20213145T6CW5\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[7.8066617,47.4687983]},\"properties\":{\"name\":\"BERLAC
         AG\",\"address\":\"ALLMENDWEG, 39, SISSACH\",\"country_code\":\"CH\",\"os_id\":\"CH20213145T6CW5\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2020191R8VSAR\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.9435477,46.0333519]},\"properties\":{\"name\":\"BrandDesign
         SA\",\"address\":\"Via Cantonale 6/A, Cureglia\",\"country_code\":\"CH\",\"os_id\":\"CH2020191R8VSAR\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2020191K7BZ86\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.526087,47.1953729]},\"properties\":{\"name\":\"Cherryfield
         Trading Ltd.\",\"address\":\"P.O. Box 1258 6341 Baar Switzerland, Baar\",\"country_code\":\"CH\",\"os_id\":\"CH2020191K7BZ86\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH202218871D8DC\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[9.0352172,47.4816466]},\"properties\":{\"name\":\"CICOR\\nTECHNOLOGIES\",\"address\":\"Gebenlo
         Strasse 15, 9552, Bronschhofen, Switzerland\",\"country_code\":\"CH\",\"os_id\":\"CH202218871D8DC\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH20211383CATWB\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[9.2714083,47.3898777]},\"properties\":{\"name\":\"Cilander
-        AG\",\"address\":\"Cilanderstr. 19, Herisau, 9100\",\"country_code\":\"CH\",\"os_id\":\"CH20211383CATWB\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2020191VYGFBX\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[6.6449152,46.5166121]},\"properties\":{\"name\":\"CODEFINE
+        AG\",\"address\":\"Cilanderstr. 19, Herisau, 9100\",\"country_code\":\"CH\",\"os_id\":\"CH20211383CATWB\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2022279VMY7C3\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.6219742,47.4208781]},\"properties\":{\"name\":\"Coca-Cola
+        HBC Dietlikon\",\"address\":\"Bruettisellerstrasse 7, Dietlikon, 8305\",\"country_code\":\"CH\",\"os_id\":\"CH2022279VMY7C3\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2022279A1N9FV\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[9.1842786,46.6242144]},\"properties\":{\"name\":\"Coca-Cola
+        HBC Vals\",\"address\":\"Camp 519, Vals, 7132\",\"country_code\":\"CH\",\"os_id\":\"CH2022279A1N9FV\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2022292J8V2VG\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[6.9537292,47.0693828]},\"properties\":{\"name\":\"CODEC
+        S.A.\",\"address\":\"Codec SA CH-2056 Dombresson Codec SA CH-2056 Dombresson.
+        Switzerland\",\"country_code\":\"CH\",\"os_id\":\"CH2022292J8V2VG\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2020191VYGFBX\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[6.6449152,46.5166121]},\"properties\":{\"name\":\"CODEFINE
         PARTNERS SA\",\"address\":\"AVENUE DU LEMAN 21, Lausanne\",\"country_code\":\"CH\",\"os_id\":\"CH2020191VYGFBX\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2020191FAV3ZG\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[6.1353364,46.1873866]},\"properties\":{\"name\":\"Cogetex
         S.A.\",\"address\":\"26 avenue de la Praille, Geneva\",\"country_code\":\"CH\",\"os_id\":\"CH2020191FAV3ZG\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH202129911581M\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.9767096,45.8800716]},\"properties\":{\"name\":\"Consitex
         Sa\",\"address\":\"Via Pra Mag 14, 6850 Mendrisio \u2013 CH\",\"country_code\":\"CH\",\"os_id\":\"CH202129911581M\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH20201913KWCVK\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[6.6115066,46.5174572]},\"properties\":{\"name\":\"Cotton
@@ -66,26 +164,19 @@ interactions:
         Kinegram\",\"address\":\"Zahlerweg 11, Zug, Switzerland\",\"country_code\":\"CH\",\"os_id\":\"CH202222473X68E\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH20222247CYVNT\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.5159465,47.201387]},\"properties\":{\"name\":\"Packwerk
         AG\",\"address\":\"Unterbr\xFCglenweg 2, Baar, Switzerland\",\"country_code\":\"CH\",\"os_id\":\"CH20222247CYVNT\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2020191N2FHXE\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.7259402,47.4983313]},\"properties\":{\"name\":\"Paul
         Reinhart AG\",\"address\":\"Technikumstrasse 82, Winterthur\",\"country_code\":\"CH\",\"os_id\":\"CH2020191N2FHXE\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2022224T6K95T\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.3451448,46.9675833]},\"properties\":{\"name\":\"Plakatif
-        AG\",\"address\":\"Galgenried 22, Stans, Switzerland\",\"country_code\":\"CH\",\"os_id\":\"CH2022224T6K95T\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2020053KVJDZ3\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[9.2455163,47.4155577]},\"properties\":{\"name\":\"Ponchotex\",\"address\":\"Wilerstrasse
-        1  Sankt Gallen 9201\",\"country_code\":\"CH\",\"os_id\":\"CH2020053KVJDZ3\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2020211WZ0H32\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[6.1431577,46.2043907]},\"properties\":{\"name\":\"Printers-solidaires.ch\",\"address\":\"Geneva
-        Geneva 1202 Switzerland\",\"country_code\":\"CH\",\"os_id\":\"CH2020211WZ0H32\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":[\"Face
-        Shields\",\"Face Shields (frames/visors only)\",\"Masks (cloth)\",\"Ear Savers
-        (3DP\",\"injection molding\",\"etc.)\",\"Ventilator Ports\",\"Goggles\",\"Aerosol
-        Boxes/Shields\",\"Mask Frames (to help with sealing mask to face)\"],\"ppe_contact_phone\":\"\",\"ppe_contact_email\":null,\"ppe_website\":\"http://www.printers-solidaires.ch\",\"is_closed\":null}},{\"id\":\"CH2022224Z9VNAV\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.9120817,46.1512259]},\"properties\":{\"name\":\"Prodir
-        SA\",\"address\":\"Zona Industriale 1\u20102, CH\u20106802 Rivera, Switzerland\",\"country_code\":\"CH\",\"os_id\":\"CH2022224Z9VNAV\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2022234CA4PAM\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.946103,45.84882409999999]},\"properties\":{\"name\":\"Rapelli
-        SA\",\"address\":\"Via Laveggio 13 Stabio\",\"country_code\":\"CH\",\"os_id\":\"CH2022234CA4PAM\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2022077P711XV\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[7.9754408,47.361063]},\"properties\":{\"name\":\"RECOPLAST
-        AG\",\"address\":\"G\xFCterstrasse 25, N/A, N/A\",\"country_code\":\"CH\",\"os_id\":\"CH2022077P711XV\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}}],\"extent\":[6.1099973,45.8330553,9.6510885,47.6940249]}"
+        AG\",\"address\":\"Galgenried 22, Stans, Switzerland\",\"country_code\":\"CH\",\"os_id\":\"CH2022224T6K95T\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2022279YZ3KF5\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[6.8977361,46.979699]},\"properties\":{\"name\":\"PMI
+        Neuchatel\",\"address\":\"Quai Jeanrenaud 3, Neuchatel, 2000\",\"country_code\":\"CH\",\"os_id\":\"CH2022279YZ3KF5\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}}],\"extent\":[6.1099973,45.8330553,9.6510885,47.6940249]}"
     headers:
       Allow:
       - GET, POST, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '21115'
+      - '20933'
       Content-Type:
       - application/json
       Date:
-      - Sun, 02 Oct 2022 17:02:16 GMT
+      - Thu, 20 Oct 2022 12:51:59 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -93,11 +184,11 @@ interactions:
       Vary:
       - Accept
       Via:
-      - 1.1 9568a708c8ab21597698ebe7dce6c42e.cloudfront.net (CloudFront)
+      - 1.1 c80ae6bd97b709ed6e4747f0d5ea4efc.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - bIs8IniSMfF0htjhbmh4MWEzgB8wzs_x_A3yWGus7Y2uscg0gjLIXw==
+      - 6c5xdlNtkIdqxdI0lHy8Su9lxzbm51Sp-7P0EArCiThSFqSakyC2XQ==
       X-Amz-Cf-Pop:
-      - FRA2-C1
+      - FRA60-P3
       X-Cache:
       - Miss from cloudfront
       X-Content-Type-Options:
@@ -117,12 +208,20 @@ interactions:
       accept:
       - application/json
       authorization:
-      - HIDETOKEN
+      - HIDDEN
     method: GET
-    uri: https://openapparel.org/api/facilities/?countries=CH&detail=false&page=2
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?countries=CH&detail=false&page=2
   response:
     body:
-      string: "{\"type\":\"FeatureCollection\",\"count\":77,\"next\":null,\"previous\":\"https://openapparel.org/api/facilities/?countries=CH&detail=false\",\"features\":[{\"id\":\"CH2020246X5EVBH\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.4315454,47.146771]},\"properties\":{\"name\":\"Remei
+      string: "{\"type\":\"FeatureCollection\",\"count\":82,\"next\":null,\"previous\":\"https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?countries=CH&detail=false\",\"features\":[{\"id\":\"CH2020053KVJDZ3\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[9.2455163,47.4155577]},\"properties\":{\"name\":\"Ponchotex\",\"address\":\"Wilerstrasse
+        1  Sankt Gallen 9201\",\"country_code\":\"CH\",\"os_id\":\"CH2020053KVJDZ3\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2020211WZ0H32\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[6.1431577,46.2043907]},\"properties\":{\"name\":\"Printers-solidaires.ch\",\"address\":\"Geneva
+        Geneva 1202 Switzerland\",\"country_code\":\"CH\",\"os_id\":\"CH2020211WZ0H32\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":[\"Face
+        Shields\",\"Face Shields (frames/visors only)\",\"Masks (cloth)\",\"Ear Savers
+        (3DP\",\"injection molding\",\"etc.)\",\"Ventilator Ports\",\"Goggles\",\"Aerosol
+        Boxes/Shields\",\"Mask Frames (to help with sealing mask to face)\"],\"ppe_contact_phone\":\"\",\"ppe_contact_email\":null,\"ppe_website\":\"http://www.printers-solidaires.ch\",\"is_closed\":null}},{\"id\":\"CH2022224Z9VNAV\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.9120817,46.1512259]},\"properties\":{\"name\":\"Prodir
+        SA\",\"address\":\"Zona Industriale 1\u20102, CH\u20106802 Rivera, Switzerland\",\"country_code\":\"CH\",\"os_id\":\"CH2022224Z9VNAV\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2022234CA4PAM\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.946103,45.84882409999999]},\"properties\":{\"name\":\"Rapelli
+        SA\",\"address\":\"Via Laveggio 13 Stabio\",\"country_code\":\"CH\",\"os_id\":\"CH2022234CA4PAM\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2022077P711XV\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[7.9754408,47.361063]},\"properties\":{\"name\":\"RECOPLAST
+        AG\",\"address\":\"G\xFCterstrasse 25, N/A, N/A\",\"country_code\":\"CH\",\"os_id\":\"CH2022077P711XV\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2020246X5EVBH\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.4315454,47.146771]},\"properties\":{\"name\":\"Remei
         AG\",\"address\":\"Lettenstrasse, 9, 6343, Rotkreuz, Zug\",\"country_code\":\"CH\",\"os_id\":\"CH2020246X5EVBH\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2021299HG47CW\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.9760119,45.8717601]},\"properties\":{\"name\":\"Riri\",\"address\":\"Via
         al gas, 3, Mendrisio, Switzerland\",\"country_code\":\"CH\",\"os_id\":\"CH2021299HG47CW\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH2020053H2QAAN\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[8.9760119,45.8717601]},\"properties\":{\"name\":\"Riri
         SA\",\"address\":\"via al Gas n.3 Mendrisio Ticino 6850\",\"country_code\":\"CH\",\"os_id\":\"CH2020053H2QAAN\",\"country_name\":\"Switzerland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CH20222243HFZFA\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[7.6305136,47.0503864]},\"properties\":{\"name\":\"Rondo
@@ -156,11 +255,11 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '11177'
+      - '13440'
       Content-Type:
       - application/json
       Date:
-      - Sun, 02 Oct 2022 17:02:17 GMT
+      - Thu, 20 Oct 2022 12:52:00 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -168,11 +267,11 @@ interactions:
       Vary:
       - Accept
       Via:
-      - 1.1 1ac3fd533bf6be1b511077f8b8e23bfc.cloudfront.net (CloudFront)
+      - 1.1 7251dede1ac94066b27bcd33919b30c6.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - oT5utlwjmcnaAbIueyJF_w_ZsLSVur3GBt7FWDLNSA7Gcjj0CuJe6Q==
+      - -qpdctLr7mZwFfDxPc9rZzBH0tQULqqQgvvAMMxus4UTrItDgTvsHQ==
       X-Amz-Cf-Pop:
-      - FRA2-C1
+      - FRA60-P3
       X-Cache:
       - Miss from cloudfront
       X-Content-Type-Options:

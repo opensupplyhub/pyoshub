@@ -87,7 +87,7 @@ class OSH_API():
                 pass
         else:
             self.url = url
-            if len(loken)>0:
+            if len(token)>0:
                 self.token = token
         
         if "OSH_URL" in os.environ.keys():
@@ -104,6 +104,7 @@ class OSH_API():
         else:
             self.token = token
          
+        self.url = self.url.strip("/") # remove trailing slash as we add it
         
         self.header = {
             "accept": "application/json",
@@ -127,15 +128,22 @@ class OSH_API():
         # Check valid URL
         try:
             r = requests.get(f"{self.url}/health-check/",timeout=5)
-            self.result = {"code":0,"message":"ok"}
-            self.error = False
+            if r.ok:
+                self.result = {"code":0,"message":"ok"}
+                self.error = False
+            else:
+                self.result = {"code":r.status_code,"message":r.reason}
+                self.error = False
         except Exception as e:
             self.result = {"code":-1,"message":str(e)}
             self.error = True
             return
         
         # Check header/token validity
-        if check_token:
+        if check_token and len(self.token.strip()) == 0:
+            self.result = {"code":-1,"message":"No/empty token"}
+            self.error = True
+        elif check_token:
             try:
                 self.last_api_call_epoch = time.time()
                 r = requests.get(f"{self.url}/api/facilities/count/",headers=self.header)

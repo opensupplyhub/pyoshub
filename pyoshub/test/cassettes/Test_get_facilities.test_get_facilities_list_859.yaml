@@ -1,0 +1,180 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"gazetteercache": {"ok": true}, "caches": [{"api_throttling": {"ok":
+        true}}, {"default": {"ok": true}}], "databases": [{"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:56:06 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 68b2682a924ac399aa2724b5b439e75c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - bE0YgK2vntSEmnp4wjI-N3N_Sy6WWqd8o0uYQNPb3kuWO4lvUeSmfw==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109371}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:56:07 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 ca8cb14c76df16342491237cea8cfed6.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - SkHtwlC8zGfQLAv5648tjM7WnhdBKl5vAlsSOxr9f80-jB5rF5vx2A==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/?lists=859&detail=false
+  response:
+    body:
+      string: "{\"type\":\"FeatureCollection\",\"count\":30,\"next\":null,\"previous\":null,\"features\":[{\"id\":\"PL20210570NMZG5\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[19.3934261,51.8005855]},\"properties\":{\"name\":\"Abatex\",\"address\":\"Traktorowa
+        128, \u0141\xF3d\u017A\",\"country_code\":\"PL\",\"os_id\":\"PL20210570NMZG5\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL201917290M18R\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[18.9217625,51.5892624]},\"properties\":{\"name\":\"Almax\",\"address\":\"Ul.Zlota58
+        98-220 Zdunska Wola \u0141\xF3dzkie\",\"country_code\":\"PL\",\"os_id\":\"PL201917290M18R\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2021057K8BB31\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[19.4518012,51.770608]},\"properties\":{\"name\":\"am\\\"\\\"\",\"address\":\"W\xF3lcza\u0144ska
+        14/16\",\"country_code\":\"PL\",\"os_id\":\"PL2021057K8BB31\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"CN2019083X2JN8P\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[113.39277,22.517585]},\"properties\":{\"name\":\"Anhui
+        Springair Fashion Co Ltd\",\"address\":\"No3 Dagongshan Road Economic Development
+        Zong Nanling County Wuhu City Anhui\",\"country_code\":\"CN\",\"os_id\":\"CN2019083X2JN8P\",\"country_name\":\"China\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL20211195B0Z83\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[19.3943535,51.7981676]},\"properties\":{\"name\":\"Bfield\",\"address\":\"Traktorowa
+        124, Lodz\",\"country_code\":\"PL\",\"os_id\":\"PL20211195B0Z83\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2019176GNZXH8\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[16.973457,51.09493089999999]},\"properties\":{\"name\":\"Cetin\",\"address\":\"Ostrowskiego
+        30A 50-344 Wroclaw \",\"country_code\":\"PL\",\"os_id\":\"PL2019176GNZXH8\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2021057VPM871\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[19.4973888,51.7469013]},\"properties\":{\"name\":\"Cutting
+        Partners/Primatex\",\"address\":\"95-200Pabianice,ul.Grota Roweckiego 8a\\n90-527Lodz,ul.Wolczanska
+        124\",\"country_code\":\"PL\",\"os_id\":\"PL2021057VPM871\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2021057HKNX9C\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[19.3935024,51.8025525]},\"properties\":{\"name\":\"Eko
+        Niko\",\"address\":\"Lodz,Traktorowa148/158, \u0141\xF3d\u017A\",\"country_code\":\"PL\",\"os_id\":\"PL2021057HKNX9C\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"IT2019172GNFB3N\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[9.0561196,45.5896425]},\"properties\":{\"name\":\"Eurojersey
+        S.P.A.\",\"address\":\"Via San Giovanni Bosco 260 21042 Caronno Pertusella
+        Varese\",\"country_code\":\"IT\",\"os_id\":\"IT2019172GNFB3N\",\"country_name\":\"Italy\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"TR2021119KQ5XQS\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[28.9138,41.0209]},\"properties\":{\"name\":\"EvrenEtiket\",\"address\":\"Maltepe
+        Mah.Davutpasa Cad. Davutpasa San.Sit.No 101 - 348, Istanbul\",\"country_code\":\"TR\",\"os_id\":\"TR2021119KQ5XQS\",\"country_name\":\"Turkey\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2019086S1VQJM\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[21.4238101,50.287063]},\"properties\":{\"name\":\"First
+        Company Sp.Zo.O.\",\"address\":\"Inwestror\u045Ew, PL 39-300, Mielec, Poland\",\"country_code\":\"PL\",\"os_id\":\"PL2019086S1VQJM\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2021057ETMRYZ\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[21.742048,49.692214]},\"properties\":{\"name\":\"Gawa\",\"address\":\"Pu\u017Caka
+        18B, 38-400 Krosno\",\"country_code\":\"PL\",\"os_id\":\"PL2021057ETMRYZ\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2021057VE16VR\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[21.9454369,49.73751]},\"properties\":{\"name\":\"Gedar\",\"address\":\"Orzech\xF3wka
+        104A, 36-220 Orzech\xF3wka\",\"country_code\":\"PL\",\"os_id\":\"PL2021057VE16VR\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2019172TYW92H\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[19.4578905,51.74123179999999]},\"properties\":{\"name\":\"Jord\",\"address\":\"W\xF3lczanska
+        243 93-035 \u0141\xF3d\u017A \u0141\xF3dzkie\",\"country_code\":\"PL\",\"os_id\":\"PL2019172TYW92H\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"TR20210577RVJ36\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[28.8132322,41.068331]},\"properties\":{\"name\":\"Linsey
+        Textile Washing\",\"address\":\"\u0130kitelli Osb Ya\u015Faro\u011Flu blv.
+        Kemero\u011Flu apt. no :27 Ba\u015Fak\u015Fehir\",\"country_code\":\"TR\",\"os_id\":\"TR20210577RVJ36\",\"country_name\":\"Turkey\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL20210574C4E7P\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[16.8624883,52.3990769]},\"properties\":{\"name\":\"Makripol\",\"address\":\"Bu\u0142garska
+        21a\",\"country_code\":\"PL\",\"os_id\":\"PL20210574C4E7P\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"NL2021119X29JFK\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[4.7939268,52.3376743]},\"properties\":{\"name\":\"Market
+        Textieletiketten\",\"address\":\"Jan van Gentstraat 54b, Badhoevedorp\",\"country_code\":\"NL\",\"os_id\":\"NL2021119X29JFK\",\"country_name\":\"Netherlands\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PT2019172AFE2DG\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-8.6092759,41.4925545]},\"properties\":{\"name\":\"Miguel
+        Sousa Confeccoes\",\"address\":\"Rua Das Giestas No. 194 Tamel S. Pedro Fins
+        4750-714 Braga\",\"country_code\":\"PT\",\"os_id\":\"PT2019172AFE2DG\",\"country_name\":\"Portugal\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"TR2021057B56AMB\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[28.813006,41.0217878]},\"properties\":{\"name\":\"\xD6zg\xFCr
+        Teks.\xDCr\xFCn.Paz.San.Tic.Ltd.\u015Eti.\",\"address\":\"Merkez Mah. \xC7\u0131nar
+        Caddesi Kavak Sokak Yal\xE7\u0131nlar \u0130\u015F Merkezi A Blok Kat:3 \\n34197
+        Yenibosna\",\"country_code\":\"TR\",\"os_id\":\"TR2021057B56AMB\",\"country_name\":\"Turkey\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2021057YTAJST\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[21.9909768,50.0592096]},\"properties\":{\"name\":\"Partner\",\"address\":\"ul.
+        Wsp\xF3lna 2, 35-205 Rzesz\xF3w\",\"country_code\":\"PL\",\"os_id\":\"PL2021057YTAJST\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2021057JW6S4Y\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[19.409169,51.8266475]},\"properties\":{\"name\":\"PPHU
+        AS\",\"address\":\"Sianokosy 43, \u0141\xF3d\u017A\",\"country_code\":\"PL\",\"os_id\":\"PL2021057JW6S4Y\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2021057G13E3J\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[19.4139169,51.79614]},\"properties\":{\"name\":\"Renpol\",\"address\":\"Zb\u0105szy\u0144ska
+        4, \u0141od\u017A\",\"country_code\":\"PL\",\"os_id\":\"PL2021057G13E3J\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2021057PN8FR7\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[22.5964729,49.94976519999999]},\"properties\":{\"name\":\"Shine\",\"address\":\"Ro\u017Awienica
+        177, 37-565 Ro\u017Awienica\",\"country_code\":\"PL\",\"os_id\":\"PL2021057PN8FR7\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"TR20210575HMGM5\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[28.8955132,41.0930189]},\"properties\":{\"name\":\"Sidar
+        Konfeksiyon\",\"address\":\"YUNUS EMRE MAH. 1619. SOK. NO:1/4 SULTANGAZ\u0130\",\"country_code\":\"TR\",\"os_id\":\"TR20210575HMGM5\",\"country_name\":\"Turkey\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2021057E2PCED\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[22.0088631,49.99262539999999]},\"properties\":{\"name\":\"Tricol
+        \",\"address\":\"ul. Kard. Karola Wojty\u0142y 233, 35-304 Rzesz\xF3w\",\"country_code\":\"PL\",\"os_id\":\"PL2021057E2PCED\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2019176QKBX3B\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[19.9606439,50.0926559]},\"properties\":{\"name\":\"Tricol
+        Krak\xF3w\",\"address\":\"Al.. 29-Go Listopada 130 31-406 Krak\xF3w \",\"country_code\":\"PL\",\"os_id\":\"PL2019176QKBX3B\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL20210570KFRCK\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[20.2917269,49.8649217]},\"properties\":{\"name\":\"Tricol
+        \u0141apan\xF3w\",\"address\":\"ul. Rynek 21, 32-740 \u0141apan\xF3w\",\"country_code\":\"PL\",\"os_id\":\"PL20210570KFRCK\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2021057Y3BWJ7\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[21.87687,50.202554]},\"properties\":{\"name\":\"UZK\",\"address\":\"Wide\u0142ka
+        406, 36-145 Wide\u0142ka\",\"country_code\":\"PL\",\"os_id\":\"PL2021057Y3BWJ7\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL20210572Q17GY\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[19.4334088,51.737313]},\"properties\":{\"name\":\"Victoria\",\"address\":\"Nowe
+        Sady 77, \u0141\xF3d\u017A\",\"country_code\":\"PL\",\"os_id\":\"PL20210572Q17GY\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}},{\"id\":\"PL2021057YEYYZM\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[23.264103,50.711585]},\"properties\":{\"name\":\"Wiza\",\"address\":\"ul.
+        \u017Bak\xF3w 16A, 22-400 Zamo\u015B\u0107\",\"country_code\":\"PL\",\"os_id\":\"PL2021057YEYYZM\",\"country_name\":\"Poland\",\"has_approved_claim\":false,\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null}}],\"extent\":[-8.6092759,22.517585,113.39277,52.3990769]}"
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '12318'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 12:56:07 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 7fd88bab22735486702d23ba4e028d86.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - U_S_K4sEc1QxmM7QHFG7Y3H64zGslqVvWKF9WDMhHsCvo-wCOvoF7Q==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

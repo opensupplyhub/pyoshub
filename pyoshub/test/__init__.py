@@ -5,13 +5,7 @@ import pyoshub.pyoshub as pyoshub
 def vcr_config():
     return {
         # Replace the Authorization request header with "DUMMY" in cassettes
-        "filter_headers": [('authorization', 'DUMMY')],
+        "filter_headers": [
+            ('authorization', 'HIDDEN')],
+        "record_mode":'new'
     }
-
-#@pytest.fixture(scope='module')
-#def vcr_cassette_dir(request):
-#    # Put all cassettes in vhs/{module}/{test}.yaml
-#    #eturn os.path.join('vhs', request.module.__name__)
-#    return("/tmp")
-
-osh_api = pyoshub.OSH_API()

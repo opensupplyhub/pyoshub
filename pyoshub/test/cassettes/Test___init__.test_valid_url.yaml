@@ -2,44 +2,41 @@ interactions:
 - request:
     body: null
     headers:
+      Accept:
+      - '*/*'
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.28.1
-      accept:
-      - application/json
-      authorization:
-      - HIDETOKEN
     method: GET
-    uri: https://openapparel.org/api/contributor-lists/?contributors=2185
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
   response:
     body:
-      string: '[[1258,"Fendi 2021 facility list"]]'
+      string: '{"caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}],
+        "gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}]}'
     headers:
-      Allow:
-      - GET, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '35'
+      - '147'
       Content-Type:
       - application/json
       Date:
-      - Sun, 02 Oct 2022 17:02:14 GMT
+      - Thu, 20 Oct 2022 12:42:06 GMT
       Referrer-Policy:
       - same-origin
       Server:
       - gunicorn
       Vary:
-      - Accept
+      - Cookie
       Via:
-      - 1.1 0e75d8f2d484ce463fc04f5c422aa178.cloudfront.net (CloudFront)
+      - 1.1 fa8c9f29fb8ef5c537a2a53f4de05240.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - uXf3X2Jh6xtkCOrrenL4FL9RS8JQ-TPDxxIsNtJwsWzjWuTAEDdOZw==
+      - Zw3CbzqNkHjltMlZP6XBcp3OMKRd-Jd3wY0JJToO1GQ5OSSdcCbyKg==
       X-Amz-Cf-Pop:
-      - FRA2-C1
+      - FRA60-P3
       X-Cache:
       - Miss from cloudfront
       X-Content-Type-Options:

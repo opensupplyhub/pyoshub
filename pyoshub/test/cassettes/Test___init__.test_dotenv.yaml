@@ -2,49 +2,48 @@ interactions:
 - request:
     body: null
     headers:
+      Accept:
+      - '*/*'
       Accept-Encoding:
       - gzip, deflate
       Connection:
       - keep-alive
       User-Agent:
       - python-requests/2.28.1
-      accept:
-      - application/json
-      authorization:
-      - HIDETOKEN
     method: GET
-    uri: https://openapparel.org/api/countries/active_count
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
   response:
     body:
-      string: ''
+      string: '{"databases": [{"default": {"ok": true}}], "caches": [{"api_throttling":
+        {"ok": true}}, {"default": {"ok": true}}], "gazetteercache": {"ok": true}}'
     headers:
       Connection:
       - keep-alive
       Content-Length:
-      - '0'
+      - '147'
       Content-Type:
-      - text/html; charset=utf-8
+      - application/json
       Date:
-      - Sun, 02 Oct 2022 17:02:15 GMT
-      Location:
-      - /api/countries/active_count/
+      - Thu, 20 Oct 2022 12:42:07 GMT
       Referrer-Policy:
       - same-origin
       Server:
       - gunicorn
+      Vary:
+      - Cookie
       Via:
-      - 1.1 0e7eb16f335fe24acf3f13c5dee19c88.cloudfront.net (CloudFront)
+      - 1.1 a54cda8ccda3480314f451558e4dd062.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - UCaAhPdiSVnNCfYYnXNBkNsZZXYAMj7G8uKsBGTZXiWzJwl1RD-lHw==
+      - qmJ0WLs9JFAhBx2f7LJGjACb6qH1v-b_roN9WikNzEEbdYkAyIxu7w==
       X-Amz-Cf-Pop:
-      - FRA2-C1
+      - FRA60-P3
       X-Cache:
       - Miss from cloudfront
       X-Content-Type-Options:
       - nosniff
     status:
-      code: 301
-      message: Moved Permanently
+      code: 200
+      message: OK
 - request:
     body: null
     headers:
@@ -57,23 +56,23 @@ interactions:
       accept:
       - application/json
       authorization:
-      - HIDETOKEN
+      - HIDDEN
     method: GET
-    uri: https://openapparel.org/api/countries/active_count/
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
   response:
     body:
-      string: '{"count":151}'
+      string: '{"count":109371}'
     headers:
       Allow:
-      - OPTIONS, GET
+      - GET, HEAD, OPTIONS
       Connection:
       - keep-alive
       Content-Length:
-      - '13'
+      - '16'
       Content-Type:
       - application/json
       Date:
-      - Sun, 02 Oct 2022 17:02:16 GMT
+      - Thu, 20 Oct 2022 12:42:08 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -81,11 +80,11 @@ interactions:
       Vary:
       - Accept
       Via:
-      - 1.1 0e7eb16f335fe24acf3f13c5dee19c88.cloudfront.net (CloudFront)
+      - 1.1 4612dc3b414cf2057f542e94733d59bc.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - SGGxsN-4lZSFWPoNDvPqqkISwvdCUkMIfkEFKtYSltzPpd7AzbzaeQ==
+      - nui8_yAJDm_4dlICi6HoGNLDeP8gQsHA7R_aT7VM12rPFhjJLIvybw==
       X-Amz-Cf-Pop:
-      - FRA2-C1
+      - FRA60-P3
       X-Cache:
       - Miss from cloudfront
       X-Content-Type-Options:
