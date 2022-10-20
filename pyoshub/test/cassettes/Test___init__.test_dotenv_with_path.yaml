@@ -14,8 +14,8 @@ interactions:
     uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
   response:
     body:
-      string: '{"gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}],
-        "caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}]}'
+      string: '{"gazetteercache": {"ok": true}, "caches": [{"api_throttling": {"ok":
+        true}}, {"default": {"ok": true}}], "databases": [{"default": {"ok": true}}]}'
     headers:
       Connection:
       - keep-alive
@@ -24,7 +24,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:42:08 GMT
+      - Thu, 20 Oct 2022 13:39:07 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -32,9 +32,9 @@ interactions:
       Vary:
       - Cookie
       Via:
-      - 1.1 0a71d283a25c1e3f082b4dbc9d844dfe.cloudfront.net (CloudFront)
+      - 1.1 5b6e22c950501920595c86fc25834582.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - -gY-nDpKodVU_ZEDyLiCnv8VkwJXm5otgbDK4SnrlbnEF2D6ZdyvXA==
+      - 3zulO6wcTANfvFsVNDQkCj0EsSey_b4ZSdQDUbmoODKvrwVWOHJmVA==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:
@@ -72,7 +72,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:42:08 GMT
+      - Thu, 20 Oct 2022 13:39:07 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -80,9 +80,9 @@ interactions:
       Vary:
       - Accept
       Via:
-      - 1.1 0c792defeeaa18965559ad74895ea56a.cloudfront.net (CloudFront)
+      - 1.1 0a71d283a25c1e3f082b4dbc9d844dfe.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - Ec8866fBTYk33uP30UkGT974IgDhUKOHA9gF7U31D-SZjwK-NNC7IQ==
+      - Ctqx7NhP18tY7tp_CC9xn3iRcEOtsuJpERTQjATBdJ5XZkRx6YVOyA==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:

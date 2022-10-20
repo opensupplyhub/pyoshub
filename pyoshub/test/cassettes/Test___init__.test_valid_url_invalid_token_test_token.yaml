@@ -24,7 +24,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:45:29 GMT
+      - Thu, 20 Oct 2022 13:39:05 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -32,9 +32,9 @@ interactions:
       Vary:
       - Cookie
       Via:
-      - 1.1 79272ab9b399ee696b329d4f677dca48.cloudfront.net (CloudFront)
+      - 1.1 f06c87fa57d0c9fd7439d7fdbd148c62.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - owYXQtxSNX-GGVR6JHQsCag9d_Br7kdwVE1xg9yKOpUykBU2sO833A==
+      - hG8JHPjAfvIC162seq4uFzfcadys8J0UnyFtiD0yG8OWLAtkfguQSA==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:
@@ -72,7 +72,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:45:29 GMT
+      - Thu, 20 Oct 2022 13:39:06 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -80,11 +80,11 @@ interactions:
       Vary:
       - Accept
       Via:
-      - 1.1 79272ab9b399ee696b329d4f677dca48.cloudfront.net (CloudFront)
+      - 1.1 7395d1816622756cd6753f5e1281200c.cloudfront.net (CloudFront)
       WWW-Authenticate:
       - Token
       X-Amz-Cf-Id:
-      - exr-uCLBbo5E1c2CAYsSWiGseg0ktUSVWRFuVP5y-wwfJDqtJ6xHng==
+      - wll3lB9EsEnXRVEqFYSG_z8-FlbI2zzfAVh3uOcpH7JG8HkoOF6bkA==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:

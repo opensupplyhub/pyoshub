@@ -1,0 +1,189 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}],
+        "databases": [{"default": {"ok": true}}], "gazetteercache": {"ok": true}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 15:37:55 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 544814e402956ba93c0a2d2b923e94c2.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - vPBMtdpZY3beWmuM8E-Gm346UwsTp4Q9xC5TbSeeFGLduyfMhZmq4w==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109371}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 15:37:55 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 987865b81ba895db5b3f56f8ae175c84.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 0h8RQr1cwFRtiZ5Ma3UqZzNh2Cg4g_PsFrMkM1xg-GNeKWGTQYuE6g==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/countries/active_count
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Thu, 20 Oct 2022 15:37:55 GMT
+      Location:
+      - /api/countries/active_count/
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Via:
+      - 1.1 3296b04068551f925d5fafd1b785ff30.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - Brx11CdeMy4LJvL60S7qH-Jlyy0v40h4D_dAL52_Ys881ACMLwfmEg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 301
+      message: Moved Permanently
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/countries/active_count/
+  response:
+    body:
+      string: '{"count":154}'
+    headers:
+      Allow:
+      - OPTIONS, GET
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '13'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 20 Oct 2022 15:37:55 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 3296b04068551f925d5fafd1b785ff30.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - L74xgFg-BGO74Rs8B3YeLqnlD5nNvL_qBLQ7Z1VRScw3L6T2rNT9-w==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

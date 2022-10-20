@@ -100,18 +100,27 @@ class Test___init__:
         with open("some.filename.yaml","w+t") as f:
             f.write(yaml.dump(yaml_content))
         osh_api = pyoshub.OSH_API(path_to_env_yml="some.filename.yaml",check_token=True)
-        print("code",osh_api.result["code"])
-        print("message",osh_api.result["message"])
         assert(osh_api.result["code"] == 0)
         assert(osh_api.result["message"] == "ok")
         assert(osh_api.error == False)
         os.remove("some.filename.yaml")
 
 
+    def test_dotenv_with_invalid_path(self):
+        osh_api = pyoshub.OSH_API(path_to_env_yml="/x/y/z/invalid_file",check_token=True)
+        #print("code",osh_api.result["code"])
+        #print(f'message @{osh_api.result["message"]}@')
+        assert(osh_api.result["code"] == -1)
+        assert(osh_api.result["message"] == "[Errno 2] No such file or directory: '/x/y/z/invalid_file'")
+        assert(osh_api.error == True)
+
+
+
     def test_credentials_via_url(self):
         import yaml
         from threading import Thread
         from http.server import HTTPServer, BaseHTTPRequestHandler
+        import requests
 
         class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             def do_GET(self):
@@ -139,11 +148,18 @@ class Test___init__:
         thread = mytempwebserver()
         thread.start()
         osh_api = pyoshub.OSH_API(url_to_env_yml="http://localhost:8000",check_token=True)
-        print("code",osh_api.result["code"])
-        print("message",osh_api.result["message"])
-        #assert(osh_api.result["code"] == 0)
-        #assert(osh_api.result["message"] == "ok")
-        #assert(osh_api.error == False)
+        try: # clean up lockups, the server should shut down after one call
+            while True:
+                r = requests.get("http://localhost:8000")
+                print(r.text)
+        except:
+            pass
+        thread.join()
+        #print("code",osh_api.result["code"])
+        #print("message",osh_api.result["message"])
+        assert(osh_api.result["code"] == 0)
+        assert(osh_api.result["message"] == "ok")
+        assert(osh_api.error == False)
 
 
 

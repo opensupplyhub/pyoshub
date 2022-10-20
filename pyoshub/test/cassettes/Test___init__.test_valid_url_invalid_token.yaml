@@ -24,7 +24,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:42:07 GMT
+      - Thu, 20 Oct 2022 13:39:05 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -32,9 +32,9 @@ interactions:
       Vary:
       - Cookie
       Via:
-      - 1.1 6bf2ca4ea5a5c92a1d7cd2f9767e8674.cloudfront.net (CloudFront)
+      - 1.1 68b2682a924ac399aa2724b5b439e75c.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - KRvvFDMzO4qyjwXPFxqWIoRF7uR-McS-Qyu0CR-ufIA0bTdJWu4hiA==
+      - lmC0AcwhQxrH6686oAeOxKYLBhfdBi0FRFsJhZmR-zor8lG4UPAuaw==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:

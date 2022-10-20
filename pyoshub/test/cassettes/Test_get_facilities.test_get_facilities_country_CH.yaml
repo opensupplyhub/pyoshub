@@ -14,8 +14,8 @@ interactions:
     uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
   response:
     body:
-      string: '{"databases": [{"default": {"ok": true}}], "caches": [{"api_throttling":
-        {"ok": true}}, {"default": {"ok": true}}], "gazetteercache": {"ok": true}}'
+      string: '{"gazetteercache": {"ok": true}, "caches": [{"api_throttling": {"ok":
+        true}}, {"default": {"ok": true}}], "databases": [{"default": {"ok": true}}]}'
     headers:
       Connection:
       - keep-alive
@@ -24,7 +24,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:51:59 GMT
+      - Thu, 20 Oct 2022 13:39:08 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -32,9 +32,9 @@ interactions:
       Vary:
       - Cookie
       Via:
-      - 1.1 5b6e22c950501920595c86fc25834582.cloudfront.net (CloudFront)
+      - 1.1 0a71d283a25c1e3f082b4dbc9d844dfe.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - FDMjxSU8sXlDZZklEGFDcmmvrDyVr5ScDv0TMrNB8DvVk3GaAyTyOw==
+      - 1jF29OzEIW_k867lRwF-36IOsW-dQP19hDWl0MHZ3qZfN51KOKKzuw==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:
@@ -72,7 +72,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:51:59 GMT
+      - Thu, 20 Oct 2022 13:39:08 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -80,9 +80,9 @@ interactions:
       Vary:
       - Accept
       Via:
-      - 1.1 fa8c9f29fb8ef5c537a2a53f4de05240.cloudfront.net (CloudFront)
+      - 1.1 6ae82cc0c8a39c993134c2be90b4d120.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - taeBYJYznsIN5esZ4VXYWMi87JB9idksLv2m1z2f-D7d5Vqotj3evA==
+      - 7XERttlTae7kg03HXsbaYMI6NX3JG6uOT5yaTUz_rfIQv6kWOsgTIg==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:
@@ -176,7 +176,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:51:59 GMT
+      - Thu, 20 Oct 2022 13:39:08 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -184,9 +184,9 @@ interactions:
       Vary:
       - Accept
       Via:
-      - 1.1 c80ae6bd97b709ed6e4747f0d5ea4efc.cloudfront.net (CloudFront)
+      - 1.1 a54cda8ccda3480314f451558e4dd062.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - 6c5xdlNtkIdqxdI0lHy8Su9lxzbm51Sp-7P0EArCiThSFqSakyC2XQ==
+      - RfMvvnWQQgxcTmzLgj82UrQjLqQuFFOaaOT3fzhjnxyQvjDnjjHo5Q==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:
@@ -259,7 +259,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:52:00 GMT
+      - Thu, 20 Oct 2022 13:39:09 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -267,9 +267,9 @@ interactions:
       Vary:
       - Accept
       Via:
-      - 1.1 7251dede1ac94066b27bcd33919b30c6.cloudfront.net (CloudFront)
+      - 1.1 ca8cb14c76df16342491237cea8cfed6.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - -qpdctLr7mZwFfDxPc9rZzBH0tQULqqQgvvAMMxus4UTrItDgTvsHQ==
+      - d2K6yCi8kJ4x5I-jT6rtCUHjDmlZJhZnN2ykKpnWdYprSTzUS-OvKA==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:

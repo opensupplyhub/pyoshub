@@ -14,8 +14,8 @@ interactions:
     uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
   response:
     body:
-      string: '{"gazetteercache": {"ok": true}, "caches": [{"api_throttling": {"ok":
-        true}}, {"default": {"ok": true}}], "databases": [{"default": {"ok": true}}]}'
+      string: '{"databases": [{"default": {"ok": true}}], "caches": [{"api_throttling":
+        {"ok": true}}, {"default": {"ok": true}}], "gazetteercache": {"ok": true}}'
     headers:
       Connection:
       - keep-alive
@@ -24,7 +24,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:56:06 GMT
+      - Thu, 20 Oct 2022 13:39:14 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -32,9 +32,9 @@ interactions:
       Vary:
       - Cookie
       Via:
-      - 1.1 68b2682a924ac399aa2724b5b439e75c.cloudfront.net (CloudFront)
+      - 1.1 ab21b6436bc1d51d57b228ad39b1fa54.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - bE0YgK2vntSEmnp4wjI-N3N_Sy6WWqd8o0uYQNPb3kuWO4lvUeSmfw==
+      - GpKh7ivyls9P-CyEQFy5KksPTyl7ZNIDjLjlMKYQ4xy_RUZhsqBzTQ==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:
@@ -72,7 +72,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:56:07 GMT
+      - Thu, 20 Oct 2022 13:39:15 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -80,9 +80,9 @@ interactions:
       Vary:
       - Accept
       Via:
-      - 1.1 ca8cb14c76df16342491237cea8cfed6.cloudfront.net (CloudFront)
+      - 1.1 3296b04068551f925d5fafd1b785ff30.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - SkHtwlC8zGfQLAv5648tjM7WnhdBKl5vAlsSOxr9f80-jB5rF5vx2A==
+      - vL-8sGrefpg2uvkqdtLnfPeJSNi1qIWGawQi9cvdiJDQSkza6RsMQQ==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:
@@ -157,7 +157,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:56:07 GMT
+      - Thu, 20 Oct 2022 13:39:15 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -165,9 +165,9 @@ interactions:
       Vary:
       - Accept
       Via:
-      - 1.1 7fd88bab22735486702d23ba4e028d86.cloudfront.net (CloudFront)
+      - 1.1 d63ea68c8b7458d49fe25f66ef7f0a5e.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - U_S_K4sEc1QxmM7QHFG7Y3H64zGslqVvWKF9WDMhHsCvo-wCOvoF7Q==
+      - ttWGwdEsrwoCgoUuvEpMzSYrGeTB5Gt3T1S3EDacH1JZXGC64UQgHQ==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:

@@ -10,6 +10,8 @@ import urllib
 import time
 from typing import Union
 import io
+import logging
+
 
 class OSH_API():
     """This is a class that wraps API access to https://opensupplyhub.org.
@@ -63,12 +65,20 @@ class OSH_API():
         result = {}
         self.header = {}
         credentials = {}
+        self.error = False
         
         if len(path_to_env_yml) > 0:
-            with open(path_to_env_yml,"rt") as f:
-                credentials = yaml.load(f,yaml.Loader)
-                self.url = credentials["OSH_URL"]
-                self.token = credentials["OSH_TOKEN"]
+            try:
+                with open(path_to_env_yml,"rt") as f:
+                    credentials = yaml.load(f,yaml.Loader)
+                    self.url = credentials["OSH_URL"]
+                    self.token = credentials["OSH_TOKEN"]
+                    logging.info(f"using specified env file")
+            except Exception as e:
+                self.result = {"code":-1,"message":str(e)}
+                self.error = True
+                logging.error(str(e))
+                return
         elif len(url_to_env_yml) > 0:
             try:
                 r = requests.get(url_to_env_yml)
@@ -172,8 +182,8 @@ class OSH_API():
     
 
 
-
-    def get_facilities(self, q : str = "", contributors : int = -1,
+    def get_facilities(self, q : str = "", 
+                       contributors : Union[int,list] = -1,
                        lists : int = -1, contributor_types : str = "", countries : str = "",
                        boundary : dict = {}, parent_company : str = "", facility_type : str = "",
                        processing_type : str = "", product_type : str = "", number_of_workers : str = "",
@@ -188,9 +198,9 @@ class OSH_API():
         
         Parameters
         ----------
-        q : string, optional
+        q : str, optional
            Facility Name or OS ID
-        contributors : integer, optional
+        contributors : int or list, optional
            Contributor ID
         lists : integer, optional
            List ID
@@ -309,12 +319,23 @@ class OSH_API():
             q = urllib.parse.quote_plus(q)
             parameters.append(f"q={q}")
         if contributors != -1:
-            parameters.append(f"contributors={contributors}")
+            if isinstance(contributors,list):
+                for contributor in contributors:
+                    c = urllib.parse.quote_plus(str(contributor))
+                    parameters.append(f"contributors={c}")
+            else:
+                contributors = urllib.parse.quote_plus(str(contributors))
+                parameters.append(f"contributors={contributors}")
         if lists != -1:
             parameters.append(f"lists={lists}")
         if len(contributor_types) > 0:
-            contributor_types = urllib.parse.quote_plus(contributor_types)
-            parameters.append(f"contributor_types={contributor_types}")
+            if isinstance(contributor_types,list):
+                for contributor_type in contributor_types:
+                    ct = urllib.parse.quote_plus(contributor_type)
+                    parameters.append(f"contributor_types={ct}")
+            else:
+                contributor_types = urllib.parse.quote_plus(contributor_types)
+                parameters.append(f"contributor_types={contributor_types}")
         if len(countries) > 0:
             countries = urllib.parse.quote_plus(countries)
             parameters.append(f"countries={countries}")
@@ -350,6 +371,7 @@ class OSH_API():
         parameters = "&".join(parameters)
         have_next = True
         request_url = f"{self.url}/api/facilities/?{parameters}"
+        
         alldata = []
         
         while have_next:
@@ -1354,7 +1376,7 @@ class OSH_API():
         
         Parameters
         ----------
-        contributor_id: str
+        contributor_id: int or str
            numeric contributor id
            
         Returns

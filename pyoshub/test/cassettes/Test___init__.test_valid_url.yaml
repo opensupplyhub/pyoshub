@@ -14,8 +14,8 @@ interactions:
     uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
   response:
     body:
-      string: '{"caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}],
-        "gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}]}'
+      string: '{"databases": [{"default": {"ok": true}}], "caches": [{"api_throttling":
+        {"ok": true}}, {"default": {"ok": true}}], "gazetteercache": {"ok": true}}'
     headers:
       Connection:
       - keep-alive
@@ -24,7 +24,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 20 Oct 2022 12:42:06 GMT
+      - Thu, 20 Oct 2022 13:39:05 GMT
       Referrer-Policy:
       - same-origin
       Server:
@@ -32,9 +32,9 @@ interactions:
       Vary:
       - Cookie
       Via:
-      - 1.1 fa8c9f29fb8ef5c537a2a53f4de05240.cloudfront.net (CloudFront)
+      - 1.1 b43c04a791e8dcb8ddb6bb0847fcf95a.cloudfront.net (CloudFront)
       X-Amz-Cf-Id:
-      - Zw3CbzqNkHjltMlZP6XBcp3OMKRd-Jd3wY0JJToO1GQ5OSSdcCbyKg==
+      - wPYg5sx2KXgQm5sPjVVgDuXlU9FrlqzyUU_WZ-uj7Shm_IxzsBdkrw==
       X-Amz-Cf-Pop:
       - FRA60-P3
       X-Cache:
