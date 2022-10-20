@@ -1,5 +1,5 @@
 [build-system]
-requires = ["flit_core","pyyaml","pandas","requests"]
+requires = ["flit_core","pyyaml","requests"]
 build-backend = "flit_core.buildapi"
 
 [project]
@@ -16,9 +16,10 @@ classifiers = [
 
 [project.urls]
 "Homepage" = "https://opensupplyhub.org"
-# "OpenAPI" = "https://opensupplyhub.org/api/docs"
+"Documentation" = "https://pyoshub.readthedocs.io"
 "Github" = "https://github.com/opensupplyhub/pyoshub"
 "Bug Tracker" = "https://github.com/opensupplyhub/pyoshub/issues"
+"OpenAPI" = "https://opensupplyhub.org/api/docs"
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
