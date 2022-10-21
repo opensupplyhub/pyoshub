@@ -1,0 +1,165 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}],
+        "gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 15:24:41 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 7395d1816622756cd6753f5e1281200c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - IqZeCg099hPTjWb2RYSeiejhyQUukKN91K6YK_NViekGtOtrLZX7Zg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109833}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 15:24:41 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 231be1c97cc722fa08b64d21072ebfac.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - oOhnAc5079IBdB-CtJvPzN351XM4DqJtFuvbgYIPko1pxGxrivG4fA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: name=This+is+definitely+a+similar+facility&address=Cl+29+No.+37+MARINILLA%2C+Medell%C3%ADn&country=Colombia&sector=Computers
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '124'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: POST
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/??create=false&public=true&textonlyfallback=false
+  response:
+    body:
+      string: "{\"matches\":[{\"id\":\"CO2022294AJ8TBG\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[-75.56581530000001,6.2476376]},\"properties\":{\"name\":\"This
+        is definitely a new facility\",\"address\":\"Cl 29 No. 37-02 MARINILLA, Medell\xEDn\",\"country_code\":\"CO\",\"os_id\":\"CO2022294AJ8TBG\",\"other_names\":[\"This
+        is definitely a similar facility\"],\"other_addresses\":[\"Cl 29 No. 37 MARINILLA,
+        Medell\xEDn\"],\"contributors\":[{\"id\":2757,\"name\":\"Klaus (Openapparel)\",\"is_verified\":false,\"contributor_name\":\"Klaus
+        (Openapparel)\",\"list_name\":null}],\"country_name\":\"Colombia\",\"claim_info\":null,\"other_locations\":[{\"lat\":6.1731064,\"lng\":-75.3378851,\"contributor_id\":2757,\"contributor_name\":\"Klaus
+        (Openapparel)\",\"notes\":null}],\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null,\"activity_reports\":[],\"contributor_fields\":[],\"new_os_id\":null,\"has_inexact_coordinates\":false,\"extended_fields\":{\"name\":[{\"value\":\"This
+        is definitely a new facility\",\"field_name\":\"name\",\"contributor_id\":2757,\"contributor_name\":\"Klaus
+        (Openapparel)\",\"updated_at\":\"2022-10-21T15:21:20.781209Z\"},{\"value\":\"This
+        is definitely a similar facility\",\"field_name\":\"name\",\"contributor_id\":2757,\"contributor_name\":\"Klaus
+        (Openapparel)\",\"updated_at\":\"2022-10-21T15:24:42.639399Z\"}],\"address\":[{\"value\":\"Cl
+        29 No. 37-02 MARINILLA, Medell\xEDn\",\"field_name\":\"address\",\"contributor_id\":2757,\"contributor_name\":\"Klaus
+        (Openapparel)\",\"updated_at\":\"2022-10-21T15:21:20.781209Z\",\"is_from_claim\":false},{\"value\":\"Cl
+        29 No. 37 MARINILLA, Medell\xEDn\",\"field_name\":\"address\",\"contributor_id\":2757,\"contributor_name\":\"Klaus
+        (Openapparel)\",\"updated_at\":\"2022-10-21T15:24:42.639399Z\",\"is_from_claim\":false}],\"number_of_workers\":[],\"native_language_name\":[],\"facility_type\":[],\"processing_type\":[],\"product_type\":[{\"id\":152004,\"is_verified\":false,\"value\":{\"raw_values\":[\"Computers\"]},\"updated_at\":\"2022-10-21T15:24:42.758565Z\",\"contributor_name\":\"Klaus
+        (Openapparel)\",\"contributor_id\":2757,\"value_count\":2,\"is_from_claim\":false,\"field_name\":\"product_type\",\"verified_count\":0},{\"id\":152003,\"is_verified\":false,\"value\":{\"raw_values\":[\"Computers\"]},\"updated_at\":\"2022-10-21T15:21:20.896425Z\",\"contributor_name\":\"Klaus
+        (Openapparel)\",\"contributor_id\":2757,\"value_count\":2,\"is_from_claim\":false,\"field_name\":\"product_type\",\"verified_count\":0}],\"parent_company\":[]},\"created_from\":{\"created_at\":\"2022-10-21T15:21:20.439396Z\",\"contributor\":\"Klaus
+        (Openapparel)\"},\"sector\":[{\"updated_at\":\"2022-10-21T15:24:42.639399Z\",\"contributor_id\":2757,\"contributor_name\":\"Klaus
+        (Openapparel)\",\"values\":[\"Unspecified\"],\"is_from_claim\":false}]},\"confidence\":0.8985}],\"item_id\":804345,\"geocoded_geometry\":{\"type\":\"Point\",\"coordinates\":[-75.3378851,6.1731064]},\"geocoded_address\":\"Marinilla,
+        Antioquia, Colombia\",\"status\":\"MATCHED\",\"os_id\":\"CO2022294AJ8TBG\"}"
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2818'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 15:24:42 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 f06c87fa57d0c9fd7439d7fdbd148c62.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 14Vx5CkmCR_6klXhFi5Lq_Ps03hc5lNTeI0Bb234o_7RWxC2MIPRdw==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 201
+      message: Created
+version: 1

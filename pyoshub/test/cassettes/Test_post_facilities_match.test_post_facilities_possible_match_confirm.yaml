@@ -1,0 +1,156 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}],
+        "gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 15:51:13 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 b4904c5988fd0eaae341a12cc47f3766.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - XFJ5qrGBfz0ZyV5_gnLTpElQMmgs1Z_v4Wpu4PW2231Rn3lWTGsQCA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109834}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 15:51:13 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 6ae82cc0c8a39c993134c2be90b4d120.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - Axo2oD3mUVA5eGt5rGNBGbxczkZ7JF-i1oGWLAZepySYVczZAMJz-A==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: POST
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facility-matches/699466/confirm/
+  response:
+    body:
+      string: "{\"id\":804349,\"matches\":[{\"id\":699466,\"status\":\"CONFIRMED\",\"confidence\":\"0.54\",\"results\":{\"code_version\":\"UNKNOWN\",\"recall_weight\":1.0,\"no_geocoded_items\":false,\"automatic_threshold\":0.8,\"gazetteer_threshold\":0.5,\"no_gazetteer_matches\":false},\"os_id\":\"CN2020016QWVKKG\",\"name\":\"ZHEJIANG
+        ZHENGHAO GARMENT CO., LTD. \_ \_\",\"address\":\"HENGGENENGTOU VILLAGE, GUALI
+        TOWN\_ , HANGZHOU, Zhejiang, 311241\",\"location\":{\"lat\":30.1749702,\"lng\":120.4577832},\"is_active\":true}],\"country_name\":\"China\",\"processing_errors\":null,\"matched_facility\":{\"os_id\":\"CN2020016QWVKKG\",\"address\":\"HENGGENENGTOU
+        VILLAGE, GUALI TOWN\_ , HANGZHOU, Zhejiang, 311241\",\"name\":\"ZHEJIANG ZHENGHAO
+        GARMENT CO., LTD. \_ \_\",\"created_from_id\":47343,\"location\":{\"lat\":30.1749702,\"lng\":120.4577832}},\"ppe_product_types\":null,\"ppe_contact_email\":null,\"ppe_contact_phone\":null,\"ppe_website\":null,\"row_index\":0,\"raw_data\":\"{\\\"name\\\":
+        \\\"ZHEJIANG ZHENGHAO GARMENT CO .,LTD\\\", \\\"address\\\": \\\"HENGGENGTOU
+        TOWN, GUALI, XIAOSHAN, HANGZHOU 311200 CN\\\", \\\"country\\\": \\\"CN\\\",
+        \\\"sector\\\": \\\"Apparel\\\"}\",\"status\":\"CONFIRMED_MATCH\",\"processing_started_at\":null,\"processing_completed_at\":null,\"name\":\"ZHEJIANG
+        ZHENGHAO GARMENT CO .,LTD\",\"address\":\"HENGGENGTOU TOWN, GUALI, XIAOSHAN,
+        HANGZHOU 311200 CN\",\"country_code\":\"CN\",\"sector\":[\"Apparel\"],\"clean_name\":\"zhejiang
+        zhenghao garment co .ltd\",\"clean_address\":\"henggengtou town guali xiaoshan
+        hangzhou 311200 cn\",\"source\":348664}"
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1420'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 16:04:49 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 a54cda8ccda3480314f451558e4dd062.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - sKyUnk93Vrac68ygnEoqxrVW6DHWUvSrnOHoKOpoTxN2bMEOSZ3AoA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

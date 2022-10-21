@@ -1,0 +1,189 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}],
+        "gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 15:44:58 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 ab21b6436bc1d51d57b228ad39b1fa54.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - kit4BdCXL2022G7mzqwjO8gRK8kyPev-LOgajx-AxxM0NcA8vTaZ3Q==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109834}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 15:44:58 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 8b889e35789d2b97f2ba8771acc9a008.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 9z0VisFLnrHY1OjACt7IUu3TZc29Gq4fyxxw1QVi2H-RDJQFFcN6SA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: name=ZHEJIANG+ZHENGHAO+GARMENT+CO+.%2CLTD&address=HENGGENGTOU+TOWN%2C+GUALI%2C+XIAOSHAN%2C+HANGZHOU+311200+CN&country=CN&sector=Apparel
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '135'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: POST
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/??create=false&public=true&textonlyfallback=false
+  response:
+    body:
+      string: "{\"matches\":[{\"id\":\"CN2020016QWVKKG\",\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[120.4577832,30.1749702]},\"properties\":{\"name\":\"ZHEJIANG
+        ZHENGHAO GARMENT CO., LTD. \_ \_\",\"address\":\"HENGGENENGTOU VILLAGE, GUALI
+        TOWN\_ , HANGZHOU, Zhejiang, 311241\",\"country_code\":\"CN\",\"os_id\":\"CN2020016QWVKKG\",\"other_names\":[\"Zhejiang
+        Zhenghao Garment Co., Ltd.\"],\"other_addresses\":[\"Henggengtou Village,
+        Guali Town, Xiaoshan District\",\"HENGGENENGTOU VILLAGE, GUALI TOWN, Hangzhou,
+        Zhejiang, 311241\"],\"contributors\":[{\"id\":1083,\"name\":\"Amazon (Amazon
+        Apparel Supplier List 2021)\",\"is_verified\":false,\"contributor_name\":\"Amazon\",\"list_name\":\"Amazon
+        Apparel Supplier List 2021\"},{\"id\":2736,\"name\":\"Mike Maurizi (test)\",\"is_verified\":false,\"contributor_name\":\"Mike
+        Maurizi\",\"list_name\":\"test\"},{\"name\":\"2 Brands / Retailers\"},{\"name\":\"A
+        Multi-Stakeholder Initiative\"}],\"country_name\":\"China\",\"claim_info\":null,\"other_locations\":[{\"lat\":30.174964,\"lng\":120.456922,\"contributor_id\":1083,\"contributor_name\":\"Amazon\",\"notes\":null},{\"lat\":30.19035,\"lng\":120.45824,\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"notes\":null},{\"lat\":30.19035,\"lng\":120.45824,\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"notes\":null},{\"lat\":30.19035,\"lng\":120.45824,\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"notes\":null},{\"lat\":30.19035,\"lng\":120.45824,\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"notes\":null},{\"lat\":30.19035,\"lng\":120.45824,\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"notes\":null}],\"ppe_product_types\":null,\"ppe_contact_phone\":null,\"ppe_contact_email\":null,\"ppe_website\":null,\"is_closed\":null,\"activity_reports\":[],\"contributor_fields\":[],\"new_os_id\":null,\"has_inexact_coordinates\":false,\"extended_fields\":{\"name\":[{\"value\":\"Zhejiang
+        Zhenghao Garment Co., Ltd.\",\"field_name\":\"name\",\"contributor_id\":1083,\"contributor_name\":\"Amazon\",\"updated_at\":\"2022-01-27T17:44:46.463277Z\"},{\"value\":\"Zhejiang
+        Zhenghao Garment Co., Ltd.\",\"field_name\":\"name\",\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"updated_at\":\"2022-06-06T18:10:14.562198Z\"},{\"value\":\"Zhejiang
+        Zhenghao Garment Co., Ltd.\",\"field_name\":\"name\",\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"updated_at\":\"2022-06-06T18:10:14.866662Z\"},{\"value\":\"Zhejiang
+        Zhenghao Garment Co., Ltd.\",\"field_name\":\"name\",\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"updated_at\":\"2022-06-06T18:10:15.176560Z\"},{\"value\":\"Zhejiang
+        Zhenghao Garment Co., Ltd.\",\"field_name\":\"name\",\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"updated_at\":\"2022-06-06T18:10:15.493182Z\"},{\"value\":\"Zhejiang
+        Zhenghao Garment Co., Ltd.\",\"field_name\":\"name\",\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"updated_at\":\"2022-06-06T18:10:15.795101Z\"}],\"address\":[{\"value\":\"Henggengtou
+        Village, Guali Town, Xiaoshan District\",\"field_name\":\"address\",\"contributor_id\":1083,\"contributor_name\":\"Amazon\",\"updated_at\":\"2022-01-27T17:44:46.463277Z\",\"is_from_claim\":false},{\"value\":\"HENGGENENGTOU
+        VILLAGE, GUALI TOWN, Hangzhou, Zhejiang, 311241\",\"field_name\":\"address\",\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"updated_at\":\"2022-06-06T18:10:14.562198Z\",\"is_from_claim\":false},{\"value\":\"HENGGENENGTOU
+        VILLAGE, GUALI TOWN, Hangzhou, Zhejiang, 311241\",\"field_name\":\"address\",\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"updated_at\":\"2022-06-06T18:10:14.866662Z\",\"is_from_claim\":false},{\"value\":\"HENGGENENGTOU
+        VILLAGE, GUALI TOWN, Hangzhou, Zhejiang, 311241\",\"field_name\":\"address\",\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"updated_at\":\"2022-06-06T18:10:15.176560Z\",\"is_from_claim\":false},{\"value\":\"HENGGENENGTOU
+        VILLAGE, GUALI TOWN, Hangzhou, Zhejiang, 311241\",\"field_name\":\"address\",\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"updated_at\":\"2022-06-06T18:10:15.493182Z\",\"is_from_claim\":false},{\"value\":\"HENGGENENGTOU
+        VILLAGE, GUALI TOWN, Hangzhou, Zhejiang, 311241\",\"field_name\":\"address\",\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"updated_at\":\"2022-06-06T18:10:15.795101Z\",\"is_from_claim\":false}],\"number_of_workers\":[],\"native_language_name\":[],\"facility_type\":[],\"processing_type\":[],\"product_type\":[],\"parent_company\":[]},\"created_from\":{\"created_at\":\"2020-01-16T15:30:17.313926Z\",\"contributor\":\"a
+        Brand / Retailer\"},\"sector\":[{\"updated_at\":\"2022-06-06T18:10:15.795101Z\",\"contributor_id\":2736,\"contributor_name\":\"Mike
+        Maurizi\",\"values\":[\"Apparel\"],\"is_from_claim\":false},{\"updated_at\":\"2022-03-18T02:53:17.982930Z\",\"contributor_id\":null,\"contributor_name\":\"a
+        Brand / Retailer\",\"values\":[\"Apparel\"],\"is_from_claim\":false},{\"updated_at\":\"2022-01-27T17:52:15.840861Z\",\"contributor_id\":null,\"contributor_name\":\"a
+        Brand / Retailer\",\"values\":[\"Apparel\"],\"is_from_claim\":false},{\"updated_at\":\"2022-01-27T17:44:46.463277Z\",\"contributor_id\":1083,\"contributor_name\":\"Amazon\",\"values\":[\"Apparel\"],\"is_from_claim\":false},{\"updated_at\":\"2022-01-27T17:44:15.272839Z\",\"contributor_id\":null,\"contributor_name\":\"a
+        Multi-Stakeholder Initiative\",\"values\":[\"Apparel\"],\"is_from_claim\":false}]},\"confidence\":0.5375,\"confirm_match_url\":\"/api/facility-matches/699466/confirm/\",\"reject_match_url\":\"/api/facility-matches/699466/reject/\"}],\"item_id\":804349,\"geocoded_geometry\":{\"type\":\"Point\",\"coordinates\":[120.45824,30.19035]},\"geocoded_address\":\"Gualizhen,
+        Xiaoshan District, Hangzhou, Zhejiang, China, 311241\",\"status\":\"POTENTIAL_MATCH\"}"
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '5386'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 15:45:00 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 ab21b6436bc1d51d57b228ad39b1fa54.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 3zKl_bds3LG_H0ZgFX8acueP-AZ6QExUczm43nJN7JksFTdDKpJijw==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 201
+      message: Created
+version: 1

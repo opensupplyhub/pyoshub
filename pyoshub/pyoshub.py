@@ -1,6 +1,6 @@
 """pyosh is a Package for accessing the `Open Supply Hub API <https://opensupplyhub.org/api/docs>`_ using python."""
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 import os
 import yaml
@@ -510,6 +510,8 @@ class OSH_API():
         or as a dict via the ``data`` parameters, in which case the optional parameters would need
         to be the keys of the dictionary.
 
+        Maned parameters will overwrite entries in the ``data`` parameter, of both methods were used.
+
         Uploading a record may create a new entry, return a previously matched entry, or require you to make
         a confirm/reject selection by calling one of two corresponding API endpoints.
          
@@ -696,53 +698,54 @@ class OSH_API():
         For status == ``ERROR``
         
         """
+
+
         if len(data) == 0:
             payload = {}
-            
-            if len(name)>0:
-                payload["name"] = name.strip()
-            else:
-                self._result = {"code":-100,"message":"Error: Empty facility name given, we need a name."}
-                return []
-            
-            if len(address)>0:
-                payload["address"] = address.strip()
-            else:
-                self._result = {"code":-101,"message":"Error: Empty address given, we need an address."}
-                return []
-            
-            if len(country)>0:
-                payload["country"] = country.strip()
-            else:
-                self._result = {"code":-102,"message":"Error: Empty country name given, we need a country."}
-                return []
-            
-            if len(sector)>0:
-                payload["sector"] = sector.strip()
-            else:
-                payload["sector"] = "Unspecified"
-
-            if len(number_of_workers)>0:
-                payload["number_of_workers"] = number_of_workers.strip()
-                
-            if len(facility_type)>0:
-                payload["facility_type"] = facility_type.strip()
-                
-            if len(processing_type)>0:
-                payload["processing_type"] = processing_type.strip()
-                
-            if len(product_type)>0:
-                payload["product_type"] = product_type.strip()
-                
-            if len(parent_company_name)>0:
-                payload["parent_company_name"] = parent_company_name.strip()
-                
-            if len(native_language_name)>0:
-                payload["native_language_name"] = native_language_name.strip()
-                
         else:
             payload = data
+
+        if len(name)>0:
+            payload["name"] = name.strip()
+        else:
+            self._result = {"code":-100,"message":"Error: Empty facility name given, we need a name."}
+            return {"status":"PYTHON_PARAMETER_ERROR"}
         
+        if len(address)>0:
+            payload["address"] = address.strip()
+        else:
+            self._result = {"code":-101,"message":"Error: Empty address given, we need an address."}
+            return {"status":"PYTHON_PARAMETER_ERROR"}
+        
+        if len(country)>0:
+            payload["country"] = country.strip()
+        else:
+            self._result = {"code":-102,"message":"Error: Empty country name given, we need a country."}
+            return {"status":"PYTHON_PARAMETER_ERROR"}
+        
+        if len(sector)>0:
+            payload["sector"] = sector.strip()
+        else:
+            payload["sector"] = "Unspecified"
+
+        if len(number_of_workers)>0:
+            payload["number_of_workers"] = number_of_workers.strip()
+            
+        if len(facility_type)>0:
+            payload["facility_type"] = facility_type.strip()
+            
+        if len(processing_type)>0:
+            payload["processing_type"] = processing_type.strip()
+            
+        if len(product_type)>0:
+            payload["product_type"] = product_type.strip()
+            
+        if len(parent_company_name)>0:
+            payload["parent_company_name"] = parent_company_name.strip()
+            
+        if len(native_language_name)>0:
+            payload["native_language_name"] = native_language_name.strip()
+            
         parameters = "?"
         if create:
             parameters += "create=true"
@@ -772,7 +775,10 @@ class OSH_API():
                 self._result = {"code":0,"message":f"{r.status_code}"}
                 self._error = False
             else:
-                data = {"status":"HTTP_ERROR"}
+                if r.status_code == 400:
+                    data = {"status":"ERROR"}
+                else:
+                    data = {"status":"ERROR"}
                 self._result = {"code":-1,"message":f"{r.status_code}"}    
                 self._error = True
         except Exception as e:
@@ -894,13 +900,96 @@ class OSH_API():
             An array of dictionaries (key,value pairs). See table below for 
             return data structures.
         
-            +-----------------+-----------------------------------+------+
-            |column           | description                       | type |
-            +=================+===================================+======+
-            |                 |                                   |      |
-            +-----------------+-----------------------------------+------+
+            +-----------------+------------------------------------------+-------+
+            |column           | description                              | type  |
+            +=================+==========================================+=======+
+            | id              |                                          | int   |
+            +-----------------+------------------------------------------+-------+
+            | country_name    |                                          | str   |
+            +-----------------+------------------------------------------+-------+
+            | matched_os_id   |                                          | str   |
+            +-----------------+------------------------------------------+-------+
+            | matched_address |                                          | str   |
+            +-----------------+------------------------------------------+-------+
+            | matched_name    |                                          | str   |
+            +-----------------+------------------------------------------+-------+
+            | matched_lat     |                                          | float |
+            +-----------------+------------------------------------------+-------+
+            | matched_lon     |                                          | float |
+            +-----------------+------------------------------------------+-------+
+            | status          |                                          | str   |
+            +-----------------+------------------------------------------+-------+
+            | name            |                                          | str   |
+            +-----------------+------------------------------------------+-------+
+            | address         |                                          | str   |
+            +-----------------+------------------------------------------+-------+
+            | country_code    |                                          | str   |
+            +-----------------+------------------------------------------+-------+
+            | sector          |                                          | str   |
+            +-----------------+------------------------------------------+-------+
         """
 
+        if len(match_url)>0:
+            url_to_call = match_url
+        elif match_id > 0:
+            url_to_call = f"/api/facility-matches/{match_id}/confirm/"
+        else:
+            data = {"status":"need a valid match_id or match_url"}
+            self._result = {"code":-1,"message":"need a valid match_id or match_url"}    
+            self._error = True
+            return data
+
+        try:
+            self.last_api_call_epoch = time.time()
+            r = requests.post(f"{self._url}{url_to_call}",headers=self._header)
+            self._raw_data = copy.copy(r.text)
+            self.last_api_call_duration = time.time()-self.last_api_call_epoch
+            self._api_call_count += 1
+            if r.ok:
+                data = json.loads(r.text)
+                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._error = False
+
+                new_data = {}
+
+                for k,v in data.items():
+                    if k == "matched_facility":
+                        for kk,vv in v.items():
+                            if kk == "location":
+                                new_data[f"matched_lat"] = vv["lat"]
+                                new_data[f"matched_lon"] = vv["lng"]
+                            elif "created_from_id" == kk:
+                                continue
+                            else:
+                                new_data[f"matched_{kk}"] = vv
+                    elif k == "sector":
+                        new_data[k] = "|".join(v)
+                    elif isinstance(v,dict):
+                        print(k,"dict")
+                    elif isinstance(v,list):
+                        print(k,"list")
+                    elif k in ["raw_data","row_index","source"]:
+                        continue
+                    elif k.startswith("ppe_"):
+                        continue
+                    elif k.startswith("processing_"):
+                        continue
+                    elif k.startswith("clean_"):
+                        continue
+                    else:
+                        new_data[k] = v
+
+                data = new_data
+            else:
+                data = {"status":"HTTP_ERROR"}
+                self._result = {"code":-1,"message":f"{r.status_code}"}    
+                self._error = True
+        except Exception as e:
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
+            return
+                
+        return data
         return []
 
 
