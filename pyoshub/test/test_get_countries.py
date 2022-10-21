@@ -20,8 +20,9 @@ class Test_get_countries:
     def test_get_countries(self):
         osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"],token=os.environ["TEST_OSH_TOKEN"],check_token=True)
         result = osh_api.get_countries()
-        #print(len(result))
         assert(len(result) == 250)
+        assert('iso_3166_2' in result[0].keys())
+        assert('country' in result[0].keys())
         assert(result == [{'iso_3166_2': 'AF', 'country': 'Afghanistan'},
                     {'iso_3166_2': 'AX', 'country': 'Åland Islands'},
                     {'iso_3166_2': 'AL', 'country': 'Albania'},

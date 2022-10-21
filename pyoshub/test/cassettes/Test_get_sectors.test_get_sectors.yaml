@@ -1,0 +1,153 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"gazetteercache": {"ok": true}, "caches": [{"api_throttling": {"ok":
+        true}}, {"default": {"ok": true}}], "databases": [{"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 10:23:04 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 d63ea68c8b7458d49fe25f66ef7f0a5e.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - kXQOPaHY3K8wCmsfeXLmyuMVDXdw3W0BLwm022RhNxKyW-d6i5MRTQ==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109371}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 10:23:04 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 544814e402956ba93c0a2d2b923e94c2.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - ze3CG4SDTl61cSKoI2MEVyw1TyQrwwOD_syGaER-qwG0UDlumDfbNA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/sectors/
+  response:
+    body:
+      string: '["\"Bed \"\"","\"Bed\"","\"Knit Bottoms\"","\"Knit Tops\"","\"Sleepwear\"\"","#N/A","Accessori","Accessories","Advisory","Agriculture","Agriculture
+        & Farming","Agriculture And Farming","Apparel","Appliances","Automobiles &
+        Other Transport Vehicles","Automotive","Banking","Bath\"","Bike","Chemicals","Civics","Construction","Consumer
+        Electronics","Consumer Product","Consumer Products","Denim\"\"","Electrical
+        Equipment","Electricity","Electronics","Electronics/Technology","Energy","Energy
+        & Resources","Equipment","Esg & Sustainability","Essentials","Fashion","Financial
+        Services","Food","Food And Beverage","Food And Beverages","Footwear","Furniture","Gear","Hardlines","Healthcare","Home","Home
+        Goods","Housewares","Jewelry","Knit Activewear\"","Materials Manufacturing","Multi-Category","Non-Retail","Outdoor
+        Equipment","Outerwear\"\"","Paper","Pharmaceuticals","Renewable Energy","Repair","Shoes","Sleeping
+        Bags","Solar Electric","Solar Energy","Sporting Goods","Technology","Tents","Textiles","Tier
+        2","Toys"]'
+    headers:
+      Allow:
+      - GET, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1016'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 10:23:32 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 544814e402956ba93c0a2d2b923e94c2.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - ON-8XnQc3CLTrc-4sgYdsjV406i0Has9qUEQ7jWNfrvSW0sjDq_r1w==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

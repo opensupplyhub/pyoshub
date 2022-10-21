@@ -1,0 +1,574 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}],
+        "caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 10:54:07 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 5b6e22c950501920595c86fc25834582.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - eCLOoEhgF8-VtikwGfr5nDBVJ8pnimL2kvDkjyPjYvk0-jNvPS618A==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109371}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 10:54:07 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 ca8cb14c76df16342491237cea8cfed6.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - loC7yhHcHLtKxZ3CjIoelQuoZdk83KNnF1yKB1PsmOZSsmVtrf4GzQ==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/product-types/
+  response:
+    body:
+      string: "[\"\",\" 250 & 251Adamjee Export Processing Zone (Epz)Shiddhirganj\",\"
+        Accessories\",\" Accessories \",\" Agricultural Tires\",\" Air Spring Assembly\",\"
+        Air Springs\",\" Alaska\",\" Apparel\",\" Apparel \",\" Baby - Various Outerwear,
+        Baby - Various Sportswear, Base Layer/Thermal Underwear, Dress/Skirt/Skort,
+        Jacket/Parka - Interchange, Pajamas, Pant - Casual/Work, Softshell/Fleece,
+        Sweatshirt/Hoodie/Fleece, Wovens - Tops\",\" Baby - Various Outerwear, Baby
+        - Various Sportswear, Cap Type A : O/W Non Seam Seal, Soft Shell Poly Fleece,
+        Cap Type B : O/W Down, Cap Type C: O/W Seam Seal, Cap Type D : O/W Laser,
+        Dress/Skirt/Skort, Jacket - Leather, Jacket/Coat/Parka - Insulated, Jacket/Shell
+        Non Insulated, Knits - Tops, Pant - Casual/Work, Pant - Leather, Short, Tops
+        \ Knit, Tops  Woven, Wetsuits, Wovens - Tops\",\" Baby - Various Outerwear,
+        Baby - Various Sportswear, Cap Type A : O/W Non Seam Seal, Soft Shell Poly
+        Fleece, Cap Type B : O/W Down, Cap Type C: O/W Seam Seal, Cap Type G : S/W
+        Woven Bottoms, Jacket - Leather, Jacket/Coat/Parka - Insulated, Jacket/Parka
+        - Interchange, Jacket/Shell Non Insulated, Short, Softshell/Fleece, Sweatshirt/Hoodie/Fleece,
+        Swim, Vest - Insulated, Vest - Non Insulated, Wovens - Tops\",\" Baby - Various
+        Outerwear, Baby - Various Sportswear, Cap Type A : O/W Non Seam Seal, Soft
+        Shell Poly Fleece, Cap Type C: O/W Seam Seal, Cap Type G : S/W Woven Bottoms,
+        Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non
+        Insulated, Short, Softshell/Fleece, Tops  Woven, Vest - Insulated, Vest -
+        Non Insulated, Wovens - Tops\",\" Baby - Various Outerwear, Baby - Various
+        Sportswear, Dress/Skirt/Skort, Jacket/Coat/Parka - Insulated, Jacket/Parka
+        - Interchange, Jacket/Shell Non Insulated, Jogger, Pant - Casual/Work, Pant/Suit
+        - Insulated/Rain, Short, Softshell/Fleece, Sweatshirt/Hoodie/Fleece, Tops
+        \ Woven, Vest - Insulated, Vest - Non Insulated, Wovens - Tops\",\" Baby -
+        Various Outerwear, Baby - Various Sportswear, Dress/Skirt/Skort, Pajamas,
+        Pant - Casual/Work, Short, Wovens - Tops\",\" Baby - Various Outerwear, Baby
+        - Various Sportswear, Jacket - Leather, Jacket/Coat/Parka - Insulated, Jacket/Parka
+        - Interchange, Jacket/Shell Non Insulated, Pant - Casual/Work, Pant - Leather,
+        Pant/Suit - Insulated/Rain, Short, Softshell/Fleece, Sweatshirt/Hoodie/Fleece,
+        Vest - Non Insulated\",\" Baby - Various Outerwear, Baby - Various Sportswear,
+        Jacket - Leather, Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange,
+        Jacket/Shell Non Insulated, Sweatshirt/Hoodie/Fleece, Swim, Tops  Woven, Wovens
+        - Tops\",\" Baby - Various Outerwear, Cap Type A : O/W Non Seam Seal, Soft
+        Shell Poly Fleece, Cap Type B : O/W Down, Cap Type C: O/W Seam Seal, Cap Type
+        G : S/W Woven Bottoms, Jacket/Coat/Parka - Insulated, Jacket/Shell Non Insulated,
+        Pant - Casual/Work, Softshell/Fleece, Vest - Non Insulated\",\" Baby - Various
+        Outerwear, Cap Type F : S/W Knit, Dress/Skirt/Skort, Knits - Tops, Pajamas,
+        Scarf, Sweatshirt/Hoodie/Fleece, Tops  Knit, Tops  Woven, Underwear, Wovens
+        - Tops\",\" Baby - Various Outerwear, Jacket/Coat/Parka - Insulated, Jacket/Parka
+        - Interchange, Jacket/Shell Non Insulated, Textile, Vest - Insulated\",\"
+        Baby - Various Outerwear, Jacket/Shell Non Insulated, Knits - Tops, Sweatshirt/Hoodie/Fleece,
+        Tops  Knit, Tops  Woven, Wovens - Tops\",\" Baby - Various Outerwear, Knits
+        - Tops\",\" Baby - Various Outerwear, Pajamas, Pant - Casual/Work, Sweatshirt/Hoodie/Fleece,
+        Tops  Knit, Tops  Woven, Underwear\",\" Baby - Various Sportswear, Base Layer/Thermal
+        Underwear, Dress/Skirt/Skort, Pajamas, Short, Sweater/Pullover, Sweatshirt/Hoodie/Fleece,
+        Underwear\",\" Baby - Various Sportswear, Cap Type E : O/W Price Point Fleece,
+        Cap Type G : S/W Woven Bottoms, Cap Type H : S/W Woven Tops, Jacket/Coat/Parka
+        - Insulated, Pant - Casual/Work\",\" Baby - Various Sportswear, Dress/Skirt/Skort,
+        Jacket - Leather, Jacket/Coat/Parka - Insulated, Jacket/Shell Non Insulated,
+        Knits - Tops, Pajamas, Pant - Casual/Work, Short, Sweatshirt/Hoodie/Fleece,
+        Wovens - Tops\",\" Baby Bag, Bag/Pack, Chair/Pads, Pets - Collar/Leash/Harness,
+        Sample Bag, Tent\",\" Bag - Hydration, Bag - Rolling/Luggage, Bag/Pack, Chair/Pads\",\"
+        Bag - Hydration, Bag - Rolling/Luggage, Bag/Pack, Vest - Insulated, Wallet\",\"
+        Bag - Rolling/Luggage, Bag Accessories (Money Clip, Passport/Cell Phone Cover,
+        Etc.), Bag/Pack\",\" Bag - Rolling/Luggage, Bag Accessories (Money Clip, Passport/Cell
+        Phone Cover, Etc.), Bag/Pack, Wallet\",\" Bag - Rolling/Luggage, Wovens -
+        Tops\",\" Bag Accessories (Money Clip, Passport/Cell Phone Cover, Etc.), Bag/Pack\",\"
+        Bag Accessories (Money Clip, Passport/Cell Phone Cover, Etc.), Bag/Pack, Wallet\",\"
+        Bag/Pack\",\" Bag/Pack, Cap Type T : Eq Mhw Tent, Sleeping Bag, Backpack\",\"
+        Bag/Pack, Headwear\",\" Bandag Retread Equipment\",\" Bang Rak 10500 Bangkok\\\"\",\"
+        Bang Rak 10500 Bangkok\\\"\\\"\",\" Bath Accessories: Shower, Cap Type A :
+        O/W Non Seam Seal, Soft Shell Poly Fleece, Cap Type E : O/W Price Point Fleece,
+        Cap Type G : S/W Woven Bottoms, Jacket/Coat/Parka - Insulated, Softshell/Fleece\",\"
+        Bath Accessories: Shower, Cap Type F : S/W Knit, Cap Type K: Sweater, Dress/Skirt/Skort,
+        Home Accessories, Jogger, Knits - Tops, Scarf, Sweater/Pullover, Sweatshirt/Hoodie/Fleece,
+        Textile, Tops  Knit, Tops  Woven, Underwear, Wovens - Tops\",\" Beverage/Food
+        Container\",\" Boot Liner, Boot/Shoe - Cold Weather, Boot/Shoe - Trail/Hike,
+        Boot/Shoe/Clog/Slipper - Casual\",\" Boot Liner, Boot/Shoe - Cold Weather,
+        Boot/Shoe - Trail/Hike, Boot/Shoe/Clog/Slipper - Casual, Boot/Wader/Ankle
+        Boot - Rubber/Water\",\" Boot/Shoe - Cold Weather, Boot/Shoe - Trail/Hike,
+        Boot/Shoe/Clog/Slipper - Casual\",\" Boot/Shoe - Cold Weather, Boot/Shoe -
+        Trail/Hike, Boot/Shoe/Clog/Slipper - Casual, Boot/Wader/Ankle Boot - Rubber/Water\",\"
+        Boot/Shoe - Cold Weather, Boot/Shoe - Trail/Hike, Boot/Shoe/Clog/Slipper -
+        Casual, Boot/Wader/Ankle Boot - Rubber/Water, Midsole/Outsole\",\" Boot/Shoe
+        - Cold Weather, Boot/Shoe - Trail/Hike, Boot/Shoe/Clog/Slipper - Casual, Boot/Wader/Ankle
+        Boot - Rubber/Water, Sandal - Water/Land\",\" Boot/Shoe - Cold Weather, Boot/Wader/Ankle
+        Boot - Rubber/Water\",\" Boot/Shoe - Trail/Hike, Boot/Shoe/Clog/Slipper -
+        Casual, Boot/Wader/Ankle Boot - Rubber/Water\",\" Boot/Shoe - Trail/Hike,
+        Boot/Shoe/Clog/Slipper - Casual, Boot/Wader/Ankle Boot - Rubber/Water, Sandal
+        - Water/Land\",\" Boot/Shoe/Clog/Slipper - Casual\",\" Boot/Shoe/Clog/Slipper
+        - Casual, Boot/Wader/Ankle Boot - Rubber/Water\",\" Boot/Shoe/Clog/Slipper
+        - Casual, Sandal - Water/Land\",\" Boot/Shoe/Clog/Slipper - Casual, Wovens
+        - Tops\",\" Boot/Wader/Ankle Boot - Rubber/Water\",\" Bulgaria\",\" Cap Type
+        A : O/W Non Seam Seal, Soft Shell Poly Fleece, Cap Type B : O/W Down, Cap
+        Type C: O/W Seam Seal, Cap Type D : O/W Laser, Cap Type E : O/W Price Point
+        Fleece, Cap Type G : S/W Woven Bottoms, Cap Type H : S/W Woven Tops, Cap Type
+        I : Eq Tents, Cap Type T : Eq Mhw Tent, Sleeping Bag, Backpack, Jacket/Coat/Parka
+        - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non Insulated, Sleeping
+        Bag, Vest - Insulated, Vest - Non Insulated, Wovens - Tops\",\" Cap Type A
+        : O/W Non Seam Seal, Soft Shell Poly Fleece, Cap Type B : O/W Down, Cap Type
+        C: O/W Seam Seal, Cap Type D : O/W Laser, Cap Type E : O/W Price Point Fleece,
+        Jacket/Coat/Parka - Insulated\",\" Cap Type A : O/W Non Seam Seal, Soft Shell
+        Poly Fleece, Cap Type B : O/W Down, Cap Type C: O/W Seam Seal, Cap Type D
+        : O/W Laser, Cap Type G : S/W Woven Bottoms, Cap Type H : S/W Woven Tops,
+        Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non
+        Insulated, Pant - Casual/Work, Pant/Suit - Insulated/Rain, Softshell/Fleece,
+        Vest - Insulated, Vest - Non Insulated\",\" Cap Type A : O/W Non Seam Seal,
+        Soft Shell Poly Fleece, Cap Type B : O/W Down, Cap Type C: O/W Seam Seal,
+        Cap Type E : O/W Price Point Fleece, Cap Type F : S/W Knit, Cap Type G : S/W
+        Woven Bottoms, Dress/Skirt/Skort, Jacket/Coat/Parka - Insulated, Jacket/Shell
+        Non Insulated, Knits - Tops, Pant/Suit - Insulated/Rain\",\" Cap Type A :
+        O/W Non Seam Seal, Soft Shell Poly Fleece, Cap Type B : O/W Down, Cap Type
+        C: O/W Seam Seal, Cap Type F : S/W Knit, Cap Type G : S/W Woven Bottoms, Cap
+        Type H : S/W Woven Tops, Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange,
+        Pant - Casual/Work, Tops  Woven, Vest - Insulated, Wovens - Tops\",\" Cap
+        Type A : O/W Non Seam Seal, Soft Shell Poly Fleece, Cap Type B : O/W Down,
+        Cap Type C: O/W Seam Seal, Cap Type F : S/W Knit, Cap Type G : S/W Woven Bottoms,
+        Cap Type H : S/W Woven Tops, Jacket/Coat/Parka - Insulated, Knits - Tops,
+        Pant - Casual/Work, Short, Softshell/Fleece, Tops  Knit, Tops  Woven, Vest
+        - Insulated, Wovens - Tops\",\" Cap Type A : O/W Non Seam Seal, Soft Shell
+        Poly Fleece, Cap Type B : O/W Down, Cap Type E : O/W Price Point Fleece, Cap
+        Type G : S/W Woven Bottoms, Jacket/Coat/Parka - Insulated, Jacket/Parka -
+        Interchange, Jacket/Shell Non Insulated, Pant - Casual/Work, Pant/Suit - Insulated/Rain\",\"
+        Cap Type A : O/W Non Seam Seal, Soft Shell Poly Fleece, Cap Type B : O/W Down,
+        Jacket/Coat/Parka - Insulated, Pant - Casual/Work\",\" Cap Type A : O/W Non
+        Seam Seal, Soft Shell Poly Fleece, Cap Type C: O/W Seam Seal, Cap Type D :
+        O/W Laser, Cap Type E : O/W Price Point Fleece, Cap Type G : S/W Woven Bottoms,
+        Cap Type H : S/W Woven Tops, Cap Type I : Eq Tents, Jacket - Leather, Jacket/Coat/Parka
+        - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non Insulated, Pant
+        - Leather, Pant/Suit - Insulated/Rain, Short, Wovens - Tops\",\" Cap Type
+        A : O/W Non Seam Seal, Soft Shell Poly Fleece, Cap Type C: O/W Seam Seal,
+        Cap Type D : O/W Laser, Cap Type E : O/W Price Point Fleece, Cap Type G :
+        S/W Woven Bottoms, Cap Type H : S/W Woven Tops, Wovens - Tops\",\" Cap Type
+        A : O/W Non Seam Seal, Soft Shell Poly Fleece, Cap Type C: O/W Seam Seal,
+        Cap Type H : S/W Woven Tops, Jacket/Coat/Parka - Insulated, Wovens - Tops\",\"
+        Cap Type A : O/W Non Seam Seal, Soft Shell Poly Fleece, Cap Type E : O/W Price
+        Point Fleece, Cap Type G : S/W Woven Bottoms\",\" Cap Type A : O/W Non Seam
+        Seal, Soft Shell Poly Fleece, Cap Type E : O/W Price Point Fleece, Cap Type
+        G : S/W Woven Bottoms, Cap Type H : S/W Woven Tops, Jacket/Coat/Parka - Insulated,
+        Jacket/Shell Non Insulated, Pant - Casual/Work, Short\",\" Cap Type A : O/W
+        Non Seam Seal, Soft Shell Poly Fleece, Cap Type F : S/W Knit, Cap Type G :
+        S/W Woven Bottoms, Cap Type H : S/W Woven Tops, Jacket/Shell Non Insulated,
+        Knits - Tops, Pajamas, Pant - Casual/Work, Tops  Knit, Tops  Woven\",\" Cap
+        Type A : O/W Non Seam Seal, Soft Shell Poly Fleece, Cap Type G : S/W Woven
+        Bottoms, Jacket/Coat/Parka - Insulated, Jacket/Shell Non Insulated, Pant -
+        Casual/Work, Short, Wovens - Tops\",\" Cap Type A : O/W Non Seam Seal, Soft
+        Shell Poly Fleece, Cap Type L : Gloves, Cap Type M: Headwear, Headwear\",\"
+        Cap Type A : O/W Non Seam Seal, Soft Shell Poly Fleece, Jacket/Shell Non Insulated,
+        Jogger, Pajamas, Sweater/Pullover, Sweatshirt/Hoodie/Fleece\",\" Cap Type
+        B : O/W Down, Cap Type C: O/W Seam Seal, Cap Type D : O/W Laser, Cap Type
+        F : S/W Knit, Cap Type G : S/W Woven Bottoms, Tops  Knit\",\" Cap Type B :
+        O/W Down, Cap Type C: O/W Seam Seal, Cap Type G : S/W Woven Bottoms, Cap Type
+        H : S/W Woven Tops, Dress/Skirt/Skort, Jacket/Coat/Parka - Insulated, Jacket/Parka
+        - Interchange, Jacket/Shell Non Insulated, Pant - Casual/Work, Short, Tops
+        \ Woven, Wovens - Tops\",\" Cap Type B : O/W Down, Cap Type C: O/W Seam Seal,
+        Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non
+        Insulated, Pant - Casual/Work, Short, Vest - Insulated, Wovens - Tops\",\"
+        Cap Type B : O/W Down, Cap Type E : O/W Price Point Fleece, Jacket - Leather,
+        Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non
+        Insulated\",\" Cap Type B : O/W Down, Cap Type E : O/W Price Point Fleece,
+        Jacket - Leather, Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange,
+        Jacket/Shell Non Insulated, Pant/Suit - Insulated/Rain\",\" Cap Type B : O/W
+        Down, Dress/Skirt/Skort, Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange,
+        Jacket/Shell Non Insulated, Pant - Casual/Work, Pant/Suit - Insulated/Rain,
+        Short, Swim, Wovens - Tops\",\" Cap Type C: O/W Seam Seal, Cap Type D : O/W
+        Laser, Cap Type F : S/W Knit, Cap Type H : S/W Woven Tops, Cap Type L : Gloves,
+        Cap Type M: Headwear, Glove/Mitten - Knit, Headwear, Tops  Knit, Tops  Woven\",\"
+        Cap Type E : O/W Price Point Fleece, Cap Type F : S/W Knit, Cap Type G : S/W
+        Woven Bottoms, Dress/Skirt/Skort, Knits - Tops, Pant - Casual/Work\",\" Cap
+        Type E : O/W Price Point Fleece, Cap Type F : S/W Knit, Cap Type G : S/W Woven
+        Bottoms, Knits - Tops, Sweatshirt/Hoodie/Fleece\",\" Cap Type E : O/W Price
+        Point Fleece, Cap Type F : S/W Knit, Dress/Skirt/Skort, Jacket/Shell Non Insulated,
+        Jogger, Knits - Tops, Pajamas, Pant/Suit - Insulated/Rain, Short, Sweater/Pullover,
+        Sweatshirt/Hoodie/Fleece, Tops  Knit, Tops  Woven, Wovens - Tops\",\" Cap
+        Type E : O/W Price Point Fleece, Cap Type F : S/W Knit, Dress/Skirt/Skort,
+        Jacket/Shell Non Insulated, Knits - Tops, Pant - Casual/Work, Short, Softshell/Fleece\",\"
+        Cap Type E : O/W Price Point Fleece, Cap Type F : S/W Knit, Knits - Tops,
+        Tops  Knit\",\" Cap Type E : O/W Price Point Fleece, Cap Type G : S/W Woven
+        Bottoms, Cap Type H : S/W Woven Tops\",\" Cap Type E : O/W Price Point Fleece,
+        Cap Type G : S/W Woven Bottoms, Cap Type H : S/W Woven Tops, Jacket/Coat/Parka
+        - Insulated, Pant/Suit - Insulated/Rain\",\" Cap Type E : O/W Price Point
+        Fleece, Cap Type G : S/W Woven Bottoms, Cap Type H : S/W Woven Tops, Short,
+        Sweatshirt/Hoodie/Fleece, Wovens - Tops\",\" Cap Type E : O/W Price Point
+        Fleece, Cap Type G : S/W Woven Bottoms, Knits - Tops, Tops  Knit\",\" Cap
+        Type E : O/W Price Point Fleece, Dress/Skirt/Skort, Knits - Tops, Tops  Knit\",\"
+        Cap Type F : S/W Knit, Cap Type G : S/W Woven Bottoms, Cap Type H : S/W Woven
+        Tops, Dress/Skirt/Skort, Jacket - Leather, Jacket/Coat/Parka - Insulated,
+        Jacket/Parka - Interchange, Jacket/Shell Non Insulated, Knits - Tops, Pajamas,
+        Pant - Casual/Work, Pant/Suit - Insulated/Rain, Scarf, Short, Sweater/Pullover,
+        Sweatshirt/Hoodie/Fleece, Swim, Tops  Knit, Tops  Woven, Underwear, Wovens
+        - Tops\",\" Cap Type G : S/W Woven Bottoms\",\" Cap Type G : S/W Woven Bottoms,
+        Cap Type H : S/W Woven Tops, Short\",\" Cap Type G : S/W Woven Bottoms, Jacket/Coat/Parka
+        - Insulated, Jacket/Shell Non Insulated, Short\",\" Cap Type G : S/W Woven
+        Bottoms, Pant - Casual/Work\",\" Cap Type H : S/W Woven Tops, Dress/Skirt/Skort,
+        Jacket/Coat/Parka - Insulated, Pajamas, Short, Tops  Woven, Wovens - Tops\",\"
+        Cap Type K: Sweater, Sweater/Pullover\",\" Cap Type L : Gloves\",\" Cap Type
+        L : Gloves, Glove - Leather\",\" Cap Type L : Gloves, Glove - Leather, Glove/Mitten
+        - Knit, Headwear\",\" Cap Type L : Gloves, Glove/Mitten - Knit, Headwear\",\"
+        Cap Type M: Headwear\",\" Cap Type M: Headwear, Glove/Mitten - Knit, Headwear,
+        Scarf, Socks/Hosiery\",\" Cap Type M: Headwear, Headwear\",\" Cap Type S :
+        Socks, Socks/Hosiery\",\" Cap Type T : Eq Mhw Tent, Sleeping Bag, Backpack,
+        Headwear\",\" Cap Type T : Eq Mhw Tent, Sleeping Bag, Backpack, Tent\",\"
+        Climbing Accessories\",\" Components For Retread\",\" Dress/Skirt/Skort\",\"
+        Dress/Skirt/Skort, Glove/Mitten - Knit, Pajamas, Pant - Casual/Work, Tops
+        \ Knit, Underwear\",\" Dress/Skirt/Skort, Jacket - Leather, Jacket/Coat/Parka
+        - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non Insulated, Knits
+        - Tops, Pajamas, Pant - Casual/Work, Pant - Leather, Pant/Suit - Insulated/Rain,
+        Tops  Knit, Tops  Woven, Wovens - Tops\",\" Dress/Skirt/Skort, Jacket/Coat/Parka
+        - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non Insulated\",\" Dress/Skirt/Skort,
+        Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non
+        Insulated, Jogger, Knits - Tops, Pant - Casual/Work, Pant/Suit - Insulated/Rain,
+        Sweatshirt/Hoodie/Fleece, Tops  Knit, Tops  Woven, Wovens - Tops\",\" Dress/Skirt/Skort,
+        Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non
+        Insulated, Pant - Casual/Work, Pant/Suit - Insulated/Rain\",\" Dress/Skirt/Skort,
+        Jacket/Coat/Parka - Insulated, Jogger, Pant - Casual/Work\",\" Dress/Skirt/Skort,
+        Jacket/Parka - Interchange, Jacket/Shell Non Insulated, Pant/Suit - Insulated/Rain\",\"
+        Dress/Skirt/Skort, Jacket/Shell Non Insulated, Jogger, Knits - Tops, Short,
+        Wovens - Tops\",\" Dress/Skirt/Skort, Jacket/Shell Non Insulated, Pant - Casual/Work,
+        Short, Wovens - Tops\",\" Dress/Skirt/Skort, Jacket/Shell Non Insulated, Softshell/Fleece,
+        Vest - Insulated, Vest - Non Insulated, Water Bottles, Wovens - Tops\",\"
+        Dress/Skirt/Skort, Knits - Tops, Pajamas, Pant - Casual/Work, Sweatshirt/Hoodie/Fleece,
+        Textile\",\" Dress/Skirt/Skort, Knits - Tops, Short, Tops  Knit, Tops  Woven,
+        Underwear, Wovens - Tops\",\" Dress/Skirt/Skort, Pant - Casual/Work, Scarf,
+        Short, Tops  Woven, Wovens - Tops\",\" Dress/Skirt/Skort, Pant - Casual/Work,
+        Short\",\" Dress/Skirt/Skort, Pant - Casual/Work, Wovens - Tops\",\" Dress/Skirt/Skort,
+        Short\",\" Dress/Skirt/Skort, Wovens - Tops\",\" Equipment\",\" Fibers And
+        Textiles\",\" Footwear\",\" Footwear \",\" Gear\",\" Gear \",\" Glove - Leather\",\"
+        Glove - Leather, Glove/Mitten - Knit\",\" Glove/Mitten - Knit, Headwear\",\"
+        Glove/Mitten - Knit, Headwear, Scarf\",\" Glove/Mitten - Knit, Headwear, Socks/Hosiery\",\"
+        Headwear\",\" Headwear, Jacket/Shell Non Insulated, Knits - Tops, Pajamas,
+        Pant - Casual/Work, Sample Bag, Scarf, Short, Sweater/Pullover, Sweatshirt/Hoodie/Fleece,
+        Tops  Knit, Tops  Woven, Underwear, Vest - Non Insulated, Wovens - Tops\",\"
+        Higher Grade Polymers\",\" Inner Tubes And Bladder Stock\",\" Jacket - Leather,
+        Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non
+        Insulated\",\" Jacket - Leather, Jacket/Coat/Parka - Insulated, Jacket/Parka
+        - Interchange, Jacket/Shell Non Insulated, Knits - Tops, Pant - Casual/Work,
+        Pant - Leather, Pant/Suit - Insulated/Rain, Short, Swim, Tops  Knit, Tops
+        \ Woven, Wovens - Tops\",\" Jacket - Leather, Jacket/Coat/Parka - Insulated,
+        Jacket/Shell Non Insulated, Tops  Knit, Tops  Woven, Wovens - Tops\",\" Jacket/Coat/Parka
+        - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non Insulated, Jogger,
+        Pant - Casual/Work, Pant/Suit - Insulated/Rain, Short, Swim, Vest - Insulated,
+        Vest - Non Insulated, Wovens - Tops\",\" Jacket/Coat/Parka - Insulated, Jacket/Parka
+        - Interchange, Jacket/Shell Non Insulated, Knits - Tops, Tops  Knit, Tops
+        \ Woven, Wovens - Tops\",\" Jacket/Coat/Parka - Insulated, Jacket/Parka -
+        Interchange, Jacket/Shell Non Insulated, Pant - Casual/Work, Pant/Suit - Insulated/Rain\",\"
+        Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non
+        Insulated, Pant - Casual/Work, Pant/Suit - Insulated/Rain, Short, Vest - Insulated,
+        Vest - Non Insulated, Wovens - Tops\",\" Jacket/Coat/Parka - Insulated, Jacket/Parka
+        - Interchange, Jacket/Shell Non Insulated, Pant - Casual/Work, Pant/Suit -
+        Insulated/Rain, Softshell/Fleece\",\" Jacket/Coat/Parka - Insulated, Jacket/Parka
+        - Interchange, Jacket/Shell Non Insulated, Pant - Casual/Work, Wovens - Tops\",\"
+        Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non
+        Insulated, Pant/Suit - Insulated/Rain, Short, Softshell/Fleece, Wovens - Tops\",\"
+        Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange, Jacket/Shell Non
+        Insulated, Pant/Suit - Insulated/Rain, Tops  Woven, Vest - Insulated, Wovens
+        - Tops\",\" Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange, Pant
+        - Casual/Work, Short\",\" Jacket/Coat/Parka - Insulated, Jacket/Parka - Interchange,
+        Pant/Suit - Insulated/Rain, Short\",\" Jacket/Coat/Parka - Insulated, Jacket/Parka
+        - Interchange, Tops  Knit, Wovens - Tops\",\" Jacket/Coat/Parka - Insulated,
+        Jacket/Shell Non Insulated, Pant - Casual/Work, Short, Softshell/Fleece\",\"
+        Jacket/Coat/Parka - Insulated, Jacket/Shell Non Insulated, Pant/Suit - Insulated/Rain,
+        Sweatshirt/Hoodie/Fleece, Wovens - Tops\",\" Jacket/Coat/Parka - Insulated,
+        Knits - Tops, Pant - Casual/Work, Short, Wovens - Tops\",\" Jacket/Coat/Parka
+        - Insulated, Pant - Casual/Work\",\" Jacket/Coat/Parka - Insulated, Pant -
+        Casual/Work, Short\",\" Jacket/Coat/Parka - Insulated, Short\",\" Jacket/Coat/Parka
+        - Insulated, Short, Tops  Woven, Wovens - Tops\",\" Jacket/Coat/Parka - Insulated,
+        Tops  Woven, Vest - Insulated, Wovens - Tops\",\" Jacket/Parka - Interchange\",\"
+        Jacket/Shell Non Insulated, Jogger, Knits - Tops, Pant - Casual/Work, Sweatshirt/Hoodie/Fleece,
+        Tops  Knit\",\" Jacket/Shell Non Insulated, Pant - Casual/Work, Softshell/Fleece\",\"
+        Jacket/Shell Non Insulated, Short, Sweatshirt/Hoodie/Fleece\",\" Jogger, Knits
+        - Tops, Pant - Casual/Work, Short, Sweater/Pullover, Sweatshirt/Hoodie/Fleece\",\"
+        Jogger, Pajamas, Short, Sweater/Pullover, Tops  Knit\",\" Jogger, Pajamas,
+        Short, Sweatshirt/Hoodie/Fleece, Tops  Knit\",\" Karachi\",\" Knits - Tops\",\"
+        Knits - Tops, Pajamas, Sweatshirt/Hoodie/Fleece, Tops  Knit, Tops  Woven\",\"
+        Knits - Tops, Pant - Casual/Work\",\" Knits - Tops, Pant - Casual/Work, Short\",\"
+        Knits - Tops, Pant - Casual/Work, Short, Sweatshirt/Hoodie/Fleece, Textile,
+        Tops  Knit\",\" Knits - Tops, Pant - Casual/Work, Short, Tops  Knit, Wovens
+        - Tops\",\" Knits - Tops, Sweatshirt/Hoodie/Fleece\",\" Knits - Tops, Tops
+        \ Knit, Tops  Woven\",\" Knits - Tops, Tops  Knit, Tops  Woven, Wovens - Tops\",\"
+        Knits - Tops, Tops  Knit, Underwear\",\" Knits - Tops, Tops  Knit, Wovens
+        - Tops\",\" Multi-Tool\",\" Off Road Tires\",\" Off-The-Road Radial Tires\",\"
+        Other\",\" Other \",\" Pant - Casual/Work\",\" Pant - Casual/Work, Wovens
+        - Tops\",\" Passenger And Light Truck Tires\",\" Passenger, Light Truck, Truck
+        And Bus Tires\",\" Passenger, Light Truck, Truck, Industrial, Agricultural
+        And Off Road Tires\",\" Racing Tires\",\" Scarf\",\" Sellampalayam Post\",\"
+        Short, Sweater/Pullover\",\" Short, Sweater/Pullover, Sweatshirt/Hoodie/Fleece\",\"
+        Short, Sweater/Pullover, Sweatshirt/Hoodie/Fleece, Tops  Knit\",\" Socks/Hosiery\",\"
+        Sunglasses, Sweater/Pullover, Tops  Knit, Tops  Woven\",\" Sweatshirt/Hoodie/Fleece\",\"
+        Swim\",\" S\xE3o Paulo\\\"\",\" Tent\",\" Tent Pole/Frame\",\" Textile\",\"
+        Tire Cord And Industrial Fabric\",\" Tops  Knit\",\" Tops  Knit, Tops  Woven\",\"
+        Tops  Woven, Wovens - Tops\",\" Tread Rubber And Retreading Materials\",\"
+        Truck And Bus Tires\",\" Value Added Metal Stampings\",\" Valverde Del Majano\",\"
+        Vapi\",\" Vest - Non Insulated, Wovens - Tops\",\" Wovens - Tops\",\" Wuyi
+        County\",\" Xiangxing Street\",\" Yoga Accessories, Yoga Mats\",\" Yoga Mats\",\"0\",\"Accessories\",\"Accessories
+        & Packaging\",\"Accessories-Kids\",\"Accessories-Mens\",\"Accessories-Womens\",\"Accessory\",\"Accountancy
+        And Tax Advisory \",\"Acoustics\",\"Active Wear\",\"Activewear\",\"Activewear
+        And Mid-Layers\",\"Activewear Fabrics\",\"Adult Beverages\",\"Air Springs\",\"Alienware
+        Desktops Inspiron Desktops Networking Optiplex Desktops Poweredge Servers
+        Precision Desktops Vostro Desktops Wyse Desktops Xps Desktops Compellent Powervault
+        Accessories\",\"Alienware Desktops Inspiron Desktops Networking Optiplex Desktops
+        Poweredge Servers Precision Desktops Vostro Desktops Xps Desktops Compellent\\nHyperconverged
+        Infrastructure Isilon\\nPowermax Powerprotect Powerscale Powerstore Powervault
+        Unity Xt Accessories\",\"Alienware Desktops Inspiron Desktops Networking Optiplex
+        Desktops Poweredge Servers Precision Desktops Vostro Desktops Xps Desktops
+        Compellent\\nHyperconverged Infrastructure Powerprotect\\nPowerscale Powervault
+        Accessories\",\"Alienware Desktops Inspiron Desktops Networking Optiplex Desktops
+        Poweredge Servers Precision Desktops Vostro Desktops Xps Desktops Compellent
+        Powerscale Powervault Accessories\",\"Alienware Notebooks Chromebook Notebooks
+        Inspiron Notebooks Latitude Notebooks Precision Notebooks Vostro Notebooks\\nXps
+        Notebooks Accessories Parts/Components\",\"Alienware Notebooks Chromebook
+        Notebooks Inspiron Notebooks Latitude Notebooks Vostro Notebooks Accessories\\nParts/Components\",\"Alienware
+        Notebooks Inspiron Desktops Inspiron Notebooks Latitude Notebooks Optiplex
+        Desktops Poweredge Servers Precision Desktops Vostro Desktops Vostro Notebooks
+        Xps Notebooks Accessories\",\"Amni Soul Eco\xAE Nylon Yarn\",\"Apex Dss\\nAvamar
+        Centera\\nData Domain / Idpa Dlm\\nEci / Ecs\\nIsilon Powerprotect Powerstore
+        Recoverpoint Unity\\nVnx Vnxe\",\"Apparel\",\"Apparel \",\"Apparel Labels\",\"Apparel/Hard
+        Goods\",\"Apparels\",\"Apprel\",\"Aprons\",\"Assembly\",\"Athletic Shoes\",\"Athletic
+        Uniforms\",\"Avamar Centera Connectrix\\nData Domain / Idpa Eci Ecs\\nIsilon
+        Powerflex Powermax Power Protect Powerstore Recoverpoint Unity\\nVmax Vnx
+        Vnxe\\nVplex Vscale Vxblock Xtremio\",\"Baby\",\"Backpack\",\"Bags\",\"Bags
+        \",\"Bags & Soft Cases\",\"Bakery\",\"Bakery/Deli\",\"Baseunit\",\"Bath\",\"Batteries\",\"Batteries
+        &It\",\"Battery\",\"Beau\",\"Beauty\",\"Bed\",\"Bed \",\"Bed/Table/Bath\",\"Bedskirts\",\"Belts\",\"Belts\\nGifts\\nLeather
+        Bags\\nNon-Leather Bags\\nSmall Leather Goods\\nSmall Metal Items\\nTextile
+        Bags\\nWallets And Purses\\nWash Bags\",\"Belts\\nTies\",\"Beverages\",\"Bibshorts\",\"Bike\",\"Bike
+        Lights\",\"Bike Shorts\",\"Bikewear\",\"Bindings\",\"Biotechnology\",\"Bits\",\"Bladders\",\"Blankets\",\"Blazers\",\"Bleaching\",\"Blended
+        Yarn\",\"Blouses\",\"Bobs\",\"Body Wear\",\"Boot\",\"Boots\",\"Boots \",\"Bottom
+        And Injection Slippers Flip- Flops\",\"Bottoms\",\"Boxer Shorts\",\"Bra Tops\",\"Bras\",\"Bridal\",\"Briefs\",\"Bumpers\",\"Buttons\",\"Cafe\",\"Cameras\",\"Camp
+        Furniture\",\"Caps\",\"Carabiners\",\"Casual Jackets\\nCasual Trousers\\nFormal
+        Trousers\\nOuterwear\",\"Casual Jackets\\nCasual Trousers\\nJersey\\nShorts\\nWoven
+        Tops\",\"Casual Shoes\",\"Casual Trousers\\nDresses\\nJersey\\nSkirts\\nWoven
+        Tops\",\"Chair Covers\",\"Chairs\",\"Charger\",\"Chemicals\",\"Childrens Footwear\",\"Chipset\",\"Circuit
+        Cards\",\"Circuit Cards / Vga\",\"Circular Knit\",\"Classic Boot\",\"Classic
+        Snow Boot\",\"Closed Shoes\",\"Clothes\",\"Clothing\",\"Coat\",\"Coated Fabrics\",\"Coats\",\"Coats/Outerwear\",\"Cocktail
+        Dresses\",\"Comforters\",\"Component/Trim\",\"Connector\",\"Connectors, Clips,
+        Spring Contacts, Cables\",\"Connectrix Mhc\\nPowerflex Powermax Vmax Vplex\\nVscale
+        Vxblock Xtremio\",\"Consulting\",\"Consumer Products|Toys\",\"Converse\",\"Cosmetics\",\"Cosmic
+        Pants\",\"Costume\",\"Cotton\",\"Cotton Yarn\",\"Cotton-Poly Tees, Premium
+        Tee\",\"Couture\",\"Cpu\",\"Cufflinks\\nJewellery\\nLeather Jewellery\\nSmall
+        Metal Items\",\"Curtains\",\"Customization\",\"Cut Make Trim (Cmt)\",\"Cycling\",\"Cycling
+        Shoes\",\"Dairy/Frozen\",\"Dance Exercisewear\",\"Data Domain Isilon Powermax
+        Powerstore Unity Xtremio\",\"Decor\",\"Decorative Ho\",\"Decorative Home\",\"Decorative
+        Pillows\",\"Deli\",\"Denim\",\"Denim Product\",\"Denim Shorts\",\"Dishes\",\"Display\",\"Display/Lcd\",\"Displays/Lcd\",\"Disposable
+        Uniforms\",\"Dock\",\"Domestics\",\"Double Face\",\"Down Jackets\",\"Drapery\",\"Dress
+        Shirts\",\"Dresses\",\"Dresses\\nCasual Jackets\\nFormal Jackets\\nOuterwear\\nSkirts\\nWoven
+        Hats\",\"Dresses\\nFormal Jackets\\nOuterwear\\nSkirts\\nWomen'S Tailoring\\nWoven
+        Scarves\",\"Dresses\\nSkirts\\nTops\\nTrousers\",\"Dresses \\nJersey\\nSkirts
+        \\nWoven Tops\",\"Dresses, Embellished Garments\",\"Dresses, Tops, Swim, Embroidery\",\"Drinkware\",\"Drinkware
+        Accessories\",\"Dry Grocery\",\"Dry Grocery & Beverage\",\"Dt Cables & Power
+        Cords\",\"Dt Thermal\",\"Dt Vga\",\"Dye\",\"Dyed And Printing\",\"Dyeing\",\"Electromechanical,
+        Mems\",\"Embroidered Patches\",\"Embroidery\",\"Embroidery \",\"Energy\",\"Engineering
+        Consultant\",\"Entertainment\",\"Equipment\",\"Evening\",\"Evening Dresses\",\"Eyewear\",\"Fabric\",\"Fabric
+        Mills\",\"Fabrics\",\"Facemasks\",\"Fashion Accessories\",\"Faux Fur Soft
+        Accessories\",\"Fibre\",\"Financial Services \",\"Flat Knit\",\"Flatlock Activewear\",\"Fleece\",\"Fleece
+        And Insulation\",\"Fleece Bottoms\",\"Fleece Tops\",\"Flip- Flops\",\"Foam
+        Pad\",\"Food & Beverage\",\"Footwear\",\"Footwear & Accessories\",\"Formal
+        Jackets \\nFormal Trousers\\nSuits\",\"Formal Jackets & Trousers, \\nOuterwear
+        \",\"Formal Shirts\\nShirts\",\"Formal Wear\",\"Fpga\",\"Fresh Dairy\",\"Fresh
+        Meat\",\"Frozen Dairy/Cheese\",\"Full/Half Zips\",\"Fur\",\"Garment\",\"Garments\",\"Garments
+        & Accessories\",\"Garments Washing Plant\",\"Gear &\",\"Gear & Accessories\",\"General
+        Or Speciality Retailing\",\"Gifts\",\"Gifts\\nSocks\",\"Gilets\",\"Gloves\",\"Goggles\",\"Golf\",\"Government
+        Registry\",\"Gpu\",\"Greige Fabric\",\"Hand Loomed Knitwear\",\"Handbags\",\"Hard
+        Coolers\",\"Hard Goods\",\"Hardgoods\",\"Hat\",\"Hat Pins\",\"Hats\",\"Hats
+        \",\"Hats And Headbands\",\"Hdd\",\"Head Bands\",\"Headlamps\",\"Headwear\",\"Heavyknit\",\"Helmets\",\"Hemp
+        Yarn\",\"Herbal Teas & Spices\",\"Herbs\",\"Home\",\"Home Electronics\",\"Home
+        Furnishing\",\"Home Furnishing Products\",\"Home Furnishings\",\"Home Products\",\"Home
+        Textiles\",\"Home Textiles \",\"Homeware\",\"Hosiery\",\"Housewares\",\"Hshld/Papr\",\"Ic\",\"Imager\",\"Inbetween
+        Jackets\",\"Infant/Baby Bedding\",\"Innerwear/Lingerie\",\"Inspiron Desktops
+        All In One Iot Gateway\\nOptiplex Desktops All In One Accessories Parts/Components\",\"Inspiron
+        Desktops Inspiron Notebooks Latitude Notebooks Optiplex Desktops Precision
+        Notebooks Vostro Notebooks Wyse Desktops Wyse Notebooks Xps Notebooks Accessories
+        Parts/Components\",\"Inspiron Notebooks Vostro Notebooks Accessories Parts/Components\",\"Int/Hos/Sleep\",\"Interlinings\",\"Intimates\",\"Iot
+        Embedded Pc Latitude Notebooks\\nLatitude Rugged Notebooks Precision Notebooks\\nWyse
+        Desktops Accessories Parts/Components\",\"Iphones\",\"Jacket\",\"Jackets\",\"Jackets
+        (Shell Jackets And Insulation)\",\"Jackets/Blazers\",\"Jeans\",\"Jersey\",\"Jerseys\",\"Jewellery\",\"Jewelry\",\"Jewelry/Acce\",\"Jewelry/Access\",\"Jogging
+        Suits\",\"Jumpsuits\",\"Keyboard & Mouse\",\"Kid'S Shoes\",\"Kids Apparel\",\"Kitchen\",\"Knit
+        Activewear\",\"Knit Bottom\",\"Knit Bottoms\",\"Knit Dresses\",\"Knit Headwear\",\"Knit
+        Shirts/Tops\",\"Knit Top\",\"Knit Tops\",\"Knits\",\"Knitted Accessories\",\"Knitted
+        Fabric Washing\",\"Knitted Gloves\\nKnitted Hats\\nKnitted Scarves\",\"Knitted
+        Gloves, Hats & Scarves\",\"Knittied Garments\",\"Knitting Yarn\",\"Knitwear\",\"Knitwear,
+        Socks\",\"Lace\",\"Lady Shoe\",\"Laptops\",\"Latitude Notebooks\",\"Latitude
+        Notebooks Precision Notebooks Parts/Components\",\"Latitude Rugged Notebooks
+        Latitude Rugged Tablets Accessories\",\"Law Practice \",\"Leash\",\"Leather\",\"Leather
+        Bags\",\"Leather Bags\\nNon-Leather Bags\\nSmall Leather Goods\\nTextile Bags\\nWallets
+        And Purses\\nWashbags\",\"Leather Bags\\nNon-Leather Bags\\nSmall Leather
+        Goods\\nWallets And Purses\\nWash Bags\",\"Leather Bags\\nPvc Accessories\",\"Leather
+        Bags\\nSmall Leather Goods\\nWallets And Purses\",\"Leather Bags Purses\",\"Leather
+        Bags Purses And Wallets\",\"Leather Belts\",\"Leather Garments\",\"Leather
+        Gloves\",\"Leather Goods\",\"Leather Jackets\",\"Leather Manufacturing \",\"Leather
+        Outerwear\",\"Leggings\",\"Legwear\",\"Linen\",\"Lining\",\"Liocel\",\"Logic
+        / Software\",\"Logic/Software\",\"Long-\",\"Long- Sleeved Shirts\",\"Long-Sleeved
+        Shirts\",\"Long-Sleeved T-Shirts\",\"Long-Sleevedt-Shirts\",\"Loungewear\",\"Luggage\",\"Luxury
+        Goods\",\"Manufacture Of Professional And Arcade Games And Toys\",\"Manufacturer
+        Of Sheep Leather\",\"Manufactures Passenger And Light Truck Tires\",\"Materials\",\"Mbg
+        Display\",\"Mechanical\",\"Memory\",\"Mens\",\"Mens Footwear\",\"Merchandising
+        & Showroom\",\"Metals & Mining\",\"Midsole\",\"Midsole/Outsole\",\"Miscellaneous\",\"Mobile/Services\",\"Monitor\",\"Napkins\",\"Nb
+        Adapter\",\"Nb Battery\",\"Nb Kb &\\nCamera\",\"Nb Lcd\",\"Neckwear/Ties\",\"Networking\",\"Networking
+        Parts/Components\",\"Nic/Raid Card\",\"Nike\",\"Nit Apparel\",\"No Sourcing
+        Category\",\"Non Retail\",\"Non-Leather Bags\\nPvc Accessories\",\"O&M Services\",\"Odd\",\"Optiplex
+        Desktops Vostro Desktops Accessories\",\"Otc\",\"Other\",\"Other Industry
+        Sectors\",\"Outdoor Jackets\",\"Outer Coat\",\"Outerwear\",\"Outerwear\\nWomen'S
+        Tailoring\",\"Outwear\",\"Overshoes\",\"Packaging, Labels, Adhesives\",\"Packaging,
+        Metal Trims\",\"Packs\",\"Pads\",\"Pants\",\"Pants \",\"Parts/Components\",\"Passives\",\"Pc\",\"Pc,
+        Display\",\"Pcb\",\"Performance\",\"Pet Care\",\"Pets\",\"Pfds\",\"Pharmaceuticals\",\"Plastic\",\"Plastics\",\"Polar
+        Fleece\",\"Poles\",\"Polo Shirt\",\"Polo Shirts\",\"Polyamide\",\"Polyester\",\"Polyester/Nylon\",\"Power
+        Supply\",\"Poweredge Servers Wyse All In One Accessories Parts/Components\",\"Ppe\",\"Pressing\",\"Print\",\"Print,
+        Display\",\"Printed Jersey\",\"Printing\",\"Printing Press\",\"Processed/Frozen
+        Meat\",\"Produce/Floral\",\"Pu\",\"Pu Synthetic Factory\",\"Pure Linen\",\"Pv
+        Systems\",\"Pvc Accessories\",\"Pvc Accessories\\nSmall Leather Good\",\"Radio
+        Frequency\",\"Rainwear\",\"Ready Made Garments\",\"Ready-To-We\",\"Ready-To-Wear\",\"Related
+        Knit Bottoms\",\"Related Woven Bottoms\",\"Related Woven Tops\",\"Retail\",\"Retail
+        & Direct Distribution\",\"Robes\",\"Roica\xAE V550 Elastane Yarn\",\"Running\",\"Running
+        Shoes\",\"Sandal\",\"Sandals\",\"Sandals \",\"Scarves\",\"Screen Printed Logos\",\"Screen
+        Printed T-Shirts\",\"Seasnl/Outdr Living\",\"Semiconductors - Integrated Circuits,
+        Discretes, Leds\",\"Sewing Thread Manufacturer\",\"Shapewear\",\"Sheets\",\"Shields,
+        Metal Parts, Screws\",\"Shirt\",\"Shirts\",\"Shoe\",\"Shoes\",\"Shoes Manufacturer\",\"Shoppingbags\",\"Short-
+        Sleeved Shirts\",\"Short-Sleeved Shirts\",\"Short-Sleeved Shirts,Tanks\",\"Shorts\",\"Shorts,Long-Sleeved
+        Shirts\",\"Silk Ties, Bow Ties, Pocket Squares\",\"Skins\",\"Skirts\",\"Skirts,
+        Tops\",\"Sleeping Bags\",\"Sleeping Bags \",\"Sleeping Pads\",\"Sleepwear\",\"Slip-On\",\"Slipper\",\"Slippers\",\"Slippers\\n\",\"Slips\",\"Small
+        Goods\",\"Small Leather Goods\",\"Small Leather Goods\\nWash Bags\",\"Snacks/Candy\",\"Sneakers\",\"Snowbaords\",\"Snowboards\",\"Socks\",\"Socks/Hosiery\",\"Soft
+        Goods\",\"Softgoods\",\"Something\",\"Spandex\",\"Sport Shoes\",\"Sporting
+        Goods\",\"Sports Garments\",\"Sports Shoes\",\"Sportswear\",\"Ssd/Hdd\",\"Stationery\",\"Stickers\",\"Storage\",\"Storage/Utility\",\"Straw
+        Hats\",\"Suits\",\"Suits \\nOuterwear\",\"Sunglasses\",\"Sweater\",\"Sweaters\",\"Sweaters
+        \",\"Sweatpants\",\"Sweatshirts\",\"Sweatshirts,Long-Sleeved Shirts\",\"Swim\",\"Swimwear\",\"Systems
+        Services\",\"T-Shirts\",\"Table Cloths\",\"Tailored\",\"Tailored Clothing\",\"Tailoring\",\"Tanks\",\"Tannery\",\"Tea\",\"Tea,
+        Herbs\",\"Team Sportswear\",\"Technical Sports Apparel\",\"Tees\",\"Telecommunication\",\"Tents\",\"Tents
+        & Sleeping Pads\",\"Testing\",\"Textile Apparel\",\"Textile Products\",\"Textile/
+        Fabric\",\"Textile/Fabric\",\"Textiles\",\"Tier 2\",\"Timber\",\"Tokyodachi\",\"Tops\",\"Tops,
+        Dresses\",\"Touch Panel\",\"Toys\",\"Tread Rubber And Retreading Materials\",\"Triathlon\",\"Trim
+        - Composite\",\"Trim - Single Material\",\"Trims\",\"Trousers\",\"Trousers
+        \\nDresses \\nSkirts\\nWoven Tops \\nEmbroidered & Embellished Tops\",\"Umbrellas\",\"Unconstructed
+        Jackets\",\"Undergarments\",\"Underwear\",\"Uniforms\",\"Usb Docking\",\"Utility
+        Services\",\"Vests\",\"Vests,Blaz- Ers\",\"Viscose\",\"Viscose Yarn\",\"Vulcanized
+        Shoes\",\"Wallets/Totes\",\"Water Bottles\",\"Water Utilities\",\"Wax\",\"Wetsuits\",\"Window\",\"Winter\",\"Wireless\",\"Women'S
+        Shoes\",\"Womens Footwear\",\"Womens Shoes\",\"Wool Yarn\",\"Workwear\",\"Woven\",\"Woven
+        Activewear\",\"Woven Ball Caps, Knit Caps\",\"Woven Bottoms\",\"Woven Dresses\",\"Woven
+        Dresses \\nWoven Tops\",\"Woven Fabrics\",\"Woven Scarves\",\"Woven Shirts\",\"Woven
+        Tops\",\"Wovens\",\"Yarn Dyeing\",\"Yarn Dyeing And Knitting Products\",\"Yarns\",\"Young
+        Contemporary\",\"Zipper Trim\",\"Zippers\",\"['Herbs', 'Herbal Teas & Spices',
+        'Tea']\",\"['Tea']\",\"[{'Raw_Values': ['Herbs', 'Herbal Teas & Spices', 'Tea']}]\",\"[{'Raw_Values':
+        ['Tea']}]\",\"[{'Value': 'Tea'}]\",\"{'Raw_Values': ['Herbs', 'Herbal Teas
+        & Spices', 'Tea']}\",\"{'Raw_Values': ['Tea']}\"]"
+    headers:
+      Allow:
+      - OPTIONS, GET
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '34179'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 10:54:08 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 544814e402956ba93c0a2d2b923e94c2.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - Lbsx4YiWKkE2bnrJQXPqa3594swZkn-PJsQfcofz2PHlQSPp5W_ZMQ==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,0 +1,171 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"gazetteercache": {"ok": true}, "caches": [{"api_throttling": {"ok":
+        true}}, {"default": {"ok": true}}], "databases": [{"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 10:44:36 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 2a44338adc8233e5b25aca28287a69c8.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - MEi4CtJghUcVCvguqZU7M72nvklGPNxGpgAwHXtOg9yEjxGepYO9yw==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109371}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 10:44:36 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 74c5b19a4695b76162adbf07ed9ef370.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - tRsnp2PZ8Ge74TC3-ERChvowhLdYWD6EOab2AJOpXMz3sWwrVtaGSQ==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facility-processing-types/
+  response:
+    body:
+      string: '[{"facilityType":"Final Product Assembly","processingTypes":["Assembly","Cut
+        & Sew","Cutting","Embellishment","Embroidery","Final Product Assembly","Finished
+        Goods","Ironing","Knit Composite","Knitwear Assembly","Linking","Making up","Manufacturing","Marker
+        Making","Molding","Packaging","Pattern Grading","Pleating","Product Finishing","Ready
+        Made Garment","Sample Making","Seam taping","Sewing","Steaming","Stitching","Tailoring"]},{"facilityType":"Office
+        / HQ","processingTypes":["Headquarters","No processing","Office","Office /
+        HQ","Sourcing Agent","Trading"]},{"facilityType":"Printing, Product Dyeing
+        and Laundering","processingTypes":["Batch Dyeing","Coating","Continuous dyeing","Direct
+        Digital Ink Printing","Dyeing","Fabric All Over Print","Fabric Chemical Finishing","Fiber
+        Dye","Finishing","Flat Screen Printing","Garment Dyeing","Garment Finishing","Garment
+        Place Print","Garment Wash","Hand Dye","Laundering","Laundry","Pre-treatment","Printing","Printing,
+        Product Dyeing and Laundering","Product Dyeing","Rotary Printing","Screen
+        Printing","Spray Dye","Sublimation","Textile Chemical Finishing","Textile
+        Dyeing","Textile Mechanical Finishing","Textile Printing","Tye Dye","Washing","Wet
+        Processing","Wet roller printing","Yarn Dyeing"]},{"facilityType":"Raw Material
+        Processing or Production","processingTypes":["Biological Recycling","Boiling","Breeding","Chemical
+        Recycling","Chemical Synthesis","Collecting","Concentrating","Disassembly","Down
+        Processing","Dry Spinning","Extrusion","Ginning","Hatchery","Mechanical Recycling","Melt
+        Spinning","Preparation","Preparatory","Processing Site","Pulp making","Raw
+        Material Processing or Production","Retting","Scouring","Shredding","Slaughterhouse","Slaughtering","Sorting","Spinning","Standardization
+        / Chemical finishing","Synthetic Leather Production","Tannery","Tanning","Textile
+        Recycling","Top making","Twisting/Texturizing Facility","Wet Spinning","Yarn
+        spinning"]},{"facilityType":"Textile or Material Production","processingTypes":["Blending","Bonding","Buffing","Circular
+        Knitting","Components","Doubling","Embellishment","Embossing","Embroidery","Fabric
+        mill","Flat Knit","Fusing","Garment Accessories manufacturing","Knitting","Knitting
+        Seamless","Knitting V Bed","Knitting Warp","Lace Knitting","Laminating","Material
+        Creation","Material Production","Mill","Nonwoven Processing","Nonwoven manufacturing","Painting","Pelletizing","Pressing","Spraying","Straight
+        Bar Knitting","Textile Mill","Textile or Material Production","Weaving","Welding"]},{"facilityType":"Warehousing
+        / Distribution","processingTypes":["Packing","Warehousing / Distribution"]}]'
+    headers:
+      Allow:
+      - OPTIONS, GET
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2626'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 10:44:36 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 a54cda8ccda3480314f451558e4dd062.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - o6C_K8eu36olkG1LYgN2IHPHX97MfzdQUmQOZlwDGDBWmJG59Cmrcg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

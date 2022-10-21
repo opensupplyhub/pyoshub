@@ -1,0 +1,143 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"gazetteercache": {"ok": true}, "caches": [{"api_throttling": {"ok":
+        true}}, {"default": {"ok": true}}], "databases": [{"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 10:34:45 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 372875ad1ec20daf24f3f29f14a73cd0.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - HFbeahhqkxROMIUO6jSDvqEKc5wQBfbA-os2oMc9CVEYngAx_RzvfQ==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109371}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 10:34:45 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 7251dede1ac94066b27bcd33919b30c6.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - J01wljAfTIL7_HoqkDaoKkYznnq2jbt7zhGVtf2ak-pPevUS9qVwAA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/workers-ranges/
+  response:
+    body:
+      string: '["Less than 1000","1001-5000","5001-10000","More than 10000"]'
+    headers:
+      Allow:
+      - GET, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '61'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 10:34:45 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 79272ab9b399ee696b329d4f677dca48.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - f_Alf9rxLU79sJbk89oMnPKivo_uRI9Sim1Ly7f8ETIxSapMQb3D4w==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

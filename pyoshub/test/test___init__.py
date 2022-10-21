@@ -22,7 +22,9 @@ class Test___init__:
     def test_invalid_protocol(self):
         osh_api = pyoshub.OSH_API(url="invalid://will_raise_exception")
         assert(osh_api.result == {'code': -1, 'message': "No connection adapters were found for 'invalid://will_raise_exception/health-check/'"})
-        assert(osh_api.error == True)
+        assert(osh_api.error)
+        assert(not osh_api.ok)
+        assert(osh_api.reason == "No connection adapters were found for 'invalid://will_raise_exception/health-check/'")
 
     #@pytest.mark.vcr()
     def test_invalid_url(self):

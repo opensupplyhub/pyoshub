@@ -1,0 +1,373 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}],
+        "gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 12:26:57 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 6bf2ca4ea5a5c92a1d7cd2f9767e8674.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - vCjH_W4ME1AqUvdgjssHh2qeo6bUpEM4R7G_BHsBJlneSgyYP-P6QQ==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109371}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 12:26:57 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 dc0aad619823d3400ef947433d0af8fa.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - igyXj7o8YrGR_hZ_DbQVyQh7HA9eYkXO85Be72jpoyRKDMwVGMDREg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/contributors
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Fri, 21 Oct 2022 12:26:57 GMT
+      Location:
+      - /api/contributors/
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Via:
+      - 1.1 efb4ddf9650598b987ef5db782c5b530.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 9yihQCP67IuurOx7xYR31eSfvd0lsESr1TjcSEn5-L8HFqN1VcZBWw==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 301
+      message: Moved Permanently
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/contributors/
+  response:
+    body:
+      string: "[[1632,\"3FREUNDE\"],[2422,\"ABOUT YOU SE & Co. KG\"],[1955,\"ABVTEX
+        [Public List]\"],[2729,\"aca-amfori\"],[856,\"Accent Banner\"],[127,\"adidas\"],[2757,\"Alaska
+        Cannabis Licensing [BETA - Public List]\"],[128,\"Alchemist\"],[543,\"ALDI
+        Einkauf Gmbh & Co. ohG\"],[587,\"ALDI SOUTH Group (represented by HOFER KG)\"],[1078,\"Amazon\"],[2768,\"Amazon
+        - BETA\"],[2769,\"Amazon - BETA\"],[1140,\"Amber Denim Mills Ltd\"],[2756,\"AMD
+        [Public List]\"],[2258,\"American Textile\"],[78,\"Amer Sports\"],[1922,\"An\u0131l\"],[1474,\"Animale
+        [Public List]\"],[465,\"Another Tomorrow\"],[2670,\"Antigua\"],[1448,\"Anwar
+        Sons\"],[1424,\"APG & Co\"],[2745,\"Apple [BETA - Public List]\"],[165,\"Arcadia
+        Group\"],[1534,\"Arcteryx [Public List]\"],[259,\"ARK GARMENTS MANUFACTURING
+        INDUSTRIES COMPANY LTD\"],[563,\"ARMEDANGELS (Social Fashion Company GmbH)\"],[85,\"Asics
+        [Public List]\"],[1710,\"ASOS\"],[1155,\"Atlantik T\xFCketim Mal Tic ve San
+        Ltd \u015Eti\"],[2648,\"Aussco Hong Kong Limited\"],[1429,\"AWTEX Garment
+        Co.LTD\"],[1617,\"Babyface\"],[910,\"BANGLADESH SPINNERS & KNITTERS (PVT.)
+        LTD.\"],[1914,\"BARISCAN DOKUMA IPLIK TEKSTIL SANAYI TICARET LIMITED SIRKETI
+        - BITLIS SUBESI\"],[867,\"BASANT EXPORTS\"],[1503,\"Becri - Malhas e Confeccoes,
+        S.A.\"],[2008,\"Benetton Group\"],[495,\"Bestseller [Public List]\"],[699,\"Better
+        Cotton Initiative [Public List]\"],[2693,\"Billi London\"],[962,\"Birla Century
+        (A Div. of Century Textiles & Industries  Ltd.)\"],[2520,\"Bismillah Industries
+        (Pvt) Ltd.\"],[2077,\"Blue Planet Knit Composite Ltd\"],[59,\"Blumine\"],[532,\"Boden\"],[1696,\"Bojos
+        Tanning, Inc\"],[2042,\"Bonprix [Public List]\"],[1969,\"Boohoo Group\"],[43,\"BQY_USA\"],[204,\"BRAC
+        University\"],[148,\"Brand Collective [Public List]\"],[2667,\"breeze\"],[2748,\"Bridgestone
+        [BETA - Public List]\"],[83,\"Brooklyn Fashion Design Accelerator (BFDA)\"],[2594,\"Brooks
+        Sports Inc\"],[2264,\"Bubbleroom [Public List]\"],[2456,\"Burberry Manifattura
+        S.R.L.\"],[2738,\"Burton [BETA - Public List]\"],[931,\"Burton Snowboards\"],[2658,\"By
+        Hare - (Coelho Ind. E Com. Conf. LTDA).\"],[2480,\"C&A\"],[2204,\"Calzedonia
+        group\"],[1861,\"Camper [Public List]\"],[1557,\"Carrefour [Public List]\"],[1928,\"CHONGQING
+        YA SHI TE SHOES CO,LTD\"],[1380,\"Choudhary Fashions U2\"],[1766,\"City Chic
+        Collective\"],[2487,\"Clarks\"],[1294,\"Club L London\"],[456,\"Coles [Public
+        List]\"],[1544,\"Colorkarma\"],[2562,\"Colosseum\"],[2340,\"Columbia Sportswear
+        Company\"],[2754,\"Columbia Sportswear Company - BETA\"],[1626,\"Comfit Composite
+        Knit Ltd.\"],[2716,\"Company\"],[1834,\"C\xF4ng ty TNHH Saitex International
+        \u0110\u1ED3ng Nai (VN)\"],[598,\"Converse [Public List]\"],[2770,\"Cotopaxi
+        [BETA - Public List]\"],[1261,\"Cotton Made In Africa [Public List]\"],[1037,\"Cotton
+        On [Public List]\"],[253,\"CPS TEXTILES (P) LTD\"],[1821,\"Crown Textile\"],[1993,\"Crown
+        Textile Unit II\"],[1405,\"Dafiti [Public List]\"],[215,\"dare to be b.v.\"],[2379,\"David
+        Jones [BETA - Public List]\"],[1796,\"Da Zheng Footwear Co., Ltd\"],[149,\"Debenhams
+        [Public List]\"],[1142,\"de Bijenkorf\"],[2681,\"Deckers Brands\"],[1698,\"Decko
+        shoes Co.\uFF0CLtd\"],[1873,\"Dedicated Sweden AB\"],[2739,\"Dell [BETA -
+        Public List]\"],[774,\"Delta Galil Industries Ltd\"],[488,\"Desigual\"],[2755,\"Desigual
+        - BETA\"],[1856,\"DHL METROPOLITAN LOGISTICS SC DE MEX SA CV\"],[1573,\"Dick's
+        Sporting Goods \"],[2759,\"Disney [BETA - Public List]\"],[241,\"DO FIRST
+        MS PHILS. CORP.\"],[1657,\"Dongguan Boya Shoes Co.,Ltd\"],[1830,\"Dongguan
+        Crown Eagle Wet Finishing Factory Ltd\"],[1175,\"Dongguan Dalisheng Fashion
+        Company Ltd. \"],[1810,\"Dongguan HongYi Leatherware Co., Ltd\"],[1878,\"Dongguan
+        Jingfu Metal Electronics Products Co., Ltd\"],[1671,\"DONG GUAN KIN SHING
+        SHOES CO., LTD.\"],[2282,\"Ducky Dons Nederland BV\"],[2631,\"EASTERN HERITAGE\"],[2409,\"EAST
+        EU\"],[1787,\"Eastman Exports Global Clothing Pvt Ltd\"],[2266,\"EILEEN FISHER
+        Inc.\"],[879,\"El Corte Ingl\xE9s [Public List]\"],[1143,\"Elevate Textiles,
+        Inc.\"],[2328,\"Elias Saif\"],[1775,\"ELK\"],[2163,\"Ellos Group [Public List]\"],[2728,\"Emily
+        Hu for Test\"],[2656,\"Eren Konfeksiyon Tekstil San. ve Tic. Ltd. \u015Eti.\"],[715,\"Esprit\"],[2601,\"Esquel
+        Group [Public List]\"],[505,\"Essenza Home\"],[828,\"ETAM GROUP\"],[2566,\"Etam
+        Lingerie\"],[75,\"Ethical Apparel Africa\"],[2442,\"Ethical Made\"],[2055,\"ETIQUETAS
+        Y BORDADOS DE GUATEMALA, S.A. (ETIQBORD)\"],[2684,\"Eudock GmbH\"],[759,\"Everest
+        Textile Co., Ltd\"],[1682,\"EVERGREEN SHOES COMPANY LTD \"],[49,\"Faering
+        Ltd\"],[96,\"Fair Factories Clearinghouse\"],[2771,\"Fairphone [BETA - Public
+        List]\"],[2083,\"Fairtrade\"],[1978,\"Fair Trade USA\"],[1213,\"Fanatics [Public
+        List]\"],[1909,\"fang linquan\"],[1627,\"Farid Hossain\"],[1994,\"FARON TEKST\u0130L
+        VE MED\u0130KAL \xDCR\xDCNLER\u0130 \u0130TH. \u0130HR. SAN. VE T\u0130C.
+        LTD.\u015ET\u0130\"],[4,\"Fast Retailing [Public List]\"],[1087,\"FEMINA LACE
+        DYE WORKS CO.,LTD\"],[2185,\"Fendi [Public List]\"],[957,\"Fenix Outdoor International
+        AG\"],[1990,\"FILIDEA SRL\"],[1314,\"Find Sourcing\"],[1872,\"Fond-Of [Public
+        List]\"],[2636,\"Forever New [Public List]\"],[1675,\"Foshan Chancheng nuoante
+        shoes Co., Ltd\"],[1673,\"Foshan Guosheng Shoes Co., Ltd\"],[1092,\"Fred Perry\"],[1061,\"friulprint
+        srl\"],[2484,\"Fruit of the Loom\"],[1656,\"FUQING CITY FUXING SHOES CO.,LTD\"],[1884,\"Fuqing
+        Shengyuan Footwear Co.,Ltd\"],[771,\"Gabriela Hearst\"],[2542,\"Ganga\"],[2023,\"GANNI\"],[2483,\"Gap
+        Inc.\"],[2281,\"Garment Resources\"],[717,\"George Clothing by Asda [Public
+        List]\"],[549,\"Gildan [Public List]\"],[2256,\"Gina Tricot [Public List]\"],[2618,\"Global
+        Exports Unit-I\"],[2725,\"Global Trace Protocol\"],[2356,\"G\xF6kmen \xDCkelge\"],[2259,\"Gorewear
+        [Public List]\"],[118,\"Gowtham Selvaraj\"],[1490,\"Green Smart Shirts Ltd.\"],[2184,\"Grendene
+        [Public List]\"],[2357,\"Grupo Elcatex\"],[133,\"G-Star RAW\"],[252,\"Guangzhou
+        Goldwing Garment Co. Ltd.\"],[844,\"Guangzhou Hongzheng Industrial Co., LTD\"],[1468,\"Habitus
+        Fashion Ltd.\"],[1476,\"Hanes Brand [Public List]\"],[2737,\"Hasbro [BETA
+        - Public List]\"],[1988,\"HAYR\u0130 U\u011EUR TEKST\u0130L ANON\u0130M \u015E\u0130RKET\u0130
+        \ - Ugur Tekstil San ve Tic. Ltd. Sti\"],[2009,\"HBC [Public List]\"],[2617,\"Helly
+        Hansen\"],[836,\"HEMA B.V.\"],[979,\"Hem Mills\"],[2096,\"Hering [Public List]\"],[1934,\"Heshan
+        Yongchuang shoes Co., LTD\"],[685,\"Higg\"],[2722,\"Higg\"],[1441,\"HIRDARAMANI
+        GROUP\"],[2615,\"H&M Group\"],[843,\" HONG  SHENG SHOES COMPANY LTD\"],[2741,\"HP
+        [BETA - Public List]\"],[274,\"Hue Textile Garment JSC\"],[18,\"HUGO BOSS\"],[1816,\"HUI
+        RUI XIN HANDBAG\_(CAMBODIA) CO.,LTD\"],[1531,\"Hula Global\"],[599,\"Hurley
+        [Public List]\"],[1879,\"Hylo Athletics\"],[225,\"Inditex [Public List]\"],[1375,\"Interloop
+        Limited\"],[2233,\"International Accord Foundation\"],[264,\"Intex Link Garments
+        (BD) Limited\"],[1419,\"I SAW IT FIRST LTD \"],[966,\"ITL Holdings Limited\"],[65,\"James&Co\"],[2124,\"JCPenney\"],[2760,\"JCPenney
+        - BETA\"],[2278,\"JD Sports Fashion [Public List]\"],[1605,\"JD Williams and
+        Company LTD trading as N Brown \"],[88,\"Jeanswest [Public List]\"],[1735,\"jingwei\"],[1246,\"John
+        Lewis Partnership\"],[2279,\"Joules\"],[210,\"Just Brands\"],[2726,\"Justin
+        Demo 2\"],[709,\"Justin Walgran\"],[2776,\"Justin Walgran Contribution Test
+        Account\"],[1260,\"KappAhl [Public List]\"],[82,\"Kariwala Industries Ltd\"],[540,\"Kathmandu
+        Holdings\"],[1234,\"Kaufland [Public List]\"],[67,\"Key Textiles \"],[1668,\"KIABI\"],[2117,\"Kid
+        [Public List]\"],[575,\"Kings Of Indigo \"],[2752,\"Klaus (Openapparel)\"],[2519,\"Kmart
+        Australia\"],[902,\"Kontoor Brands [Public List]\"],[2749,\"Kroger [BETA -
+        Public List]\"],[1820,\"KT DERI\"],[143,\"Kuyichi B.V.\"],[907,\"Lacoste [Public
+        List]\"],[360,\"LAMPO\"],[915,\"L Brands [Public List]\"],[2764,\"Lego [BETA
+        - Public List]\"],[2777,\"Lego [Public List]\"],[2612,\"Leiner Shoes Pvt.
+        Ltd.\"],[2744,\"Lenovo [BETA - Public List]\"],[321,\"Lever Style\"],[25,\"Levi
+        Strauss & Co.\"],[1918,\"Lidl Asia\"],[849,\"LIDL [Public List]\"],[1776,\"lima
+        i\xE7 giyim sanayi ve ticaret a.\u015F.\"],[1028,\"Lindex [Public List]\"],[2560,\"Liningas
+        UAB\"],[1690,\"LODENFREY Menswear\"],[1606,\"Lojas Renner [Public List]\"],[1505,\"LOVE
+        HERO LTD\"],[1111,\"L. ten Cate BV\"],[797,\"lululemon\"],[2750,\"Macpac [BETA
+        - Public List]\"],[1102,\"Maison 123\"],[2622,\"Make it British [Public List]\"],[284,\"Mam
+        Apparel & Textiles Ltd\"],[337,\"Mammut Sports Group\"],[1387,\"MANGO \"],[333,\"Mantis
+        World\"],[2367,\"Mariel\"],[2773,\"mariel - gmail\"],[1678,\"Marimekko [Public
+        List]\"],[1927,\"Marisa [Public List]\"],[586,\"Marks & Spencer [Public List]\"],[1229,\"Mastex
+        Co.,Ltd.\"],[444,\"Matalan [Public List]\"],[2767,\"Mattel [BETA - Public
+        List]\"],[2478,\" M.C.K  INTERNATIONAL LIMITED\"],[913,\"MC LAUNDRY, LLC\"],[2509,\"MEC\"],[2751,\"MEC
+        - BETA\"],[2552,\"MEHNAZ STYLES & CRAFT LTD. (NEW)\"],[1264,\"Merim Co., Ltd\"],[1595,\"Merimo
+        Ltd\"],[1222,\"mhibanada\"],[2731,\"Mike Maurizi\"],[1116,\"Missguided [Public
+        List]\"],[420,\"Mizuno [Public List]\"],[289,\"M.K.SUNDHERAM\"],[1538,\"MNS
+        Garments Printing\"],[875,\"MODA COCKTAIL\"],[2605,\"Moon Readywears Ltd\"],[592,\"Morrisons\"],[2182,\"
+        NA-KD\"],[377,\"New Balance\"],[358,\"New Look Retailers\"],[683,\"New Market
+        Goods\"],[194,\"Next Plc\"],[20,\"Nike [Public List]\"],[153,\"Nine & Co.\"],[2313,\"Ningxia
+        Sengeli Cashmere Products Co., Ltd.\"],[2139,\"Nirapon Inc.\"],[1165,\"Nishat
+        Mills Ltd, Unit-10 (Yarn Dyeing)\"],[1320,\"Nobody's Child\"],[2270,\"Nordstrom
+        [Public List]\"],[2253,\"Nudie Jeans\"],[236,\"NYG(Vietnam)Co,.Ltd \"],[1392,\"OEKO-TEX
+        \xAE\"],[137,\"Okimono\"],[1492,\"OLYMP Bezner KG\"],[1135,\"O'Neill Europe
+        BV\"],[477,\"Opcion calificada S.A.S\"],[1183,\"Open Apparel Registry\"],[1168,\"Orhun
+        Tekstil\"],[1504,\"Osklen [Public List]\"],[2491,\"Outerknown\"],[2621,\"Outerstuff
+        LLC\"],[911,\"Outland Denim\"],[981,\"OVS Spa\"],[2081,\"Pandora Sweaters
+        Ltd.\"],[2193,\"PANGAIA\"],[1659,\"Paramount Textile Ltd.\"],[661,\"Partnership
+        for Sustainable Textiles (PST)\"],[99,\"Patagonia\"],[1328,\"Penguin Apparels
+        (P) Ltd \"],[245,\"PENTAGON GARMENTS\"],[1149,\"Pentakim kim.mad.san.ve tic.ltd.sti.\"],[349,\"Pentland
+        Brands\"],[1510,\"Pernambucanas [Public List]\"],[2743,\"Philips [BETA - Public
+        List]\"],[1863,\"Picture Organic Clothing [Public List]\"],[481,\"Pimkie [Public
+        List]\"],[1964,\"Piping Hot \"],[1525,\"Posh Garments Ltd.\"],[1084,\"Pou
+        Chen Group\"],[730,\"PPE: Defence Research & Development Organisation (DRDO)\"],[732,\"PPE:
+        IDH PPE Dashboard\"],[733,\"PPE: Mapped in Bangladesh\"],[731,\"PPE: Nation
+        of Makers & Find the Masks\"],[729,\"PPE: OAR community submissions & desk
+        research\"],[120,\"PRAUDEN\"],[651,\"Primark [Public List]\"],[1895,\"PROSPER
+        SHOES CO. LTD.\"],[260,\"Protech Manufacturing (Pvt) Ltd\"],[1685,\"PT. Doosan
+        Dunia Busana\"],[1601,\"PT JMTECH BUSANA GLOBAL\"],[2578,\"Public Habit\"],[193,\"PUMA\"],[2288,\"Pungkook
+        Myanmar Limited\"],[714,\"PVH\"],[2326,\"Qingdao Jifa Group Huatai Knitting
+        Co., Ltd. Aoshan Factory\"],[1237,\"Qingdao Jifa Group Huatai Knitting Co.,Ltd
+        Qiji Factory\"],[1396,\"Qingdao Jifa Huafeng Garment Co.,Ltd Wangcun Factory\"],[1652,\"QINGDAO
+        ROHI TRADING CO., LTD\"],[1829,\"Qingdao\_Jifa\_Group\_Huatai\_Knitting\_Co.,Ltd\_Jinkou\_Factory\"],[1432,\"Qingdao\_Jifa\_Group\_Huatai\_Knitting\_Co.,Ltd\_Tongji\_Factory\"],[2155,\"Quanzhou
+        Helun Knitting & Weaving Co., Ltd.\"],[1712,\"Rainbow Fabart Pvt Ltd\"],[323,\"Rainbow
+        Textiles LLC\"],[1337,\"Ralph Lauren Corporation\"],[2070,\"Rapha\"],[792,\"Reformation\"],[1585,\"REI
+        Co-op [Public List]\"],[2098,\"Restoque [Public List]\"],[384,\"RGC Impex\"],[1907,\"Riachuelo
+        [Public List]\"],[953,\"River Island\"],[24,\"R.M. Williams [Public List]\"],[1711,\"Robertus\"],[784,\"Rowlinson
+        Knitwear Limited\"],[2765,\"RSPO [BETA - Public List]\"],[316,\"Rushan Dexin
+        Garment  Co.,Ltd.\"],[1220,\"Salvage Is Salvation Ltd\"],[2740,\"Samsung [BETA-Public
+        List]\"],[961,\"S.A.N. International(33-34)\"],[2389,\"SanMar [Public List]\"],[1240,\"Sapphire
+        Textile Mills Limited\"],[2030,\"Sarker Design & Printing\"],[1336,\"SARPTEKS
+        G\u0130Y\u0130M SAN. VE T\u0130C. LTD. \u015ET\u0130.\"],[816,\"Schijvens
+        Corporate Fashion \"],[1714,\"Scotch & Soda [Public List]\"],[1031,\"SDC\uFF08HongKong\uFF09Corporation
+        Limited\"],[1962,\"SELF MAGLIERIA SRL\"],[2671,\"Shanghai Broadway Int'l Trading
+        Corp\"],[1363,\"ShangHai Jingrong Science &Technology Co., LTD\"],[1784,\"Shaoxing
+        Xingming Dyeing&Tressing Co.,Ltd\"],[213,\"Shenzhen Full  Yarn Imp&Exp Co.,
+        Ltd.\"],[2544,\"SHIVANK UDYOG LTD\"],[1479,\"S.H Packages (Pvt) Limited.\"],[1215,\"Sia
+        Fashions\"],[291,\"SMART ELEGANT VIET NAM\"],[2148,\"Smart Shirts Knits Limited\"],[535,\"Solidaridad\"],[1881,\"SOL
+        VAE\"],[1758,\"Soorty Enterprises pvt \"],[1789,\"SOUTHERN TEXTILE NETWORK\"],[2064,\"Spectre
+        A/S\"],[1138,\"Star Garment (Pvt) Limited\"],[2758,\"State of Washington Wineries
+        [BETA - Public List]\"],[1819,\"Stonemen Crafts India Private Limited (Amroha)\"],[1025,\"STONE
+        YIKAMA VE KURU TEMIZLEME\"],[1160,\"Studio Anneloes\"],[2746,\"Sunrock - BETA\"],[1137,\"Super
+        Duper Goods Limited\"],[2673,\"Suresh Kumar\"],[307,\"Sweet Girl Egypt\"],[605,\"Sylvia
+        Jeffery Limited\"],[1680,\"Tai Jie footwear Co., Ltd.\"],[1533,\"Tai Wilkin\"],[102,\"TAL
+        Apparel Limited\"],[2608,\"Target Australia\"],[100,\"Target Corporation\"],[2747,\"Target
+        Corporation - BETA\"],[1041,\"TAY NINH KUO YUEN LTD\"],[34,\"Tchibo\"],[2025,\"Ted
+        Baker Plc\"],[1967,\"Tesco \"],[2736,\"test\"],[1139,\"TFG London Brands\"],[1388,\"THANG
+        LONG  INIVESTMENT E.XPORT - IMPORTJONT STOCK COMPANY\"],[2295,\"Tharun Eniyan\"],[2197,\"THE
+        ICONIC\"],[952,\"The Other Cult\"],[188,\"The PAS Group\"],[52,\"thesouth\"],[949,\"The
+        Very Group\"],[2128,\"The Warehouse [Public List]\"],[1096,\"The WikiRate
+        Project e.V.\"],[1247,\"TIENHU KNITTING CO LTD. OF DONGGUAN\\t\"],[2123,\"Tiger
+        of Sweden [Public List]\"],[281,\"Titrianis\"],[1661,\"TNZ Apparels Limited\"],[1201,\"TOMS
+        [Public List]\"],[908,\"Tom Tailor [Public List]\"],[2688,\"TransAsia TanTec
+        Ltd\"],[2674,\"Triple A Apparel Limited\"],[2723,\"TrusTrace\"],[1877,\"T
+        & S BUTTONS (BANGLADESH) LTD.\"],[446,\"Tu Clothing by Sainsbury's [Public
+        List]\"],[2733,\"Tyler heath\"],[2734,\"Ty Lisi\"],[202,\"Udomsuk Intergroup
+        Co., Ltd.\"],[1112,\"UggBugg Fashion Ltd\"],[1250,\"UK Ladies Wear ltd\"],[2152,\"\xDCmit
+        Karako\xE7 Tekstil San. ve Tic. Ltd. \u015Eti.\"],[974,\"Under Armour [Public
+        List]\"],[1376,\"US Apparel & Textiles Pvt. Ltd.\"],[1811,\"US Denim Mills
+        (Pvt.) Ltd.\"],[1445,\"UTAH Knitting & Dyeing \"],[2362,\"Vanessa Watson\"],[1166,\"Vanilia
+        \"],[1073,\"van zon mode Nederland bv\"],[877,\"Varner AS\"],[2084,\"Vaude
+        [Public List]\"],[1765,\"Ventura (Bangladesh) Ltd.\"],[2386,\"Versarien Graphene
+        Limited\"],[116,\"VF Corporation\"],[2639,\"VGFASTER, UNIPESSOAL LDA\"],[145,\"WageIndicator
+        Foundation\"],[1931,\"wangguochao\"],[1508,\"WE Europe BV\"],[1694,\"wenzhou
+        benchi shoes co.,ltd\"],[1935,\"Wenzhou Grand Base Shoes Co., LTD\"],[1713,\"WENZHOU
+        YUANBIAO SHOES CO., LTD\"],[129,\"WeTex\"],[1867,\"Wiley Eco Print Industrial
+        Co.,LTD\"],[2763,\"wilfried\"],[590,\"Woolworths Group [Public List]\"],[565,\"Worker
+        Rights Consortium\"],[2382,\"Xuzhou Texhong Yinlian Textile Co.,Ltd\"],[2742,\"Yeti
+        [BETA - Public List]\"],[1230,\"YK Creation\"],[982,\"YongFu\"],[1171,\"Yudu
+        Hengxin Garment Co. Ltd\"],[869,\"Zalando SE\"],[2574,\"Zalora\"],[2654,\"ZAMAN
+        TESKTIL SANAYI VE TIC. ITH.IHR. LTD. STI\"],[2504,\"Zavi Sports\"],[1045,\"ZDHC
+        Foundation\"],[310,\"ZEEMAN\"],[2109,\"Zegna [Public List]\"],[2600,\"Zephyr
+        Headwear [Public List]\"],[2523,\"ZheJiang huajianong Technology Co.,Ltd\"],[1745,\"ZHEJIANG
+        XINLAN TEXTILE CO., LTD.\"],[1536,\"ZhouPingPing\"],[1762,\"Zhouzhou Xusheng
+        Hats Co.Ltd \"],[1702,\"\u4E1C\u839E\u5E02\u7F8E\u5A1C\u9732\u897F\u978B\u4E1A\u6709\u9650\u516C\u53F8\"],[1496,\"\u5B89\u5FBD\u5F00\u6DA6\u80A1\u4EFD\u6709\u9650\u516C\u53F8\"],[1952,\"\u674E\u91D1\u4E91\"]]"
+    headers:
+      Allow:
+      - GET, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '14803'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 12:26:58 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 efb4ddf9650598b987ef5db782c5b530.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - QI381YgwH1k5u6vjM85fEseYqP6j0_MXGXI6fVzZSqdXTtUUwPauTQ==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

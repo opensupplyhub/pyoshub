@@ -1,6 +1,6 @@
 """pyosh is a Package for accessing the `Open Supply Hub API <https://opensupplyhub.org/api/docs>`_ using python."""
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 import os
 import yaml
@@ -11,27 +11,12 @@ import time
 from typing import Union
 import io
 import logging
+import copy
 
 
 class OSH_API():
     """This is a class that wraps API access to https://opensupplyhub.org.
      
-        Attributes
-        ----------
-        url: string
-           The URL used to connect to the API
-        token: string
-           The autentication token used to connect to the API
-        header: dict
-           The header used to connect, and authenticate to the API
-        api_call_count: int
-           The accumulated number of API calls made during the lifetime of the object. This value is not
-           persisted and gets initialised to 0 each time an object is instantiated.
-        result: dict
-           A distionary containing the result of the last call made. Key ``code`` is an int with an error
-           code (0 being no errors, nonzero indicating an error), and ``message`` a str containing an error message.
-           
-       
         Example
         -------
         This is an example of a yaml configuration file which supplies a valid API endpoint URL, and an API token.
@@ -63,123 +48,204 @@ class OSH_API():
 
         """
         result = {}
-        self.header = {}
+        self._header = {}
         credentials = {}
-        self.error = False
+        self._error = False
         
         if len(path_to_env_yml) > 0:
             try:
                 with open(path_to_env_yml,"rt") as f:
                     credentials = yaml.load(f,yaml.Loader)
-                    self.url = credentials["OSH_URL"]
-                    self.token = credentials["OSH_TOKEN"]
+                    self._url = credentials["OSH_URL"]
+                    self._token = credentials["OSH_TOKEN"]
                     logging.info(f"using specified env file")
             except Exception as e:
-                self.result = {"code":-1,"message":str(e)}
-                self.error = True
+                self._result = {"code":-1,"message":str(e)}
+                self._error = True
                 logging.error(str(e))
                 return
         elif len(url_to_env_yml) > 0:
             try:
                 r = requests.get(url_to_env_yml)
                 credentials = yaml.load(io.StringIO(r.text),yaml.Loader)
-                self.url = credentials["OSH_URL"]
-                self.token = credentials["OSH_TOKEN"]
+                self._url = credentials["OSH_URL"]
+                self._token = credentials["OSH_TOKEN"]
             except:
                 pass
         elif os.path.exists("./.env.yml"):
             try:
                 with open("./.env.yml","rt") as f:
                     credentials = yaml.load(f,yaml.Loader)
-                self.url = credentials["OSH_URL"]
-                self.token = credentials["OSH_TOKEN"]
+                self._url = credentials["OSH_URL"]
+                self._token = credentials["OSH_TOKEN"]
             except:
                 pass
         else:
-            self.url = url
+            self._url = url
             if len(token)>0:
-                self.token = token
+                self._token = token
         
         if "OSH_URL" in os.environ.keys():
-            self.url = os.environ["OSH_URL"]
+            self._url = os.environ["OSH_URL"]
         elif "OSH_URL" in credentials.keys():
-            self.url = credentials["OSH_URL"]
+            self._url = credentials["OSH_URL"]
         else:
-            self.url = url
+            self._url = url
             
         if "OSH_TOKEN" in os.environ.keys():
-            self.token = os.environ["OSH_TOKEN"]
+            self._token = os.environ["OSH_TOKEN"]
         elif "OSH_TOKEN" in credentials.keys():
-            self.token = credentials["OSH_TOKEN"]
+            self._token = credentials["OSH_TOKEN"]
         else:
-            self.token = token
+            self._token = token
          
-        self.url = self.url.strip("/") # remove trailing slash as we add it
+        self._url = self._url.strip("/") # remove trailing slash as we add it
         
-        self.header = {
+        self._header = {
             "accept": "application/json",
-            "Authorization": f"Token {self.token}"
+            "Authorization": f"Token {self._token}"
         }
         
+        self._api_call_count = 0
         self.last_api_call_epoch = -1
         self.last_api_call_duration = -1
-        self.api_call_count = 0
         self.countries = []
         self.countries_active_count = -1
-        self.contributors = []
+        self._contributors = []
         self.post_facility_results = {
             "NEW_FACILITY":1,
             "MATCHED":2,
             "POTENTIAL_MATCH":0,
             "ERROR_MATCHING":-1
         }
-        self.raw_data = {}
+        self._raw_data = ""
            
         # Check valid URL
         try:
-            r = requests.get(f"{self.url}/health-check/",timeout=5)
+            r = requests.get(f"{self._url}/health-check/",timeout=5)
             if r.ok:
-                self.result = {"code":0,"message":"ok"}
-                self.error = False
+                self._result = {"code":0,"message":"ok"}
+                self._error = False
             else:
-                self.result = {"code":r.status_code,"message":r.reason}
-                self.error = False
+                self._result = {"code":r.status_code,"message":r.reason}
+                self._error = False
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
         
         # Check header/token validity
-        if check_token and len(self.token.strip()) == 0:
-            self.result = {"code":-1,"message":"No/empty token"}
-            self.error = True
+        if check_token and len(self._token.strip()) == 0:
+            self._result = {"code":-1,"message":"No/empty token"}
+            self._error = True
         elif check_token:
+            self._raw_data = ""
             try:
                 self.last_api_call_epoch = time.time()
-                r = requests.get(f"{self.url}/api/facilities/count/",headers=self.header)
+                r = requests.get(f"{self._url}/api/facilities/count/",headers=self._header)
+                self._raw_data = copy.copy(r.text)
                 self.last_api_call_duration = time.time()-self.last_api_call_epoch
-                self.api_call_count += 1
+                self._api_call_count += 1
                 if not r.ok:
-                    self.result = {"code":r.status_code,"message":str(r)}
-                    self.error = True
+                    self._result = {"code":r.status_code,"message":str(r)}
+                    self._error = True
                 else:
                     # Check everything is working
                     try:
-                        facilites_count_json = json.loads(r.text)
-                        facilites_count = facilites_count_json["count"]
-                        self.result = {"code":0,"message":"ok"}
-                        self.error = False
+                        data = json.loads(r.text)
+                        facilites_count = data["count"]
+                        self._result = {"code":0,"message":"ok"}
+                        self._error = False
                     except Exception as e:
-                        self.result = {"code":-1,"message":"JSON error: "+str(e)}
-                        self.error = True
+                        self._result = {"code":-1,"message":"JSON error: "+str(e)}
+                        self._error = True
                         return
             except Exception as e:
-                self.result = {"code":-1,"message":str(e)}
-                self.error = True
+                self._result = {"code":-1,"message":str(e)}
+                self._error = True
                 return
-        
+        else:
+            self._raw_data = ""
+
         return 
     
+    @property
+    def api_call_count(self) -> int:
+        """The accumulated number of API calls made during the lifetime of the object. This value is not
+           persisted and gets initialised to 0 each time an object is instantiated. When called as a setter, 
+           the number provided is added to API calls made so far.
+        """
+        return self._api_call_count
+
+
+    @api_call_count.setter
+    def api_call_count(self, value: int):
+        self._api_call_count += value
+
+
+    @property
+    def contributors(self) -> list:
+        """Return the list of contributors, if call to get_contributors had been made, or an empty list.
+        """
+        return self._contributors
+
+    @property
+    def raw_data(self) -> str:
+        """Return the raw data from the last request made. May be empty in some conditions
+        """
+        return self._raw_data
+
+    @property
+    def header(self) -> dict:
+        """Return the header used to make calls to the API
+        """
+        return self._header
+
+    @property
+    def error(self) -> bool:
+        """Return True if the previously made call returned an error, False otherwises.
+        """
+        return self._error
+
+    @property
+    def ok(self) -> bool:
+        """Return the False if the previously made call returned an error, True otherwises.
+           Provided to provide interface similar to ``requests``.
+        """
+        return not self._error
+
+    @property
+    def url(self) -> str:
+        """URL of endpoint to use, defaults to ``https://opensupplyhub.org``.
+        """
+        return self._url
+
+    @property
+    def token(self) -> str:
+        """Access token to authenticate to the API if not using any other method described in the `Authentication section <authentication.html>`_ .
+        """
+        return self._token
+
+    @property
+    def result(self) -> dict:
+        """A ditionary containing the result of the last call made. Key ``code`` is an int with an error
+           code (0 being no errors, nonzero indicating an error), and ``message`` a str containing an error message.
+        """
+        return self._result
+
+    @property
+    def status_code(self) -> int:
+        """Status code part of the last call result.
+           Provided to provide interface similar to ``requests``.
+        """
+        return self._result["code"]
+
+    @property
+    def reason(self) -> str:
+        """Error text part of the last call result, "ok" if no error.
+           Provided to provide interface similar to ``requests``.
+        """
+        return self._result["message"]
 
 
     def get_facilities(self, q : str = "", 
@@ -370,16 +436,18 @@ class OSH_API():
         
         parameters = "&".join(parameters)
         have_next = True
-        request_url = f"{self.url}/api/facilities/?{parameters}"
+        request_url = f"{self._url}/api/facilities/?{parameters}"
         
         alldata = []
+        self._raw_data = ""
         
         while have_next:
             try:
                 self.last_api_call_epoch = time.time()
-                r = requests.get(request_url,headers=self.header)
+                r = requests.get(request_url,headers=self._header)
+                self._raw_data = copy.copy(r.text)
                 self.last_api_call_duration = time.time()-self.last_api_call_epoch
-                self.api_call_count += 1
+                self._api_call_count += 1
                 if r.ok:
                     data = json.loads(r.text)
                     
@@ -394,20 +462,20 @@ class OSH_API():
                                 new_entry[k] = v
                         alldata.append(new_entry)
                         
-                    self.result = {"code":0,"message":f"{r.status_code}"}
+                    self._result = {"code":0,"message":f"{r.status_code}"}
                     if 'next' in data.keys() and data["next"] is not None:
                         request_url = data["next"]
                     else:
                         have_next = False
-                    self.error = False
+                    self._error = False
                 else:
                     #alldata = []
-                    self.result = {"code":-1,"message":f"{r.status_code}"}
+                    self._result = {"code":-1,"message":f"{r.status_code}"}
                     have_next = False
-                    self.error = True
+                    self._error = True
             except Exception as e:
-                self.result = {"code":-1,"message":str(e)}
-                self.error = True
+                self._result = {"code":-1,"message":str(e)}
+                self._error = True
                 return alldata
         
         return alldata
@@ -618,19 +686,19 @@ class OSH_API():
             if len(name)>0:
                 payload["name"] = name.strip()
             else:
-                self.result = {"code":-100,"message":"Error: Empty facility name given, we need a name."}
+                self._result = {"code":-100,"message":"Error: Empty facility name given, we need a name."}
                 return []
             
             if len(address)>0:
                 payload["address"] = address.strip()
             else:
-                self.result = {"code":-101,"message":"Error: Empty address given, we need an address."}
+                self._result = {"code":-101,"message":"Error: Empty address given, we need an address."}
                 return []
             
             if len(country)>0:
                 payload["country"] = country.strip()
             else:
-                self.result = {"code":-102,"message":"Error: Empty country name given, we need a country."}
+                self._result = {"code":-102,"message":"Error: Empty country name given, we need a country."}
                 return []
             
             if len(sector)>0:
@@ -675,23 +743,25 @@ class OSH_API():
         else:
             parameters += "&textonlyfallback=false"
                   
+        self._raw_data = ""
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.post(f"{self.url}/api/facilities/?{parameters}",headers=self.header,data=payload)
+            r = requests.post(f"{self._url}/api/facilities/?{parameters}",headers=self._header,data=payload)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             if r.ok:
-                self.raw_data = json.loads(r.text)
-                data = self._flatten_facilities_json(self.raw_data)
-                self.result = {"code":0,"message":f"{r.status_code}"}
-                self.error = False
+                data = json.loads(r.text)
+                data = self._flatten_facilities_json(data)
+                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._error = False
             else:
                 data = {"status":"HTTP_ERROR"}
-                self.result = {"code":-1,"message":f"{r.status_code}"}    
-                self.error = True
+                self._result = {"code":-1,"message":f"{r.status_code}"}    
+                self._error = True
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
                 
         return data
@@ -737,7 +807,9 @@ class OSH_API():
             +------------------------------+---------------------------------------------------------+-------+
             | status                       | one of ``PENDING``, ``REJECTED``, ``CONFIRMED``         | str   |
             +------------------------------+---------------------------------------------------------+-------+
-            | confidence                   | return value of the matching algorithm, formatted float | str   |
+            | confidence                   | return value of the matching algorithm,                 | str   |
+            |                              |                                                         |       |
+            |                              | formatted float                                         |       |
             +------------------------------+---------------------------------------------------------+-------+
             | results_code_version         | matching code revision, if set                          | str   |
             +------------------------------+---------------------------------------------------------+-------+
@@ -862,25 +934,27 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/contributor-types",headers=self.header)
+            r = requests.get(f"{self._url}/api/contributor-types",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             
             if r.ok:
                 data = [{"contributor_type":value} for value,display in json.loads(r.text)]
-                self.result = {"code":0,"message":f"{r.status_code}"}
+                self._result = {"code":0,"message":f"{r.status_code}"}
             else:
                 data = []
-                self.result = {"code":-1,"message":f"{r.status_code}"}
-            self.contributors = data
-            self.error = False
+                self._result = {"code":-1,"message":f"{r.status_code}"}
+            self._contributors = data
+            self._error = False
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._contributors = []
+            self._error = True
             return []
         
         return data
-        #return pd.DataFrame(self.contributors,columns=["contributor_type"])
+        #return pd.DataFrame(self._contributors,columns=["contributor_type"])
     
 
     def get_countries(self) -> list:
@@ -903,21 +977,21 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/countries",headers=self.header)
+            r = requests.get(f"{self._url}/api/countries",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             if r.ok:
-                self.raw_data = json.loads(r.text)
-                data = [{"iso_3166_2":cid,"country":con} for cid,con in self.raw_data]
-                self.result = {"code":0,"message":f"{r.status_code}"}
+                data = [{"iso_3166_2":cid,"country":con} for cid,con in json.loads(r.text)]
+                self._result = {"code":0,"message":f"{r.status_code}"}
             else:
                 data = []
-                self.result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code":-1,"message":f"{r.status_code}"}
             self.countries = data
-            self.error = False
+            self._error = False
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
 
         return data
@@ -935,20 +1009,22 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/countries/active_count",headers=self.header)
+            r = requests.get(f"{self._url}/api/countries/active_count",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             if r.ok:
                 data = int(json.loads(r.text)["count"])
-                self.result = {"code":0,"message":f"{r.status_code}"}
+                self._result = {"code":0,"message":f"{r.status_code}"}
             else:
+                data = {}
                 data = -1
-                self.result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code":-1,"message":f"{r.status_code}"}
             self.countries_active_count = data
-            self.error = False
+            self._error = False
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
         
         return data
@@ -975,12 +1051,14 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/facility-processing-types/",headers=self.header)
+            r = requests.get(f"{self._url}/api/facility-processing-types/",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             if r.ok:
-                facility_processing_types = json.loads(r.text)
-                self.result = {"code":0,"message":f"{r.status_code}"}
+                data = json.loads(r.text)
+                facility_processing_types = data
+                self._result = {"code":0,"message":f"{r.status_code}"}
                 alldata = []
                 for facility_processing_type in facility_processing_types:
                     for processingType in facility_processing_type["processingTypes"]:
@@ -989,14 +1067,14 @@ class OSH_API():
                             "processing_type":processingType
                         })
                 data = alldata
-                self.error = False
+                self._error = False
             else:
                 data = []
-                self.result = {"code":-1,"message":f"{r.status_code}"}
-                self.error = True
+                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._error = True
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
 
             
@@ -1022,22 +1100,22 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/product-types/",headers=self.header)
+            r = requests.get(f"{self._url}/api/product-types/",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             if r.ok:
-                self.raw_data = json.loads(r.text)
-                data = [{"product_type":sector} for sector in self.raw_data]
-                self.result = {"code":0,"message":f"{r.status_code}"}
-                self.error = False
+                data = [{"product_type":sector} for sector in json.loads(r.text)]
+                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._error = False
             else:
                 data = []
-                self.result = {"code":-1,"message":f"{r.status_code}"}
-                self.error = True
+                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._error = True
             self.product_types = data
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
 
         return data
@@ -1068,22 +1146,22 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/sectors/",headers=self.header)
+            r = requests.get(f"{self._url}/api/sectors/",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             if r.ok:
-                self.raw_data = json.loads(r.text)
-                data = [{"sector":sector} for sector in self.raw_data]
-                self.result = {"code":0,"message":f"{r.status_code}"}
-                self.error = False
+                data = [{"sector":sector} for sector in json.loads(r.text)]
+                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._error = False
             else:
                 data = []
-                self.result = {"code":-1,"message":f"{r.status_code}"}
-                self.error = True
+                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._error = True
             self.sectors = data
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
 
 
@@ -1117,9 +1195,10 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/workers-ranges/",headers=self.header)
+            r = requests.get(f"{self._url}/api/workers-ranges/",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             if r.ok:
                 workers_ranges = json.loads(r.text)
                 alldata = []
@@ -1131,32 +1210,30 @@ class OSH_API():
                         lower = 1
                     elif "More" in workers_range:
                         lower = workers_range.split(" ")[-1]
-                        upper = 999999
+                        upper = 99999999
                     else:
                         lower = -1
                         upper = -1
                     alldata.append({
                         "workers_range":workers_range,
-                        "lower":lower,
-                        "upper":upper,
+                        "lower":int(lower),
+                        "upper":int(upper),
                     })
-                self.result = {"code":0,"message":f"{r.status_code}"}
-                #data = pd.DataFrame(alldata)
+                self._result = {"code":0,"message":f"{r.status_code}"}
                 data = alldata
-                self.error = False
+                self._error = False
             else:
                 data = {
                         "workers_range":[],
                         "lower":[],
                         "upper":[],
                 }
-                data = []
-                self.result = {"code":-1,"message":f"{r.status_code}"}
-                self.error = True
+                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._error = True
             self.workers_ranges = data
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
 
         return data
@@ -1396,27 +1473,27 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/contributor-lists/?contributors={contributor_id}",headers=self.header)
+            r = requests.get(f"{self._url}/api/contributor-lists/?contributors={contributor_id}",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
 
             if r.ok:
-                self.raw_data = json.loads(r.text)
-                data = [{"list_id":cid,"list_name":con} for cid,con in self.raw_data]
-                self.result = {"code":0,"message":f"{r.status_code}"}
-                self.error = False
+                data = [{"list_id":cid,"list_name":con} for cid,con in json.loads(r.text)]
+                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._error = False
             else:
                 data = []
-                self.result = {"code":-1,"message":f"{r.status_code}"}
-                self.error = True
-            self.contributors = data
+                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._error = True
+            self._contributors = data
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
         
         return data
-        #return pd.DataFrame(self.contributors,columns=["list_id","list_name"])
+        #return pd.DataFrame(self._contributors,columns=["list_id","list_name"])
 
 
 
@@ -1440,27 +1517,27 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/contributors",headers=self.header)
+            r = requests.get(f"{self._url}/api/contributors",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
 
             if r.ok:
-                self.raw_data = json.loads(r.text)
-                data = [{"contributor_id":cid,"contributor_name":con} for cid,con in self.raw_data]
-                self.result = {"code":0,"message":f"{r.status_code}"}
-                self.error = False
+                data = [{"contributor_id":cid,"contributor_name":con} for cid,con in json.loads(r.text)]
+                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._error = False
             else:
                 data = []
-                self.result = {"code":-1,"message":f"{r.status_code}"}
-                self.error = True
-            self.contributors = data
+                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._error = True
+            self._contributors = data
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
         
         return data
-        #return pd.DataFrame(self.contributors,columns=["contributor_id","contributor_name"])
+        #return pd.DataFrame(self._contributors,columns=["contributor_id","contributor_name"])
     
   
     def get_contributors_active_count(self) -> int:
@@ -1474,21 +1551,22 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/contributors/active_count",headers=self.header)
+            r = requests.get(f"{self._url}/api/contributors/active_count",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             if r.ok:
                 data = int(json.loads(r.text)["count"])
-                self.result = {"code":0,"message":f"{r.status_code}"}
-                self.error = False
+                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._error = False
             else:
                 data = -1
-                self.result = {"code":-1,"message":f"{r.status_code}"}
-                self.error = True
+                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._error = True
             self.countries_active_count = data
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
 
    
@@ -1584,13 +1662,13 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/facilities/{osh_id}/",headers=self.header)
+            r = requests.get(f"{self._url}/api/facilities/{osh_id}/",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             if r.ok:
                 data = json.loads(r.text)
-                self.raw_result = data.copy()
-                self.result = {"code":0,"message":f"{r.status_code}"}
+                self._result = {"code":0,"message":f"{r.status_code}"}
                 
                 entry = {
                     "id": data["id"],
@@ -1625,17 +1703,16 @@ class OSH_API():
                             entry[k] = v
                         else:
                             entry[k] = ""
-                #data = pd.DataFrame(entry,index=[0])
+                            
                 data = entry.copy()
-                self.error = False
+                self._error = False
             else:
-                #data = pd.DataFrame()
                 data = {}
-                self.result = {"code":-1,"message":f"{r.status_code}"}
-                self.error = True
+                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._error = True
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return {}
         
         return data
@@ -1656,21 +1733,22 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/facilities/count",headers=self.header)
+            r = requests.get(f"{self._url}/api/facilities/count",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             if r.ok:
                 data = int(json.loads(r.text)["count"])
-                self.result = {"code":0,"message":f"{r.status_code}"}
-                self.error = False
+                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._error = False
             else:
                 data = -1
-                self.result = {"code":-1,"message":f"{r.status_code}"}
-                self.error = True
+                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._error = True
             self.countries_active_count = data
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
         
         return data
@@ -1701,22 +1779,22 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/parent-companies/",headers=self.header)
+            r = requests.get(f"{self._url}/api/parent-companies/",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             if r.ok:
-                self.raw_data = json.loads(r.text)
-                data = [{"key_or_contributor":k,"parent_company":p} for k,p in self.raw_data]
-                self.result = {"code":0,"message":f"{r.status_code}"}
-                self.error = False
+                data = [{"key_or_contributor":k,"parent_company":p} for k,p in json.loads(r.text)]
+                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._error = False
             else:
                 data = []
-                self.result = {"code":-1,"message":f"{r.status_code}"}
-                self.error = True
+                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._error = True
             self.parent_companies = data
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return []
 
         return data
@@ -1775,21 +1853,22 @@ class OSH_API():
             +-----------------------------------+-----------------------------------------------+-------+
         """        
         have_next = True
-        request_url = f"{self.url}/api/facilities-downloads/"
+        request_url = f"{self._url}/api/facilities-downloads/"
         alldata = []
         
         while have_next:
             try:
                 self.last_api_call_epoch = time.time()
-                r = requests.get(request_url,headers=self.header)
+                r = requests.get(request_url,headers=self._header)
+                self._raw_data = copy.copy(r.text)
                 self.last_api_call_duration = time.time()-self.last_api_call_epoch
-                self.api_call_count += 1
+                self._api_call_count += 1
                 #return json.loads(r.text) #@@@@@@@@@@@@@@
                 if r.ok:
-                    self.raw_data = json.loads(r.text)
+                    data = json.loads(r.text)
                     
-                    for row in self.raw_data["results"]["rows"]:
-                        alldata.append(dict(zip(self.raw_data["results"]["headers"],row)))
+                    for row in data["results"]["rows"]:
+                        alldata.append(dict(zip(data["results"]["headers"],row)))
                     
                     _ = """
                     for entry in data["features"]:
@@ -1803,22 +1882,21 @@ class OSH_API():
                                 new_entry[k] = v
                         alldata.append(new_entry)
                         """
-                    self.result = {"code":0,"message":f"{r.status_code}"}
-                    if 'next' in self.raw_data.keys() and self.raw_data["next"] is not None:
-                        request_url = self.raw_data["next"]
+                    self._result = {"code":0,"message":f"{r.status_code}"}
+                    if 'next' in data.keys() and data["next"] is not None:
+                        request_url = data["next"]
                     else:
                         have_next = False
                     #have_next = False
-                    self.error = False
+                    self._error = False
                 else:
-                    #alldata = []
-                    self.result = {"code":-1,"message":f"{r.status_code}"}
+                    self._result = {"code":-1,"message":f"{r.status_code}"}
                     have_next = False
-                    self.error = True
+                    self._error = True
                     return alldata
             except Exception as e:
-                self.result = {"code":-1,"message":str(e)}
-                self.error = True
+                self._result = {"code":-1,"message":str(e)}
+                self._error = True
                 return alldata
         
         return alldata
@@ -1878,9 +1956,10 @@ class OSH_API():
         
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self.url}/api/contributor-embed-configs/{contributor_id}/",headers=self.header)
+            r = requests.get(f"{self._url}/api/contributor-embed-configs/{contributor_id}/",headers=self._header)
+            self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self.api_call_count += 1
+            self._api_call_count += 1
             
             if r.ok:
                 data = json.loads(r.text)
@@ -1911,15 +1990,17 @@ class OSH_API():
                         else:
                             alldata[k] = v
                 data = alldata
-                self.result = {"code":0,"message":f"{r.status_code}"}
-                self.error = False
+                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._error = False
             else:
+                self._raw_data = []
                 data = []
-                self.result = {"code":-1,"message":f"{r.status_code}"}
-                self.error = True
+                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._error = True
         except Exception as e:
-            self.result = {"code":-1,"message":str(e)}
-            self.error = True
+            self._raw_data = []
+            self._result = {"code":-1,"message":str(e)}
+            self._error = True
             return
         
         return data
