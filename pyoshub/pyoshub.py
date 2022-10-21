@@ -1,6 +1,6 @@
 """pyosh is a Package for accessing the `Open Supply Hub API <https://opensupplyhub.org/api/docs>`_ using python."""
 
-__version__ = "0.2.1"
+__version__ = "0.2.3"
 
 import os
 import yaml
@@ -250,7 +250,9 @@ class OSH_API():
 
     def get_facilities(self, q : str = "", 
                        contributors : Union[int,list] = -1,
-                       lists : int = -1, contributor_types : str = "", countries : str = "",
+                       lists : int = -1, 
+                       contributor_types : Union[str,list] = "", 
+                       countries : str = "",
                        boundary : dict = {}, parent_company : str = "", facility_type : str = "",
                        processing_type : str = "", product_type : str = "", number_of_workers : str = "",
                        native_language_name : str = "", detail : bool =False, sectors : str = "",
@@ -268,33 +270,33 @@ class OSH_API():
            Facility Name or OS ID
         contributors : int or list, optional
            Contributor ID
-        lists : integer, optional
+        lists : int, optional
            List ID
-        contributor_types : string, optional
+        contributor_types : str, or list, optional
            Contributor Type
-        countries : string, optional
+        countries : str, optional
            Country Code
-        boundary : string, optional
+        boundary : str, optional
            Pass a GeoJSON geometry to filter by facilities within the boundaries of that geometry.
-        parent_company : string, optional
+        parent_company : str, optional
            Pass a Contributor ID or Contributor name to filter by facilities with that Parent Company.
-        facility_type : string, optional
+        facility_type : str, optional
            Facility type
-        processing_type : string, optional
+        processing_type : str, optional
            Processing type
-        product_type : string, optional
+        product_type : str, optional
            Product type
-        number_of_workers : string, optional
+        number_of_workers : str, optional
            Submit one of several standardized ranges to filter by facilities with a number_of_workers matching those values. Options are: "Less than 1000", "1001-5000", "5001-10000", or "More than 10000".
-        native_language_name : string, optional
+        native_language_name : str, optional
            The native language name of the facility
         detail : boolean, optional
            Set this to true to return additional detail about contributors and extended fields with each result. setting this to true will make the response significantly slower to return.
-        sectors : string, optional
+        sectors : str, optional
            The sectors that this facility belongs to. Values must match those returned from the `GET /api/sectors` endpoint
-        page : integer, optional
+        page : int, optional
            A page number within the paginated result set.
-        pageSize : integer, optional
+        pageSize : int, optional
            Number of results to return per page.
            
         Returns
@@ -1460,7 +1462,9 @@ class OSH_API():
         -------
         list(dict)
            An array of dictionaries (key,value pairs). See table below for 
-           return data structures.
+           return data structures. Note that an empty list will be
+           returned, together with a status code indicating ``ok`` even
+           if an invalid supplier was specified.
             
            +-----------+---------------------------------+------+
            |column     | description                     | type |
@@ -2063,15 +2067,16 @@ class OSH_API():
                             elif isinstance(vv,dict):
                                 for kkk,vvv in vv.items():
                                     lines = []
-                                    for entry in vvv:
-                                        if isinstance(entry,dict):
-                                            lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk,vvvv in entry.items()]))
-                                        elif isinstance(entry,str):
-                                            lines.append(entry)
-                                        else:
-                                            raise NotImplementedError("Internal _flatten_facilities_json. Facilities data structure must have changed. "
-                                                                      "Instance 2/2. "
-                                                                      "Please report on github and/or check for an updated library.")
+                                    if isinstance(vvv,str):
+                                        lines = [vvv]
+                                    else:
+                                        for entry in vvv:
+                                            if isinstance(entry,dict):
+                                                lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk,vvvv in entry.items()]))
+                                            else:
+                                                raise NotImplementedError("Internal _flatten_facilities_json. Facilities data structure must have changed. "
+                                                                        "Instance 2/2. "
+                                                                        "Please report on github and/or check for an updated library.")
                                     new_data[f"match_{kk}_{kkk}"] = "\n".join(lines).replace("lng:","lon:")
                                 pass
                             elif kk.startswith("ppe_"):

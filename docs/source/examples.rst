@@ -119,9 +119,12 @@ search for a facility with a known OS ID, this is just the intruductory example.
 
    # Create connection
    osh_api = pyoshub.OSH_API()
-   osh_spi.get_facility("IT20213143B7C4F",return_extended_fields=False)
+   if osh_api.ok:
+     osh_api.get_facility("IT20213143B7C4F",return_extended_fields=False)
+   else:
+     print(f"OSH_API returned error {osh_api.reason}")
 
-This results in the following list to be returned. 
+This results in the following list to be returned, assuming valid credentials were provided. 
 
 .. code-block:: json
 

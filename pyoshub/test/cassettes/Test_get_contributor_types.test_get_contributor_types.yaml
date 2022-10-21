@@ -1,0 +1,195 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}],
+        "caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 14:05:09 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 39e6266db143f6443f194d8c60e22480.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - DvG5FXA4fbsxEBaEtzNYStSOymko3b_NeQpqYdFBqQF09yr_u7DZAw==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109832}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 14:05:09 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 b43c04a791e8dcb8ddb6bb0847fcf95a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 62MF_F0GTORj_KIwK1WBfQz7IPdLoY5S1ATUDHy9oFwyWuYo3AuRHQ==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/contributor-types
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      Content-Type:
+      - text/html; charset=utf-8
+      Date:
+      - Fri, 21 Oct 2022 14:05:09 GMT
+      Location:
+      - /api/contributor-types/
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Via:
+      - 1.1 968007545c497b68cc41825f11e930ba.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 6eZ0yLX-QfWf1CySvSdOGyoYxYnC5IsTTODBGeEXdbln0z-1UK5O5A==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 301
+      message: Moved Permanently
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/contributor-types/
+  response:
+    body:
+      string: '[["Academic / Researcher / Journalist / Student","Academic / Researcher
+        / Journalist / Student"],["Auditor / Certification Scheme / Service Provider","Auditor
+        / Certification Scheme / Service Provider"],["Brand / Retailer","Brand / Retailer"],["Civil
+        Society Organization","Civil Society Organization"],["Facility / Factory /
+        Manufacturing Group / Supplier / Vendor","Facility / Factory / Manufacturing
+        Group / Supplier / Vendor"],["Multi-Stakeholder Initiative","Multi-Stakeholder
+        Initiative"],["Union","Union"],["Other","Other"]]'
+    headers:
+      Allow:
+      - GET, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '531'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 14:05:09 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 968007545c497b68cc41825f11e930ba.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 7y47_X5ZTSX0dEIR5oywMmstXqd0maCrdK2eIE0yGeRgbSkQqygCIg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

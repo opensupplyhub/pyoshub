@@ -1,0 +1,200 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}],
+        "databases": [{"default": {"ok": true}}], "gazetteercache": {"ok": true}}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 14:08:12 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 c80ae6bd97b709ed6e4747f0d5ea4efc.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - ehUJk8wRLjggJdJmxG6p01jmPNdTwR3CGFN4nGmniw6lO_6pdoipFw==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109832}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 14:08:12 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 968007545c497b68cc41825f11e930ba.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - M4mb53HgkmLYvdVlu9eNr3piG1PZygDmwx4_TF41pq_Gud4b2WaRRg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/inexistant/
+  response:
+    body:
+      string: '{"detail":"Not found."}'
+    headers:
+      Allow:
+      - GET, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '23'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 14:08:12 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 68b2682a924ac399aa2724b5b439e75c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 9rVnDLd8th1LQFbVWyxs1f4cDJ-bGm6hGd9GSHittqcILLVGJsDAbg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Error from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 404
+      message: Not Found
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/DE20211253G9MQX/
+  response:
+    body:
+      string: '{"id":"DE20211253G9MQX","type":"Feature","geometry":{"type":"Point","coordinates":[13.40625,52.52341]},"properties":{"name":"Footwear
+        studios","address":"Stadtbahnbogen 135, 10178 Berlin, Germany","country_code":"DE","os_id":"DE20211253G9MQX","other_names":[],"other_addresses":[],"contributors":[{"id":1319,"name":"Find
+        Sourcing (Find Sourcing Facility List May 2021)","is_verified":false,"contributor_name":"Find
+        Sourcing","list_name":"Find Sourcing Facility List May 2021"}],"country_name":"Germany","claim_info":null,"other_locations":[],"ppe_product_types":null,"ppe_contact_phone":null,"ppe_contact_email":null,"ppe_website":null,"is_closed":null,"activity_reports":[],"contributor_fields":[],"new_os_id":null,"has_inexact_coordinates":false,"extended_fields":{"name":[{"value":"Footwear
+        studios","field_name":"name","contributor_id":1319,"contributor_name":"Find
+        Sourcing","updated_at":"2022-01-27T17:39:55.089265Z"}],"address":[{"value":"Stadtbahnbogen
+        135, 10178 Berlin, Germany","field_name":"address","contributor_id":1319,"contributor_name":"Find
+        Sourcing","updated_at":"2022-01-27T17:39:55.089265Z","is_from_claim":false}],"number_of_workers":[],"native_language_name":[],"facility_type":[],"processing_type":[],"product_type":[],"parent_company":[]},"created_from":{"created_at":"2021-05-05T13:58:25.354748Z","contributor":"Find
+        Sourcing"},"sector":[{"updated_at":"2022-01-27T17:39:55.089265Z","contributor_id":1319,"contributor_name":"Find
+        Sourcing","values":["Apparel"],"is_from_claim":false}]}}'
+    headers:
+      Allow:
+      - GET, DELETE, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1511'
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 21 Oct 2022 14:09:07 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 68b2682a924ac399aa2724b5b439e75c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - iJVI79_PagoRhALc60axf3kGq2bUcwyJvKuO7XPaPm9kVRoW68UfBQ==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1
