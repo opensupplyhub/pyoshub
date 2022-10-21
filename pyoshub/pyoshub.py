@@ -1,6 +1,6 @@
 """pyosh is a Package for accessing the `Open Supply Hub API <https://opensupplyhub.org/api/docs>`_ using python."""
 
-__version__ = "0.2.3"
+__version__ = "0.3.0"
 
 import os
 import yaml
@@ -327,33 +327,45 @@ class OSH_API():
             +-------------------------------+-----------------------------------------------+-------+
             |address                        | Facility address                              | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            |has_approved_claim             | Flag indicating if facility has been claimed  | bool  |
+            |has_approved_claim             | Flag indicating if facility has been          | bool  |
             |                               |                                               |       |
-            |                               | by owner, manager, or other authorised person |       |
+            |                               | claimed by owner, manager, or                 |       |
+            |                               |                                               |       |
+            |                               | other authorised person                       |       |
             +-------------------------------+-----------------------------------------------+-------+
-            |is_closed                      | Flag indicating if facility has been closed   | bool  |
+            |is_closed                      | Flag indicating if facility has been          | bool  |
             |                               |                                               |       |
-            |                               | (*True*), or is currently open (*False*)      |       |
+            |                               | closed (*True*), or is currently              |       |
+            |                               |                                               |       |
+            |                               | open (*False*)                                |       |
             +-------------------------------+-----------------------------------------------+-------+
             | Additional fields returned when *detail=True*                                         |
             +-------------------------------+-----------------------------------------------+-------+
-            | other_names                   | Other names provided, joined with ``|``       | str   |
+            | other_names                   | Other names provided, joined with             | str   |
+            |                               |                                               |       |
+            |                               | vertical bar ``|``                            |       |
             +-------------------------------+-----------------------------------------------+-------+
-            | other_addresses               | Other facility addresses, joined with ``|``   | str   |
+            | other_addresses               | Other facility addresses, joined with         | str   |
+            |                               |                                               |       |
+            |                               | vertical bar ``|``                            |       |
             +-------------------------------+-----------------------------------------------+-------+
-            | contributors                  | ``|`` joined contributors who provided data   | str   |
+            | contributors                  | vertical bar ``|`` joined contributors        | str   |
+            |                               |                                               |       |
+            |                               | who provided data                             | str   |
             +-------------------------------+-----------------------------------------------+-------+
             | claim_info                    | Who claimed the facility                      | str   |
             +-------------------------------+-----------------------------------------------+-------+
             | other_locations               |                                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | is_closed                     | Flag indicating facility no longer active     | bool  |
+            | is_closed                     | Flag indicating facility no longer            | bool  |
+            |                               |                                               |       |
+            |                               | active                                        |       |
             +-------------------------------+-----------------------------------------------+-------+
             | activity_reports              |                                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
             | contributor_fields            |                                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | has_inexact_coordinates       | Misnomer: Geocoordinates manually entered     | bool  |
+            | has_inexact_coordinates       | Geocoordinates manually entered               | bool  |
             +-------------------------------+-----------------------------------------------+-------+
             | name_extended                 |                                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
@@ -363,7 +375,7 @@ class OSH_API():
             +-------------------------------+-----------------------------------------------+-------+
             | native_language_name_extended | Name of native facility language              | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | facility_type_extended        | Type of facility, e.g. *"Office / HQ*         | str   |
+            | facility_type_extended        | Type of facility, e.g. *"Office / HQ"*        | str   |
             +-------------------------------+-----------------------------------------------+-------+
             | processing_type_extended      | Type of processing, e.g. *Packaging*          | str   |
             +-------------------------------+-----------------------------------------------+-------+
@@ -371,7 +383,9 @@ class OSH_API():
             +-------------------------------+-----------------------------------------------+-------+
             | parent_company_extended       | Name of Parent Company                        | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | created_from                  | Information about first recored creating entry| str   |
+            | created_from                  | Information about first record                | str   |
+            |                               |                                               |       |
+            |                               | which created entry                           |       |
             +-------------------------------+-----------------------------------------------+-------+
             | sector                        | Business sector                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
@@ -807,11 +821,13 @@ class OSH_API():
             +==============================+=========================================================+=======+
             | id                           | match_id                                                | int   |
             +------------------------------+---------------------------------------------------------+-------+
-            | status                       | one of ``PENDING``, ``REJECTED``, ``CONFIRMED``         | str   |
-            +------------------------------+---------------------------------------------------------+-------+
-            | confidence                   | return value of the matching algorithm,                 | str   |
+            | status                       | one of ``PENDING``, ``REJECTED``,                       | str   |
             |                              |                                                         |       |
-            |                              | formatted float                                         |       |
+            |                              | ``CONFIRMED``                                           |       |
+            +------------------------------+---------------------------------------------------------+-------+
+            | confidence                   | return value of the matching                            | str   |
+            |                              |                                                         |       |
+            |                              | algorithm, str formatted float                          |       |
             +------------------------------+---------------------------------------------------------+-------+
             | results_code_version         | matching code revision, if set                          | str   |
             +------------------------------+---------------------------------------------------------+-------+
@@ -1280,35 +1296,47 @@ class OSH_API():
             +-------------------------------+-----------------------------------------------+-------+
             |address                        | Facility address                              | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            |has_approved_claim             | Flag indicating if facility has been claimed  | bool  |
+            |has_approved_claim             | Flag indicating if facility has been          | bool  |
             |                               |                                               |       |
-            |                               | by owner, manager, or other authorised person |       |
+            |                               | claimed by owner, manager, or other           |       |
+            |                               |                                               |       |
+            |                               | authorised person                             |       |
             +-------------------------------+-----------------------------------------------+-------+
-            |is_closed                      | Flag indicating if facility has been closed   | bool  |
+            |is_closed                      | Flag indicating if facility is closed         | bool  |
             |                               |                                               |       |
             |                               | (*True*), or is currently open (*False*)      |       |
             +-------------------------------+-----------------------------------------------+-------+
             | Additional fields returned when *return_extended_fields=True*                         |
             +-------------------------------+-----------------------------------------------+-------+
-            | other_names                   | Other names provided, joined with ``|``       | str   |
+            | other_names                   | Other names provided, joined with             | str   |
+            |                               |                                               |       |
+            |                               | vertical bar ``|``                            |       |
             +-------------------------------+-----------------------------------------------+-------+
-            | other_addresses               | Other facility addresses, joined with ``|``   | str   |
+            | other_addresses               | Other facility addresses, joined with         | str   |
+            |                               |                                               |       |
+            |                               | vertical bar ``|``                            |       |
             +-------------------------------+-----------------------------------------------+-------+
-            | contributors                  | ``|`` joined contributors who provided data   | str   |
+            | contributors                  | vertical bar ``|`` joined contributors        | str   |
+            |                               |                                               |       |
+            |                               | who provided data                             | str   |
             +-------------------------------+-----------------------------------------------+-------+
             | claim_info                    | Who claimed the facility                      | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | other_locations               | The unique set of geographic coordinates      | str   |
+            | other_locations               | The unique set of geographic                  | str   |
+            |                               |                                               |       |
+            |                               | coordinates                                   |       |
             +-------------------------------+-----------------------------------------------+-------+
-            | is_closed                     | Flag indicating facility no longer active     | bool  |
-            +-------------------------------+-----------------------------------------------+-------+
-            | activity_reports              | An audit trail record of changes made         | str   |
+            | activity_reports              | An audit trail record of changes              | str   |
+            |                               |                                               |       |
+            |                               | made                                          |       |
             +-------------------------------+-----------------------------------------------+-------+
             | contributor_fields            |                                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | has_inexact_coordinates       | Misnomer: Geocoordinates manually entered     | bool  |
+            | has_inexact_coordinates       | Geocoordinates manually entered               | bool  |
             +-------------------------------+-----------------------------------------------+-------+
-            | name_extended                 | The timestamped record of names provided      | str   |
+            | name_extended                 | The timestamped record of names               | str   |
+            |                               |                                               |       |
+            |                               | provided so far                               |       |
             +-------------------------------+-----------------------------------------------+-------+
             | address_extended              | The timestamped record of                     | str   |
             +-------------------------------+-----------------------------------------------+-------+
@@ -1324,7 +1352,9 @@ class OSH_API():
             +-------------------------------+-----------------------------------------------+-------+
             | parent_company_extended       | Name of Parent Company                        | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | created_from                  | Information about first recored creating entry| str   |
+            | created_from                  | Information about first record                | str   |
+            |                               |                                               |       |
+            |                               | which created entry                           |       |
             +-------------------------------+-----------------------------------------------+-------+
             | sector                        | Business sector                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
@@ -1614,33 +1644,41 @@ class OSH_API():
             +-------------------------------+-----------------------------------------------+-------+
             |address                        | Facility address                              | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            |has_approved_claim             | Flag indicating if facility has been claimed  | bool  |
+            |has_approved_claim             | Flag indicating if facility has been          | bool  |
             |                               |                                               |       |
-            |                               | by owner, manager, or other authorised person |       |
+            |                               | claimed by owner, manager, or                 |       |
+            |                               |                                               |       |
+            |                               | other authorised person                       |       |
             +-------------------------------+-----------------------------------------------+-------+
-            |is_closed                      | Flag indicating if facility has been closed   | bool  |
+            |is_closed                      | Flag indicating if facility has been          | bool  |
             |                               |                                               |       |
-            |                               | (*True*), or is currently open (*False*)      |       |
+            |                               | closed (*True*), or is currently open         |       |
+            |                               |                                               |       |
+            |                               | (*False*)                                     |       |
             +-------------------------------+-----------------------------------------------+-------+
             | Additional fields returned when *return_extended_fields=True*                         |
             +-------------------------------+-----------------------------------------------+-------+
-            | other_names                   | Other names provided, joined with ``|``       | str   |
+            | other_names                   | Other names provided, joined with             | str   |
+            |                               |                                               |       |
+            |                               | vertical bar ``|``                            |       |
             +-------------------------------+-----------------------------------------------+-------+
-            | other_addresses               | Other facility addresses, joined with ``|``   | str   |
+            | other_addresses               | Other facility addresses, joined with         | str   |
+            |                               |                                               |       |
+            |                               | vertical bar ``|``                            |       |
             +-------------------------------+-----------------------------------------------+-------+
-            | contributors                  | ``|`` joined contributors who provided data   | str   |
+            | contributors                  | vertical bar ``|`` joined contributors        | str   |
+            |                               |                                               |       |
+            |                               | who provided data                             | str   |
             +-------------------------------+-----------------------------------------------+-------+
             | claim_info                    | Who claimed the facility                      | str   |
             +-------------------------------+-----------------------------------------------+-------+
             | other_locations               |                                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | is_closed                     | Flag indicating facility no longer active     | bool  |
-            +-------------------------------+-----------------------------------------------+-------+
             | activity_reports              |                                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
             | contributor_fields            |                                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | has_inexact_coordinates       | Misnomer: Geocoordinates manually entered     | bool  |
+            | has_inexact_coordinates       | Geocoordinates manually entered               | bool  |
             +-------------------------------+-----------------------------------------------+-------+
             | name_extended                 |                                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
@@ -1658,7 +1696,9 @@ class OSH_API():
             +-------------------------------+-----------------------------------------------+-------+
             | parent_company_extended       | Name of Parent Company                        | str   |
             +-------------------------------+-----------------------------------------------+-------+
-            | created_from                  | Information about first recored creating entry| str   |
+            | created_from                  | Information about first record                | str   |
+            |                               |                                               |       |
+            |                               | which created entry                           |       |
             +-------------------------------+-----------------------------------------------+-------+
             | sector                        | Business sector                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
@@ -1777,7 +1817,7 @@ class OSH_API():
            +==================+====================================================+=============+
            |key_or_contributor| Numeric key, or name of contributor                | str or int  |
            +------------------+----------------------------------------------------+-------------+
-           |parent_company    | Name of parent company as uploaded to the database | str         |
+           |parent_company    | Name of parent company as uploaded                 | str         |
            +------------------+----------------------------------------------------+-------------+
         """
         
