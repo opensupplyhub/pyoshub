@@ -187,3 +187,30 @@ class Test_post_facilities_match:
         #assert(osh_api.result == {'code': -1, 'message': '400'})
         print(result)
         print(osh_api.result)
+
+
+    def test_post_facilities_new_with_additional_dict(self):
+        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"],token=os.environ["TEST_OSH_TOKEN"],check_token=True)
+        result = osh_api.post_facilities(
+            name="Another new facility",
+            country="Algeria",
+            address="Zone Industrielle BP 14",
+            sector="Food",
+            data={
+                "my_field_1":"data_1",
+                "my_field_2":12
+            }
+        )
+        print(result)
+        _ = """assert(result == [
+            {
+                'item_id': 804344, 
+                'lon': -75.56581530000001, 
+                'lat': 6.2476376, 
+                'geocoded_address': 'Medellín, Medellin, Antioquia, Colombia', 
+                'status': 'NEW_FACILITY', 
+                'os_id': 'CO2022294AJ8TBG'
+            }
+        ])
+        assert(osh_api.ok)
+        assert(osh_api.reason=="201")"""
