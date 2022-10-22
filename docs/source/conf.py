@@ -17,17 +17,18 @@ sys.path.insert(0, os.path.abspath('../../pyoshub/pyoshub/'))
 project = 'pyoshub'
 copyright = '2022, Open Apparel Registry'
 author = 'Klaus G. Paul'
-version = '0.3.1'
-release = '0.3.1'
+version = '0.4.0'
+release = '0.4.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc', 
+extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
-    'sphinxcontrib.plantuml',   
+    'sphinxcontrib.plantuml',
+    'sphinx.ext.autosectionlabel',  
     'sphinx_copybutton',
     #'numpydoc'
     ]

@@ -1,0 +1,345 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}],
+        "caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 22 Oct 2022 17:39:12 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 6ae82cc0c8a39c993134c2be90b4d120.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - Mir1_0US7ZvWPbBd_OB8g_mwocweZYezK7CaTCLxtvqy06HaZTYCMA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109834}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 22 Oct 2022 17:39:13 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 cb605905cea2427f1d9f13acc778e822.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 9A45l0j7dPXlleNCnbOSM9UwX6NznoofnMdopGdMsHzRf1vwDJgKxA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: my_field_1=data_1&my_field_2=12&name=Another+new+facility&address=Zone+Industrielle+BP+14&country=Algeria&sector=Food
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '117'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: POST
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/??create=false&public=true&textonlyfallback=false
+  response:
+    body:
+      string: '{"matches":[{"id":"DZ2022294Y5EP82","type":"Feature","geometry":{"type":"Point","coordinates":[1.659626,28.033886]},"properties":{"name":"Another
+        new facility","address":"Zone Industrielle BP 14","country_code":"DZ","os_id":"DZ2022294Y5EP82","other_names":[],"other_addresses":[],"contributors":[{"id":2757,"name":"Klaus
+        (Openapparel)","is_verified":false,"contributor_name":"Klaus (Openapparel)","list_name":null}],"country_name":"Algeria","claim_info":null,"other_locations":[],"ppe_product_types":null,"ppe_contact_phone":null,"ppe_contact_email":null,"ppe_website":null,"is_closed":null,"activity_reports":[],"contributor_fields":[],"new_os_id":null,"has_inexact_coordinates":false,"extended_fields":{"name":[{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-21T17:21:04.322288Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:30:20.416936Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:39:15.043841Z"}],"address":[{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-21T17:21:04.322288Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:30:20.416936Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:39:15.043841Z","is_from_claim":false}],"number_of_workers":[],"native_language_name":[],"facility_type":[],"processing_type":[],"product_type":[],"parent_company":[]},"created_from":{"created_at":"2022-10-21T17:21:04.046931Z","contributor":"Klaus
+        (Openapparel)"},"sector":[{"updated_at":"2022-10-22T17:39:15.043841Z","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","values":["Food"],"is_from_claim":false}]}},{"id":"DZ2022294Y5EP82","type":"Feature","geometry":{"type":"Point","coordinates":[1.659626,28.033886]},"properties":{"name":"Another
+        new facility","address":"Zone Industrielle BP 14","country_code":"DZ","os_id":"DZ2022294Y5EP82","other_names":[],"other_addresses":[],"contributors":[{"id":2757,"name":"Klaus
+        (Openapparel)","is_verified":false,"contributor_name":"Klaus (Openapparel)","list_name":null}],"country_name":"Algeria","claim_info":null,"other_locations":[],"ppe_product_types":null,"ppe_contact_phone":null,"ppe_contact_email":null,"ppe_website":null,"is_closed":null,"activity_reports":[],"contributor_fields":[],"new_os_id":null,"has_inexact_coordinates":false,"extended_fields":{"name":[{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-21T17:21:04.322288Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:30:20.416936Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:39:15.043841Z"}],"address":[{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-21T17:21:04.322288Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:30:20.416936Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:39:15.043841Z","is_from_claim":false}],"number_of_workers":[],"native_language_name":[],"facility_type":[],"processing_type":[],"product_type":[],"parent_company":[]},"created_from":{"created_at":"2022-10-21T17:21:04.046931Z","contributor":"Klaus
+        (Openapparel)"},"sector":[{"updated_at":"2022-10-22T17:39:15.043841Z","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","values":["Food"],"is_from_claim":false}]}}],"item_id":804402,"geocoded_geometry":{"type":"Point","coordinates":[1.659626,28.033886]},"geocoded_address":"Algeria","status":"MATCHED","os_id":"DZ2022294Y5EP82"}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '4450'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 22 Oct 2022 17:39:15 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 968007545c497b68cc41825f11e930ba.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - gboCnVgap_CF_R8YocBY7bxFH_7rreGGiZLtScNAGGeJScBfe-YqUw==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 201
+      message: Created
+- request:
+    body: my_field_1=data_1&my_field_2=12&name=Another+new+facility&address=Zone+Industrielle+BP+14&country=Algeria&sector=Food
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '117'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: POST
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/??create=false&public=true&textonlyfallback=false
+  response:
+    body:
+      string: '{"detail":"Request was throttled. Expected available in 2 seconds."}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '69'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 22 Oct 2022 17:39:15 GMT
+      Referrer-Policy:
+      - same-origin
+      Retry-After:
+      - '58'
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 0c792defeeaa18965559ad74895ea56a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - eBZnVGsztI0wiKNf6u2FVh7IPiwqNiVHRy05ZNvhNp7JYViRMqRMXg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Error from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 429
+      message: Too Many Requests
+- request:
+    body: my_field_1=data_1&my_field_2=12&name=Another+new+facility&address=Zone+Industrielle+BP+14&country=Algeria&sector=Food
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '117'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: POST
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/??create=false&public=true&textonlyfallback=false
+  response:
+    body:
+      string: '{"matches":[{"id":"DZ2022294Y5EP82","type":"Feature","geometry":{"type":"Point","coordinates":[1.659626,28.033886]},"properties":{"name":"Another
+        new facility","address":"Zone Industrielle BP 14","country_code":"DZ","os_id":"DZ2022294Y5EP82","other_names":[],"other_addresses":[],"contributors":[{"id":2757,"name":"Klaus
+        (Openapparel)","is_verified":false,"contributor_name":"Klaus (Openapparel)","list_name":null}],"country_name":"Algeria","claim_info":null,"other_locations":[],"ppe_product_types":null,"ppe_contact_phone":null,"ppe_contact_email":null,"ppe_website":null,"is_closed":null,"activity_reports":[],"contributor_fields":[],"new_os_id":null,"has_inexact_coordinates":false,"extended_fields":{"name":[{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-21T17:21:04.322288Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:30:20.416936Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:39:15.043841Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:53:37.307993Z"}],"address":[{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-21T17:21:04.322288Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:30:20.416936Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:39:15.043841Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:53:37.307993Z","is_from_claim":false}],"number_of_workers":[],"native_language_name":[],"facility_type":[],"processing_type":[],"product_type":[],"parent_company":[]},"created_from":{"created_at":"2022-10-21T17:21:04.046931Z","contributor":"Klaus
+        (Openapparel)"},"sector":[{"updated_at":"2022-10-22T17:53:37.307993Z","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","values":["Food"],"is_from_claim":false}]}},{"id":"DZ2022294Y5EP82","type":"Feature","geometry":{"type":"Point","coordinates":[1.659626,28.033886]},"properties":{"name":"Another
+        new facility","address":"Zone Industrielle BP 14","country_code":"DZ","os_id":"DZ2022294Y5EP82","other_names":[],"other_addresses":[],"contributors":[{"id":2757,"name":"Klaus
+        (Openapparel)","is_verified":false,"contributor_name":"Klaus (Openapparel)","list_name":null}],"country_name":"Algeria","claim_info":null,"other_locations":[],"ppe_product_types":null,"ppe_contact_phone":null,"ppe_contact_email":null,"ppe_website":null,"is_closed":null,"activity_reports":[],"contributor_fields":[],"new_os_id":null,"has_inexact_coordinates":false,"extended_fields":{"name":[{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-21T17:21:04.322288Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:30:20.416936Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:39:15.043841Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:53:37.307993Z"}],"address":[{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-21T17:21:04.322288Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:30:20.416936Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:39:15.043841Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:53:37.307993Z","is_from_claim":false}],"number_of_workers":[],"native_language_name":[],"facility_type":[],"processing_type":[],"product_type":[],"parent_company":[]},"created_from":{"created_at":"2022-10-21T17:21:04.046931Z","contributor":"Klaus
+        (Openapparel)"},"sector":[{"updated_at":"2022-10-22T17:53:37.307993Z","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","values":["Food"],"is_from_claim":false}]}},{"id":"DZ2022294Y5EP82","type":"Feature","geometry":{"type":"Point","coordinates":[1.659626,28.033886]},"properties":{"name":"Another
+        new facility","address":"Zone Industrielle BP 14","country_code":"DZ","os_id":"DZ2022294Y5EP82","other_names":[],"other_addresses":[],"contributors":[{"id":2757,"name":"Klaus
+        (Openapparel)","is_verified":false,"contributor_name":"Klaus (Openapparel)","list_name":null}],"country_name":"Algeria","claim_info":null,"other_locations":[],"ppe_product_types":null,"ppe_contact_phone":null,"ppe_contact_email":null,"ppe_website":null,"is_closed":null,"activity_reports":[],"contributor_fields":[],"new_os_id":null,"has_inexact_coordinates":false,"extended_fields":{"name":[{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-21T17:21:04.322288Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:30:20.416936Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:39:15.043841Z"},{"value":"Another
+        new facility","field_name":"name","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:53:37.307993Z"}],"address":[{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-21T17:21:04.322288Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:30:20.416936Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:39:15.043841Z","is_from_claim":false},{"value":"Zone
+        Industrielle BP 14","field_name":"address","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","updated_at":"2022-10-22T17:53:37.307993Z","is_from_claim":false}],"number_of_workers":[],"native_language_name":[],"facility_type":[],"processing_type":[],"product_type":[],"parent_company":[]},"created_from":{"created_at":"2022-10-21T17:21:04.046931Z","contributor":"Klaus
+        (Openapparel)"},"sector":[{"updated_at":"2022-10-22T17:53:37.307993Z","contributor_id":2757,"contributor_name":"Klaus
+        (Openapparel)","values":["Food"],"is_from_claim":false}]}}],"item_id":804403,"geocoded_geometry":{"type":"Point","coordinates":[1.659626,28.033886]},"geocoded_address":"Algeria","status":"MATCHED","os_id":"DZ2022294Y5EP82"}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '7625'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 22 Oct 2022 17:53:37 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 3296b04068551f925d5fafd1b785ff30.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - 4veGUwE1Ic_Cxf0Hr57FJGWUNGIuPvMbpzDYgGSbsytsqx-dUSCuVg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 201
+      message: Created
+version: 1

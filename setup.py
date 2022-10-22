@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
    name='pyoshub',
-   version='0.3.1',
+   version='0.4.0',
    author='Klaus G. Paul',
    author_email='20340525+KlausGPaul@users.noreply.github.com ',
    packages=['pyoshub', 'pyoshub.test'],

@@ -1,6 +1,6 @@
 """pyosh is a Package for accessing the `Open Supply Hub API <https://opensupplyhub.org/api/docs>`_ using python."""
 
-__version__ = "0.3.1"
+__version__ = "0.4.0"
 
 import os
 import yaml
@@ -12,6 +12,7 @@ from typing import Union
 import io
 import logging
 import copy
+import re
 
 
 class OSH_API():
@@ -498,12 +499,14 @@ class OSH_API():
         #return pd.DataFrame(alldata)
   
     
-    def post_facilities(self, name : str = "", address : str = "", country : str = "", sector : str ="",
+    def post_facilities(self, name : str = "", address : str = "", 
+                        country : str = "", sector : str ="",
                         data : dict = {}, 
-                        number_of_workers : str = "",facility_type : str = "",
+                        create : bool = False, public : bool = True, 
+                        textonlyfallback : bool = False, timeout_secs : int = 90,
+                        number_of_workers : Union[int,str] = "", facility_type : str = "",
                         processing_type : str = "", product_type : str = "",
-                        parent_company_name : str = "", native_language_name : str = "",
-                        create : bool = False, public : bool = True, textonlyfallback : bool = False) -> list:
+                        parent_company_name : str = "", native_language_name : str = "") -> list:
         """Add a single facility record.
 
         There are two ways supplying data, either via the ``name``, ``address``, ``country`` etc parameters,
@@ -514,6 +517,12 @@ class OSH_API():
 
         Uploading a record may create a new entry, return a previously matched entry, or require you to make
         a confirm/reject selection by calling one of two corresponding API endpoints.
+
+        For checking if a match already exists, we recommend calling this method with ``create=False``, then 
+        check the return value for existing matches. This will reduce unnecessary processing load on our
+        machine.
+
+        See also :ref:`facility_upload_lifecycle` for a description of the overall upload lifecycle.
          
         .. uml::
         
@@ -545,29 +554,41 @@ class OSH_API():
         address : str
             Complete address of the facility
         country : str, optional
-            _description_, by default ""
+            Country the facility is based in, by default "". Ideally,
+            this is an `ISO 3166-2 or -3 country code or name <https://iso.org/obp/ui/#search/code/>`_ 
         sector : str, optional
-            _description_, by default ""
+            Economic or Industrial Sector the facility operates in, by default "". Note
+            that empty sector names will internally be mapped to ``Unspecified`` during
+            upload.
         data : dict, optional
-            _description_, by default {}
-        number_of_workers : str, optional
-            _description_, by default ""
-        facility_type : str, optional
-            _description_, by default ""
-        processing_type : str, optional
-            _description_, by default ""
-        product_type : str, optional
-            _description_, by default ""
-        parent_company_name : str, optional
-            _description_, by default ""
-        native_language_name : str, optional
-            _description_, by default ""
+            A key,value dictionary which contains keys matching the parameter list (except timeout), 
+            by default {}. If optional parameters are speficied in addition to this parameter, the
+            optional parameters will overwrite the ``data`` entries.
         create : bool, optional
             _description_, by default False
         public : bool, optional
             _description_, by default True
         textonlyfallback : bool, optional
             _description_, by default False
+        timeout : int, optional
+            Timeout for the case when rate limit throttling is encountered,
+            by default 90 [seconds]
+        number_of_workers : int or str, optional
+            Number of workers in facility, or a range as returned by :meth:`pyoshub.OSH_API.get_workers_ranges`, by default ""
+        facility_type : str, optional
+            Facility type, consider the values returned by :meth:`pyoshub.OSH_API.get_facility_processing_types`
+            to use standard facility types already defined, by default ""
+        processing_type : str, optional
+            Processing type, consider the values returned by :meth:`pyoshub.OSH_API.get_facility_processing_types`
+            to use standard processing types already defined, by default ""
+        product_type : str, optional
+            Product type, consider the values returned by :meth:`pyoshub.OSH_API.get_product_types`
+            to use standard product types already defined, by default ""
+        parent_company_name : str, optional
+            Parent company name, consider the values returned by :meth:`pyoshub.OSH_API.get_parent_companies`
+            for parent companies already defined, by default ""
+        native_language_name : str, optional
+            Native language name used at facility, by default ""
 
         Returns
         -------
@@ -605,7 +626,7 @@ class OSH_API():
         +--------------------------------+------------------------------------------+-------+
         | match_address                  | Address of match                         | str   |
         +--------------------------------+------------------------------------------+-------+
-        | match_country_code             |Match `ISO 3166-2 ountry code             | str   |
+        | match_country_code             |Match `ISO 3166-2 country code            | str   |
         |                                |<https://iso.org/obp/ui/#search/code/>`_  |       |
         +--------------------------------+------------------------------------------+-------+
         | match_os_id                    | The OS ID of the match                   | str   |
@@ -707,29 +728,30 @@ class OSH_API():
 
         if len(name)>0:
             payload["name"] = name.strip()
-        else:
+        elif "name" not in payload.keys():
             self._result = {"code":-100,"message":"Error: Empty facility name given, we need a name."}
+            self._error = True
             return {"status":"PYTHON_PARAMETER_ERROR"}
         
         if len(address)>0:
             payload["address"] = address.strip()
-        else:
+        elif "address" not in payload.keys():
             self._result = {"code":-101,"message":"Error: Empty address given, we need an address."}
+            self._error = True
             return {"status":"PYTHON_PARAMETER_ERROR"}
         
         if len(country)>0:
             payload["country"] = country.strip()
-        else:
+        elif "country" not in payload.keys():
             self._result = {"code":-102,"message":"Error: Empty country name given, we need a country."}
+            self._error = True
             return {"status":"PYTHON_PARAMETER_ERROR"}
         
         if len(sector)>0:
             payload["sector"] = sector.strip()
-        else:
-            payload["sector"] = "Unspecified"
 
         if len(number_of_workers)>0:
-            payload["number_of_workers"] = number_of_workers.strip()
+            payload["number_of_workers"] = str(number_of_workers).strip()
             
         if len(facility_type)>0:
             payload["facility_type"] = facility_type.strip()
@@ -763,28 +785,58 @@ class OSH_API():
             parameters += "&textonlyfallback=false"
                   
         self._raw_data = ""
-        try:
-            self.last_api_call_epoch = time.time()
-            r = requests.post(f"{self._url}/api/facilities/?{parameters}",headers=self._header,data=payload)
-            self._raw_data = copy.copy(r.text)
-            self.last_api_call_duration = time.time()-self.last_api_call_epoch
-            self._api_call_count += 1
-            if r.ok:
-                data = json.loads(r.text)
-                data = self._flatten_facilities_json(data)
-                self._result = {"code":0,"message":f"{r.status_code}"}
-                self._error = False
-            else:
-                if r.status_code == 400:
-                    data = {"status":"ERROR"}
+
+        try_request = True
+        timeout_timestamp = time.time()
+        timeout_attempt_no = 0
+
+        while try_request: # Timeout guard
+            try:
+                self.last_api_call_epoch = time.time()
+                r = requests.post(f"{self._url}/api/facilities/?{parameters}",headers=self._header,data=payload)
+                timeout_attempt_no += 1
+                self._raw_data = copy.copy(r.text)
+                self.last_api_call_duration = time.time()-self.last_api_call_epoch
+                self._api_call_count += 1
+                if r.ok:
+                    data = json.loads(r.text)
+                    data = self._flatten_facilities_json(data)
+                    self._result = {"code":0,"message":f"{r.status_code}"}
+                    self._error = False
+                    try_request = False
                 else:
-                    data = {"status":"ERROR"}
-                self._result = {"code":-1,"message":f"{r.status_code}"}    
+                    if r.status_code == 429:
+                        pattern = re.compile(".+in ([0-9]+) seconds")
+                        text = json.loads(r.text)["detail"]
+                        wait_time_text = pattern.findall(text)
+                        if len(wait_time_text) > 0:
+                            try:
+                                wait_time_s = int(wait_time_text[0])
+                            except:
+                                self._result = {"code":-1,"message":f"{r.status_code} Unexpected: Could not detect timeout value, aborting"}    
+                                self._error = True
+                                return {"status":"ERROR"}
+                            time_already_spent = time.time()-timeout_timestamp
+                            if round(time_already_spent + wait_time_s -0.5) <= timeout_secs:
+                                time.sleep(wait_time_s)
+                                continue
+                            else:
+                                self._result = {"code":-2,"message":f"{r.status_code} Exceeded timeout after {timeout_attempt_no} attempt(s) (called with: {timeout_secs} s, asked for: {wait_time_s} s, already spent {time_already_spent:.2f} s)"}    
+                                self._error = True
+                                return {"status":"TIMEOUT"}
+
+                    elif r.status_code == 400:
+                        self._result = {"code":-1,"message":f"{r.status_code} Bad Request"}    
+                        self._error = True
+                        return {"status":"ERROR"}
+                    else:
+                        self._result = {"code":-1,"message":f"{r.status_code}"}    
+                        self._error = True
+                        return {"status":"ERROR"}
+            except Exception as e:
+                self._result = {"code":-1,"message":str(e)}
                 self._error = True
-        except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
-            self._error = True
-            return
+                return {"status":"ERROR"}
                 
         return data
         #return pd.DataFrame(data)
@@ -965,9 +1017,11 @@ class OSH_API():
                     elif k == "sector":
                         new_data[k] = "|".join(v)
                     elif isinstance(v,dict):
-                        print(k,"dict")
+                        #print(k,"dict")
+                        pass
                     elif isinstance(v,list):
-                        print(k,"list")
+                        #print(k,"list")
+                        pass
                     elif k in ["raw_data","row_index","source"]:
                         continue
                     elif k.startswith("ppe_"):

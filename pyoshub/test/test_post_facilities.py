@@ -185,8 +185,9 @@ class Test_post_facilities_match:
         )
         #assert(result == {r.status_code})
         #assert(osh_api.result == {'code': -1, 'message': '400'})
-        print(result)
-        print(osh_api.result)
+        assert(result == {'status': 'PYTHON_PARAMETER_ERROR'})
+        assert(osh_api.result == {'code': -102, 'message': 'Error: Empty country name given, we need a country.'})
+        assert(osh_api.error)
 
 
     def test_post_facilities_new_with_additional_dict(self):
@@ -201,16 +202,64 @@ class Test_post_facilities_match:
                 "my_field_2":12
             }
         )
-        print(result)
-        _ = """assert(result == [
+        assert(result == [
             {
-                'item_id': 804344, 
-                'lon': -75.56581530000001, 
-                'lat': 6.2476376, 
-                'geocoded_address': 'Medellín, Medellin, Antioquia, Colombia', 
+                'item_id': 804380, 
+                'lon': 1.659626, 
+                'lat': 28.033886, 
+                'geocoded_address': 'Algeria', 
                 'status': 'NEW_FACILITY', 
-                'os_id': 'CO2022294AJ8TBG'
+                'os_id': 'DZ2022294Y5EP82'
             }
         ])
         assert(osh_api.ok)
-        assert(osh_api.reason=="201")"""
+        assert(osh_api.reason=="201")
+
+
+    def test_post_facilities_with_timeout_handling(self):
+        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"],token=os.environ["TEST_OSH_TOKEN"],check_token=True)
+        result = osh_api.post_facilities(
+            name="Another new facility",
+            country="Algeria",
+            address="Zone Industrielle BP 14",
+            sector="Food"
+        )
+        assert(osh_api.ok)
+        import json
+        #print(json.dumps(result,indent=2))
+        assert(result[0]['status']=="MATCHED")
+        result = osh_api.post_facilities(
+            name="Another new facility",
+            country="Algeria",
+            address="Zone Industrielle BP 14",
+            sector="Food"
+        )
+        assert(osh_api.ok)
+        assert(result[0]['status']=="MATCHED")
+
+
+    def test_post_facilities_with_timeout_handling_trigger_timeout(self):
+        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"],token=os.environ["TEST_OSH_TOKEN"],check_token=True)
+        result = osh_api.post_facilities(
+            name="Another new facility",
+            country="Algeria",
+            address="Zone Industrielle BP 14",
+            sector="Food"
+        )
+        assert(osh_api.ok)
+        import json
+        #print(json.dumps(result,indent=2))
+        assert(result[0]['status']=="MATCHED")
+        result = osh_api.post_facilities(
+            name="Another new facility",
+            country="Algeria",
+            address="Zone Industrielle BP 14",
+            sector="Food",
+            timeout_secs=10
+        )
+        assert(result['status'] == 'TIMEOUT')
+        assert(osh_api.result["code"] == -2)
+        assert('429 Exceeded timeout after' in osh_api.result['message'])
+        print(osh_api.result["message"])
+
+        #assert(result[0]['status']=="MATCHED")

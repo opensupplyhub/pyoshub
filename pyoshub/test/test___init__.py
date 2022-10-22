@@ -2,6 +2,7 @@ import pytest
 import pyoshub.pyoshub as pyoshub 
 import os
 from dotenv import load_dotenv
+import time
 
 load_dotenv()
 
@@ -149,6 +150,7 @@ class Test___init__:
         #print("yaml_text",yaml_text)
         thread = mytempwebserver()
         thread.start()
+        time.sleep(0.5)
         osh_api = pyoshub.OSH_API(url_to_env_yml="http://localhost:8000",check_token=True)
         try: # clean up lockups, the server should shut down after one call
             while True:
