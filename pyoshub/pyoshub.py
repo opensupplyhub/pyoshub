@@ -1,6 +1,6 @@
 """pyosh is a Package for accessing the `Open Supply Hub API <https://opensupplyhub.org/api/docs>`_ using python."""
 
-__version__ = "0.4.2"
+__version__ = "0.4.3"
 
 import os
 import yaml
@@ -567,19 +567,20 @@ class OSH_API():
         number_of_workers : int or str, optional
             Number of workers in facility, or a range as returned by :meth:`pyoshub.OSH_API.get_workers_ranges`, by default ""
         facility_type : str, optional
-            Facility type, consider the values returned by :meth:`pyoshub.OSH_API.get_facility_processing_types`
+            Facility type, consider the values returned by :meth:`pyoshub.OSH_API.get_facility_processing_types` 
             to use standard facility types already defined, by default ""
         processing_type : str, optional
-            Processing type, consider the values returned by :meth:`pyoshub.OSH_API.get_facility_processing_types`
+            Processing type, consider the values returned by :meth:`pyoshub.OSH_API.get_facility_processing_types` 
             to use standard processing types already defined, by default ""
         product_type : str, optional
-            Product type, consider the values returned by :meth:`pyoshub.OSH_API.get_product_types`
+            Product type, consider the values returned by :meth:`pyoshub.OSH_API.get_product_types` 
             to use standard product types already defined, by default ""
         parent_company_name : str, optional
-            Parent company name, consider the values returned by :meth:`pyoshub.OSH_API.get_parent_companies`
+            Parent company name, consider the values returned by :meth:`pyoshub.OSH_API.get_parent_companies` 
             for parent companies already defined, by default ""
         native_language_name : str, optional
             Native language name used at facility, by default ""
+
 
         Returns
         -------
@@ -587,7 +588,8 @@ class OSH_API():
             An array of dictionaries (key,value pairs). See tables below for example
             return data structures, which depend on the value of the ``status`` field.
 
-        For status == ``MATCHED``
+
+        For status == ``MATCHED`` 
 
         +--------------------------------+------------------------------------------+-------+
         | fieldname                      | description                              | type  |
@@ -602,7 +604,7 @@ class OSH_API():
         +--------------------------------+------------------------------------------+-------+
         | geocoded_address               | Address returned from geocoder           | str   |
         +--------------------------------+------------------------------------------+-------+
-        | status                         | Will be set to ``MATCHED``               | str   |
+        | status                         | Will be set to MATCHED                   | str   |
         +--------------------------------+------------------------------------------+-------+
         | os_id                          | The OS ID                                | str   |
         +--------------------------------+------------------------------------------+-------+
@@ -642,7 +644,7 @@ class OSH_API():
         +--------------------------------+------------------------------------------+-------+
         | match_new_os_id                |                                          | str   |
         +--------------------------------+------------------------------------------+-------+
-        | match_has_inexact_coordinates  | Misnomer: Geocoordinates manually        | bool  |
+        | match_has_inexact_coordinates  |           Geocoordinates manually        | bool  |
         |                                |                                          |       |
         |                                | entered for match                        |       |
         +--------------------------------+------------------------------------------+-------+
@@ -690,7 +692,8 @@ class OSH_API():
         +--------------------------------+------------------------------------------+-------+
 
         For status == ``POTENTIAL_MATCH``
-          In addition to the fields in ``MATCHED``
+
+        In addition to the fields in ``MATCHED``
 
         +-------------------------+------------------------------------------+-------+
         | fieldname               | description                              | type  |
@@ -705,6 +708,7 @@ class OSH_API():
         +-------------------------+------------------------------------------+-------+
 
         For status == ``ERROR``
+
         """
         if len(data) == 0:
             payload = {}
