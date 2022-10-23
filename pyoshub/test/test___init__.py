@@ -1,10 +1,11 @@
 import pytest
-import pyoshub.pyoshub as pyoshub 
+import pyoshub.pyoshub as pyoshub
 import os
 from dotenv import load_dotenv
 import time
 
 load_dotenv()
+
 
 @pytest.fixture(scope='module')
 def vcr_config():
@@ -12,70 +13,55 @@ def vcr_config():
         # Replace the Authorization request header with "DUMMY" in cassettes
         "filter_headers": [
             ('authorization', 'HIDDEN')],
-        "record_mode":'new',
-        "ignore_localhost":True
+        "record_mode": 'new',
+        "ignore_localhost": True
     }
+
 
 @pytest.mark.vcr()
 class Test___init__:
-
-    #@pytest.mark.vcr()
     def test_invalid_protocol(self):
         osh_api = pyoshub.OSH_API(url="invalid://will_raise_exception")
-        assert(osh_api.result == {'code': -1, 'message': "No connection adapters were found for 'invalid://will_raise_exception/health-check/'"})
-        assert(osh_api.error)
-        assert(not osh_api.ok)
-        assert(osh_api.reason == "No connection adapters were found for 'invalid://will_raise_exception/health-check/'")
+        assert (osh_api.result == {'code': -1, 'message': "No connection adapters were found for 'invalid://will_raise_exception/health-check/'"})
+        assert (osh_api.error)
+        assert (not osh_api.ok)
+        assert (osh_api.reason == "No connection adapters were found for 'invalid://will_raise_exception/health-check/'")
 
-    #@pytest.mark.vcr()
     def test_invalid_url(self):
         osh_api = pyoshub.OSH_API(url="https://doesnot.ex.ist")
-        assert(osh_api.result["code"] == -1)
-        assert("Max retries exceeded with url: /health-check/" in osh_api.result["message"])
-        assert(osh_api.error == True)
+        assert (osh_api.result["code"] == -1)
+        assert ("Max retries exceeded with url: /health-check/" in osh_api.result["message"])
+        assert (osh_api.error)
 
-    #@pytest.mark.vcr()
     def test_valid_url(self):
         osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"])
-        assert(osh_api.result["code"] == 0)
-        assert(osh_api.result["message"] == "ok")
-        assert(osh_api.error == False)
-
-    #@pytest.mark.vcr()
-    def test_valid_url(self):
-        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"])
-        assert(osh_api.result["code"] == 0)
-        assert(osh_api.result["message"] == "ok")
-        assert(osh_api.error == False)
-
+        assert (osh_api.result["code"] == 0)
+        assert (osh_api.result["message"] == "ok")
+        assert (not osh_api.error)
 
     def test_valid_url_no_token_test_token(self):
-        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"],check_token=True)
-        assert(osh_api.result["code"] == -1)
-        assert(osh_api.result["message"] == "No/empty token")
-        assert(osh_api.error == True)
-
+        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"], check_token=True)
+        assert (osh_api.result["code"] == -1)
+        assert (osh_api.result["message"] == "No/empty token")
+        assert (osh_api.error)
 
     def test_valid_url_invalid_token(self):
-        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"],token="invalid")
-        assert(osh_api.result["code"] == 0)
-        assert(osh_api.result["message"] == "ok")
-        assert(osh_api.error == False)
-
+        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"], token="invalid")
+        assert (osh_api.result["code"] == 0)
+        assert (osh_api.result["message"] == "ok")
+        assert (not osh_api.error)
 
     def test_valid_url_invalid_token_test_token(self):
-        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"],token="invalid",check_token=True)
-        assert(osh_api.result["code"] == 401)
-        assert(osh_api.result["message"] == "<Response [401]>")
-        assert(osh_api.error == True)
-
+        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"], token="invalid", check_token=True)
+        assert (osh_api.result["code"] == 401)
+        assert (osh_api.result["message"] == "<Response [401]>")
+        assert (osh_api.error)
 
     def test_valid_url_valid_token_test_token(self):
-        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"],token=os.environ["TEST_OSH_TOKEN"],check_token=True)
-        assert(osh_api.result["code"] == 0)
-        assert(osh_api.result["message"] == "ok")
-        assert(osh_api.error == False)
-
+        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"], token=os.environ["TEST_OSH_TOKEN"], check_token=True)
+        assert (osh_api.result["code"] == 0)
+        assert (osh_api.result["message"] == "ok")
+        assert (not osh_api.error)
 
     def test_dotenv(self):
         import yaml
@@ -84,14 +70,13 @@ class Test___init__:
             "OSH_URL": os.environ["TEST_OSH_URL"],
             "OSH_TOKEN": os.environ["TEST_OSH_TOKEN"]
         }
-        with open(".env.yml","w+t") as f:
+        with open(".env.yml", "w+t") as f:
             f.write(yaml.dump(yaml_content))
         osh_api = pyoshub.OSH_API(check_token=True)
-        assert(osh_api.result["code"] == 0)
-        assert(osh_api.result["message"] == "ok")
-        assert(osh_api.error == False)
+        assert (osh_api.result["code"] == 0)
+        assert (osh_api.result["message"] == "ok")
+        assert (not osh_api.error)
         os.remove(".env.yml")
-
 
     def test_dotenv_with_path(self):
         import yaml
@@ -100,24 +85,19 @@ class Test___init__:
             "OSH_URL": os.environ["TEST_OSH_URL"],
             "OSH_TOKEN": os.environ["TEST_OSH_TOKEN"]
         }
-        with open("some.filename.yaml","w+t") as f:
+        with open("some.filename.yaml", "w+t") as f:
             f.write(yaml.dump(yaml_content))
-        osh_api = pyoshub.OSH_API(path_to_env_yml="some.filename.yaml",check_token=True)
-        assert(osh_api.result["code"] == 0)
-        assert(osh_api.result["message"] == "ok")
-        assert(osh_api.error == False)
+        osh_api = pyoshub.OSH_API(path_to_env_yml="some.filename.yaml", check_token=True)
+        assert (osh_api.result["code"] == 0)
+        assert (osh_api.result["message"] == "ok")
+        assert (not osh_api.error)
         os.remove("some.filename.yaml")
 
-
     def test_dotenv_with_invalid_path(self):
-        osh_api = pyoshub.OSH_API(path_to_env_yml="/x/y/z/invalid_file",check_token=True)
-        #print("code",osh_api.result["code"])
-        #print(f'message @{osh_api.result["message"]}@')
-        assert(osh_api.result["code"] == -1)
-        assert(osh_api.result["message"] == "[Errno 2] No such file or directory: '/x/y/z/invalid_file'")
-        assert(osh_api.error == True)
-
-
+        osh_api = pyoshub.OSH_API(path_to_env_yml="/x/y/z/invalid_file", check_token=True)
+        assert (osh_api.result["code"] == -1)
+        assert (osh_api.result["message"] == "[Errno 2] No such file or directory: '/x/y/z/invalid_file'")
+        assert (osh_api.error)
 
     def test_credentials_via_url(self):
         import yaml
@@ -135,10 +115,10 @@ class Test___init__:
 
                 self.send_response(200)
                 self.end_headers()
-                self.wfile.write(yaml_text) #b'Hello, world!')
+                self.wfile.write(yaml_text)
 
         class mytempwebserver(Thread):
-            def __init__(self,num_calls=1):
+            def __init__(self, num_calls=1):
                 Thread.__init__(self)
                 self.num_calls = num_calls
 
@@ -147,23 +127,18 @@ class Test___init__:
                 for i in range(self.num_calls):
                     httpd.handle_request()
 
-        #print("yaml_text",yaml_text)
         thread = mytempwebserver()
         thread.start()
         time.sleep(0.5)
-        osh_api = pyoshub.OSH_API(url_to_env_yml="http://localhost:8000",check_token=True)
-        try: # clean up lockups, the server should shut down after one call
+        osh_api = pyoshub.OSH_API(url_to_env_yml="http://localhost:8000", check_token=True)
+        try:  # clean up lockups, the server should shut down after one call
             while True:
-                r = requests.get("http://localhost:8000")
-                print(r.text)
-        except:
+                requests.get("http://localhost:8000")
+        except Exception:
             pass
+
         thread.join()
-        #print("code",osh_api.result["code"])
-        #print("message",osh_api.result["message"])
-        assert(osh_api.result["code"] == 0)
-        assert(osh_api.result["message"] == "ok")
-        assert(osh_api.error == False)
 
-
-
+        assert (osh_api.result["code"] == 0)
+        assert (osh_api.result["message"] == "ok")
+        assert (not osh_api.error)

@@ -1,9 +1,10 @@
 import pytest
-import pyoshub.pyoshub as pyoshub 
+import pyoshub.pyoshub as pyoshub
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
+
 
 @pytest.fixture(scope='module')
 def vcr_config():
@@ -11,17 +12,20 @@ def vcr_config():
         # Replace the Authorization request header with "DUMMY" in cassettes
         "filter_headers": [
             ('authorization', 'HIDDEN')],
-        "record_mode":'new'
+        "record_mode": 'new'
     }
 
 
 @pytest.mark.vcr()
 class Test_get_facility_processing_types:
     def test_get_facility_processing_types(self):
-        osh_api = pyoshub.OSH_API(url=os.environ["TEST_OSH_URL"],token=os.environ["TEST_OSH_TOKEN"],check_token=True)
+        osh_api = pyoshub.OSH_API(
+            url=os.environ["TEST_OSH_URL"],
+            token=os.environ["TEST_OSH_TOKEN"],
+            check_token=True)
         result = osh_api.get_facility_processing_types()
-        assert(len(result) == 137)
-        assert(result == [
+        assert (len(result) == 137)
+        assert (result == [
             {'facility_type': 'Final Product Assembly', 'processing_type': 'Assembly'},
             {'facility_type': 'Final Product Assembly', 'processing_type': 'Cut & Sew'},
             {'facility_type': 'Final Product Assembly', 'processing_type': 'Cutting'},

@@ -1,6 +1,6 @@
 """pyosh is a Package for accessing the `Open Supply Hub API <https://opensupplyhub.org/api/docs>`_ using python."""
 
-__version__ = "0.4.0"
+__version__ = "0.4.1"
 
 import os
 import yaml
@@ -17,23 +17,22 @@ import re
 
 class OSH_API():
     """This is a class that wraps API access to https://opensupplyhub.org.
-     
+
         Example
         -------
         This is an example of a yaml configuration file which supplies a valid API endpoint URL, and an API token.
-                
-        .. code-block:: 
-            
+
+        .. code-block::
+
             OSH_URL: https://opensupplyhub.org
             OSH_TOKEN: 12345abcdef12345abcdef12345abcdef
-       
+
     """
-        
-    def __init__(self, url : str = "http://opensupplyhub.org", token : str = "", 
-                 path_to_env_yml : str = "", url_to_env_yml : str = "", 
-                 check_token = False):
+    def __init__(self, url: str = "http://opensupplyhub.org", token: str = "",
+                 path_to_env_yml: str = "", url_to_env_yml: str = "",
+                 check_token: bool = False):
         """object generation method
-        
+
         Parameters
         ----------
         url: str, optional, default = "http://opensupplyhub.org"
@@ -48,141 +47,135 @@ class OSH_API():
             Whether to check API token validity during initialisation. Note this will cost one API call count.
 
         """
-        result = {}
         self._header = {}
         credentials = {}
         self._error = False
-        
+
         if len(path_to_env_yml) > 0:
             try:
-                with open(path_to_env_yml,"rt") as f:
-                    credentials = yaml.load(f,yaml.Loader)
+                with open(path_to_env_yml, "rt") as f:
+                    credentials = yaml.load(f, yaml.Loader)
                     self._url = credentials["OSH_URL"]
                     self._token = credentials["OSH_TOKEN"]
-                    logging.info(f"using specified env file")
+                    logging.info("using specified env file")
             except Exception as e:
-                self._result = {"code":-1,"message":str(e)}
+                self._result = {"code": -1, "message": str(e)}
                 self._error = True
                 logging.error(str(e))
                 return
         elif len(url_to_env_yml) > 0:
             try:
                 r = requests.get(url_to_env_yml)
-                credentials = yaml.load(io.StringIO(r.text),yaml.Loader)
+                credentials = yaml.load(io.StringIO(r.text), yaml.Loader)
                 self._url = credentials["OSH_URL"]
                 self._token = credentials["OSH_TOKEN"]
-            except:
+            except Exception:
                 pass
         elif os.path.exists("./.env.yml"):
             try:
-                with open("./.env.yml","rt") as f:
-                    credentials = yaml.load(f,yaml.Loader)
+                with open("./.env.yml", "rt") as f:
+                    credentials = yaml.load(f, yaml.Loader)
                 self._url = credentials["OSH_URL"]
                 self._token = credentials["OSH_TOKEN"]
-            except:
+            except Exception:
                 pass
         else:
             self._url = url
-            if len(token)>0:
+            if len(token) > 0:
                 self._token = token
-        
+
         if "OSH_URL" in os.environ.keys():
             self._url = os.environ["OSH_URL"]
         elif "OSH_URL" in credentials.keys():
             self._url = credentials["OSH_URL"]
         else:
             self._url = url
-            
+
         if "OSH_TOKEN" in os.environ.keys():
             self._token = os.environ["OSH_TOKEN"]
         elif "OSH_TOKEN" in credentials.keys():
             self._token = credentials["OSH_TOKEN"]
         else:
             self._token = token
-         
-        self._url = self._url.strip("/") # remove trailing slash as we add it
-        
+
+        self._url = self._url.strip("/")  # remove trailing slash as we add it
+
         self._header = {
             "accept": "application/json",
             "Authorization": f"Token {self._token}"
         }
-        
+
         self._api_call_count = 0
         self.last_api_call_epoch = -1
         self.last_api_call_duration = -1
         self.countries = []
         self.countries_active_count = -1
+        self._facilites_count = -1
         self._contributors = []
-        self.post_facility_results = {
-            "NEW_FACILITY":1,
-            "MATCHED":2,
-            "POTENTIAL_MATCH":0,
-            "ERROR_MATCHING":-1
-        }
         self._raw_data = ""
-           
+
         # Check valid URL
         try:
-            r = requests.get(f"{self._url}/health-check/",timeout=5)
+            r = requests.get(f"{self._url}/health-check/", timeout=5)
             if r.ok:
-                self._result = {"code":0,"message":"ok"}
+                self._result = {"code": 0, "message": "ok"}
                 self._error = False
             else:
-                self._result = {"code":r.status_code,"message":r.reason}
+                self._result = {"code": r.status_code, "message": r.reason}
                 self._error = False
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
-        
+
         # Check header/token validity
         if check_token and len(self._token.strip()) == 0:
-            self._result = {"code":-1,"message":"No/empty token"}
+            self._result = {"code": -1, "message": "No/empty token"}
             self._error = True
         elif check_token:
             self._raw_data = ""
             try:
                 self.last_api_call_epoch = time.time()
-                r = requests.get(f"{self._url}/api/facilities/count/",headers=self._header)
+                r = requests.get(f"{self._url}/api/facilities/count/", headers=self._header)
                 self._raw_data = copy.copy(r.text)
                 self.last_api_call_duration = time.time()-self.last_api_call_epoch
                 self._api_call_count += 1
                 if not r.ok:
-                    self._result = {"code":r.status_code,"message":str(r)}
+                    self._result = {"code": r.status_code, "message": str(r)}
                     self._error = True
                 else:
                     # Check everything is working
                     try:
                         data = json.loads(r.text)
-                        facilites_count = data["count"]
-                        self._result = {"code":0,"message":"ok"}
+                        self._facilites_count = data["count"]
+                        self._result = {"code": 0, "message": "ok"}
                         self._error = False
                     except Exception as e:
-                        self._result = {"code":-1,"message":"JSON error: "+str(e)}
+                        self._result = {"code": -1, "message": "JSON error: "+str(e)}
                         self._error = True
+                        self._facilites_count = -1
                         return
             except Exception as e:
-                self._result = {"code":-1,"message":str(e)}
+                self._result = {"code": -1, "message": str(e)}
                 self._error = True
+                self._facilites_count = -1
                 return
         else:
             self._raw_data = ""
 
-        return 
-    
+        return
+
     @property
     def api_call_count(self) -> int:
         """The accumulated number of API calls made during the lifetime of the object. This value is not
-           persisted and gets initialised to 0 each time an object is instantiated. When called as a setter, 
+           persisted and gets initialised to 0 each time an object is instantiated. When called as a setter,
            the number provided is added to API calls made so far.
         """
         return self._api_call_count
 
-
     @api_call_count.setter
     def api_call_count(self, value: int):
         self._api_call_count += value
-
 
     @property
     def contributors(self) -> list:
@@ -248,23 +241,27 @@ class OSH_API():
         """
         return self._result["message"]
 
+    @property
+    def facilities_count(self) -> int:
+        """Number of facilities in database, if call has been made.
+        """
+        return self._facilites_count
 
-    def get_facilities(self, q : str = "", 
-                       contributors : Union[int,list] = -1,
-                       lists : int = -1, 
-                       contributor_types : Union[str,list] = "", 
-                       countries : str = "",
-                       boundary : dict = {}, parent_company : str = "", facility_type : str = "",
-                       processing_type : str = "", product_type : str = "", number_of_workers : str = "",
-                       native_language_name : str = "", detail : bool =False, sectors : str = "",
-                       page : int = -1, pageSize : int = -1,) -> list:
+    def get_facilities(self, q: str = "",
+                       contributors: Union[int, list] = -1,
+                       lists: int = -1,
+                       contributor_types: Union[str, list] = "",
+                       countries: str = "",
+                       boundary: dict = {}, parent_company: str = "", facility_type: str = "",
+                       processing_type: str = "", product_type: str = "", number_of_workers: str = "",
+                       native_language_name: str = "", detail: bool = False, sectors: str = "",
+                       page: int = -1, pageSize: int = -1) -> list:
         """Returns a list of facilities in GeoJSON format for a given query. (Maximum of 50 facilities per page if the detail parameter is fale or not specified, 10 if the detail parameter is true.)
-        
+
         .. attention::
           Rate limits and possibly list size limitations may effect the returned values. This call
           is intended to be used in conjunction with a search filter.
-         
-        
+
         Parameters
         ----------
         q : str, optional
@@ -299,13 +296,12 @@ class OSH_API():
            A page number within the paginated result set.
         pageSize : int, optional
            Number of results to return per page.
-           
+
         Returns
         -------
         list(dict)
-            An array of dictionaries (key,value pairs). See table below for 
+            An array of dictionaries (key,value pairs). See table below for
             return data structures.
-            
 
             +-------------------------------+-----------------------------------------------+-------+
             |column                         | description                                   | type  |
@@ -391,9 +387,8 @@ class OSH_API():
             | sector                        | Business sector                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
         """
-        
         parameters = []
-         
+
         if page != -1:
             parameters.append(f"page={page}")
         if pageSize != -1:
@@ -402,7 +397,7 @@ class OSH_API():
             q = urllib.parse.quote_plus(q)
             parameters.append(f"q={q}")
         if contributors != -1:
-            if isinstance(contributors,list):
+            if isinstance(contributors, list):
                 for contributor in contributors:
                     c = urllib.parse.quote_plus(str(contributor))
                     parameters.append(f"contributors={c}")
@@ -412,7 +407,7 @@ class OSH_API():
         if lists != -1:
             parameters.append(f"lists={lists}")
         if len(contributor_types) > 0:
-            if isinstance(contributor_types,list):
+            if isinstance(contributor_types, list):
                 for contributor_type in contributor_types:
                     ct = urllib.parse.quote_plus(contributor_type)
                     parameters.append(f"contributor_types={ct}")
@@ -423,7 +418,7 @@ class OSH_API():
             countries = urllib.parse.quote_plus(countries)
             parameters.append(f"countries={countries}")
         if len(boundary.keys()) > 0:
-            boundary = urllib.parse.quote_plus(str(boundary).replace(" ",""))
+            boundary = urllib.parse.quote_plus(str(boundary).replace(" ", ""))
             parameters.append(f"boundary={boundary}")
         if len(parent_company) > 0:
             parent_company = urllib.parse.quote_plus(parent_company)
@@ -444,69 +439,66 @@ class OSH_API():
             native_language_name = urllib.parse.quote_plus(native_language_name)
             parameters.append(f"native_language_name={native_language_name}")
         if detail:
-            parameters.append(f"detail=true")
+            parameters.append("detail=true")
         else:
-            parameters.append(f"detail=false")
+            parameters.append("detail=false")
         if len(sectors) > 0:
             sectors = urllib.parse.quote_plus(sectors)
             parameters.append(f"sectors={sectors}")
-        
+
         parameters = "&".join(parameters)
         have_next = True
         request_url = f"{self._url}/api/facilities/?{parameters}"
-        
+
         alldata = []
         self._raw_data = ""
-        
+
         while have_next:
             try:
                 self.last_api_call_epoch = time.time()
-                r = requests.get(request_url,headers=self._header)
+                r = requests.get(request_url, headers=self._header)
                 self._raw_data = copy.copy(r.text)
                 self.last_api_call_duration = time.time()-self.last_api_call_epoch
                 self._api_call_count += 1
                 if r.ok:
                     data = json.loads(r.text)
-                    
+
                     for entry in data["features"]:
                         new_entry = {
-                            "os_id":entry["id"],
-                            "lon":entry["geometry"]["coordinates"][0],
-                            "lat":entry["geometry"]["coordinates"][1],
+                            "os_id": entry["id"],
+                            "lon": entry["geometry"]["coordinates"][0],
+                            "lat": entry["geometry"]["coordinates"][1],
                         }
-                        for k,v in entry["properties"].items():
+                        for k, v in entry["properties"].items():
                             if not k.startswith("ppe_") and not k == "new_os_id":
                                 new_entry[k] = v
                         alldata.append(new_entry)
-                        
-                    self._result = {"code":0,"message":f"{r.status_code}"}
+
+                    self._result = {"code": 0, "message": f"{r.status_code}"}
                     if 'next' in data.keys() and data["next"] is not None:
                         request_url = data["next"]
                     else:
                         have_next = False
                     self._error = False
                 else:
-                    #alldata = []
-                    self._result = {"code":-1,"message":f"{r.status_code}"}
+                    self._result = {"code": -1, "message": f"{r.status_code}"}
                     have_next = False
                     self._error = True
             except Exception as e:
-                self._result = {"code":-1,"message":str(e)}
+                self._result = {"code": -1, "message": str(e)}
                 self._error = True
                 return alldata
-        
+
         return alldata
-        #return pd.DataFrame(alldata)
-  
-    
-    def post_facilities(self, name : str = "", address : str = "", 
-                        country : str = "", sector : str ="",
-                        data : dict = {}, 
-                        create : bool = False, public : bool = True, 
-                        textonlyfallback : bool = False, timeout_secs : int = 90,
-                        number_of_workers : Union[int,str] = "", facility_type : str = "",
-                        processing_type : str = "", product_type : str = "",
-                        parent_company_name : str = "", native_language_name : str = "") -> list:
+
+    def post_facilities(self, name: str = "", address: str = "",
+                        country: str = "", sector: str = "",
+                        data: dict = {},
+                        create: bool = False, public: bool = True,
+                        textonlyfallback: bool = False, timeout_secs: int = 90,
+                        number_of_workers: Union[int, str] = "", facility_type: str = "",
+                        processing_type: str = "", product_type: str = "",
+                        parent_company_name: str = "", native_language_name: str = "") -> list:
         """Add a single facility record.
 
         There are two ways supplying data, either via the ``name``, ``address``, ``country`` etc parameters,
@@ -518,14 +510,14 @@ class OSH_API():
         Uploading a record may create a new entry, return a previously matched entry, or require you to make
         a confirm/reject selection by calling one of two corresponding API endpoints.
 
-        For checking if a match already exists, we recommend calling this method with ``create=False``, then 
+        For checking if a match already exists, we recommend calling this method with ``create=False``, then
         check the return value for existing matches. This will reduce unnecessary processing load on our
         machine.
 
         See also :ref:`facility_upload_lifecycle` for a description of the overall upload lifecycle.
-         
+
         .. uml::
-        
+
           @startuml
 
           (*) --> "ingest data"
@@ -543,7 +535,7 @@ class OSH_API():
           "NEW_FACILITY" -->[new os_id] (*)
           "confirm/reject endpoints" -->[second call required] (*)
           "ERROR_MATCHING" -->[record invalid] (*)
-          
+
           @enduml
 
 
@@ -555,13 +547,13 @@ class OSH_API():
             Complete address of the facility
         country : str, optional
             Country the facility is based in, by default "". Ideally,
-            this is an `ISO 3166-2 or -3 country code or name <https://iso.org/obp/ui/#search/code/>`_ 
+            this is an `ISO 3166-2 or -3 country code or name <https://iso.org/obp/ui/#search/code/>`_
         sector : str, optional
             Economic or Industrial Sector the facility operates in, by default "". Note
             that empty sector names will internally be mapped to ``Unspecified`` during
             upload.
         data : dict, optional
-            A key,value dictionary which contains keys matching the parameter list (except timeout), 
+            A key,value dictionary which contains keys matching the parameter list (except timeout),
             by default {}. If optional parameters are speficied in addition to this parameter, the
             optional parameters will overwrite the ``data`` entries.
         create : bool, optional
@@ -595,7 +587,6 @@ class OSH_API():
         list(dict)
             An array of dictionaries (key,value pairs). See tables below for example
             return data structures, which depend on the value of the ``status`` field.
-
 
         For status == ``MATCHED``
 
@@ -681,7 +672,6 @@ class OSH_API():
         | match_sector                   | Sector assignment of match               | str   |
         +--------------------------------+------------------------------------------+-------+
 
-        
         For status == ``NEW_FACILITY``
 
         +--------------------------------+------------------------------------------+-------+
@@ -699,101 +689,97 @@ class OSH_API():
         +--------------------------------+------------------------------------------+-------+
         | os_id                          | The OS ID                                | str   |
         +--------------------------------+------------------------------------------+-------+
-        
+
         For status == ``POTENTIAL_MATCH``
           In addition to the fields in ``MATCHED``
-          
+
         +-------------------------+------------------------------------------+-------+
         | fieldname               | description                              | type  |
         +=========================+==========================================+=======+
         | match_confidence        | Numerical value between 0.0 and 1.0      | int   |
         +-------------------------+------------------------------------------+-------+
         | match_confirm_match_url | Path part of the endpoint to call        | float |
-        |                         | indicating confirming this match         |       |       
+        |                         | indicating confirming this match         |       |
         +-------------------------+------------------------------------------+-------+
         | match_confirm_match_url | Path part of the endpoint to call        | float |
         |                         | indicating rejecting this match          |       |
-        +-------------------------+------------------------------------------+-------+  
-        
-        
+        +-------------------------+------------------------------------------+-------+
+
         For status == ``ERROR``
-        
         """
-
-
         if len(data) == 0:
             payload = {}
         else:
             payload = data
 
-        if len(name)>0:
+        if len(name) > 0:
             payload["name"] = name.strip()
         elif "name" not in payload.keys():
-            self._result = {"code":-100,"message":"Error: Empty facility name given, we need a name."}
+            self._result = {"code": -100, "message": "Error: Empty facility name given, we need a name."}
             self._error = True
-            return {"status":"PYTHON_PARAMETER_ERROR"}
-        
-        if len(address)>0:
+            return {"status": "PYTHON_PARAMETER_ERROR"}
+
+        if len(address) > 0:
             payload["address"] = address.strip()
         elif "address" not in payload.keys():
-            self._result = {"code":-101,"message":"Error: Empty address given, we need an address."}
+            self._result = {"code": -101, "message": "Error: Empty address given, we need an address."}
             self._error = True
-            return {"status":"PYTHON_PARAMETER_ERROR"}
-        
-        if len(country)>0:
+            return {"status": "PYTHON_PARAMETER_ERROR"}
+
+        if len(country) > 0:
             payload["country"] = country.strip()
         elif "country" not in payload.keys():
-            self._result = {"code":-102,"message":"Error: Empty country name given, we need a country."}
+            self._result = {"code": -102, "message": "Error: Empty country name given, we need a country."}
             self._error = True
-            return {"status":"PYTHON_PARAMETER_ERROR"}
-        
-        if len(sector)>0:
+            return {"status": "PYTHON_PARAMETER_ERROR"}
+
+        if len(sector) > 0:
             payload["sector"] = sector.strip()
 
-        if len(number_of_workers)>0:
+        if len(number_of_workers) > 0:
             payload["number_of_workers"] = str(number_of_workers).strip()
-            
-        if len(facility_type)>0:
+
+        if len(facility_type) > 0:
             payload["facility_type"] = facility_type.strip()
-            
-        if len(processing_type)>0:
+
+        if len(processing_type) > 0:
             payload["processing_type"] = processing_type.strip()
-            
-        if len(product_type)>0:
+
+        if len(product_type) > 0:
             payload["product_type"] = product_type.strip()
-            
-        if len(parent_company_name)>0:
+
+        if len(parent_company_name) > 0:
             payload["parent_company_name"] = parent_company_name.strip()
-            
-        if len(native_language_name)>0:
+
+        if len(native_language_name) > 0:
             payload["native_language_name"] = native_language_name.strip()
-            
+
         parameters = "?"
         if create:
             parameters += "create=true"
         else:
             parameters += "create=false"
-            
+
         if public:
             parameters += "&public=true"
         else:
             parameters += "&public=false"
-            
+
         if textonlyfallback:
             parameters += "&textonlyfallback=true"
         else:
             parameters += "&textonlyfallback=false"
-                  
+
         self._raw_data = ""
 
         try_request = True
         timeout_timestamp = time.time()
         timeout_attempt_no = 0
 
-        while try_request: # Timeout guard
+        while try_request:  # Timeout guard
             try:
                 self.last_api_call_epoch = time.time()
-                r = requests.post(f"{self._url}/api/facilities/?{parameters}",headers=self._header,data=payload)
+                r = requests.post(f"{self._url}/api/facilities/?{parameters}", headers=self._header, data=payload)
                 timeout_attempt_no += 1
                 self._raw_data = copy.copy(r.text)
                 self.last_api_call_duration = time.time()-self.last_api_call_epoch
@@ -801,7 +787,7 @@ class OSH_API():
                 if r.ok:
                     data = json.loads(r.text)
                     data = self._flatten_facilities_json(data)
-                    self._result = {"code":0,"message":f"{r.status_code}"}
+                    self._result = {"code": 0, "message": f"{r.status_code}"}
                     self._error = False
                     try_request = False
                 else:
@@ -812,46 +798,41 @@ class OSH_API():
                         if len(wait_time_text) > 0:
                             try:
                                 wait_time_s = int(wait_time_text[0])
-                            except:
-                                self._result = {"code":-1,"message":f"{r.status_code} Unexpected: Could not detect timeout value, aborting"}    
+                            except Exception:
+                                self._result = {"code": -1, "message": f"{r.status_code} Unexpected: Could not detect timeout value, aborting"}
                                 self._error = True
-                                return {"status":"ERROR"}
+                                return {"status": "ERROR"}
                             time_already_spent = time.time()-timeout_timestamp
-                            if round(time_already_spent + wait_time_s -0.5) <= timeout_secs:
+                            if round(time_already_spent + wait_time_s - 0.5) <= timeout_secs:
                                 time.sleep(wait_time_s)
                                 continue
                             else:
-                                self._result = {"code":-2,"message":f"{r.status_code} Exceeded timeout after {timeout_attempt_no} attempt(s) (called with: {timeout_secs} s, asked for: {wait_time_s} s, already spent {time_already_spent:.2f} s)"}    
+                                self._result = {"code": -2, "message": f"{r.status_code} Exceeded timeout after {timeout_attempt_no} attempt(s) (called with: {timeout_secs} s, asked for: {wait_time_s} s, already spent {time_already_spent:.2f} s)"}
                                 self._error = True
-                                return {"status":"TIMEOUT"}
+                                return {"status": "TIMEOUT"}
 
                     elif r.status_code == 400:
-                        self._result = {"code":-1,"message":f"{r.status_code} Bad Request"}    
+                        self._result = {"code": -1, "message": f"{r.status_code} Bad Request"}
                         self._error = True
-                        return {"status":"ERROR"}
+                        return {"status": "ERROR"}
                     else:
-                        self._result = {"code":-1,"message":f"{r.status_code}"}    
+                        self._result = {"code": -1, "message": f"{r.status_code}"}
                         self._error = True
-                        return {"status":"ERROR"}
+                        return {"status": "ERROR"}
             except Exception as e:
-                self._result = {"code":-1,"message":str(e)}
+                self._result = {"code": -1, "message": str(e)}
                 self._error = True
-                return {"status":"ERROR"}
-                
+                return {"status": "ERROR"}
+
         return data
-        #return pd.DataFrame(data)
-    
-    
-    
-    def post_facilities_bulk(self, records : list = [], ) -> list:
+
+    def post_facilities_bulk(self, records: list = [], ) -> list:
         """Add multiple records at once.
-        
+
         .. attention::
           This function will become available at a later stage
-        
         """
         return
-    
 
     def get_facilities_match_record(self, match_id: int = -1, match_url: str = "") -> list:
         """This call is a utility call for retrieving a more detailed the match status result after a factory
@@ -864,14 +845,13 @@ class OSH_API():
             or reject, as returned from the post_facility call.
         match_url : str, optional
             This is the voting URL ``/facility-matches/{id}/confirm/`` or ``/facility-matches/{id}/reject/``
-            or reject, as returned from the post_facility call, which will be used to retrieve the numeric 
+            or reject, as returned from the post_facility call, which will be used to retrieve the numeric
             ``match_id``
-
 
         Returns
         -------
         list(dict)
-            An array of dictionaries (key,value pairs). See table below for 
+            An array of dictionaries (key,value pairs). See table below for
             return data structures.
 
             +------------------------------+---------------------------------------------------------+-------+
@@ -911,11 +891,10 @@ class OSH_API():
             +------------------------------+---------------------------------------------------------+-------+
             | is_active                    | flag indicating matched record is active                | bool  |
             +------------------------------+---------------------------------------------------------+-------+
-
         """
 
-        #alldata = []
-        #for k,v in api_facility_matches.items():
+        # alldata = []
+        # for k,v in api_facility_matches.items():
         #    if isinstance(v,dict):
         #        for kk,vv in v.items():
         #            alldata.append({
@@ -932,9 +911,8 @@ class OSH_API():
 
         return []
 
-
     def post_facility_match_confirm(self, match_id: int = -1, match_url: str = "") -> list:
-        """_summary_
+        """Confirm a match to an existing record as a response to a ``post_facilities`` call.
 
         Parameters
         ----------
@@ -943,15 +921,15 @@ class OSH_API():
             or reject, as returned from the post_facility call.
         match_url : str, optional
             This is the voting URL ``/facility-matches/{id}/confirm/`` or ``/facility-matches/{id}/reject/``
-            or reject, as returned from the post_facility call, which will be used to retrieve the numeric 
+            or reject, as returned from the post_facility call, which will be used to retrieve the numeric
             ``match_id``
 
         Returns
         -------
         list
-            An array of dictionaries (key,value pairs). See table below for 
+            An array of dictionaries (key,value pairs). See table below for
             return data structures.
-        
+
             +-----------------+------------------------------------------+-------+
             |column           | description                              | type  |
             +=================+==========================================+=======+
@@ -980,49 +958,46 @@ class OSH_API():
             | sector          |                                          | str   |
             +-----------------+------------------------------------------+-------+
         """
-
-        if len(match_url)>0:
+        if len(match_url) > 0:
             url_to_call = match_url
         elif match_id > 0:
             url_to_call = f"/api/facility-matches/{match_id}/confirm/"
         else:
-            data = {"status":"need a valid match_id or match_url"}
-            self._result = {"code":-1,"message":"need a valid match_id or match_url"}    
+            data = {"status": "need a valid match_id or match_url"}
+            self._result = {"code": -1, "message": "need a valid match_id or match_url"}
             self._error = True
             return data
 
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.post(f"{self._url}{url_to_call}",headers=self._header)
+            r = requests.post(f"{self._url}{url_to_call}", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
             if r.ok:
                 data = json.loads(r.text)
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._result = {"code": 0, "message": f"{r.status_code}"}
                 self._error = False
 
                 new_data = {}
 
-                for k,v in data.items():
+                for k, v in data.items():
                     if k == "matched_facility":
-                        for kk,vv in v.items():
+                        for kk, vv in v.items():
                             if kk == "location":
-                                new_data[f"matched_lat"] = vv["lat"]
-                                new_data[f"matched_lon"] = vv["lng"]
+                                new_data["matched_lat"] = vv["lat"]
+                                new_data["matched_lon"] = vv["lng"]
                             elif "created_from_id" == kk:
                                 continue
                             else:
                                 new_data[f"matched_{kk}"] = vv
                     elif k == "sector":
                         new_data[k] = "|".join(v)
-                    elif isinstance(v,dict):
-                        #print(k,"dict")
+                    elif isinstance(v, dict):
                         pass
-                    elif isinstance(v,list):
-                        #print(k,"list")
+                    elif isinstance(v, list):
                         pass
-                    elif k in ["raw_data","row_index","source"]:
+                    elif k in ["raw_data", "row_index", "source"]:
                         continue
                     elif k.startswith("ppe_"):
                         continue
@@ -1035,20 +1010,19 @@ class OSH_API():
 
                 data = new_data
             else:
-                data = {"status":"HTTP_ERROR"}
-                self._result = {"code":-1,"message":f"{r.status_code}"}    
+                data = {"status": "HTTP_ERROR"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
                 self._error = True
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
-                
-        return data
-        return []
 
+        return data
 
     def post_facility_match_reject(self, match_id: int = -1, match_url: str = "") -> list:
-        """_summary_
+        """Confirm a match to an existing record as a response to a ``post_facilities`` call,
+        resulting in creation of a ``NEW_FACILITY`` new entry.
 
         Parameters
         ----------
@@ -1057,15 +1031,15 @@ class OSH_API():
             or reject, as returned from the post_facility call.
         match_url : str, optional
             This is the voting URL ``/facility-matches/{id}/confirm/`` or ``/facility-matches/{id}/reject/``
-            or reject, as returned from the post_facility call, which will be used to retrieve the numeric 
+            or reject, as returned from the post_facility call, which will be used to retrieve the numeric
             ``match_id``
 
         Returns
         -------
         list
-            An array of dictionaries (key,value pairs). See table below for 
+            An array of dictionaries (key,value pairs). See table below for
             return data structures.
-        
+
             +-----------------+-----------------------------------+------+
             |column           | description                       | type |
             +=================+===================================+======+
@@ -1075,58 +1049,54 @@ class OSH_API():
 
         return []
 
-
     def get_contributor_types(self) -> list:
         """Get a list of contributor type choices. The original REST API returns a list of pairs of values and display names.
         As all display names and values are identical, we only return the values used in the database.
-        
+
         Returns
         -------
         list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
+           An array of dictionaries (key,value pairs). See table below for
            return data structures.
-               
+
            +-----------------+---------------------------------+------+
            |column           | description                     | type |
            +=================++================================+======+
            |contributor_type | The values of contributor types | str  |
            +-----------------+---------------------------------+------+
         """
-        
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/contributor-types",headers=self._header)
+            r = requests.get(f"{self._url}/api/contributor-types", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
-            
+
             if r.ok:
-                data = [{"contributor_type":value} for value,display in json.loads(r.text)]
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                data = [{"contributor_type": value} for value, display in json.loads(r.text)]
+                self._result = {"code": 0, "message": f"{r.status_code}"}
             else:
                 data = []
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
             self._contributors = data
             self._error = False
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._contributors = []
             self._error = True
             return []
-        
+
         return data
-        #return pd.DataFrame(self._contributors,columns=["contributor_type"])
-    
 
     def get_countries(self) -> list:
-        """Get a list of `ISO 3166-2 Alpha 2 country codes and English short names <https://www.iso.org/obp/ui/#search>` used. 
-        
+        """Get a list of `ISO 3166-2 Alpha 2 country codes and English short names <https://www.iso.org/obp/ui/#search>` used.
+
         Returns
         -------
         list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
+           An array of dictionaries (key,value pairs). See table below for
            return data structures.
-            
+
            +-----------+---------------------------------+------+
            |column     | description                     | type |
            +===========+=================================+======+
@@ -1135,72 +1105,67 @@ class OSH_API():
            |country    | ISO 3166 Country Name           | str  |
            +-----------+---------------------------------+------+
         """
-        
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/countries",headers=self._header)
+            r = requests.get(f"{self._url}/api/countries", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
             if r.ok:
-                data = [{"iso_3166_2":cid,"country":con} for cid,con in json.loads(r.text)]
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                data = [{"iso_3166_2": cid, "country": con} for cid, con in json.loads(r.text)]
+                self._result = {"code": 0, "message": f"{r.status_code}"}
             else:
                 data = []
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
             self.countries = data
             self._error = False
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
 
         return data
-        #return pd.DataFrame(self.countries,columns=["iso_3166_2","country"])
-    
-        
+
     def get_countries_active_count(self) -> int:
         """Get a count of disctinct country codes used by active facilities.
-        
+
         Returns
         -------
         int
            disctinct country codes used by active facilities
         """
-        
+
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/countries/active_count",headers=self._header)
+            r = requests.get(f"{self._url}/api/countries/active_count", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
             if r.ok:
                 data = int(json.loads(r.text)["count"])
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._result = {"code": 0, "message": f"{r.status_code}"}
             else:
                 data = {}
                 data = -1
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
             self.countries_active_count = data
             self._error = False
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
-        
+
         return data
 
-
-    
     def get_facility_processing_types(self) -> list:
         """Return a list of defined facility and associated processing types
-        
+
         Returns
         -------
         list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
+           An array of dictionaries (key,value pairs). See table below for
            return data structures.
-            
+
            +-----------------+-----------------------------------------------------+------+
            |column           | description                                         | type |
            +=================+=====================================================+======+
@@ -1209,140 +1174,129 @@ class OSH_API():
            |processing_type  | Processing, e.g. *Packaging*, for the facility type | str  |
            +-----------------+-----------------------------------------------------+------+
         """
-        
+
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/facility-processing-types/",headers=self._header)
+            r = requests.get(f"{self._url}/api/facility-processing-types/", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
             if r.ok:
                 data = json.loads(r.text)
                 facility_processing_types = data
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._result = {"code": 0, "message": f"{r.status_code}"}
                 alldata = []
                 for facility_processing_type in facility_processing_types:
                     for processingType in facility_processing_type["processingTypes"]:
                         alldata.append({
-                            "facility_type":facility_processing_type["facilityType"],
-                            "processing_type":processingType
+                            "facility_type": facility_processing_type["facilityType"],
+                            "processing_type": processingType
                         })
                 data = alldata
                 self._error = False
             else:
                 data = []
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
                 self._error = True
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
 
-            
         self.facility_processing_types = data
-        return data    
-    
-  
+        return data
+
     def get_product_types(self) -> list:
         """Returns a list of product types specified in the database
-        
+
         Returns
         -------
         list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
+           An array of dictionaries (key,value pairs). See table below for
            return data structures.
-            
+
            +-----------------+-----------------------------------------------------+------+
            |column           | description                                         | type |
            +=================+=====================================================+======+
            |product_type     | Name of product type as uploaded to the database    | str  |
            +-----------------+-----------------------------------------------------+------+
         """
-        
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/product-types/",headers=self._header)
+            r = requests.get(f"{self._url}/api/product-types/", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
             if r.ok:
-                data = [{"product_type":sector} for sector in json.loads(r.text)]
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                data = [{"product_type": sector} for sector in json.loads(r.text)]
+                self._result = {"code": 0, "message": f"{r.status_code}"}
                 self._error = False
             else:
                 data = []
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
                 self._error = True
             self.product_types = data
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
 
         return data
-        #return pd.DataFrame(self.product_types,columns=["product_type"])
-        
-    
-       
+
     def get_sectors(self) -> int:
         """Returns a list of sectors defined at the time of import.
-        
+
         The sectors list is assumed to evolve over time as we better understand how to structure our data and
-        how our database is being used. Upon ingestion of data, the logic tries to match an entry specified 
+        how our database is being used. Upon ingestion of data, the logic tries to match an entry specified
         in the sector field to the sector list values. If a match is found, the sector value will be
         used. If no match is found, the sector value will be set to ``Unspecified``.
-        
+
         Returns
         -------
         list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
+           An array of dictionaries (key,value pairs). See table below for
            return data structures.
-            
+
            +-----------------+-----------------------------------------------------+------+
            |column           | description                                         | type |
            +=================+=====================================================+======+
            |sector           | Name of sector defined in the database              | str  |
            +-----------------+-----------------------------------------------------+------+
         """
-        
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/sectors/",headers=self._header)
+            r = requests.get(f"{self._url}/api/sectors/", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
             if r.ok:
-                data = [{"sector":sector} for sector in json.loads(r.text)]
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                data = [{"sector": sector} for sector in json.loads(r.text)]
+                self._result = {"code": 0, "message": f"{r.status_code}"}
                 self._error = False
             else:
                 data = []
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
                 self._error = True
             self.sectors = data
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
 
-
         return data
-        #return pd.DataFrame(self.sectors,columns=["sectors"])
-    
-
 
     def get_workers_ranges(self) -> list:
         """Retrieve allowed texts for workes range specification, and their range:
-        
+
         The returned numeric ranges can be used to map a numeric value onto a valid workers range
         text used across the database.
-        
+
         Returns
         -------
         list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
+           An array of dictionaries (key,value pairs). See table below for
            return data structures.
-            
+
            +-----------------+-----------------------------------------------------+------+
            |column           | description                                         | type |
            +=================+=====================================================+======+
@@ -1353,10 +1307,9 @@ class OSH_API():
            |upper            | Numeric upper limit to select text ``n >= lower``   | int  |
            +-----------------+-----------------------------------------------------+------+
         """
-        
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/workers-ranges/",headers=self._header)
+            r = requests.get(f"{self._url}/api/workers-ranges/", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
@@ -1365,7 +1318,7 @@ class OSH_API():
                 alldata = []
                 for workers_range in workers_ranges:
                     if "-" in workers_range:
-                        lower,upper = workers_range.split("-")
+                        lower, upper = workers_range.split("-")
                     elif "Less" in workers_range:
                         upper = workers_range.split(" ")[-1]
                         lower = 1
@@ -1376,46 +1329,43 @@ class OSH_API():
                         lower = -1
                         upper = -1
                     alldata.append({
-                        "workers_range":workers_range,
-                        "lower":int(lower),
-                        "upper":int(upper),
+                        "workers_range": workers_range,
+                        "lower": int(lower),
+                        "upper": int(upper),
                     })
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._result = {"code": 0, "message": f"{r.status_code}"}
                 data = alldata
                 self._error = False
             else:
                 data = {
-                        "workers_range":[],
-                        "lower":[],
-                        "upper":[],
+                        "workers_range": [],
+                        "lower": [],
+                        "upper": [],
                 }
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
                 self._error = True
             self.workers_ranges = data
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
-
         return data
-
-
 
     def post_disassociate_facility(self, osh_id: str) -> list:
         """Deactivate any matches to the facility submitted by the authenticated contributor making this call.
-        
+
         This call removes/disassociates a facility from the content provided by the contributor
-        associated with the authentication token. 
-        
+        associated with the authentication token.
+
         Parameters
         ----------
         osh_id: str
            sixteen character OS ID
-           
+
         Returns
         -------
         list(dict)
-            An array of dictionaries (key,value pairs). See table below for 
+            An array of dictionaries (key,value pairs). See table below for
             return data structures.
 
             +-------------------------------+-----------------------------------------------+-------+
@@ -1504,43 +1454,40 @@ class OSH_API():
         """
 
         return
-    
-    
+
     def get_facility_history(self, osh_id: str) -> list:
         """Returns the history of changes, or audit trail, for a facility as a list of dictionaries describing the changes.
-        
+
         Parameters
         ----------
         osh_id: str
            sixteen character OS ID
-           
+
         Returns
         -------
         list(dict)
-            An array of dictionaries (key,value pairs). See table below for 
+            An array of dictionaries (key,value pairs). See table below for
             return data structures.
 
             +-------------------------------+-----------------------------------------------+-------+
             |column                         | description                                   | type  |
             +===============================+===============================================+=======+
             | updated_at                    | Timestamp of change record                    | str   |
-            |                               | ``YYYY-MM-DD HH:MM:SS.ffffff +zz:zz``         |       |        
+            |                               | ``YYYY-MM-DD HH:MM:SS.ffffff +zz:zz``         |       |
             +-------------------------------+-----------------------------------------------+-------+
             | action                        | One of ``ASSOCIATE``, ``DISASSOCIATE``, or    | str   |
-            |                               | ``CREATE``                                    |       |        
+            |                               | ``CREATE``                                    |       |
             +-------------------------------+-----------------------------------------------+-------+
             | detail                        | Change detail string                          | str   |
             +-------------------------------+-----------------------------------------------+-------+
         """
-        
-        #https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/DE2020080D37VCK/history/
+        return []
 
-        return
-    
-    
-    def post_facility_open_or_closed(self, osh_id: str, closure_state: str, reason_for_report: str) -> list:
+    def post_facility_open_or_closed(self, osh_id: str,
+                                     closure_state: str,
+                                     reason_for_report: str) -> list:
         """Report that a facility has been closed or opened.
-        
+
         Parameters
         ----------
         osh_id: str
@@ -1549,11 +1496,11 @@ class OSH_API():
            desired state, must be one of ``OPEN`` or ``CLOSED``
         reason_for_report: str
            Justification or explanation of state change for audit trail
-           
+
         Returns
         -------
         list(dict)
-            An array of dictionaries (key,value pairs). See table below for 
+            An array of dictionaries (key,value pairs). See table below for
             return data structures.
 
             +-------------------------------+-----------------------------------------------+-------+
@@ -1591,54 +1538,49 @@ class OSH_API():
             | facility_name                 | facility name                                 | str   |
             +-------------------------------+-----------------------------------------------+-------+
         """
-        
-        return 
-    
-    
+
+        return []
+
     def post_facility_open(self, osh_id: str, reason_for_report: str) -> list:
-        """Report that a facility has been opened. 
-        
+        """Report that a facility has been opened.
+
         This is a short form of calling ``post_facility_open_or_closed`` with the named parameter
         ``closure_state="OPEN"``, helping to avoid possible errors due to typos.
         """
-        
+
         return self.post_facility_open_or_closed(osh_id, "OPEN", reason_for_report)
-    
-    
+
     def post_facility_closed(self, osh_id: str, reason_for_report: str) -> list:
-        """Report that a facility has been opened. 
-        
+        """Report that a facility has been opened.
+
         This is a short form of calling ``post_facility_open_or_closed`` with the named parameter
         ``closure_state="CLOSED"``, helping to avoid possible errors due to typos.
         """
-        
+
         return self.post_facility_open_or_closed(osh_id, "CLOSED", reason_for_report)
-    
-    
-    
-  
-    def get_contributor_lists(self,contributor_id : Union[int,str]) -> list:
+
+    def get_contributor_lists(self, contributor_id: Union[int, str]) -> list:
         """Get lists for specific contributor.
-        
+
         For interactive uploads, data are organised along the notion of lists. Suppliers often publish
         their supplier's lists on their websites, together with a name or identification relating to
         the point in time the list relates to.
-        
+
         As an example, a list may be called '*brand* Public Supplier List 2021' .
-        
+
         Parameters
         ----------
         contributor_id: int or str
            numeric contributor id
-           
+
         Returns
         -------
         list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
+           An array of dictionaries (key,value pairs). See table below for
            return data structures. Note that an empty list will be
            returned, together with a status code indicating ``ok`` even
            if an invalid supplier was specified.
-            
+
            +-----------+---------------------------------+------+
            |column     | description                     | type |
            +===========+=================================+======+
@@ -1647,42 +1589,38 @@ class OSH_API():
            |list_name  | The name of the list            | str  |
            +-----------+---------------------------------+------+
         """
-        
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/contributor-lists/?contributors={contributor_id}",headers=self._header)
+            r = requests.get(f"{self._url}/api/contributor-lists/?contributors={contributor_id}", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
 
             if r.ok:
-                data = [{"list_id":cid,"list_name":con} for cid,con in json.loads(r.text)]
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                data = [{"list_id": cid, "list_name": con} for cid, con in json.loads(r.text)]
+                self._result = {"code": 0, "message": f"{r.status_code}"}
                 self._error = False
             else:
                 data = []
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
                 self._error = True
             self._contributors = data
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
-        
+
         return data
-        #return pd.DataFrame(self._contributors,columns=["list_id","list_name"])
-
-
 
     def get_contributors(self) -> list:
         """Get a list of contributors and their ID.
-        
+
         Returns
         -------
         list(dict)
-            An array of dictionaries (key,value pairs). See table below for 
+            An array of dictionaries (key,value pairs). See table below for
             return data structures.
-        
+
             +-----------------+-----------------------------------+------+
             |column           | description                       | type |
             +=================+===================================+======+
@@ -1691,32 +1629,29 @@ class OSH_API():
             |contributor_name | The name of the contributor       | str  |
             +-----------------+-----------------------------------+------+
         """
-        
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/contributors",headers=self._header)
+            r = requests.get(f"{self._url}/api/contributors", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
 
             if r.ok:
-                data = [{"contributor_id":cid,"contributor_name":con} for cid,con in json.loads(r.text)]
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                data = [{"contributor_id": cid, "contributor_name": con} for cid, con in json.loads(r.text)]
+                self._result = {"code": 0, "message": f"{r.status_code}"}
                 self._error = False
             else:
                 data = []
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
                 self._error = True
             self._contributors = data
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
-        
+
         return data
-        #return pd.DataFrame(self._contributors,columns=["contributor_id","contributor_name"])
-    
-  
+
     def get_contributors_active_count(self) -> int:
         """Returns the number of active contributors.
 
@@ -1725,45 +1660,39 @@ class OSH_API():
         active_count: int
            Number of active contributors
         """
-        
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/contributors/active_count",headers=self._header)
+            r = requests.get(f"{self._url}/api/contributors/active_count", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
             if r.ok:
                 data = int(json.loads(r.text)["count"])
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._result = {"code": 0, "message": f"{r.status_code}"}
                 self._error = False
             else:
                 data = -1
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
                 self._error = True
             self.countries_active_count = data
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
-
-   
-
         return data
-     
 
-
-    def get_facility(self,osh_id : str, return_extended_fields : bool = False ) -> dict:
+    def get_facility(self, osh_id: str, return_extended_fields: bool = False) -> dict:
         """Return detail on one facility
-        
+
         Parameters
         ----------
         osh_id: str
            sixteen character OS ID
-           
+
         Returns
         -------
         list(dict)
-            An array of dictionaries (key,value pairs). See table below for 
+            An array of dictionaries (key,value pairs). See table below for
             return data structures.
 
             +-------------------------------+-----------------------------------------------+-------+
@@ -1846,43 +1775,41 @@ class OSH_API():
             | sector                        | Business sector                               | str   |
             +-------------------------------+-----------------------------------------------+-------+
         """
-        
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/facilities/{osh_id}/",headers=self._header)
+            r = requests.get(f"{self._url}/api/facilities/{osh_id}/", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
             if r.ok:
                 data = json.loads(r.text)
-                self._result = {"code":0,"message":f"{r.status_code}"}
-                
+                self._result = {"code": 0, "message": f"{r.status_code}"}
+
                 entry = {
                     "id": data["id"],
                     "lon": data["geometry"]["coordinates"][0],
                     "lat": data["geometry"]["coordinates"][1]
                 }
-                for k,v in data["properties"].items():
+                for k, v in data["properties"].items():
                     if k.startswith("ppe_") or k == "new_os_id":
                         continue
-                    elif isinstance(v,list):
-                        if len(v) > 0 and isinstance(v[0],dict):
+                    elif isinstance(v, list):
+                        if len(v) > 0 and isinstance(v[0], dict):
                             lines = []
                             for vv in v:
-                                lines.append("|".join([f"{kkk}:{vvv}" for kkk,vvv in vv.items()]))
-                            entry[k] = "\n".join(lines).replace("lng:","lon:")
+                                lines.append("|".join([f"{kkk}:{vvv}" for kkk, vvv in vv.items()]))
+                            entry[k] = "\n".join(lines).replace("lng:", "lon:")
                         else:
                             entry[k] = "\n".join(v)
                     elif k == "extended_fields" and return_extended_fields:
                         for kk in v.keys():
                             lines = []
                             for vv in v[kk]:
-                                lines.append("|".join([f"{kkk}:{vvv}" for kkk,vvv in vv.items()]))
-                            entry[f"{kk}_extended"] = "\n".join(lines).replace("lng:","lon:")
-                        #self.v = v.copy()
+                                lines.append("|".join([f"{kkk}:{vvv}" for kkk, vvv in vv.items()]))
+                            entry[f"{kk}_extended"] = "\n".join(lines).replace("lng:", "lon:")
                     elif k == "created_from":
                         self.v = v.copy()
-                        entry[k] = "|".join([f"{kkk}:{vvv}" for kkk,vvv in v.items()]) 
+                        entry[k] = "|".join([f"{kkk}:{vvv}" for kkk, vvv in v.items()])
                     elif k == "extended_fields" and not return_extended_fields:
                         pass
                     else:
@@ -1890,71 +1817,66 @@ class OSH_API():
                             entry[k] = v
                         else:
                             entry[k] = ""
-                            
+
                 data = entry.copy()
                 self._error = False
             else:
                 data = {}
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
                 self._error = True
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return {}
-        
+
         return data
 
-
-    
     def get_facilities_count(self) -> int:
         """Return the number of facilities in the database.
-        
+
         There will be more than one record per facility in general, so this is not the amount of data
         in the Open Supply Hub database, but the number of facilities with associated records.
-        
+
         Returns
         -------
         active_count: int
            disctinct country codes used by active facilities
         """
-        
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/facilities/count",headers=self._header)
+            r = requests.get(f"{self._url}/api/facilities/count", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
             if r.ok:
                 data = int(json.loads(r.text)["count"])
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._result = {"code": 0, "message": f"{r.status_code}"}
                 self._error = False
             else:
                 data = -1
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
                 self._error = True
             self.countries_active_count = data
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
-        
-        return data
-    
 
+        return data
 
     def get_parent_companies(self) -> list:
         """Returns a list of parent companies and either contributor ID of contributor name.
-        
+
         .. note::
           This API call is likely to be retired and possibly replaced with a more user friendly
           version.
-        
+
         Returns
         -------
         list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
+           An array of dictionaries (key,value pairs). See table below for
            return data structures.
-            
+
            +------------------+----------------------------------------------------+-------------+
            |column            | description                                        | type        |
            +==================+====================================================+=============+
@@ -1963,43 +1885,38 @@ class OSH_API():
            |parent_company    | Name of parent company as uploaded                 | str         |
            +------------------+----------------------------------------------------+-------------+
         """
-        
+
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/parent-companies/",headers=self._header)
+            r = requests.get(f"{self._url}/api/parent-companies/", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
             if r.ok:
-                data = [{"key_or_contributor":k,"parent_company":p} for k,p in json.loads(r.text)]
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                data = [{"key_or_contributor": k, "parent_company": p} for k, p in json.loads(r.text)]
+                self._result = {"code": 0, "message": f"{r.status_code}"}
                 self._error = False
             else:
                 data = []
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
                 self._error = True
             self.parent_companies = data
         except Exception as e:
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return []
 
         return data
-        #return pd.DataFrame(self.parent_companies,columns=["key_or_something","parent_company"])
-    
-     
 
-
-    
     def get_facilities_downloads(self) -> list:
-        """Returns a list of facilities. 
-                   
+        """Returns a list of facilities.
+
         Returns
         -------
         list(dict)
-            An array of dictionaries (key,value pairs). See table below for 
+            An array of dictionaries (key,value pairs). See table below for
             return data structures.
-            
+
 
             +-----------------------------------+-----------------------------------------------+-------+
             | column                            | description                                   | type  |
@@ -2038,77 +1955,61 @@ class OSH_API():
             +-----------------------------------+-----------------------------------------------+-------+
             | is_closed                         |                                               | str   |
             +-----------------------------------+-----------------------------------------------+-------+
-        """        
+        """
         have_next = True
         request_url = f"{self._url}/api/facilities-downloads/"
         alldata = []
-        
+
         while have_next:
             try:
                 self.last_api_call_epoch = time.time()
-                r = requests.get(request_url,headers=self._header)
+                r = requests.get(request_url, headers=self._header)
                 self._raw_data = copy.copy(r.text)
                 self.last_api_call_duration = time.time()-self.last_api_call_epoch
                 self._api_call_count += 1
-                #return json.loads(r.text) #@@@@@@@@@@@@@@
+
                 if r.ok:
                     data = json.loads(r.text)
-                    
+
                     for row in data["results"]["rows"]:
-                        alldata.append(dict(zip(data["results"]["headers"],row)))
-                    
-                    _ = """
-                    for entry in data["features"]:
-                        new_entry = {
-                            "os_id":entry["id"],
-                            "lon":entry["geometry"]["coordinates"][0],
-                            "lat":entry["geometry"]["coordinates"][1],
-                        }
-                        for k,v in entry["properties"].items():
-                            if not k.startswith("ppe_") and not k == "new_os_id":
-                                new_entry[k] = v
-                        alldata.append(new_entry)
-                        """
-                    self._result = {"code":0,"message":f"{r.status_code}"}
+                        alldata.append(dict(zip(data["results"]["headers"], row)))
+
+                    self._result = {"code": 0, "message": f"{r.status_code}"}
                     if 'next' in data.keys() and data["next"] is not None:
                         request_url = data["next"]
                     else:
                         have_next = False
-                    #have_next = False
                     self._error = False
                 else:
-                    self._result = {"code":-1,"message":f"{r.status_code}"}
+                    self._result = {"code": -1, "message": f"{r.status_code}"}
                     have_next = False
                     self._error = True
                     return alldata
             except Exception as e:
-                self._result = {"code":-1,"message":str(e)}
+                self._result = {"code": -1, "message": str(e)}
                 self._error = True
                 return alldata
-        
+
         return alldata
-        #return pd.DataFrame(alldata)
-        
-     
-    
-    def get_contributor_embed_configs(self,contributor_id : Union[int,str]) -> list:
+
+    def get_contributor_embed_configs(self, contributor_id: Union[int, str]) -> list:
         """Get embedded maps configuration for specific contributor.
-        
+
         Embedded maps are a premium feature of Open Supply Hub which can be used to display a vendor/brand specific
         map on any website via ``iframes``. This call returns a wealth of data, this documentation focuses on the key
         aspects of the parameters.
-        
+
         Parameters
         ----------
         contributor_id: str or int
            numeric contributor id
-           
+
         Returns
         -------
         list(dict)
-           An array of dictionaries (key,value pairs). See table below for 
+           An array of dictionaries (key,value pairs). See table below for
            return data structures.
-            
+
            +-------------------------+---------------------------------------+--------+
            |column                   | description                           | type   |
            +=========================+=======================================+========+
@@ -2140,24 +2041,24 @@ class OSH_API():
            | *field* tier_searchable | Flag indicating *field* is searchable | bool   |
            +-------------------------+---------------------------------------+--------+
         """
-        
+
         try:
             self.last_api_call_epoch = time.time()
-            r = requests.get(f"{self._url}/api/contributor-embed-configs/{contributor_id}/",headers=self._header)
+            r = requests.get(f"{self._url}/api/contributor-embed-configs/{contributor_id}/", headers=self._header)
             self._raw_data = copy.copy(r.text)
             self.last_api_call_duration = time.time()-self.last_api_call_epoch
             self._api_call_count += 1
-            
+
             if r.ok:
                 data = json.loads(r.text)
                 alldata = {}
                 num_undefined = 1
                 have_undefined = False
-                for k,v in data.items():
+                for k, v in data.items():
                     if k == 'embed_fields':
                         for embedded_field in v:
-                            for column in ['display_name','visible','order','searchable']:
-                                if len(embedded_field["column_name"]) ==  0: # ref  https://github.com/open-apparel-registry/open-apparel-registry/issues/2200
+                            for column in ['display_name', 'visible', 'order', 'searchable']:
+                                if len(embedded_field["column_name"]) == 0:  # ref https://github.com/open-apparel-registry/open-apparel-registry/issues/2200
                                     have_undefined = True
                                     alldata[f'undefined_{num_undefined}_{column}'] = embedded_field[column]
                                 else:
@@ -2177,38 +2078,35 @@ class OSH_API():
                         else:
                             alldata[k] = v
                 data = alldata
-                self._result = {"code":0,"message":f"{r.status_code}"}
+                self._result = {"code": 0, "message": f"{r.status_code}"}
                 self._error = False
             else:
                 self._raw_data = []
                 data = []
-                self._result = {"code":-1,"message":f"{r.status_code}"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
                 self._error = True
         except Exception as e:
             self._raw_data = []
-            self._result = {"code":-1,"message":str(e)}
+            self._result = {"code": -1, "message": str(e)}
             self._error = True
             return
-        
-        return data
-        #return pd.DataFrame(data)
-        
 
-    
-    def _flatten_facilities_json(self,json_data):
+        return data
+
+    def _flatten_facilities_json(self, json_data: dict) -> dict:
         """Convert deep facility data to a flat key,value dict.
-        
+
         Internal use only.
         """
         base_entry = {}
-        for k,v in json_data.items():
+        for k, v in json_data.items():
             if k == "matches":
                 continue
             elif k == "geocoded_geometry":
                 try:
                     base_entry["lon"] = v["coordinates"][0]
                     base_entry["lat"] = v["coordinates"][1]
-                except:
+                except Exception:
                     base_entry["lon"] = -1
                     base_entry["lat"] = -1
             else:
@@ -2218,49 +2116,49 @@ class OSH_API():
                     base_entry[k] = ""
 
         alldata = []
-        if len(json_data["matches"])>0:
+        if len(json_data["matches"]) > 0:
             match_no = 1
             for match in json_data["matches"]:
-                new_data = {"match_no":match_no}
-                new_data.update(base_entry)#.copy()
-                for k,v in match.items():
-                    if isinstance(v,list):
+                new_data = {"match_no": match_no}
+                new_data.update(base_entry)
+                for k, v in match.items():
+                    if isinstance(v, list):
                         raise NotImplementedError("Internal _flatten_facilities_json. Facilities data structure must have changed. "
                                                   "Instance 1/2. "
                                                   "Please report on github and/or check for an updated library.")
                         pass
-                    elif k in ["Feature","type"]:
+                    elif k in ["Feature", "type"]:
                         pass
                     elif k == "geometry":
                         new_data["match_lon"] = v["coordinates"][0]
                         new_data["match_lat"] = v["coordinates"][1]
-                    elif isinstance(v,dict):
-                        for kk,vv in v.items():
-                            if isinstance(vv,list):
+                    elif isinstance(v, dict):
+                        for kk, vv in v.items():
+                            if isinstance(vv, list):
                                 if len(vv) == 0:
                                     new_data[f"match_{kk}"] = ""
                                 else:
                                     lines = []
                                     for vvv in vv:
-                                        if isinstance(vvv,dict):
-                                            lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk,vvvv in vvv.items()]))
-                                        elif isinstance(vvv,str):
+                                        if isinstance(vvv, dict):
+                                            lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk, vvvv in vvv.items()]))
+                                        elif isinstance(vvv, str):
                                             lines.append(vvv)
-                                    new_data[f"match_{kk}"] = "\n".join(lines).replace("lng:","lon:")
-                            elif isinstance(vv,dict):
-                                for kkk,vvv in vv.items():
+                                    new_data[f"match_{kk}"] = "\n".join(lines).replace("lng:", "lon:")
+                            elif isinstance(vv, dict):
+                                for kkk, vvv in vv.items():
                                     lines = []
-                                    if isinstance(vvv,str):
+                                    if isinstance(vvv, str):
                                         lines = [vvv]
                                     else:
                                         for entry in vvv:
-                                            if isinstance(entry,dict):
-                                                lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk,vvvv in entry.items()]))
+                                            if isinstance(entry, dict):
+                                                lines.append("|".join([f"{kkkk}:{vvvv}" for kkkk, vvvv in entry.items()]))
                                             else:
                                                 raise NotImplementedError("Internal _flatten_facilities_json. Facilities data structure must have changed. "
-                                                                        "Instance 2/2. "
-                                                                        "Please report on github and/or check for an updated library.")
-                                    new_data[f"match_{kk}_{kkk}"] = "\n".join(lines).replace("lng:","lon:")
+                                                                          "Instance 2/2. "
+                                                                          "Please report on github and/or check for an updated library.")
+                                    new_data[f"match_{kk}_{kkk}"] = "\n".join(lines).replace("lng:", "lon:")
                                 pass
                             elif kk.startswith("ppe_"):
                                 continue
@@ -2272,15 +2170,15 @@ class OSH_API():
 
                 # shorten names of dictionary keys
                 new_data_keys_shortened = {}
-                for k,v in new_data.items():
+                for k, v in new_data.items():
                     if "match_extended_fields_" in k:
-                        new_data_keys_shortened[k.replace("match_extended_fields_","match_ef_")] = v
+                        new_data_keys_shortened[k.replace("match_extended_fields_", "match_ef_")] = v
                     else:
                         new_data_keys_shortened[k] = v
-                        
+
                 alldata.append(new_data_keys_shortened)
                 match_no += 1
         else:
             alldata.append(base_entry)
-            
+
         return alldata

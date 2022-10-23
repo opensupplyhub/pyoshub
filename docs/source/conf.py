@@ -4,7 +4,7 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 import os
 import sys
-import sphinx_rtd_theme
+# import sphinx_rtd_theme
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('../'))
 sys.path.insert(0, os.path.abspath('../../'))
@@ -17,21 +17,22 @@ sys.path.insert(0, os.path.abspath('../../pyoshub/pyoshub/'))
 project = 'pyoshub'
 copyright = '2022, Open Apparel Registry'
 author = 'Klaus G. Paul'
-version = '0.4.0'
-release = '0.4.0'
+version = '0.4.1'
+release = '0.4.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = ['sphinx.ext.autodoc',
+extensions = [
+    'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
     'sphinxcontrib.plantuml',
-    'sphinx.ext.autosectionlabel',  
+    'sphinx.ext.autosectionlabel',
     'sphinx_copybutton',
-    #'numpydoc'
-    ]
+    # 'numpydoc'
+]
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -46,13 +47,13 @@ pygments_style = 'sphinx'
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
-#htmlhelp_basename = 'simplebledoc'
-autodoc_mock_imports = ['requests', 'pyyaml', 'pandas','yaml']
+# htmlhelp_basename = 'simplebledoc'
+autodoc_mock_imports = ['requests', 'pyyaml', 'pandas', 'yaml']
 
 napoleon_google_docstring = False
 napoleon_numpy_docstring = True
 
-#autoclass_content = 'both'
+# autoclass_content = 'both'
 
 autodoc_default_options = {
     'members': True,
