@@ -21,65 +21,6 @@ As a general paradigm, two types of return values are provided:
   sql queries. Also, the format is similar to that returned by ``graphql``,
   a future API expansion we are considering.
 
-.. table::
-   
-    +-----------------------------------------------+-------+------------+
-    | endpoint                                      | verb  | level      |
-    +===============================================+=======+============+
-    | ``/facilities/``                              | GET   | core       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities/``                              | POST  | core       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-matches/{id}/``                   | GET   | core       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-matches/{id}/confirm/``           | POST  | core       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-matches/{id}/reject/``            | POST  | core       |
-    +-----------------------------------------------+-------+------------+
-    | ``/contributor-types/``                       | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/countries/``                               | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/countries/active_count/``                  | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-processing-types/``               | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/product-types/``                           | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/sectors/``                                 | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/workers-ranges/``                          | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities/{id}/dissociate/``              | POST  | extended   |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities/{id}/history/``                 | GET   | extended   |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities/{id}/report/``                  | POST  | extended   |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-activity-reports/``               | GET   | extended   |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-activity-reports/{id}/approve/``  | POST  | extended   |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-activity-reports/{id}/reject/``   | POST  | extended   |
-    +-----------------------------------------------+-------+------------+
-    | ``/contributor-lists/``                       | GET   | info       |
-    +-----------------------------------------------+-------+------------+
-    | ``/contributors/``                            | GET   | info       |
-    +-----------------------------------------------+-------+------------+
-    | ``/contributors/active_count/``               | GET   | info       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities/{id}/``                         | GET   | info       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities/count/``                        | GET   | info       |
-    +-----------------------------------------------+-------+------------+
-    | ``/parent-companies/``                        | GET   | info       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities-downloads/``                    | GET   | internal   |
-    +-----------------------------------------------+-------+------------+
-    | ``/contributor-embed-configs/{id}/``          | GET   | internal   |
-    +-----------------------------------------------+-------+------------+
-
-
 
 Most Common (Core) Use Cases
 ----------------------------
@@ -176,7 +117,8 @@ The overall flow of list updates from a contributor perspective is shown below.
   MATCHED --> [*]
   POTENTIAL_MATCH --> upload_and_collect_matches
   upload_and_collect_matches --> review_matches
-  review_matches --> [*]
+  review_matches --> CONFIRMED_MATCH
+  CONFIRMED_MATCH --> [*]
 
   NEW_FACILITY --> direct_upload
   direct_upload --> [*]
@@ -189,11 +131,10 @@ Depending on the Open Supply Hub database content,
 - an upload would result in a NEW_FACILITY record to be created
 - there may be more than one potential matches, and user interaction is required to
   select the best match (POTENTIAL_MATCH)
-
-.. important::
-
-  The functionality for upload_and_collect_matches is partially implemented, but
-  the contributor review_matches functionality is not currently part of this package.
+- if the user confirms the POTENTIAL_MATCH, the newly uploaded record is assigned
+  the OS ID of the matched record, and given a status of CONFIRMED_MATCH
+- if the user rejects the POTENTIAL_MATCH, the newly uploaded record is assigned
+  a newly created OS ID, and given a status of CONFIRMED_MATCH
 
 Uploading new facilities, or facility changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -227,4 +168,67 @@ Advanced and Extended Use Cases
 
 Additional Information Use Cases
 --------------------------------
+
+
+Use Case Mapping to REST Endpoints
+----------------------------------
+
+
+.. table::
+   
+    +-----------------------------------------------+-------+------------+
+    | endpoint                                      | verb  | level      |
+    +===============================================+=======+============+
+    | ``/facilities/``                              | GET   | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/``                              | POST  | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-matches/{id}/``                   | GET   | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-matches/{id}/confirm/``           | POST  | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-matches/{id}/reject/``            | POST  | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributor-types/``                       | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/countries/``                               | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/countries/active_count/``                  | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-processing-types/``               | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/product-types/``                           | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/sectors/``                                 | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/workers-ranges/``                          | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/{id}/dissociate/``              | POST  | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/{id}/history/``                 | GET   | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/{id}/report/``                  | POST  | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-activity-reports/``               | GET   | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-activity-reports/{id}/approve/``  | POST  | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-activity-reports/{id}/reject/``   | POST  | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributor-lists/``                       | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributors/``                            | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributors/active_count/``               | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/{id}/``                         | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/count/``                        | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/parent-companies/``                        | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities-downloads/``                    | GET   | internal   |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributor-embed-configs/{id}/``          | GET   | internal   |
+    +-----------------------------------------------+-------+------------+
 

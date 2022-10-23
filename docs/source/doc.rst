@@ -20,15 +20,15 @@ lifecycle is that of matching, or creating facilities.
    
    @startuml
     [*] --> post_facilities
-    post_facilities --> wait
+    post_facilities --> wait : throttling
     post_facilities --> POTENTIAL_MATCH
     post_facilities --> NEW_FACILITY
     post_facilities --> MATCHED
     post_facilities --> ERROR
 
     POTENTIAL_MATCH --> PENDING
-    PENDING --> CONFIRMED : post_facility_match_confirm()
-    PENDING --> REJECTED : post_facility_match_reject()
+    PENDING --> CONFIRMED : /facility-matches/{id}/confirm/
+    PENDING --> REJECTED : /facility-matches/{id}/confirm/
     wait --> wait
     wait --> POTENTIAL_MATCH
     wait --> NEW_FACILITY
@@ -36,14 +36,15 @@ lifecycle is that of matching, or creating facilities.
     wait --> ERROR
     wait --> TIMEOUT
 
-    CONFIRMED --> [*]
-    REJECTED --> [*]
+    CONFIRMED --> CONFIRMED_MATCH
+    REJECTED --> CONFIRMED_MATCH
+    CONFIRMED_MATCH --> [*]
     MATCHED --> [*]
     NEW_FACILITY --> [*]
     ERROR --> [*]
     TIMEOUT --> [*]
-
    @enduml
+
 
 Each contribution has a unique numeric identifier, and, once matched, or created, will also have the
 unique `OS_ID`.

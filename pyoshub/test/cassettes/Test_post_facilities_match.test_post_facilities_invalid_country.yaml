@@ -92,4 +92,56 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: name=A&address=C&country=BX
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '27'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: POST
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/??create=false&public=true&textonlyfallback=false
+  response:
+    body:
+      string: '{"country":["Could not find a country code for \"BX\"."]}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '57'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Oct 2022 18:53:40 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 8b889e35789d2b97f2ba8771acc9a008.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - PhuFhkhUG0-LcN0MBwyJyqjP1yMhjhtmuAnJAneo9hgES5MZhYSWSg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Error from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 400
+      message: Bad Request
 version: 1

@@ -62,7 +62,7 @@ class Test_get_facilities:
         osh_api = pyoshub.OSH_API(
             url=os.environ["TEST_OSH_URL"],
             token=os.environ["TEST_OSH_TOKEN"],
-            heck_token=True)
+            check_token=True)
         result = osh_api.get_facilities(lists=859)
         assert (result[7] == {
             'os_id': 'PL2021057HKNX9C',

@@ -1,0 +1,219 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}],
+        "gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Oct 2022 19:03:37 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 5b6e22c950501920595c86fc25834582.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - tG-jqBEv5wOW_28jah5id1oRBITt_ujmV5Pa0g9Sz4Xqzz4LrOXvxA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/count/
+  response:
+    body:
+      string: '{"count":109834}'
+    headers:
+      Allow:
+      - GET, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '16'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Oct 2022 19:03:37 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 5492e1c9a06f2320204e7fcc383cff5c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - QcGPns0kpaaEtJbEBWiWbghhh6g_p_nHbBHZuqT_00TWjOmSrP0RDQ==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: name=ECLAT+EVERGOOD+TEXTILES+MANUFA&address=SITE+NO.+6+AND+19+THETSANE+IND+%2C+MASERU+100+LS&country=LS&sector=Apparel
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '118'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: POST
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/??create=false&public=true&textonlyfallback=false
+  response:
+    body:
+      string: '{"matches":[{"id":"LS2021053GJXTHP","type":"Feature","geometry":{"type":"Point","coordinates":[27.4869229,-29.3150767]},"properties":{"name":"Eclat
+        Evergood Textiles Manufactures (PTY) LTD","address":"Site No.6 Thetsanr lndustrial
+        Area Maseru","country_code":"LS","os_id":"LS2021053GJXTHP","other_names":[],"other_addresses":[],"contributors":[{"id":686,"name":"Higg","is_verified":false,"contributor_name":"Higg","list_name":null},{"id":2129,"name":"JCPenney
+        (JC Penney Factory List November 2021)","is_verified":false,"contributor_name":"JCPenney","list_name":"JC
+        Penney Factory List November 2021"}],"country_name":"Lesotho","claim_info":null,"other_locations":[{"lat":-29.3401777,"lng":27.4610219,"contributor_id":2129,"contributor_name":"JCPenney","notes":null}],"ppe_product_types":null,"ppe_contact_phone":null,"ppe_contact_email":null,"ppe_website":null,"is_closed":null,"activity_reports":[],"contributor_fields":[],"new_os_id":null,"has_inexact_coordinates":false,"extended_fields":{"name":[{"value":"Eclat
+        Evergood Textiles Manufactures (PTY) LTD","field_name":"name","contributor_id":2129,"contributor_name":"JCPenney","updated_at":"2022-01-27T17:43:19.951897Z"},{"value":"Eclat
+        Evergood Textiles Manufactures (PTY) LTD","field_name":"name","contributor_id":686,"contributor_name":"Higg","updated_at":"2022-01-27T17:37:27.403464Z"}],"address":[{"value":"Site
+        No.6 Thetsanr lndustrial Area Maseru","field_name":"address","contributor_id":2129,"contributor_name":"JCPenney","updated_at":"2022-01-27T17:43:19.951897Z","is_from_claim":false},{"value":"Site
+        No.6 Thetsanr lndustrial Area Maseru","field_name":"address","contributor_id":686,"contributor_name":"Higg","updated_at":"2022-01-27T17:37:27.403464Z","is_from_claim":false}],"number_of_workers":[],"native_language_name":[],"facility_type":[],"processing_type":[],"product_type":[],"parent_company":[]},"created_from":{"created_at":"2021-02-22T06:09:44.569417Z","contributor":"Higg"},"sector":[{"updated_at":"2022-01-27T17:43:19.951897Z","contributor_id":2129,"contributor_name":"JCPenney","values":["Apparel"],"is_from_claim":false},{"updated_at":"2022-01-27T17:37:27.572354Z","contributor_id":null,"contributor_name":"a
+        Multi-Stakeholder Initiative","values":["Apparel"],"is_from_claim":false}]},"confidence":0.5117,"confirm_match_url":"/api/facility-matches/699490/confirm/","reject_match_url":"/api/facility-matches/699490/reject/"}],"item_id":804412,"geocoded_geometry":{"type":"Point","coordinates":[27.4610127,-29.3401858]},"geocoded_address":"MF56+WCC,
+        Maseru, Lesotho","status":"POTENTIAL_MATCH"}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2570'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Oct 2022 19:03:38 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 c43915e0cad14ee7685e5f74a99ce93c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - BczTwE2gDGkcWc-riYeOPrJFPFbMF2jU3_n3u3pd0RNmT6-v0cyWvg==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 201
+      message: Created
+- request:
+    body: null
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '0'
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: POST
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facility-matches/699490/reject/
+  response:
+    body:
+      string: '{"id":804412,"matches":[{"id":699490,"status":"REJECTED","confidence":"0.51","results":{"code_version":"UNKNOWN","recall_weight":1.0,"no_geocoded_items":false,"automatic_threshold":0.8,"gazetteer_threshold":0.5,"no_gazetteer_matches":false},"os_id":"LS2021053GJXTHP","name":"Eclat
+        Evergood Textiles Manufactures (PTY) LTD","address":"Site No.6 Thetsanr lndustrial
+        Area Maseru","location":{"lat":-29.3150767,"lng":27.4869229},"is_active":true},{"id":699491,"status":"CONFIRMED","confidence":"1.00","results":{"match_type":"all_potential_matches_rejected"},"os_id":"LS2022296W4Q8H6","name":"ECLAT
+        EVERGOOD TEXTILES MANUFA","address":"SITE NO. 6 AND 19 THETSANE IND , MASERU
+        100 LS","location":{"lat":-29.3401858,"lng":27.4610127},"is_active":true}],"country_name":"Lesotho","processing_errors":null,"matched_facility":{"os_id":"LS2022296W4Q8H6","address":"SITE
+        NO. 6 AND 19 THETSANE IND , MASERU 100 LS","name":"ECLAT EVERGOOD TEXTILES
+        MANUFA","created_from_id":804412,"location":{"lat":-29.3401858,"lng":27.4610127}},"ppe_product_types":null,"ppe_contact_email":null,"ppe_contact_phone":null,"ppe_website":null,"row_index":0,"raw_data":"{\"name\":
+        \"ECLAT EVERGOOD TEXTILES MANUFA\", \"address\": \"SITE NO. 6 AND 19 THETSANE
+        IND , MASERU 100 LS\", \"country\": \"LS\", \"sector\": \"Apparel\"}","status":"CONFIRMED_MATCH","processing_started_at":null,"processing_completed_at":null,"name":"ECLAT
+        EVERGOOD TEXTILES MANUFA","address":"SITE NO. 6 AND 19 THETSANE IND , MASERU
+        100 LS","country_code":"LS","sector":["Apparel"],"clean_name":"eclat evergood
+        textiles manufa","clean_address":"site no. 6 and 19 thetsane ind maseru 100
+        ls","source":348693}'
+    headers:
+      Allow:
+      - POST, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1647'
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 23 Oct 2022 19:07:19 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 0c792defeeaa18965559ad74895ea56a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - XTPU2PELaTM2NSHCox-KY8AuJok_yWHNKTYwOCza6w8vL0es6JYy4w==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

@@ -1,6 +1,6 @@
 """pyosh is a Package for accessing the `Open Supply Hub API <https://opensupplyhub.org/api/docs>`_ using python."""
 
-__version__ = "0.4.1"
+__version__ = "0.4.2"
 
 import os
 import yaml
@@ -495,7 +495,7 @@ class OSH_API():
                         country: str = "", sector: str = "",
                         data: dict = {},
                         create: bool = False, public: bool = True,
-                        textonlyfallback: bool = False, timeout_secs: int = 90,
+                        textonlyfallback: bool = False, timeout_secs: int = 20,
                         number_of_workers: Union[int, str] = "", facility_type: str = "",
                         processing_type: str = "", product_type: str = "",
                         parent_company_name: str = "", native_language_name: str = "") -> list:
@@ -519,25 +519,24 @@ class OSH_API():
         .. uml::
 
           @startuml
+            (*) --> "ingest data"
+            "ingest data"  --> "sector/product types"
+            "sector/product types" --> "geocoding"
+            "geocoding" --> "dedupe entry"
 
-          (*) --> "ingest data"
-          "ingest data"  --> "sector/product types"
-          "sector/product types" --> "dedupe entry"
+            "dedupe entry" --> "MATCHED"
+            "dedupe entry" --> "NEW_FACILITY"
+            "dedupe entry" --> "POTENTIAL_MATCH"
+            "dedupe entry" --> "ERROR_MATCHING"
 
-          "dedupe entry" --> "MATCHED"
-          "dedupe entry" --> "NEW_FACILITY"
-          "dedupe entry" --> "POTENTIAL_MATCH"
-          "dedupe entry" --> "ERROR_MATCHING"
+            "POTENTIAL_MATCH" --> "confirm/reject endpoints"
 
-          "POTENTIAL_MATCH" --> "confirm/reject endpoints"
-
-          "MATCHED" -->[existing os_id] (*)
-          "NEW_FACILITY" -->[new os_id] (*)
-          "confirm/reject endpoints" -->[second call required] (*)
-          "ERROR_MATCHING" -->[record invalid] (*)
-
+            "MATCHED" -->[existing os_id] (*)
+            "NEW_FACILITY" -->[new os_id] (*)
+            "confirm/reject endpoints" -->[second call required] "CONFIRMED_MATCH" 
+            "CONFIRMED_MATCH" --> (*)
+            "ERROR_MATCHING" -->[record invalid] (*)
           @enduml
-
 
         Parameters
         ----------
@@ -930,33 +929,34 @@ class OSH_API():
             An array of dictionaries (key,value pairs). See table below for
             return data structures.
 
-            +-----------------+------------------------------------------+-------+
-            |column           | description                              | type  |
-            +=================+==========================================+=======+
-            | id              |                                          | int   |
-            +-----------------+------------------------------------------+-------+
-            | country_name    |                                          | str   |
-            +-----------------+------------------------------------------+-------+
-            | matched_os_id   |                                          | str   |
-            +-----------------+------------------------------------------+-------+
-            | matched_address |                                          | str   |
-            +-----------------+------------------------------------------+-------+
-            | matched_name    |                                          | str   |
-            +-----------------+------------------------------------------+-------+
-            | matched_lat     |                                          | float |
-            +-----------------+------------------------------------------+-------+
-            | matched_lon     |                                          | float |
-            +-----------------+------------------------------------------+-------+
-            | status          |                                          | str   |
-            +-----------------+------------------------------------------+-------+
-            | name            |                                          | str   |
-            +-----------------+------------------------------------------+-------+
-            | address         |                                          | str   |
-            +-----------------+------------------------------------------+-------+
-            | country_code    |                                          | str   |
-            +-----------------+------------------------------------------+-------+
-            | sector          |                                          | str   |
-            +-----------------+------------------------------------------+-------+
+            +-----------------+----------------------------------------------+-------+
+            |column           | description                                  | type  |
+            +=================+==============================================+=======+
+            | id              | Record number                                | int   |
+            +-----------------+----------------------------------------------+-------+
+            | country_name    | Match `ISO 3166 country name                 | str   |
+            |                 | <https://iso.org/obp/ui/#search/code/>`_     |       |
+            +-----------------+----------------------------------------------+-------+
+            | matched_os_id   | ``OS ID`` of the matched facility            | str   |
+            +-----------------+----------------------------------------------+-------+
+            | matched_address | Address of the matched facility              | str   |
+            +-----------------+----------------------------------------------+-------+
+            | matched_name    | Name of the matched facility                 | str   |
+            +-----------------+----------------------------------------------+-------+
+            | matched_lat     | Geographic latitude of the matched facility  | float |
+            +-----------------+----------------------------------------------+-------+
+            | matched_lon     | Geographic longitude of the matched facility | float |
+            +-----------------+----------------------------------------------+-------+
+            | status          | ``CONFIRMED_MATCH``                          | str   |
+            +-----------------+----------------------------------------------+-------+
+            | name            | Facility name as provided                    | str   |
+            +-----------------+----------------------------------------------+-------+
+            | address         | Facility address as provided                 | str   |
+            +-----------------+----------------------------------------------+-------+
+            | country_code    | Country code from country name as provided   | str   |
+            +-----------------+----------------------------------------------+-------+
+            | sector          | Sector as provided                           | str   |
+            +-----------------+----------------------------------------------+-------+
         """
         if len(match_url) > 0:
             url_to_call = match_url
@@ -1040,14 +1040,97 @@ class OSH_API():
             An array of dictionaries (key,value pairs). See table below for
             return data structures.
 
-            +-----------------+-----------------------------------+------+
-            |column           | description                       | type |
-            +=================+===================================+======+
-            |                 |                                   |      |
-            +-----------------+-----------------------------------+------+
+            +-----------------+----------------------------------------------+-------+
+            |column           | description                                  | type  |
+            +=================+==============================================+=======+
+            | id              | Record number                                | int   |
+            +-----------------+----------------------------------------------+-------+
+            | country_name    | Match `ISO 3166 country name                 | str   |
+            |                 | <https://iso.org/obp/ui/#search/code/>`_     |       |
+            +-----------------+----------------------------------------------+-------+
+            | matched_os_id   | ``OS ID`` of the matched facility            | str   |
+            +-----------------+----------------------------------------------+-------+
+            | matched_address | Address of the matched facility              | str   |
+            +-----------------+----------------------------------------------+-------+
+            | matched_name    | Name of the matched facility                 | str   |
+            +-----------------+----------------------------------------------+-------+
+            | matched_lat     | Geographic latitude of the matched facility  | float |
+            +-----------------+----------------------------------------------+-------+
+            | matched_lon     | Geographic longitude of the matched facility | float |
+            +-----------------+----------------------------------------------+-------+
+            | status          | ``CONFIRMED_MATCH``                          | str   |
+            +-----------------+----------------------------------------------+-------+
+            | name            | Facility name as provided                    | str   |
+            +-----------------+----------------------------------------------+-------+
+            | address         | Facility address as provided                 | str   |
+            +-----------------+----------------------------------------------+-------+
+            | country_code    | Country code from country name as provided   | str   |
+            +-----------------+----------------------------------------------+-------+
+            | sector          | Sector as provided                           | str   |
+            +-----------------+----------------------------------------------+-------+
         """
 
-        return []
+        if len(match_url) > 0:
+            url_to_call = match_url
+        elif match_id > 0:
+            url_to_call = f"/api/facility-matches/{match_id}/reject/"
+        else:
+            data = {"status": "need a valid match_id or match_url"}
+            self._result = {"code": -1, "message": "need a valid match_id or match_url"}
+            self._error = True
+            return data
+
+        try:
+            self.last_api_call_epoch = time.time()
+            r = requests.post(f"{self._url}{url_to_call}", headers=self._header)
+            self._raw_data = copy.copy(r.text)
+            self.last_api_call_duration = time.time()-self.last_api_call_epoch
+            self._api_call_count += 1
+            if r.ok:
+                data = json.loads(r.text)
+                self._result = {"code": 0, "message": f"{r.status_code}"}
+                self._error = False
+
+                new_data = {}
+
+                for k, v in data.items():
+                    if k == "matched_facility":
+                        for kk, vv in v.items():
+                            if kk == "location":
+                                new_data["matched_lat"] = vv["lat"]
+                                new_data["matched_lon"] = vv["lng"]
+                            elif "created_from_id" == kk:
+                                continue
+                            else:
+                                new_data[f"matched_{kk}"] = vv
+                    elif k == "sector":
+                        new_data[k] = "|".join(v)
+                    elif isinstance(v, dict):
+                        pass
+                    elif isinstance(v, list):
+                        pass
+                    elif k in ["raw_data", "row_index", "source"]:
+                        continue
+                    elif k.startswith("ppe_"):
+                        continue
+                    elif k.startswith("processing_"):
+                        continue
+                    elif k.startswith("clean_"):
+                        continue
+                    else:
+                        new_data[k] = v
+
+                data = new_data
+            else:
+                data = {"status": "HTTP_ERROR"}
+                self._result = {"code": -1, "message": f"{r.status_code}"}
+                self._error = True
+        except Exception as e:
+            self._result = {"code": -1, "message": str(e)}
+            self._error = True
+            return
+
+        return data
 
     def get_contributor_types(self) -> list:
         """Get a list of contributor type choices. The original REST API returns a list of pairs of values and display names.

@@ -173,6 +173,42 @@ class Test_post_facilities_match:
             'sector': 'Apparel'
         }
         assert (result == expect)
+        assert (result["status"] == "CONFIRMED_MATCH")
+        assert (osh_api.ok)
+        assert (osh_api.reason == "200")
+
+    def test_post_facilities_possible_match_reject(self):
+        osh_api = pyoshub.OSH_API(
+            url=os.environ["TEST_OSH_URL"],
+            token=os.environ["TEST_OSH_TOKEN"],
+            check_token=True)
+
+        result_1 = osh_api.post_facilities(
+            name="ECLAT EVERGOOD TEXTILES MANUFA",
+            country="LS",
+            address="SITE NO. 6 AND 19 THETSANE IND , MASERU 100 LS",
+            sector="Apparel"
+        )
+        assert (result_1[0]["status"] == "POTENTIAL_MATCH")
+        
+        result = osh_api.post_facility_match_confirm(match_url="/api/facility-matches/699490/reject/")
+        expect = {
+            "id": 804412,
+            "country_name": "Lesotho",
+            "matched_os_id": "LS2022296W4Q8H6",
+            "matched_address": "SITE NO. 6 AND 19 THETSANE IND , MASERU 100 LS",
+            "matched_name": "ECLAT EVERGOOD TEXTILES MANUFA",
+            "matched_lat": -29.3401858,
+            "matched_lon": 27.4610127,
+            "status": "CONFIRMED_MATCH",
+            "name": "ECLAT EVERGOOD TEXTILES MANUFA",
+            "address": "SITE NO. 6 AND 19 THETSANE IND , MASERU 100 LS",
+            "country_code": "LS",
+            "sector": "Apparel"
+        }
+
+        assert (result == expect)
+        assert (result["status"] == "CONFIRMED_MATCH")
         assert (osh_api.ok)
         assert (osh_api.reason == "200")
 
@@ -186,8 +222,8 @@ class Test_post_facilities_match:
             country="BX",
             address="C",
         )
-        assert (result.error)
-        assert (osh_api.result == {'code': -1, 'message': '400'})
+        assert (osh_api.error)
+        assert (osh_api.result == {'code': -1, 'message': '400 Bad Request'})
 
     def test_post_facilities_missing_country(self):
         osh_api = pyoshub.OSH_API(
