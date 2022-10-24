@@ -3,14 +3,31 @@
 Welcome to pyoshub's documentation!
 ===================================
 
-Not all API endpoints are similarly simportant or address common use cases. 
+Quickstart
+----------
 
-* core API endpoints will be used most commonly to match addresses and upload data
-* reference endpoints provide access to data that should be used, if possible, such as country, or sector names
-* extended endpoints are for more specific use cases, such as changing facility open/close use cases
-* info endpoints may be of less interest to most
-* internal endpoints may be retired as there may not be a good use case for most
+For installation, run.
 
+.. code-block:: shell
+
+   pip install pyoshub
+
+
+In python, import the module, set up the API connection, and then use the various calls as required.
+
+.. code-block:: python
+
+   from pyoshub import OSH_API
+
+   ...
+
+   osh_api = OSH_API(token="<your token>")
+   if osh_api.ok:
+      print(osh_api.get_sectors())
+   else:
+      print(f"Error: {osh_api.reason}")
+
+Head over to :doc:`Examples </examples>`\, or the :doc:`API documentation </doc>` for more details. 
 
 .. toctree::
    :maxdepth: 2
@@ -21,6 +38,81 @@ Not all API endpoints are similarly simportant or address common use cases.
    authentication
    examples
    datamodel
+
+
+Use Case Mapping to REST Endpoints
+----------------------------------
+
+Not all API endpoints are similarly simportant or address common use cases. 
+
+* core API endpoints will be used most commonly to match addresses and upload data
+* reference endpoints provide access to data that should be used, if possible, such as country, or sector names
+* extended endpoints are for more specific use cases, such as changing facility open/close use cases
+* info endpoints may be of less interest to most
+* internal endpoints may be retired as there may not be a good use case for most
+
+
+
+.. table::
+   
+    +-----------------------------------------------+-------+------------+
+    | endpoint                                      | verb  | level      |
+    +===============================================+=======+============+
+    | ``/facilities/``                              | GET   | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/``                              | POST  | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-matches/{id}/``                   | GET   | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-matches/{id}/confirm/``           | POST  | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-matches/{id}/reject/``            | POST  | core       |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributor-types/``                       | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/countries/``                               | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/countries/active_count/``                  | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-processing-types/``               | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/product-types/``                           | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/sectors/``                                 | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/workers-ranges/``                          | GET   | reference  |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/{id}/dissociate/``              | POST  | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/{id}/history/``                 | GET   | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/{id}/report/``                  | POST  | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-activity-reports/``               | GET   | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-activity-reports/{id}/approve/``  | POST  | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/facility-activity-reports/{id}/reject/``   | POST  | extended   |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributor-lists/``                       | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributors/``                            | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributors/active_count/``               | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/{id}/``                         | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities/count/``                        | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/parent-companies/``                        | GET   | info       |
+    +-----------------------------------------------+-------+------------+
+    | ``/facilities-downloads/``                    | GET   | internal   |
+    +-----------------------------------------------+-------+------------+
+    | ``/contributor-embed-configs/{id}/``          | GET   | internal   |
+    +-----------------------------------------------+-------+------------+
+
+
+
 
 Indices and tables
 ==================

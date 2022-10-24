@@ -136,6 +136,34 @@ Depending on the Open Supply Hub database content,
 - if the user rejects the POTENTIAL_MATCH, the newly uploaded record is assigned
   a newly created OS ID, and given a status of CONFIRMED_MATCH
 
+To check if a record has a match in the database, the :py:meth:`~pyoshub.OSH_API.post_facilities` is
+called with the ``create`` parameter being set to ``False`` (which also is its default value).
+
+.. code-block:: python
+  result = osh_api.post_facilities(
+    name = "Eternal Sunshine Solar Power Ltd.",
+    address = "Terrace House 13 Collins Ave PO, New Providence",
+    country = "Bahamas",
+    sector = "Renewable Energy",
+    product_type = "Solar Panels|Wind Turbines",
+    processing_type = "Assembly|Sales|Services",
+    create = False,
+    timeout = 15
+  )
+  if osh_api.ok:
+    if result["status"] == "MATCHED":
+      print('A match exists for the facility.')
+      print(f'result[0]["os_id"]')
+    elif result["status"] == "POTENTIAL_MATCH":
+      print('One or more matches exists for the facility. ''
+            'When uploading the data, you will need to confirm one of these matches, '
+            'or reject the proposals to create a new facility.')
+      match_no = 0
+      for match in result["matches"]:
+        match_no += 1
+        print(f'Match[{match_no}]: {result[match_no]["os_id"]}\t{result[match_no]["name"]}\t{result[match_no]["address"]}')
+    
+
 Uploading new facilities, or facility changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -169,66 +197,4 @@ Advanced and Extended Use Cases
 Additional Information Use Cases
 --------------------------------
 
-
-Use Case Mapping to REST Endpoints
-----------------------------------
-
-
-.. table::
-   
-    +-----------------------------------------------+-------+------------+
-    | endpoint                                      | verb  | level      |
-    +===============================================+=======+============+
-    | ``/facilities/``                              | GET   | core       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities/``                              | POST  | core       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-matches/{id}/``                   | GET   | core       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-matches/{id}/confirm/``           | POST  | core       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-matches/{id}/reject/``            | POST  | core       |
-    +-----------------------------------------------+-------+------------+
-    | ``/contributor-types/``                       | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/countries/``                               | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/countries/active_count/``                  | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-processing-types/``               | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/product-types/``                           | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/sectors/``                                 | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/workers-ranges/``                          | GET   | reference  |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities/{id}/dissociate/``              | POST  | extended   |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities/{id}/history/``                 | GET   | extended   |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities/{id}/report/``                  | POST  | extended   |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-activity-reports/``               | GET   | extended   |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-activity-reports/{id}/approve/``  | POST  | extended   |
-    +-----------------------------------------------+-------+------------+
-    | ``/facility-activity-reports/{id}/reject/``   | POST  | extended   |
-    +-----------------------------------------------+-------+------------+
-    | ``/contributor-lists/``                       | GET   | info       |
-    +-----------------------------------------------+-------+------------+
-    | ``/contributors/``                            | GET   | info       |
-    +-----------------------------------------------+-------+------------+
-    | ``/contributors/active_count/``               | GET   | info       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities/{id}/``                         | GET   | info       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities/count/``                        | GET   | info       |
-    +-----------------------------------------------+-------+------------+
-    | ``/parent-companies/``                        | GET   | info       |
-    +-----------------------------------------------+-------+------------+
-    | ``/facilities-downloads/``                    | GET   | internal   |
-    +-----------------------------------------------+-------+------------+
-    | ``/contributor-embed-configs/{id}/``          | GET   | internal   |
-    +-----------------------------------------------+-------+------------+
 

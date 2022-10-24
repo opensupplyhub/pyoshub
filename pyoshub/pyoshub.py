@@ -1,6 +1,6 @@
 """pyosh is a Package for accessing the `Open Supply Hub API <https://opensupplyhub.org/api/docs>`_ using python."""
 
-__version__ = "0.4.3"
+__version__ = "0.4.4"
 
 import os
 import yaml
@@ -644,9 +644,7 @@ class OSH_API():
         +--------------------------------+------------------------------------------+-------+
         | match_new_os_id                |                                          | str   |
         +--------------------------------+------------------------------------------+-------+
-        | match_has_inexact_coordinates  |           Geocoordinates manually        | bool  |
-        |                                |                                          |       |
-        |                                | entered for match                        |       |
+        | match_has_inexact_coordinates  | Geocoordinates manually entered          | bool  |
         +--------------------------------+------------------------------------------+-------+
         | match_ef_name                  | Match extended field name                | str   |
         +--------------------------------+------------------------------------------+-------+

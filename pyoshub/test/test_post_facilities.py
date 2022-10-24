@@ -206,7 +206,8 @@ class Test_post_facilities_match:
             "country_code": "LS",
             "sector": "Apparel"
         }
-
+        import json
+        print(json.dumps(result,indent=2))
         assert (result == expect)
         assert (result["status"] == "CONFIRMED_MATCH")
         assert (osh_api.ok)
