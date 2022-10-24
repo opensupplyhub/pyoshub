@@ -140,6 +140,7 @@ To check if a record has a match in the database, the :py:meth:`~pyoshub.OSH_API
 called with the ``create`` parameter being set to ``False`` (which also is its default value).
 
 .. code-block:: python
+
   result = osh_api.post_facilities(
     name = "Eternal Sunshine Solar Power Ltd.",
     address = "Terrace House 13 Collins Ave PO, New Providence",
@@ -150,6 +151,7 @@ called with the ``create`` parameter being set to ``False`` (which also is its d
     create = False,
     timeout = 15
   )
+
   if osh_api.ok:
     if result["status"] == "MATCHED":
       print('A match exists for the facility.')
@@ -166,6 +168,57 @@ called with the ``create`` parameter being set to ``False`` (which also is its d
 
 Uploading new facilities, or facility changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It is possible to either upload individual records by calling :py:meth:`~pyoshub.OSH_API.post_facilities`
+once per record, or use the bulk uploading method :py:meth:`~pyoshub.OSH_API.post_facilities_bulk`. The
+latter allows for a list of facilities to be processed in one batch, and some convenience data
+cleansing functions.
+
+.. code-block:: python
+
+  import pandas as pd
+  import pyoshub
+
+  df_my_facilities = pd.read_excel("my_facilities.xlsx")
+
+  osh_api = pyoshub.OSH_API()
+  if osh_api.ok:
+    result = osh_api.post_facilities_bulk(
+          df_my_facilities.to_dict(orient="records"),
+          cleanse = True,
+          auto_create = True,
+          column_mapping = {"street and city":"address","supplier":"name","iso_2":"country"},
+        )
+    if osh_api.ok:
+      df_my_mapped_facilities = pd.DataFrame(result)
+      df_my_mapped_facilities.to_excel("my_mapped_facilities.xlsx",index=False)
+
+The above code does multiple things:
+
+- It checks for matches of each facility contained in the Excel file, and uploads facilities
+  for which no match could be found (``auto_create=True``)
+- Columns which are present in the original file, such as internal identifiers, will
+  remain in the result 
+- The cell contents will be cleansed by removing ``N/A``, multiple space characters, and
+  commas, and combinations thereof (``cleanse=True``)
+- Columns will be renamed as specified in the column_mapping dict. So, if the original
+  file was called
+
+  +----------+-----------------+-------+
+  | supplier | street and city | iso_2 |
+  +==========+=================+=======+
+  | ...      | ...             | ...   |
+  +----------+-----------------+-------+
+
+  it will be renamed prior to upload such that the table appears to be called
+
+  +----------+-----------------+-------+
+  | name     | address         |country|
+  +==========+=================+=======+
+  | ...      | ...             | ...   |
+  +----------+-----------------+-------+
+
+
 
 Managing Facility Record changes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

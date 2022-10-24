@@ -646,8 +646,20 @@ post_facilities_bulk
     "properties": {
       "records": {
         "type": "array"
+      },
+      "cleanse": {
+        "type": "boolean"
+      },
+      "auto_create": {
+        "type": "boolean"
       }
-    }
+      "column_mapping": {
+        "type": "object"
+      }
+    },
+    "required": [
+      "records"
+    ]
   }
 
 .. uml:: 
@@ -655,6 +667,9 @@ post_facilities_bulk
   @startuml
    class post_facilities_bulk {
    records : list
+   cleanse : bool
+   auto_create : bool
+   column_mapping : dict
   }
   @enduml
 

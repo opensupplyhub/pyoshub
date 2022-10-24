@@ -1,6 +1,6 @@
 """pyosh is a Package for accessing the `Open Supply Hub API <https://opensupplyhub.org/api/docs>`_ using python."""
 
-__version__ = "0.4.4"
+__version__ = "0.5.0"
 
 import os
 import yaml
@@ -13,6 +13,7 @@ import io
 import logging
 import copy
 import re
+import inspect
 
 
 class OSH_API():
@@ -204,7 +205,7 @@ class OSH_API():
     @property
     def ok(self) -> bool:
         """Return the False if the previously made call returned an error, True otherwises.
-           Provided to provide interface similar to ``requests``.
+           Provided to provide interface similar to :py:func:`requests <requests:requests.request>`.
         """
         return not self._error
 
@@ -230,14 +231,14 @@ class OSH_API():
     @property
     def status_code(self) -> int:
         """Status code part of the last call result.
-           Provided to provide interface similar to ``requests``.
+           Provided to provide interface similar to :py:func:`requests <requests:requests.request>`.
         """
         return self._result["code"]
 
     @property
     def reason(self) -> str:
         """Error text part of the last call result, "ok" if no error.
-           Provided to provide interface similar to ``requests``.
+           Provided to provide interface similar to :py:func:`requests <requests:requests.request>`.
         """
         return self._result["message"]
 
@@ -780,6 +781,9 @@ class OSH_API():
         while try_request:  # Timeout guard
             try:
                 self.last_api_call_epoch = time.time()
+                s = inspect.stack()[0]
+                logging.info(f"{s.function} Calling API URL {self._url}/api/facilities/?{parameters}")
+                logging.info(f"{s.function} Calling API JSON {payload}")
                 r = requests.post(f"{self._url}/api/facilities/?{parameters}", headers=self._header, data=payload)
                 timeout_attempt_no += 1
                 self._raw_data = copy.copy(r.text)
@@ -827,17 +831,151 @@ class OSH_API():
 
         return data
 
-    def post_facilities_bulk(self, records: list = [], ) -> list:
+    def post_facilities_bulk(self, records: list, cleanse: bool = False, 
+                             auto_create = False, timeout: int = 15,
+                             column_mapping: dict = {}) -> list:
         """Add multiple records at once.
+
+        This is a utility function that allows bulk upload of records, column name remapping, and
+        reasonable data content cleansing.
+
+        Parameters
+        ----------
+        records : list
+            A list of dicts containing key,value pairs of facilities to be uploaded. When using
+            pandas dataframes, a valid list can be created by converting a 
+            :py:meth:`pandas DataFrame <pandas:pandas.DataFrame>`
+            using :py:meth:`df.to_dict(orient="records") <pandas:pandas.DataFrame.to_dict>`
+        cleanse : bool, optional
+            Flag indicating if records should be cleansed. This removes ``N/A``, and multiple sequences of commas
+            intermixed with blanks
+        auto_create : bool, optional
+            By default, the method will look up the database for existing records, trying to find matches,
+            without creating them. Setting ``auto_create`` to ``True``, new facility records will be created
+            as required.
+        timeout : int, optional, default 15 [seconds]
+            Timeout, in seconds, to apply to individual record calls. Creation of records may be rate limited,
+            which is handled by :py:meth:`~pyoshub.OSH_API.post_facilities`\, this parameter can be used to
+            override the default. Note this is applied, per call, i.e. per row of data.
+        column_mapping: dict, optional, default empty
+            Mapping between source and OSH column names.
+
+
+        Returns
+        -------
+        list(dict)
+            An array of dictionaries (key,value pairs). See :py:meth:`~pyoshub.OSH_API.post_facilities` for 
+            attributes returned based on the match ``status``.
+
+            In addition, this method will always return
+
+            +-----------+----------------------------------------------------------------------------+-------+
+            | column    | description                                                                | type  |
+            +===========+============================================================================+=======+
+            | name      | Name of facility as supplied                                               | str   |
+            +-----------+----------------------------------------------------------------------------+-------+
+            | address	| Address of facility as supplied                                            | str   |
+            +-----------+----------------------------------------------------------------------------+-------+
+            | ...       | Other parameters of facility as supplied                                   | ...   |
+            +-----------+----------------------------------------------------------------------------+-------+
+            | diagnosis	| String indicating completeness of record(s) provided                       | str   |
+            |           |                                                                            |       |
+            |           | Either ``VALID``, or ``MISSING column(s)`` followed with                   |       |
+            |           |                                                                            |       |
+            |           | a comma separated list indicating ``name``\, ``address``\,                 |       |
+            |           |                                                                            |       |
+            |           | ``country``                                                                |       |
+            +-----------+----------------------------------------------------------------------------+-------+
+            | status    | ...                                                                        |       |
+            +-----------+----------------------------------------------------------------------------+-------+
 
         .. attention::
           This function will become available at a later stage
         """
-        return
+        alldata = []
+
+        most_important_return_attributes = ['status', 'os_id', 'lon', 'lat', 'geocoded_address']
+        
+        for record in records:
+            new_record = {}
+            for k,v in record.items():
+                v = v.strip()
+                cleansed = False
+                if cleanse:
+                    while "N/A" in v:
+                        v = v.replace("N/A","").strip()
+                        cleansed = True
+                    while ", ," in v:
+                        v = v.replace(", ,",",").strip()
+                        cleansed = True
+                    while "  " in v:
+                        v = v.replace("  "," ").strip()
+                        cleansed = True
+                    while ",," in v:
+                        v = v.replace(",,",",").strip()
+                        cleansed = True
+                    while v.endswith(","):
+                        v = v[:-1].strip().strip()
+                        cleansed = True
+
+                if k in column_mapping.keys():
+                    new_record[column_mapping[k]] = v.strip()
+                else:
+                    new_record[k] = v.strip()
+                    
+            to_delete = []
+            for k in new_record.keys():
+                if len(new_record[k]) == 0:
+                    to_delete.append(k)
+            for k in to_delete:
+                del new_record[k]
+    
+            if "country" in record.keys() and "name" in record.keys() and "address" in record.keys():
+                new_record["diagnosis"] = "VALID"
+                result = self.post_facilities(data=new_record,create=False)
+                s = inspect.stack()[0]
+                logging.info(f"{s.function} cleansed record {new_record}")
+                _ = """
+                ['item_id', 'lon', 'lat', 'geocoded_address', 'status', 'os_id']
+                [
+                  {
+                    "item_id": 804450,
+                    "lon": 51.9238373,
+                    "lat": 47.0944959,
+                    "geocoded_address": "Atyrau, Kazakhstan",
+                    "status": "NEW_FACILITY",
+                    "os_id": "KZ20222978AEQXH"
+                  }
+                ]"""
+                # now append new 
+                for match in result:
+                    if match["status"] == "NEW_FACILITY":
+                        new_record["match_no"] = -1
+                    # Lets make sure the more important attributes are on the left
+                    for key in most_important_return_attributes:
+                        new_record[key] = match[key]
+                    for k,v in match.items():
+                        if k not in most_important_return_attributes:
+                            new_record[k] = match[k]
+            else:
+                diagnosis = "MISSING column(s) "
+                missing = []
+                for field in ["name","address","country"]:
+                    if field not in record.keys():
+                        missing.append(field)
+                diagnosis += ",".join(missing)
+                new_record["diagnosis"]  = diagnosis
+
+            new_record["cleansed"] = cleansed
+            alldata.append(new_record)
+
+        return alldata
 
     def get_facilities_match_record(self, match_id: int = -1, match_url: str = "") -> list:
         """This call is a utility call for retrieving a more detailed the match status result after a factory
         was uploaded.
+
+        .. WARNING:: Implementation of this method has been postponed and an empty list will be returned.
 
         Parameters
         ----------
@@ -1439,6 +1577,8 @@ class OSH_API():
     def post_disassociate_facility(self, osh_id: str) -> list:
         """Deactivate any matches to the facility submitted by the authenticated contributor making this call.
 
+        .. WARNING:: Implementation of this method has been postponed and an empty list will be returned.
+
         This call removes/disassociates a facility from the content provided by the contributor
         associated with the authentication token.
 
@@ -1538,10 +1678,12 @@ class OSH_API():
             +-------------------------------+-----------------------------------------------+-------+
         """
 
-        return
+        return []
 
     def get_facility_history(self, osh_id: str) -> list:
         """Returns the history of changes, or audit trail, for a facility as a list of dictionaries describing the changes.
+
+        .. WARNING:: Implementation of this method has been postponed and an empty list will be returned.
 
         Parameters
         ----------
@@ -1566,12 +1708,15 @@ class OSH_API():
             | detail                        | Change detail string                          | str   |
             +-------------------------------+-----------------------------------------------+-------+
         """
+
         return []
 
     def post_facility_open_or_closed(self, osh_id: str,
                                      closure_state: str,
                                      reason_for_report: str) -> list:
         """Report that a facility has been closed or opened.
+
+        .. WARNING:: Implementation of this method has been postponed and an empty list will be returned.
 
         Parameters
         ----------
@@ -1629,6 +1774,8 @@ class OSH_API():
     def post_facility_open(self, osh_id: str, reason_for_report: str) -> list:
         """Report that a facility has been opened.
 
+        .. WARNING:: Implementation of this method has been postponed and an empty list will be returned.
+
         This is a short form of calling ``post_facility_open_or_closed`` with the named parameter
         ``closure_state="OPEN"``, helping to avoid possible errors due to typos.
         """
@@ -1637,6 +1784,8 @@ class OSH_API():
 
     def post_facility_closed(self, osh_id: str, reason_for_report: str) -> list:
         """Report that a facility has been opened.
+
+        .. WARNING:: Implementation of this method has been postponed and an empty list will be returned.
 
         This is a short form of calling ``post_facility_open_or_closed`` with the named parameter
         ``closure_state="CLOSED"``, helping to avoid possible errors due to typos.

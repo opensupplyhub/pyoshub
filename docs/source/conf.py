@@ -17,8 +17,8 @@ sys.path.insert(0, os.path.abspath('../../pyoshub/pyoshub/'))
 project = 'pyoshub'
 copyright = '2022, Open Apparel Registry'
 author = 'Klaus G. Paul'
-version = '0.4.4'
-release = '0.4.4'
+version = '0.5.0'
+release = '0.5.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -31,6 +31,7 @@ extensions = [
     'sphinxcontrib.plantuml',
     'sphinx.ext.autosectionlabel',
     'sphinx_copybutton',
+    'sphinx.ext.intersphinx',
     # 'numpydoc'
 ]
 
@@ -61,4 +62,12 @@ autodoc_default_options = {
     'special-members': '__init__',
     'undoc-members': True,
     'exclude-members': '_flatten_facilities_json'
+}
+
+# https://pandas.pydata.org/pandas-docs/dev/
+# pandas [latest?]: ('https://pandas.pydata.org/docs/', None)
+
+intersphinx_mapping = {
+    'pandas': ('https://pandas.pydata.org/docs/', None),
+    'requests': ('https://requests.readthedocs.io/en/latest/', None),
 }
