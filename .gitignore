@@ -162,3 +162,7 @@ __html/
 .vscode/
 docs/build/
 hidden/
+.coverage/
+.coverage
+.coveragerc
+.pytest_cache/

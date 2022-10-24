@@ -1,6 +1,6 @@
 """pyosh is a Package for accessing the `Open Supply Hub API <https://opensupplyhub.org/api/docs>`_ using python."""
 
-__version__ = "0.5.0"
+__version__ = "0.5.1"
 
 import os
 import yaml
@@ -855,7 +855,7 @@ class OSH_API():
             as required.
         timeout : int, optional, default 15 [seconds]
             Timeout, in seconds, to apply to individual record calls. Creation of records may be rate limited,
-            which is handled by :py:meth:`~pyoshub.OSH_API.post_facilities`\, this parameter can be used to
+            which is handled by :py:meth:`~pyoshub.OSH_API.post_facilities`, this parameter can be used to
             override the default. Note this is applied, per call, i.e. per row of data.
         column_mapping: dict, optional, default empty
             Mapping between source and OSH column names.
@@ -898,9 +898,9 @@ class OSH_API():
         
         for record in records:
             new_record = {}
+            cleansed = False
             for k,v in record.items():
                 v = v.strip()
-                cleansed = False
                 if cleanse:
                     while "N/A" in v:
                         v = v.replace("N/A","").strip()
@@ -964,7 +964,9 @@ class OSH_API():
                     if field not in record.keys():
                         missing.append(field)
                 diagnosis += ",".join(missing)
-                new_record["diagnosis"]  = diagnosis
+                new_record["diagnosis"] = diagnosis
+                self._result = {"code": -3, "message": diagnosis}
+                self._error = True
 
             new_record["cleansed"] = cleansed
             alldata.append(new_record)

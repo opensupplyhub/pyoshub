@@ -1,0 +1,47 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"databases": [{"default": {"ok": true}}], "gazetteercache": {"ok":
+        true}, "caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 24 Oct 2022 19:56:31 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 7b39f60eed6e589bf869ce2ecfe6ab8c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - E0LCrEtO1Tsu0KBZogOD31Ra5IrRF01B08npckgkJIEuin4cOeTWMg==
+      X-Amz-Cf-Pop:
+      - HAM50-C1
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+version: 1

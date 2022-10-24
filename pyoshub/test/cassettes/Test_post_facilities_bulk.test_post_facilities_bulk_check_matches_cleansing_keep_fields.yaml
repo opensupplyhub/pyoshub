@@ -1,0 +1,101 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.28.1
+    method: GET
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/health-check/
+  response:
+    body:
+      string: '{"caches": [{"api_throttling": {"ok": true}}, {"default": {"ok": true}}],
+        "gazetteercache": {"ok": true}, "databases": [{"default": {"ok": true}}]}'
+    headers:
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '147'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 24 Oct 2022 20:16:53 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Cookie
+      Via:
+      - 1.1 d262e104d5d9dd6a4a52f090bdf9395c.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - iLfZfZPoCMrq8V5DEt8jDZIQRQbvIf7jlOWLHQt-TbdjQibMhQVjwA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 200
+      message: OK
+- request:
+    body: name=Some+Test+Facility&address=1F+Jln+2%2F38+Seksyen+2+Petaling+Jaya%2C+Selangor&sector=Construction&country=Malaysia&my_field=ID12345&diagnosis=VALID
+    headers:
+      Accept-Encoding:
+      - gzip, deflate, br
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '151'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - python-requests/2.28.1
+      accept:
+      - application/json
+      authorization:
+      - HIDDEN
+    method: POST
+    uri: https://9f692df0338dcbc9848646c6.openapparel.org/api/facilities/??create=false&public=true&textonlyfallback=false
+  response:
+    body:
+      string: '{"matches":[],"item_id":804461,"geocoded_geometry":{"type":"Point","coordinates":[101.6451971,3.0866489]},"geocoded_address":"1,
+        Jalan Dispensary (2/38), Seksyen 2 Petaling Jaya, 46000 Petaling Jaya, Selangor,
+        Malaysia","status":"NEW_FACILITY","os_id":"MY2022297H0MC6N"}'
+    headers:
+      Allow:
+      - GET, POST, HEAD, OPTIONS
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '270'
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 24 Oct 2022 20:16:54 GMT
+      Referrer-Policy:
+      - same-origin
+      Server:
+      - gunicorn
+      Vary:
+      - Accept
+      Via:
+      - 1.1 dc0aad619823d3400ef947433d0af8fa.cloudfront.net (CloudFront)
+      X-Amz-Cf-Id:
+      - P9NoNjEx9bUIWVcv9_1nuuX2awDpcYP8A9xTrreBnggjsjhs9wu4AA==
+      X-Amz-Cf-Pop:
+      - FRA60-P3
+      X-Cache:
+      - Miss from cloudfront
+      X-Content-Type-Options:
+      - nosniff
+    status:
+      code: 201
+      message: Created
+version: 1
