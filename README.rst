@@ -11,7 +11,7 @@ pyoshub, A Python libarary for the OSH API
 ===========================================
 
 This repository contains a python library to access the 
-`Open Supply Hub <https://opensupplyhub.org>`_ API using python. The [github repository for the web tool is available here](https://github.com/open-apparel-registry/open-apparel-registry).
+`Open Supply Hub <https://opensupplyhub.org>`_ API using python. The `github repository for the web tool is available here <https://github.com/open-apparel-registry/open-apparel-registry>`_.
 
 .. important::
     The library and this documentation are in constant development until we have reached a stable
